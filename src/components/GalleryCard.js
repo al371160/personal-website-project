@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
-
-export default function GalleryCard({ id, image, title }) {
+export default function GalleryCard({ title, description, image }) {
   return (
-    <Link to={`/detail/${id}`} className="gallery-card">
-      <img src={image} alt={title} />
-      <div className="gallery-caption">{title}</div>
-    </Link>
+    <div className="gallery-card">
+      <div className="gallery-image">
+        <img src={image} alt={title} />
+      </div>
+
+      <div className="gallery-info">
+        <h4>{title}</h4>
+        <p>{description}</p>
+      </div>
+    </div>
   );
 }

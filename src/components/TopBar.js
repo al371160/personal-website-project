@@ -8,12 +8,13 @@ export default function TopBar() {
           Alexander Liu
         </Link>
 
-        <nav className="topbar-nav">
+        <div className="topbar-nav">
           <Link to="/">Work</Link>
-          <a href="https://yourlink.com" target="_blank" rel="noreferrer">
+          {/*<a href="https://yourlink.com" target="_blank" rel="noreferrer">
             About
-          </a>
-        </nav>
+          </a>*/}
+          <Link to="/">About</Link>
+        </div>
       </div>
     </header>
   );

@@ -22,10 +22,10 @@
 /* ======================= */
 .bio-links-section {
   display: flex;
-  gap: 160px;
+  gap: 0;
   margin-top: 30px;
   margin-bottom: 30px;
-  justify-content: flex-start; /* left-align the columns */
+  justify-content: space-between; /* left-align the columns */
 }
 
 /* Bio left column */
@@ -74,7 +74,7 @@
 }
 
 .links-column a {
-  text-decoration: none;
+  text-decoration: dotted underline;
   color: #ffffff;
   transition: opacity 0.3s ease;
 }
@@ -83,29 +83,49 @@
   opacity: 0.7;           /* subtle hover effect */
 }
 
+@media (max-width: 800px) {
+  .bio-links-section {
+    flex-direction: column;
+  }
+}
+
+
 /* ======================= */
-/* GALLERY (keep previous fixed size) */
+/* GALLERY */
 /* ======================= */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
-  gap: 20px;
-  justify-content: flex-start; /* align to left */
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 32px;
+  justify-content: flex-start;
+  width: 100%;
 }
 
+/* Card container */
 .gallery-card {
-  width: 300px;
-  height: 200px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
   background-color: #161616;
+  border-radius: 14px;
+  overflow: hidden;
   cursor: pointer;
+  transition: transform 0.4s ease;
 }
 
-.gallery-card img {
-  width: 300px;
-  height: 200px;
+.gallery-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Image section */
+.gallery-image {
+  width: 100%;
+  aspect-ratio: 16 / 10; /* scales with width */
+  overflow: hidden;
+}
+
+.gallery-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
@@ -114,13 +134,23 @@
   transform: scale(1.05);
 }
 
-.gallery-caption {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  font-size: 14px;
+/* Text below image */
+.gallery-info {
+  padding: 14px 16px 18px 16px;
+}
+
+.gallery-info h4 {
   font-family: monospace;
-  opacity: 0.9;
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.gallery-info p {
+  font-family: sans-serif;
+  font-size: 14px;
+  opacity: 0.7;
+  margin: 0;
 }
 
 /* ======================= */
@@ -158,3 +188,4 @@
   display: flex;
   gap: 25px;
 }
+
