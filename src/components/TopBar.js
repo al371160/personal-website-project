@@ -5,7 +5,7 @@ export default function TopBar() {
     <header className="topbar">
       <div className="topbar-inner">
         <Link to="/" className="topbar-logo">
-          Your Name
+          Alexander Liu
         </Link>
 
         <nav className="topbar-nav">
