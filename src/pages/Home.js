@@ -83,9 +83,9 @@ export default function Home() {
           <LinkList
             title="Links"
             links={[
-              { label: "Instagram", href: "https://instagram.com" },
-              { label: "GitHub", href: "https://github.com" },
-              { label: "Portfolio", href: "https://al371160.github.io" },
+              { label: "Instagram", href: "https://instagram.com/al371160" },
+              { label: "GitHub", href: "https://github.com/al371160" },
+              { label: "Itch", href: "https://al371160.itch.io" },
             ]}
           />
         </div>
