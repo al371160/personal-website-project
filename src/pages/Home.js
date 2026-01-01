@@ -5,14 +5,26 @@ import LinkList from "../components/LinkList";
 const items = [
   {
     id: "01",
-    title: "Study 01",
-    description: "Material exploration and lighting tests.",
+    title: "Orble Tea",
+    description: "Comprehensive branding and business work",
     image: "https://images.unsplash.com/photo-1520975922284-8b456906c813",
   },
   {
     id: "02",
-    title: "Study 02",
-    description: "Spatial composition and form.",
+    title: "REV 11",
+    description: "Sponsorship development and competition materials",
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+  },
+  {
+    id: "03",
+    title: "Rum Rush",
+    description: "Indie game project leader",
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+  },
+  {
+    id: "04",
+    title: "LatticeCore",
+    description: "Startup competitor",
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
   },
 ];
