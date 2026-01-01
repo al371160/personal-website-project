@@ -112,47 +112,57 @@
 /* ======================= */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 24px;
-  align-items: start; /* allow different heights */
 }
 
-/* Card container */
+/* Card */
 .gallery-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #161616;
   text-decoration: none;
-  color: inherit;
+  color: white;
 }
 
+/* Media wrapper controls sizing */
+.gallery-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+/* 🔑 Make img + video behave identically */
 .gallery-media img,
 .gallery-media video {
   width: 100%;
-  height: auto;          /* IMPORTANT */
+  height: 100%;
+  object-fit: cover;
   display: block;
-  border-radius: 12px;
-  background: #111;
 }
 
-.gallery-media video {
-  max-height: 80vh;      /* safety limit */
-  object-fit: contain;  /* don't crop */
+/* Info BELOW media */
+.gallery-info {
+  padding: 12px 14px;
 }
 
-.gallery-meta {
-  padding-top: 10px;
+.gallery-info h4 {
+  font-family: sans-serif;
+  font-size: 16px;
+  margin: 0;
+  opacity: 1;
 }
 
-.gallery-meta h4 {
+.gallery-info p {
   font-family: monospace;
   font-size: 14px;
-  margin: 0;
+  margin: 0px 0 0;
+  opacity: 0.5;
 }
 
-.gallery-meta p {
-  font-size: 13px;
-  opacity: 0.7;
-  margin-top: 4px;
-}
 
 
 /* ======================= */
@@ -191,3 +201,80 @@
   gap: 25px;
 }
 
+/* DETAILS!!!! */
+/* ======================= */
+/* DETAIL PAGE */
+/* ======================= */
+
+.detail-page {
+  padding-bottom: 80px;
+}
+
+/* HERO */
+.detail-hero img,
+.detail-hero video {
+  
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* TITLE */
+.detail-header {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.detail-header h1 {
+  font-size: 36px;
+  font-family: sans-serif;
+}
+
+.detail-subtitle {
+  font-size: 14px;
+  font-family: monospace;
+  opacity: 0.7;
+}
+
+/* META INFO */
+.detail-meta {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.meta-box h3 {
+  font-size: 14px;
+  font-family: monospace;
+  opacity: 0.6;
+  margin-bottom: 0;
+}
+
+.meta-box p {
+  font-size: 16px;
+  font-family: sans-serif;
+  margin-top: 0;
+}
+
+/* CONTENT */
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.detail-block img,
+.detail-block video {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 12px;
+}
+
+.detail-block figcaption {
+  margin-top: 8px;
+  font-size: 13px;
+  font-family: monospace;
+  opacity: 0.6;
+}

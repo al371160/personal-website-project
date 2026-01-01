@@ -1,31 +1,25 @@
 import { Link } from "react-router-dom";
 
-export default function GalleryCard({
-  id,
-  title,
-  description,
-  image,
-  video,
-}) {
+export default function GalleryCard({ slug, title, description, hero }) {
   return (
-    <Link to={`/detail/${id}`} className="gallery-card">
+    <Link to={`/work/${slug}`} className="gallery-card">
       <div className="gallery-media">
-        {video ? (
+        {hero?.type === "video" ? (
           <video
-            src={video}
+            src={hero.src}
             muted
             autoPlay
             loop
             playsInline
           />
         ) : (
-          <img src={image} alt={title} />
+          <img src={hero?.src} alt={title} />
         )}
       </div>
 
-      <div className="gallery-meta">
+      <div className="gallery-info">
         <h4>{title}</h4>
-        {description && <p>{description}</p>}
+        <p>{description}</p>
       </div>
     </Link>
   );
