@@ -9,11 +9,10 @@ export default function TopBar() {
         </Link>
 
         <div className="topbar-nav">
-          <Link to="/">Work</Link>
-          {/*<a href="https://yourlink.com" target="_blank" rel="noreferrer">
-            About
-          </a>*/}
-          <Link to="/">About</Link>
+          {/*<Link to="/">٩(˶^ᗜ^˵)و</Link> */}
+          <a href="https://www.youtube.com/watch?v=XDzc0qP3-yY" target="_blank" rel="noreferrer">
+            ٩(˶^ᗜ^˵)و
+          </a>
         </div>
       </div>
     </header>

@@ -7,25 +7,37 @@ const items = [
     id: "01",
     title: "Orble Tea",
     description: "Comprehensive branding and business work",
-    image: "https://images.unsplash.com/photo-1520975922284-8b456906c813",
+    video: "https://orble-tea.com/media/next-gen-render-video.mp4",
   },
   {
     id: "02",
     title: "REV 11",
     description: "Sponsorship development and competition materials",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    image: "https://static1.squarespace.com/static/576dc266e6f2e1d283993688/t/5c8d5c5de2c4837a233f6da7/1552768100511/Car+Trophies+Twilight.jpg?format=1500w",
   },
   {
     id: "03",
     title: "Rum Rush",
     description: "Indie game project leader",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    image: "https://img.itch.zone/aW1nLzIzOTg4MzY2LnBuZw==/original/nTUef5.png",
   },
   {
     id: "04",
     title: "LatticeCore",
     description: "Startup competitor",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    image: "https://i.ytimg.com/vi/B-3ZW0gxFVI/maxresdefault.jpg",
+  },
+  {
+    id: "05",
+    title: "PawFond",
+    description: "Brand Design and Web Development",
+    image: "https://mypawfond.com/cdn/shop/files/pawfond_main_28440bdd-a4f0-4c88-881c-75bba76e281c_2048x2048.png?v=1762849564",
+  },
+  {
+    id: "06",
+    title: "Saturn",
+    description: "Solo indie graphics experiment",
+    image: "https://img.itch.zone/aW1nLzIxNTIyNTc3LnBuZw==/315x250%23c/dyQZfc.png",
   },
 ];
 
@@ -62,6 +74,7 @@ export default function Home() {
               { label: "Penn Electric Racing", href: "https://www.pennelectricracing.com/" },
               { label: "Orble Tea", href: "https://orble-tea.com/" },
               { label: "Penn UPGRADE", href: "https://pennupgrade.com/" },
+              { label: "PawFond", href: "https://mypawfond.com/" },
             ]}
           />
         </div>
