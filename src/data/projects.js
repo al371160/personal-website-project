@@ -219,7 +219,7 @@ export const projects = [
     // Hero image/video for Detail page
     hero: {
       type: "video",
-      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768526150/Screen_Recording_2026-01-15_at_8.10.29_PM_wdjscw.mov",
+      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768592032/pawfond_hero_u323pp.mov",
     },
 
     meta: {
@@ -230,6 +230,11 @@ export const projects = [
     },
 
     content: [
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768526150/Screen_Recording_2026-01-15_at_8.10.29_PM_wdjscw.mov",
+        caption: "Shopify Website creation",
+      },
       {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451908/8oz_packagin_design_v2_ssbpjw.png",
