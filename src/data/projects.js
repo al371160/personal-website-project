@@ -166,10 +166,10 @@ export const projects = [
     },
 
     meta: {
-      role: "Media / Business Operations / Project Manager",
-      collaborators: "Operations Team",
-      duration: "2025 – Present",
-      tools: "Solidworks, Vercel, Blender, Maya, Adobe Suite, Procreate, Notion",
+      role: "Team Lead",
+      collaborators: "Shaomin Kee, Corina Chen, Reine Huang, Joanne Lin",
+      duration: "2025",
+      tools: "Blender, Capcut, Microsoft PowerPoint, Google Slides",
     },
 
     content: [
@@ -275,10 +275,10 @@ export const projects = [
     },
 
     meta: {
-      role: "Media / Business Operations / Project Manager",
-      collaborators: "Operations Team",
-      duration: "2025 – Present",
-      tools: "Solidworks, Vercel, Blender, Maya, Adobe Suite, Procreate, Notion",
+      role: "Producer / Team Lead",
+      collaborators: "Rajas Nanda, Chris Wang, Andrew Han",
+      duration: "2025",
+      tools: "Unity, C#, Blender",
     },
 
     content: [
