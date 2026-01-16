@@ -15,10 +15,18 @@ export default function Detail() {
         {project.hero.type === "image" && (
           <img src={project.hero.src} alt={project.title} />
         )}
+
         {project.hero.type === "video" && (
-          <video src={project.hero.src} autoPlay muted loop playsInline />
+          <video
+            src={project.hero.src}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
         )}
       </section>
+
 
       {/* TITLE */}
       <section className="detail-header">
@@ -54,7 +62,12 @@ export default function Detail() {
               <img src={block.src} alt={block.caption || ""} />
             )}
             {block.type === "video" && (
-              <video src={block.src} controls />
+              <video src={block.src} 
+              autoPlay
+            muted
+            loop
+            playsInline
+             />
             )}
             {block.caption && (
               <figcaption>{block.caption}</figcaption>
