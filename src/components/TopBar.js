@@ -10,7 +10,7 @@ export default function TopBar() {
 
         <div className="topbar-nav">
           {/*<Link to="/">٩(˶^ᗜ^˵)و</Link> */}
-          <a href="https://www.youtube.com/watch?v=XDzc0qP3-yY" target="_blank" rel="noreferrer">
+          <a href="https://www.youtube.com/watch?v=mgQL2xeviN8&list=RDmgQL2xeviN8&start_radio=1" target="_blank" rel="noreferrer">
             ٩(˶^ᗜ^˵)و
           </a>
         </div>
