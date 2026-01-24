@@ -1,5 +1,62 @@
 export const projects = [
   {
+    slug: "omni",
+    title: "Omni",
+    description: "Accessible, interactive toolmaking for users",
+    
+    // Image/video for Home page gallery card
+    thumbnail: {
+      type: "video",
+      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220262/IMG_5239_pwu4jw.mov",
+    },
+
+    // Hero image/video for Detail page
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220305/Untitled_Artwork_56_ppoklz.png",
+    },
+
+    meta: {
+      role: "Producer / Team Lead",
+      collaborators: "Rajas Nanda, Chris Wang, Andrew Han",
+      duration: "2025",
+      tools: "Unity, C#, Blender",
+    },
+
+    content: [
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220430/Screenshot_2026-01-23_at_9.07.00_PM_gbwxam.png",
+        caption: "logo design",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769221063/Screenshot_2026-01-23_at_9.17.37_PM_raqzba.png",
+        caption: "vibe-coding IOS app frontend within XCode, created file organization system and managed package dependencies",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220305/look_back0001-0072_ffci2z.mp4",
+        caption: "test render of Omni AR assistant in action, made with Blender",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769221622/Screen_Recording_2026-01-23_at_9.22.51_PM_qsy0dd.mov",
+        caption: "Omni assistant animation created with Rive",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220289/IMG_5241_wu0tga.mov",
+        caption: "Helped with animation-voice syncing of Omni assistant",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769222275/IMG_5214_d3mw7p.png",
+        caption: "Helped with time management and organization, as well as incorporating various sponsor APIs into the app such as Overshoot, Gemini and LiveKit. Created primary writeup for Devpost here: https://devpost.com/software/omni-hzxqra?_gl=1*148dkh4*_gcl_au*MjA5MjkxMzAzNC4xNzY4NjY3ODUy*_ga*MTQ3NjA3NjkyOS4xNzY4NjY3ODUy*_ga_0YHJK3Y10M*czE3NjkyMjI2NTQkbzEyJGcxJHQxNzY5MjIyNjY2JGo0OCRsMCRoMA..",
+      },
+    ],
+  },
+  {
     slug: "orble-tea",
     title: "Orble Tea",
     description: "Comprehensive branding and business work",
@@ -314,5 +371,6 @@ export const projects = [
       },
     ],
   },
+  
   
 ];
