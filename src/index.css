@@ -39,3 +39,46 @@ img {
   max-width: 100%;
   display: block;
 }
+
+/* Base app */
+.app {
+  transition: filter 0.8s ease, opacity 0.8s ease;
+}
+
+
+.app-loading {
+  filter: blur(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: none; /* 🔑 disables blur tween */
+}
+
+/* ✅ When ready: animate IN */
+.app-ready {
+  filter: blur(0);
+  opacity: 1;
+}
+
+
+.app.blurred {
+  filter: blur(16px);
+  opacity: 0.6;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  background: #0e0e0e; /* or neutral gray */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.loader-exit {
+  opacity: 0;
+  pointer-events: none;
+}
+
