@@ -9,15 +9,38 @@ export default function Detail({ onReady }) {
   useEffect(() => {
     if (!project) return;
 
-    if (project.hero.type === "image") {
-      const img = new Image();
-      img.src = project.hero.src;
-      img.onload = () => onReady?.();
-    } else {
-      // video / iframe → allow immediately
+    // Always delay at least one frame
+    let ready = false;
+
+    const done = () => {
+      if (ready) return;
+      ready = true;
       onReady?.();
+    };
+
+    const hero = project.hero;
+
+    if (!hero || !hero.src) {
+      // no hero at all → still wait a tick
+      requestAnimationFrame(done);
+      return;
+    }
+
+    if (hero.type === "image") {
+      const img = new Image();
+      img.src = hero.src;
+      img.onload = done;
+      img.onerror = done;
+    } else if (hero.type === "video") {
+      const video = document.createElement("video");
+      video.src = hero.src;
+      video.onloadeddata = done;
+      video.onerror = done;
+    } else {
+      done();
     }
   }, [project, onReady]);
+
 
   if (!project) {
     return <p>Project not found.</p>;
