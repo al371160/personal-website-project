@@ -1,15 +1,18 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+
 import TopBar from "./components/TopBar";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import "./App.css";
 
 function PageLoader({ isLoading }) {
+  if (!isLoading) return null;
+
   return (
-    <div className={`loader ${!isLoading ? "loader-exit" : ""}`}>
+    <div className="loader">
       <svg className="loader-mark" width="80" height="80">
-        {/* logo / animation */}
+        <use href="https://res.cloudinary.com/dak0zi45d/image/upload/v1769273643/personal_website_loading_screen_v2_lyb0ah.svg" />
       </svg>
     </div>
   );
@@ -17,26 +20,29 @@ function PageLoader({ isLoading }) {
 
 function AppContent() {
   const location = useLocation();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
+  // Show loader immediately on route change
   useEffect(() => {
     setLoading(true);
-
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 300); // shorter feels snappier on navigation
-
-    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return (
     <>
       <PageLoader isLoading={loading} />
+
       <div className={`app ${loading ? "app-loading" : "app-ready"}`}>
         <TopBar />
+
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/work/:slug" element={<Detail />} />
+          <Route
+            path="/"
+            element={<Home onReady={() => setLoading(false)} />}
+          />
+          <Route
+            path="/work/:slug"
+            element={<Detail onReady={() => setLoading(false)} />}
+          />
         </Routes>
       </div>
     </>

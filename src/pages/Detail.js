@@ -1,11 +1,27 @@
 import { useParams } from "react-router-dom";
 import { projects } from "../data/projects";
+import { useEffect } from "react";
 
-export default function Detail() {
+export default function Detail({ onReady }) {
   const { slug } = useParams();
   const project = projects.find(p => p.slug === slug);
 
-  if (!project) return <p>Project not found.</p>;
+  useEffect(() => {
+    if (!project) return;
+
+    if (project.hero.type === "image") {
+      const img = new Image();
+      img.src = project.hero.src;
+      img.onload = () => onReady?.();
+    } else {
+      // video / iframe → allow immediately
+      onReady?.();
+    }
+  }, [project, onReady]);
+
+  if (!project) {
+    return <p>Project not found.</p>;
+  }
 
   return (
     <main className="detail-page">
@@ -27,14 +43,13 @@ export default function Detail() {
         )}
       </section>
 
-
       {/* TITLE */}
       <section className="detail-header">
         <h1>{project.title}</h1>
         <p className="detail-subtitle">{project.description}</p>
       </section>
 
-      {/* META INFO (like LinkList, but text) */}
+      {/* META */}
       <section className="detail-meta">
         <div className="meta-box">
           <h3>ROLE</h3>
@@ -54,21 +69,24 @@ export default function Detail() {
         </div>
       </section>
 
-      {/* CONTENT BLOCKS */}
+      {/* CONTENT */}
       <section className="detail-content">
         {project.content.map((block, i) => (
           <figure key={i} className="detail-block">
             {block.type === "image" && (
               <img src={block.src} alt={block.caption || ""} />
             )}
+
             {block.type === "video" && (
-              <video src={block.src} 
-              autoPlay
-            muted
-            loop
-            playsInline
-             />
+              <video
+                src={block.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
             )}
+
             {block.caption && (
               <figcaption>{block.caption}</figcaption>
             )}

@@ -1,8 +1,13 @@
 import GalleryCard from "../components/GalleryCard";
 import LinkList from "../components/LinkList";
 import { projects } from "../data/projects";
+import { useEffect } from "react";
 
-export default function Home() {
+export default function Home({ onReady }) {
+  useEffect(() => {
+    onReady?.();
+  }, [onReady]);
+
   return (
     <main className="page">
       {/* Bio + Links section */}
