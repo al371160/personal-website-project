@@ -3,10 +3,41 @@ import LinkList from "../components/LinkList";
 import { projects } from "../data/projects";
 import { useEffect } from "react";
 
-export default function Home({ onReady }) {
+const VIDEO_EXT = /\.(mp4|webm|mov|ogg|ogv)(\?.*)?$/i;
+const isVideo = m => m.type === "video" || VIDEO_EXT.test(m.src ?? "");
+
+function preloadMedia(items, onProgress, onAllDone) {
+  const media = items.filter(m => m && m.src);
+  if (media.length === 0) { onProgress(100); onAllDone(); return; }
+
+  let completed = 0;
+  const done = () => {
+    completed++;
+    onProgress(Math.round((completed / media.length) * 100));
+    if (completed >= media.length) onAllDone();
+  };
+
+  media.forEach(m => {
+    if (isVideo(m)) {
+      const v = document.createElement("video");
+      v.preload = "auto";
+      v.onloadeddata = done;
+      v.onerror = done;
+      v.src = m.src;
+      v.load();
+    } else {
+      const img = new Image();
+      img.onload = done;
+      img.onerror = done;
+      img.src = m.src;
+    }
+  });
+}
+
+export default function Home({ onReady, onProgress }) {
   useEffect(() => {
-    onReady?.();
-  }, [onReady]);
+    preloadMedia(projects.map(p => p.thumbnail), onProgress ?? (() => {}), () => onReady?.());
+  }, [onReady, onProgress]);
 
   return (
     <main className="page">

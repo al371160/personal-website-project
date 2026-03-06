@@ -2,44 +2,44 @@ import { useParams } from "react-router-dom";
 import { projects } from "../data/projects";
 import { useEffect } from "react";
 
-export default function Detail({ onReady }) {
+const VIDEO_EXT = /\.(mp4|webm|mov|ogg|ogv)(\?.*)?$/i;
+const isVideo = m => m.type === "video" || VIDEO_EXT.test(m.src ?? "");
+
+export default function Detail({ onReady, onProgress }) {
   const { slug } = useParams();
   const project = projects.find(p => p.slug === slug);
 
   useEffect(() => {
     if (!project) return;
 
-    // Always delay at least one frame
-    let ready = false;
+    const mediaItems = [project.hero, ...project.content]
+      .filter(m => m && m.src);
 
+    if (mediaItems.length === 0) { onProgress?.(100); onReady?.(); return; }
+
+    let completed = 0;
     const done = () => {
-      if (ready) return;
-      ready = true;
-      onReady?.();
+      completed++;
+      onProgress?.(Math.round((completed / mediaItems.length) * 100));
+      if (completed >= mediaItems.length) onReady?.();
     };
 
-    const hero = project.hero;
-
-    if (!hero || !hero.src) {
-      // no hero at all → still wait a tick
-      requestAnimationFrame(done);
-      return;
-    }
-
-    if (hero.type === "image") {
-      const img = new Image();
-      img.src = hero.src;
-      img.onload = done;
-      img.onerror = done;
-    } else if (hero.type === "video") {
-      const video = document.createElement("video");
-      video.src = hero.src;
-      video.onloadeddata = done;
-      video.onerror = done;
-    } else {
-      done();
-    }
-  }, [project, onReady]);
+    mediaItems.forEach(m => {
+      if (isVideo(m)) {
+        const v = document.createElement("video");
+        v.preload = "auto";
+        v.onloadeddata = done;
+        v.onerror = done;
+        v.src = m.src;
+        v.load();
+      } else {
+        const img = new Image();
+        img.onload = done;
+        img.onerror = done;
+        img.src = m.src;
+      }
+    });
+  }, [project, onReady, onProgress]);
 
 
   if (!project) {

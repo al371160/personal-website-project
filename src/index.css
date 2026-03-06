@@ -68,17 +68,55 @@ img {
 .loader {
   position: fixed;
   inset: 0;
-  background: #0e0e0e; /* or neutral gray */
+  background: #0e0e0e;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  opacity: 1;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.6s ease;
 }
 
-.loader-exit {
-  opacity: 0;
-  pointer-events: none;
+.loader.loader-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transition: none; /* instant reappear on route change */
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.loader-percent {
+  font-family: monospace;
+  font-size: 13px;
+  color: #ffffff;
+  opacity: 0.7;
+}
+
+.loader-bar-track {
+  width: 160px;
+  height: 2px;
+  position: relative;
+}
+
+.loader-bar-track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-top: 2px dotted rgba(255, 255, 255, 0.2);
+}
+
+.loader-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  border-top: 2px dotted #ffffff;
+  transition: width 0.15s ease;
 }
 

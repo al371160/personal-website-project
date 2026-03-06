@@ -6,14 +6,15 @@ import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import "./App.css";
 
-function PageLoader({ isLoading }) {
-  if (!isLoading) return null;
-
+function PageLoader({ isLoading, progress }) {
   return (
-    <div className="loader">
-      <svg className="loader-mark" width="80" height="80">
-        <use href="https://res.cloudinary.com/dak0zi45d/image/upload/v1769273643/personal_website_loading_screen_v2_lyb0ah.svg" />
-      </svg>
+    <div className={`loader${isLoading ? " loader-visible" : ""}`}>
+      <div className="loader-content">
+        <span className="loader-percent">{progress}%</span>
+        <div className="loader-bar-track">
+          <div className="loader-bar-fill" style={{ width: `${progress}%` }} />
+        </div>
+      </div>
     </div>
   );
 }
@@ -21,15 +22,16 @@ function PageLoader({ isLoading }) {
 function AppContent() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-  // Show loader immediately on route change
   useEffect(() => {
     setLoading(true);
+    setProgress(0);
   }, [location.pathname]);
 
   return (
     <>
-      <PageLoader isLoading={loading} />
+      <PageLoader isLoading={loading} progress={progress} />
 
       <div className={`app ${loading ? "app-loading" : "app-ready"}`}>
         <TopBar />
@@ -37,11 +39,11 @@ function AppContent() {
         <Routes>
           <Route
             path="/"
-            element={<Home onReady={() => setLoading(false)} />}
+            element={<Home onReady={() => setLoading(false)} onProgress={setProgress} />}
           />
           <Route
             path="/work/:slug"
-            element={<Detail onReady={() => setLoading(false)} />}
+            element={<Detail onReady={() => setLoading(false)} onProgress={setProgress} />}
           />
         </Routes>
       </div>
