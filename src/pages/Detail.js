@@ -1,44 +1,44 @@
 import { useParams } from "react-router-dom";
 import { projects } from "../data/projects";
-import { useEffect } from "react";
-
-const VIDEO_EXT = /\.(mp4|webm|mov|ogg|ogv)(\?.*)?$/i;
-const isVideo = m => m.type === "video" || VIDEO_EXT.test(m.src ?? "");
+import { useEffect, useRef } from "react";
 
 export default function Detail({ onReady, onProgress }) {
   const { slug } = useParams();
   const project = projects.find(p => p.slug === slug);
+  const pageRef = useRef(null);
 
   useEffect(() => {
     if (!project) return;
+    let cancelled = false;
+    const container = pageRef.current;
+    if (!container) { onProgress?.(100); onReady?.(); return; }
 
-    const mediaItems = [project.hero, ...project.content]
-      .filter(m => m && m.src);
-
-    if (mediaItems.length === 0) { onProgress?.(100); onReady?.(); return; }
+    const imgs = [...container.querySelectorAll("img")];
+    const videos = [...container.querySelectorAll("video")];
+    const total = imgs.length + videos.length;
+    if (total === 0) { onProgress?.(100); onReady?.(); return; }
 
     let completed = 0;
     const done = () => {
+      if (cancelled) return;
       completed++;
-      onProgress?.(Math.round((completed / mediaItems.length) * 100));
-      if (completed >= mediaItems.length) onReady?.();
+      onProgress?.(Math.round((completed / total) * 100));
+      if (completed >= total) onReady?.();
     };
 
-    mediaItems.forEach(m => {
-      if (isVideo(m)) {
-        const v = document.createElement("video");
-        v.preload = "auto";
-        v.onloadeddata = done;
-        v.onerror = done;
-        v.src = m.src;
-        v.load();
-      } else {
-        const img = new Image();
-        img.onload = done;
-        img.onerror = done;
-        img.src = m.src;
-      }
+    imgs.forEach(img => {
+      if (img.complete) { done(); return; }
+      img.addEventListener("load", done, { once: true });
+      img.addEventListener("error", done, { once: true });
     });
+
+    videos.forEach(v => {
+      if (v.readyState >= 2) { done(); return; }
+      v.addEventListener("loadeddata", done, { once: true });
+      v.addEventListener("error", done, { once: true });
+    });
+
+    return () => { cancelled = true; };
   }, [project, onReady, onProgress]);
 
 
@@ -47,7 +47,7 @@ export default function Detail({ onReady, onProgress }) {
   }
 
   return (
-    <main className="detail-page">
+    <main className="detail-page" ref={pageRef}>
 
       {/* HERO */}
       <section className="detail-hero">
