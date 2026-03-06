@@ -218,7 +218,7 @@ export const projects = [
 
     // Hero image/video for Detail page
     hero: {
-      type: "video",
+      type: "youtube",
       src: "k8fP14yVEa8",
     },
 

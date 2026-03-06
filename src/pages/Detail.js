@@ -38,7 +38,11 @@ export default function Detail({ onReady, onProgress }) {
       v.addEventListener("error", done, { once: true });
     });
 
-    return () => { cancelled = true; };
+    const timeout = setTimeout(() => {
+      if (!cancelled) { onProgress?.(100); onReady?.(); }
+    }, 15000);
+
+    return () => { cancelled = true; clearTimeout(timeout); };
   }, [project, onReady, onProgress]);
 
 
@@ -56,66 +60,72 @@ export default function Detail({ onReady, onProgress }) {
         )}
 
         {project.hero.type === "video" && (
-          <video
-            src={project.hero.src}
-            autoPlay
-            muted
-            loop
-            playsInline
+          <video src={project.hero.src} autoPlay muted loop playsInline />
+        )}
+
+        {project.hero.type === "youtube" && (
+          <iframe
+            src={`https://www.youtube.com/embed/${project.hero.src}`}
+            title={project.title}
+            allowFullScreen
           />
         )}
       </section>
 
-      {/* TITLE */}
-      <section className="detail-header">
-        <h1>{project.title}</h1>
-        <p className="detail-subtitle">{project.description}</p>
-      </section>
+      {/* TWO-COLUMN LAYOUT */}
+      <div className="detail-layout">
 
-      {/* META */}
-      <section className="detail-meta">
-        <div className="meta-box">
-          <h3>ROLE</h3>
-          <p>{project.meta.role}</p>
-        </div>
-        <div className="meta-box">
-          <h3>COLLABORATORS</h3>
-          <p>{project.meta.collaborators}</p>
-        </div>
-        <div className="meta-box">
-          <h3>DURATION</h3>
-          <p>{project.meta.duration}</p>
-        </div>
-        <div className="meta-box">
-          <h3>TOOLS</h3>
-          <p>{project.meta.tools}</p>
-        </div>
-      </section>
+        {/* LEFT: scrolling content */}
+        <section className="detail-content">
+          <div className="detail-meta">
+            <div className="meta-box">
+              <h3>ROLE</h3>
+              <p>{project.meta.role}</p>
+            </div>
+            <div className="meta-box">
+              <h3>COLLABORATORS</h3>
+              <p>{project.meta.collaborators}</p>
+            </div>
+            <div className="meta-box">
+              <h3>DURATION</h3>
+              <p>{project.meta.duration}</p>
+            </div>
+            <div className="meta-box">
+              <h3>TOOLS</h3>
+              <p>{project.meta.tools}</p>
+            </div>
+          </div>
 
-      {/* CONTENT */}
-      <section className="detail-content">
-        {project.content.map((block, i) => (
-          <figure key={i} className="detail-block">
-            {block.type === "image" && (
-              <img src={block.src} alt={block.caption || ""} />
-            )}
+          {project.content.map((block, i) => (
+            <figure key={i} className="detail-block">
+              {block.type === "image" && (
+                <img src={block.src} alt={block.caption || ""} />
+              )}
 
-            {block.type === "video" && (
-              <video
-                src={block.src}
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
-            )}
+              {block.type === "video" && (
+                <video
+                  src={block.src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
+              )}
 
-            {block.caption && (
-              <figcaption>{block.caption}</figcaption>
-            )}
-          </figure>
-        ))}
-      </section>
+              {block.caption && (
+                <figcaption>{block.caption}</figcaption>
+              )}
+            </figure>
+          ))}
+        </section>
+
+        {/* LEFT: sticky sidebar — title + headline */}
+        <aside className="detail-sidebar">
+          <h1>{project.title}</h1>
+          <p className="detail-subtitle">{project.description}</p>
+        </aside>
+
+      </div>
 
     </main>
   );

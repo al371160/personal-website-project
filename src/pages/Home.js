@@ -36,7 +36,11 @@ export default function Home({ onReady, onProgress }) {
       v.addEventListener("error", done, { once: true });
     });
 
-    return () => { cancelled = true; };
+    const timeout = setTimeout(() => {
+      if (!cancelled) { onProgress?.(100); onReady?.(); }
+    }, 15000);
+
+    return () => { cancelled = true; clearTimeout(timeout); };
   }, [onReady, onProgress]);
 
   return (

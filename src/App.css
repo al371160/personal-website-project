@@ -208,7 +208,6 @@
   gap: 25px;
 }
 
-/* DETAILS!!!! */
 /* ======================= */
 /* DETAIL PAGE */
 /* ======================= */
@@ -220,62 +219,101 @@
 /* HERO */
 .detail-hero img,
 .detail-hero video {
-  
   width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 0;
 }
 
-/* TITLE */
-.detail-header {
-  margin-top: 30px;
-  margin-bottom: 40px;
+.detail-hero iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 
-.detail-header h1 {
-  font-size: 36px;
+/* TWO-COLUMN LAYOUT */
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "sidebar content";
+  gap: 60px;
+  align-items: start;
+  max-width: 1500px;
+  margin: 50px auto 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* SIDEBAR (left, sticky) */
+.detail-sidebar {
+  grid-area: sidebar;
+  min-width: 0;
+  position: sticky;
+  top: 80px;
+  text-align: left;
+}
+
+.detail-sidebar h1 {
+  font-size: 26px;
   font-family: sans-serif;
+  font-weight: normal;
+  margin: 0 0 10px;
+  word-break: break-word;
 }
 
 .detail-subtitle {
-  font-size: 14px;
+  font-size: 11px;
   font-family: monospace;
-  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.45;
+  margin: 0;
+  word-break: break-word;
 }
 
-/* META INFO */
-.detail-meta {
-  display: flex;
-  gap: 60px;
-  margin-bottom: 60px;
-  flex-wrap: wrap;
-}
-
-.meta-box h3 {
-  font-size: 14px;
-  font-family: monospace;
-  opacity: 0.6;
-  margin-bottom: 0;
-}
-
-.meta-box p {
-  font-size: 16px;
-  font-family: sans-serif;
-  margin-top: 0;
-}
-
-/* CONTENT */
+/* CONTENT (right) */
 .detail-content {
+  grid-area: content;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 50px;
 }
 
+/* META INFO */
+.detail-meta {
+  display: flex;
+  gap: 0;
+  width: 100%;
+}
+
+.meta-box {
+  flex: 1;
+}
+
+.meta-box h3 {
+  font-size: 11px;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.45;
+  margin: 0 0 4px;
+}
+
+.meta-box p {
+  font-size: 15px;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.detail-block {
+  margin: 0;
+}
+
 .detail-block img,
 .detail-block video {
   width: 100%;
-  max-width: 900px;
   border-radius: 12px;
 }
 
@@ -283,6 +321,22 @@
   margin-top: 8px;
   font-size: 13px;
   font-family: monospace;
-  opacity: 0.6;
+  opacity: 0.45;
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+  .detail-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "sidebar"
+      "content";
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  .detail-sidebar {
+    position: static;
+  }
 }
 
