@@ -209,6 +209,381 @@
 }
 
 /* ======================= */
+/* EMOJI NAV + SIDEBAR     */
+/* ======================= */
+
+/* Wrapper is an inline flex row — sidebar items sit LEFT of the emoji.
+   Because everything is in one row there's no gap to fall through,
+   so the hover state stays active the whole time. */
+.emoji-nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.emoji-link {
+  font-size: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  animation: emoji-pulse-shake 5s ease-in-out infinite;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.emoji-link:hover {
+  animation-play-state: paused;
+  transform: scale(1.2);
+}
+
+@keyframes emoji-pulse-shake {
+  0%,   76% { transform: scale(1)    translateX(0);   }
+  78%        { transform: scale(1.14) translateX(-2px); }
+  81%        { transform: scale(1.14) translateX(2px);  }
+  84%        { transform: scale(1.1)  translateX(-2px); }
+  87%        { transform: scale(1.1)  translateX(2px);  }
+  90%        { transform: scale(1.05) translateX(0);   }
+  93%        { transform: scale(1)    translateX(0);   }
+  100%       { transform: scale(1)    translateX(0);   }
+}
+
+/* Sidebar expands to the LEFT of the emoji, inline in the same row */
+.emoji-sidebar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  transition: max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease;
+}
+
+.emoji-nav-wrapper:hover .emoji-sidebar {
+  max-width: 300px;
+  opacity: 1;
+}
+
+.sidebar-item {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 4px 14px;
+  border-right: 1px solid #494949;
+  transition: opacity 0.15s ease;
+}
+
+.sidebar-item:first-child {
+  padding-left: 0;
+}
+
+.sidebar-item:hover {
+  opacity: 0.6;
+}
+
+/* ======================= */
+/* ARTWORK / HOBBIES PAGES */
+/* ======================= */
+.subpage-header {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.subpage-header h3 {
+  font-size: 14px;
+  font-family: monospace;
+  opacity: 0.6;
+  margin: 0 0 4px;
+}
+
+.subpage-header h1 {
+  font-size: 32px;
+  font-family: sans-serif;
+  font-weight: normal;
+  margin: 0;
+}
+
+.subpage-empty {
+  font-family: monospace;
+  font-size: 14px;
+  opacity: 0.4;
+  margin-top: 60px;
+  text-align: center;
+}
+
+/* ======================= */
+/* ART GALLERY             */
+/* ======================= */
+.art-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.art-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: #161616;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.art-card-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+
+/* Multi-image badge */
+.art-card-multi-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  padding: 3px 6px 3px 5px;
+  pointer-events: none;
+}
+
+.art-card-multi-badge span {
+  font-family: monospace;
+  font-size: 11px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.art-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.art-card:hover .art-card-media img {
+  transform: scale(1.03);
+}
+
+.art-card-info {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.art-card-title {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.art-card-date {
+  font-family: monospace;
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+.art-card-desc {
+  font-family: monospace;
+  font-size: 13px;
+  opacity: 0.65;
+  margin: 4px 0 0;
+  line-height: 1.5;
+}
+
+/* ======================= */
+/* LIGHTBOX                */
+/* ======================= */
+
+/* Rendered via React Portal at document.body — bypasses .app filter stacking context */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Two-column panel: left = image, right = info */
+.lightbox-panel {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background: #161616;
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 1000px;
+  width: 100%;
+  max-height: 85vh;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  line-height: 1;
+}
+
+.lightbox-close:hover { background: rgba(0, 0, 0, 0.75); }
+
+/* Left column — image + carousel controls */
+.lightbox-left {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+.lightbox-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  max-height: 85vh;
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 1;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+  z-index: 1;
+}
+
+.lightbox-arrow:hover  { background: rgba(0, 0, 0, 0.85); }
+.lightbox-arrow-left   { left: 10px; }
+.lightbox-arrow-right  { right: 10px; }
+
+.lightbox-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.lightbox-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease;
+}
+
+.lightbox-dot.active { background: #ffffff; }
+
+/* Right column — info */
+.lightbox-right {
+  width: 260px;
+  flex-shrink: 0;
+  padding: 40px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  border-left: 1px solid #2a2a2a;
+  box-sizing: border-box;
+}
+
+.lightbox-title {
+  font-family: sans-serif;
+  font-size: 20px;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.lightbox-date {
+  font-family: monospace;
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+.lightbox-desc {
+  font-family: monospace;
+  font-size: 13px;
+  opacity: 0.65;
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+
+/* Mobile: info on top, image below */
+@media (max-width: 680px) {
+  .lightbox-panel {
+    flex-direction: column;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .lightbox-right {
+    order: -1;
+    width: 100%;
+    border-left: none;
+    border-bottom: 1px solid #2a2a2a;
+    padding: 20px 16px;
+  }
+
+  .lightbox-left {
+    min-height: 260px;
+    flex-shrink: 0;
+  }
+
+  .lightbox-img {
+    max-height: 60vw;
+  }
+}
+
+/* ======================= */
 /* DETAIL PAGE */
 /* ======================= */
 

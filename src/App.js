@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import TopBar from "./components/TopBar";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
+import Artwork from "./pages/Artwork";
+import Hobbies from "./pages/Hobbies";
 import "./App.css";
 
 function PageLoader({ isLoading, progress }) {
@@ -44,6 +46,14 @@ function AppContent() {
           <Route
             path="/work/:slug"
             element={<Detail onReady={() => setLoading(false)} onProgress={setProgress} />}
+          />
+          <Route
+            path="/artwork"
+            element={<Artwork onReady={() => setLoading(false)} onProgress={setProgress} />}
+          />
+          <Route
+            path="/hobbies"
+            element={<Hobbies onReady={() => setLoading(false)} onProgress={setProgress} />}
           />
         </Routes>
       </div>

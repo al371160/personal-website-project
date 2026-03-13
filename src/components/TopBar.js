@@ -9,10 +9,13 @@ export default function TopBar() {
         </Link>
 
         <div className="topbar-nav">
-          {/*<Link to="/">٩(˶^ᗜ^˵)و</Link> */}
-          <a href="https://www.youtube.com/watch?v=mgQL2xeviN8&list=RDmgQL2xeviN8&start_radio=1" target="_blank" rel="noreferrer">
-            ٩(˶^ᗜ^˵)و
-          </a>
+          <div className="emoji-nav-wrapper">
+            <div className="emoji-sidebar">
+              <Link to="/artwork" className="sidebar-item">artwork</Link>
+              <Link to="/hobbies" className="sidebar-item">hobbies</Link>
+            </div>
+            <span className="emoji-link">٩(˶^ᗜ^˵)و</span>
+          </div>
         </div>
       </div>
     </header>

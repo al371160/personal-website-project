@@ -83,6 +83,11 @@ export const projects = [
     content: [
       {
         type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772842030/IMG_5522_2_1_gfa0m8.png",
+        caption: "Designed and created vinyl wrap for 'coming soon' box",
+      },
+      {
+        type: "image",
         src: "https://orble-tea.com/.netlify/images?url=_astro%2Ffront-left.D0kYN4sG.jpg&w=1280&h=1280&dpl=69483ebca7d51e0008be244d",
         caption: "Orble Beta vending machine, card reader and boba texture from Sketchfab",
       },
@@ -148,6 +153,31 @@ export const projects = [
     },
 
     content: [
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
+        caption: "Livery prototyping with Solidworks",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291728/download_2_kkzpq4.png",
+        caption: "Final revision of livery prototyping with Blender texture painting",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.45.57_PM_rs34rx.png",
+        caption: "Livery prototyping with Blender texture painting",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.47.32_PM_gpil4p.png",
+        caption: "Livery prototyping with Blender texture painting",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1772842240/rev_11_logo_test_v4_el956p.mp4",
+        caption: "Animated REV11 logo with rive",
+      },
       {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442453/per_good_render_2_lnzuf6.jpg",
