@@ -16,7 +16,7 @@ export default function Hobbies({ onReady }) {
         {/* Add hobbies GalleryCard items here */}
       </section>
 
-      <p className="subpage-empty">no pieces yet — check back soon.</p>
+      <p className="subpage-empty">no pieces yet — check back soon. update testing</p>
     </main>
   );
 }
