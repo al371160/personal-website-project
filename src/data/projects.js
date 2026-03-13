@@ -17,10 +17,10 @@ export const projects = [
     },
 
     meta: {
-      role: "Producer / Team Lead",
-      collaborators: "Rajas Nanda, Chris Wang, Andrew Han",
-      duration: "2025",
-      tools: "Unity, C#, Blender",
+      role: "UI Lead",
+      collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
+      duration: "2026",
+      tools: "Rive, XCode, ARKit, Swift, Antigravity, Overshoot API",
     },
 
     content: [
