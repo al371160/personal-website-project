@@ -1,6 +1,15 @@
 import { useEffect, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 
+const VIDEO_EXTS = /\.(mp4|mov|webm|ogg|m4v|avi)(\?|$)/i;
+
+function normalizeFiles(item) {
+  if (item.files) return item.files;
+  // legacy shape from old server format
+  const urls = item.images ?? (item.imageUrl ? [item.imageUrl] : []);
+  return urls.map((url) => ({ url, type: VIDEO_EXTS.test(url) ? "video" : "image" }));
+}
+
 export default function Artwork({ onReady }) {
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("loading");
@@ -16,16 +25,17 @@ export default function Artwork({ onReady }) {
         setItems(data);
         setStatus("ok");
 
-        // Preload all card thumbnails before signalling ready
-        const urls = data
-          .map((item) => (item.images ?? (item.imageUrl ? [item.imageUrl] : []))[0])
-          .filter(Boolean);
+        // Preload image thumbnails (skip videos — can't preload same way)
+        const imageUrls = data
+          .map((item) => normalizeFiles(item)[0])
+          .filter((f) => f && f.type === "image")
+          .map((f) => f.url);
 
-        if (urls.length === 0) { onReady?.(); return; }
+        if (imageUrls.length === 0) { onReady?.(); return; }
 
-        let remaining = urls.length;
+        let remaining = imageUrls.length;
         const done = () => { if (--remaining <= 0) onReady?.(); };
-        urls.forEach((url) => {
+        imageUrls.forEach((url) => {
           const img = new window.Image();
           img.onload = img.onerror = done;
           img.src = url;
@@ -34,7 +44,7 @@ export default function Artwork({ onReady }) {
       .catch(() => { setStatus("error"); onReady?.(); });
   }, [onReady]);
 
-  const openLightbox = (item) => setLightbox({ item, index: 0 });
+  const openLightbox = (item) => setLightbox({ item });
   const closeLightbox = () => setLightbox(null);
 
   return (
@@ -66,8 +76,8 @@ export default function Artwork({ onReady }) {
 
 function ArtCard({ item, onOpen }) {
   const { title, date, description } = item;
-  const images = item.images ?? (item.imageUrl ? [item.imageUrl] : []);
-  const hasMultiple = images.length > 1;
+  const files = normalizeFiles(item);
+  const hasMultiple = files.length > 1;
 
   const formattedDate = date
     ? new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
@@ -76,13 +86,13 @@ function ArtCard({ item, onOpen }) {
   return (
     <figure className="art-card" onClick={onOpen} role="button" tabIndex={0}
       onKeyDown={(e) => e.key === "Enter" && onOpen()}>
-      {images[0] && (
+      {files[0] && (
         <div className="art-card-media">
-          <img src={images[0]} alt={title} loading="lazy" />
+          <MediaEl file={files[0]} alt={title} />
           {hasMultiple && (
-            <div className="art-card-multi-badge" title={`${images.length} images`}>
+            <div className="art-card-multi-badge" title={`${files.length} files`}>
               <MultiIcon />
-              <span>{images.length}</span>
+              <span>{files.length}</span>
             </div>
           )}
         </div>
@@ -98,11 +108,11 @@ function ArtCard({ item, onOpen }) {
 
 function Lightbox({ item, onClose }) {
   const { title, date, description } = item;
-  const images = item.images ?? (item.imageUrl ? [item.imageUrl] : []);
+  const files = normalizeFiles(item);
   const [idx, setIdx] = useState(0);
 
-  const prev = useCallback(() => setIdx((i) => (i - 1 + images.length) % images.length), [images.length]);
-  const next = useCallback(() => setIdx((i) => (i + 1) % images.length), [images.length]);
+  const prev = useCallback(() => setIdx((i) => (i - 1 + files.length) % files.length), [files.length]);
+  const next = useCallback(() => setIdx((i) => (i + 1) % files.length), [files.length]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -129,20 +139,20 @@ function Lightbox({ item, onClose }) {
 
         <button className="lightbox-close" onClick={onClose} aria-label="Close">✕</button>
 
-        {/* Left — image + carousel */}
+        {/* Left — media + carousel */}
         <div className="lightbox-left">
-          {images.length > 1 && (
+          {files.length > 1 && (
             <button className="lightbox-arrow lightbox-arrow-left" onClick={prev} aria-label="Previous">‹</button>
           )}
-          <img key={idx} className="lightbox-img" src={images[idx]} alt={`${title} ${idx + 1}`} />
-          {images.length > 1 && (
+          <MediaEl key={idx} file={files[idx]} alt={`${title} ${idx + 1}`} lightbox />
+          {files.length > 1 && (
             <button className="lightbox-arrow lightbox-arrow-right" onClick={next} aria-label="Next">›</button>
           )}
-          {images.length > 1 && (
+          {files.length > 1 && (
             <div className="lightbox-dots">
-              {images.map((_, i) => (
+              {files.map((_, i) => (
                 <button key={i} className={`lightbox-dot${i === idx ? " active" : ""}`}
-                  onClick={() => setIdx(i)} aria-label={`Image ${i + 1}`} />
+                  onClick={() => setIdx(i)} aria-label={`File ${i + 1}`} />
               ))}
             </div>
           )}
@@ -157,6 +167,30 @@ function Lightbox({ item, onClose }) {
 
       </div>
     </div>
+  );
+}
+
+function MediaEl({ file, alt, lightbox = false }) {
+  if (file.type === "video") {
+    return (
+      <video
+        src={file.url}
+        className={lightbox ? "lightbox-img" : undefined}
+        muted
+        autoPlay
+        loop
+        playsInline
+        controls={lightbox}
+      />
+    );
+  }
+  return (
+    <img
+      src={file.url}
+      alt={alt}
+      className={lightbox ? "lightbox-img" : undefined}
+      loading="lazy"
+    />
   );
 }
 
