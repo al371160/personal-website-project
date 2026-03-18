@@ -31,7 +31,7 @@
   align-items: flex-start;
   gap: 0;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   justify-content: space-between; /* left-align the columns */
 }
 

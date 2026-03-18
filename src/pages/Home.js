@@ -73,6 +73,7 @@ export default function Home({ onReady, onProgress }) {
           <LinkList
             title="LINKS"
             links={[
+              { label: "Resume", href: "https://docs.google.com/document/d/18WZA6hMhOfB1pk9hstjRHbtK2qQ2C14g/edit?usp=sharing&ouid=101671651649642190253&rtpof=true&sd=true" },
               { label: "Instagram", href: "https://instagram.com/al371160" },
               { label: "GitHub", href: "https://github.com/al371160" },
               { label: "Itch", href: "https://al371160.itch.io" },
