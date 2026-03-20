@@ -88,6 +88,11 @@ export const projects = [
       },
       {
         type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773974232/Untitled_Artwork_64_yrjse5.png",
+        caption: "Orble beta vending machine design",
+      },
+      {
+        type: "image",
         src: "https://orble-tea.com/.netlify/images?url=_astro%2Ffront-left.D0kYN4sG.jpg&w=1280&h=1280&dpl=69483ebca7d51e0008be244d",
         caption: "Orble Beta vending machine, card reader and boba texture from Sketchfab",
       },
