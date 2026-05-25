@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
 
-export default function GalleryCard({ slug, title, description, hero, revealVariant = "center", revealDelay = 0, aspectRatio = "16/9" }) {
+export default function GalleryCard({ slug, title, hero, revealVariant = "center", revealDelay = 0 }) {
   const cardRef = useRef(null);
 
   useEffect(() => {

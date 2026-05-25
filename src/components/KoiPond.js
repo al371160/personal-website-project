@@ -6,10 +6,10 @@ const SIM     = 256;
 const GRID    = 256;
 const CTEX    = 1024;
 
-const EYE    = [1.8, 3.0, 1.0];
+const EYE    = [1.6, 3.1, 0.9];
 const CENTER = [0.6, WATER_Y, 0.4];
 const UP     = [0.0, 1.0,  0.0];
-const FOV    = 0.50;
+const FOV    = 0.60;
 
 function norm3(v) {
   const l = Math.sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
@@ -77,17 +77,34 @@ layout(location=0) in vec2 pos;
 out vec2 uv;
 void main(){ uv=pos*.5+.5; gl_Position=vec4(pos,0,1); }`;
 
-const FS_DROP = `#version 300 es
+const FS_BRUSH = `#version 300 es
 precision highp float;
 uniform sampler2D u_tex;
-uniform vec2 u_center; uniform float u_radius, u_strength, u_min_radius;
+uniform vec2 u_prev;
+uniform vec2 u_curr;
+uniform float u_radius;
+uniform float u_strength;
+uniform float u_speed;
 in vec2 uv; out vec4 frag;
 void main(){
   vec4 info = texture(u_tex, uv);
-  float dist = length(uv - u_center);
-  float r = (dist - u_min_radius) / u_radius;
-  float wave = sin((dist - u_min_radius) * 90.0) * exp(-r*r*2.0);
-  info.r += wave * u_strength;
+  vec2 ab = u_curr - u_prev;
+  float ab2 = max(dot(ab, ab), 1e-7);
+  float t = clamp(dot(uv - u_prev, ab) / ab2, 0.0, 1.0);
+  vec2 nearest = mix(u_prev, u_curr, t);
+  vec2 d = uv - nearest;
+  float dist = length(d);
+  float soft = exp(-(dist * dist) / (u_radius * u_radius));
+
+  vec2 dir = normalize(ab + vec2(1e-5, 0.0));
+  float lead = dot(uv - u_curr, dir);
+  float front = exp(-dot(uv - u_curr, uv - u_curr) / (u_radius * u_radius * 0.8));
+  float trail = soft * smoothstep(u_radius * 3.0, -u_radius, lead);
+  float wake = sin((dist / u_radius) * 3.14159) * exp(-dist * dist / (u_radius * u_radius * 3.5));
+
+  float force = (-trail * 0.55 + front * 0.34 + wake * 0.16) * u_strength * u_speed;
+  info.g += force;
+  info.r += force * 0.18;
   frag = info;
 }`;
 
@@ -271,31 +288,25 @@ void main(){
   float g = fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233))+u_time*1.7)*43758.5453)*.055-.028;
   col += g;
 
-  // shimmer: shaped star highlights that flicker with surface normals
-  vec2  shimUV    = floor(v_uv * 120.0);
-  float shimSeed  = fract(sin(dot(shimUV, vec2(127.1,311.7)))*43758.5453);
-  float shimSeed2 = fract(sin(dot(shimUV, vec2(269.5,183.3)))*43758.5453);
-  float shimOn    = step(0.982, shimSeed);  // sparsity — raise toward .995 for fewer
+  // Sparse screen-space star glints. The shape is built from thin local arms
+  // instead of lighting a whole grid cell, so it reads as a flare, not a square.
+  vec2  starGrid = v_uv * 92.0;
+  vec2  starId   = floor(starGrid);
+  vec2  starP    = fract(starGrid) - 0.5;
+  float starSeed = fract(sin(dot(starId, vec2(127.1,311.7))) * 43758.5453);
+  float starOn   = step(0.986, starSeed);
+  float twinkle  = 0.55 + 0.45 * sin(u_time * 4.2 + starSeed * 40.0);
+  float normalHit = pow(max(dot(refl, SUN), 0.0), 12.0);
+  float core = exp(-dot(starP, starP) * 260.0);
+  float armH = exp(-starP.y * starP.y * 900.0) * smoothstep(0.46, 0.02, abs(starP.x));
+  float armV = exp(-starP.x * starP.x * 900.0) * smoothstep(0.46, 0.02, abs(starP.y));
+  vec2 diagA = vec2((starP.x + starP.y) * 0.7071, (starP.x - starP.y) * 0.7071);
+  vec2 diagB = vec2((starP.x - starP.y) * 0.7071, (starP.x + starP.y) * 0.7071);
+  float armD1 = exp(-diagA.y * diagA.y * 2600.0) * smoothstep(0.20, 0.015, abs(diagA.x));
+  float armD2 = exp(-diagB.y * diagB.y * 2600.0) * smoothstep(0.20, 0.015, abs(diagB.x));
+  float shimmer = starOn * twinkle * normalHit * (core * 1.4 + (armH + armV) * 0.75 + (armD1 + armD2) * 0.32);
 
-  // unique normal per shimmer point
-  vec3  shimDir = normalize(vec3(shimSeed*2.-1., 1.8, shimSeed2*2.-1.));
-
-  // angle between reflection and shimmer normal drives the shape
-  vec3  shimRefl  = refl;
-  float shimDot   = max(dot(shimRefl, shimDir), 0.0);
-
-  // two perpendicular tangents around shimDir to form cross arms
-  vec3  shimTan1 = normalize(cross(shimDir, vec3(0.,1.,0.)));
-  vec3  shimTan2 = normalize(cross(shimDir, shimTan1));
-  float arm1 = pow(max(dot(shimRefl, shimTan1), 0.0), 3.0);
-  float arm2 = pow(max(dot(shimRefl, shimTan2), 0.0), 3.0);
-
-  // core bright point + four arms = star shape
-  float shimCore = pow(shimDot, 80.0);
-  float shimArms = (arm1 + arm2) * pow(shimDot, 8.0) * 0.4;
-  float shimmer  = shimCore + shimArms;
-
-  col += shimOn * shimmer * vec3(1.0, 0.97, 0.88) * 5.0;
+  col += shimmer * vec3(1.0, 0.97, 0.86) * 2.8;
   
   frag = vec4(col,.36+F*.18);
 }`;
@@ -433,9 +444,9 @@ export default function KoiPond() {
       console.warn('EXT_color_buffer_float unavailable'); return;
     }
 
-    let progDrop, progSim, progCaustic, progFloor, progWater, progDisturb;
+    let progBrush, progSim, progCaustic, progFloor, progWater, progDisturb;
     try {
-      progDrop    = mkProg(gl, VS_QUAD,     FS_DROP);
+      progBrush   = mkProg(gl, VS_QUAD,     FS_BRUSH);
       progSim     = mkProg(gl, VS_QUAD,     FS_SIM);
       progCaustic = mkProg(gl, VS_CAUSTICS, FS_CAUSTICS);
       progFloor   = mkProg(gl, VS_FLOOR,    FS_FLOOR);
@@ -453,7 +464,7 @@ export default function KoiPond() {
     // ── rock texture — swap URL for your own image ────────────────────────────
     const rockTex = mkTexImage(gl, 'https://res.cloudinary.com/dak0zi45d/image/upload/v1779707760/everytexture.com-stock-nature-sand-00013-400x400_oeuxza.jpg');
 
-    const uDrop    = uLocs(gl, progDrop,    ['u_tex','u_center','u_radius','u_strength','u_min_radius']);
+    const uBrush   = uLocs(gl, progBrush,   ['u_tex','u_prev','u_curr','u_radius','u_strength','u_speed']);
     const uSim     = uLocs(gl, progSim,     ['u_tex','u_delta']);
     const uCaustic = uLocs(gl, progCaustic, ['u_water','u_waterY','u_pool','u_time']);
     const uFloor   = uLocs(gl, progFloor,   ['u_mvp','u_pool','u_caustics','u_water','u_rock','u_time']);
@@ -465,22 +476,23 @@ export default function KoiPond() {
     const r0 = canvas.getBoundingClientRect();
     let canvasAspect = r0.height > 0 ? r0.width / r0.height : 1;
 
-    const DROP_MIN_RADIUS = 0.07;
-    const DROP_RADIUS     = 0.018;
-    const DROP_STRENGTH   = 0.22;
-    const RIPPLE_INTERVAL = 100;
-    const MAX_RIPPLES     = 600;
+    const BRUSH_RADIUS   = 0.016;
+    const BRUSH_STRENGTH = 0.105;
+    const BRUSH_INTERVAL = 24;
+    const MAX_BRUSHES    = 260;
 
-    function addDrop(cx, cy) {
+    function applyBrush(prev, curr, speed = 1) {
       gl.bindFramebuffer(gl.FRAMEBUFFER, simFBO[1-cur]);
       gl.viewport(0, 0, SIM, SIM);
-      gl.useProgram(progDrop);
+      gl.useProgram(progBrush);
       gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, simTex[cur]);
-      gl.uniform1i(uDrop.u_tex, 0);
-      gl.uniform2f(uDrop.u_center,     cx, cy);
-      gl.uniform1f(uDrop.u_radius,     DROP_RADIUS);
-      gl.uniform1f(uDrop.u_strength,   DROP_STRENGTH);
-      gl.uniform1f(uDrop.u_min_radius, DROP_MIN_RADIUS);
+      gl.uniform1i(uBrush.u_tex, 0);
+      gl.uniform2f(uBrush.u_prev, prev[0], prev[1]);
+      gl.uniform2f(uBrush.u_curr, curr[0], curr[1]);
+      const radius = BRUSH_RADIUS + Math.min(1.8, Math.max(0.0, speed)) * 0.006;
+      gl.uniform1f(uBrush.u_radius, radius);
+      gl.uniform1f(uBrush.u_strength, BRUSH_STRENGTH);
+      gl.uniform1f(uBrush.u_speed, Math.min(1.8, Math.max(0.35, speed)));
       gl.bindVertexArray(quadVAO); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       cur = 1-cur;
     }
@@ -559,52 +571,84 @@ export default function KoiPond() {
       gl.disable(gl.BLEND); gl.depthMask(true); gl.disable(gl.DEPTH_TEST);
     }
 
-    const ro = new ResizeObserver(() => {
+    let resizeRaf = 0;
+    const syncCanvasSize = () => {
+      resizeRaf = 0;
       const { width, height } = canvas.getBoundingClientRect();
-      canvas.width  = Math.round(width  * devicePixelRatio);
-      canvas.height = Math.round(height * devicePixelRatio);
+      const nextW = Math.max(1, Math.round(width * window.devicePixelRatio));
+      const nextH = Math.max(1, Math.round(height * window.devicePixelRatio));
+      if (canvas.width !== nextW) canvas.width = nextW;
+      if (canvas.height !== nextH) canvas.height = nextH;
       if (height > 0) canvasAspect = width / height;
-    });
+    };
+    const scheduleCanvasSize = () => {
+      if (resizeRaf) return;
+      resizeRaf = requestAnimationFrame(syncCanvasSize);
+    };
+    const ro = new ResizeObserver(scheduleCanvasSize);
     ro.observe(canvas);
+    scheduleCanvasSize();
 
     let isDragging  = false;
-    let lastRipple  = 0;
-    let rippleCount = 0;
+    let lastBrush   = 0;
+    let brushCount  = 0;
     let curUV       = null;
     let prevUV      = null;
 
-    const onMouseDown = (e) => {
+    const dragWater = (from, to, now) => {
+      if (!from || !to || brushCount >= MAX_BRUSHES) return;
+      const dist = Math.hypot(to[0] - from[0], to[1] - from[1]);
+      const speed = dist / 0.012;
+      applyBrush(from, to, speed);
+      prevUV = [to[0], to[1]];
+      lastBrush = now;
+      brushCount++;
+    };
+
+    const onPointerDown = (e) => {
+      e.preventDefault();
       isDragging  = true;
-      rippleCount = 0;
-      lastRipple  = 0;
+      brushCount  = 0;
+      lastBrush   = 0;
       prevUV      = null;
       const r = canvas.getBoundingClientRect();
       curUV = mouseToWaterUV(e.clientX, e.clientY, r, canvasAspect);
+      canvas.setPointerCapture?.(e.pointerId);
+      if (curUV) {
+        prevUV = [curUV[0], curUV[1]];
+        dragWater(curUV, curUV, performance.now());
+      }
     };
-    const onMouseMove = (e) => {
+    const onPointerMove = (e) => {
       if (!isDragging) return;
+      e.preventDefault();
       const r = canvas.getBoundingClientRect();
       curUV = mouseToWaterUV(e.clientX, e.clientY, r, canvasAspect);
     };
-    const onMouseUp = () => { isDragging = false; curUV = null; prevUV = null; };
+    const onPointerUp = (e) => {
+      if (canvas.hasPointerCapture?.(e.pointerId)) {
+        canvas.releasePointerCapture(e.pointerId);
+      }
+      isDragging = false;
+      curUV = null;
+      prevUV = null;
+    };
 
-    canvas.addEventListener("mousedown",  onMouseDown);
-    canvas.addEventListener("mousemove",  onMouseMove, { passive: true });
-    window.addEventListener("mouseup",    onMouseUp);
+    canvas.addEventListener("pointerdown", onPointerDown);
+    canvas.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup",   onPointerUp);
+    window.addEventListener("pointercancel", onPointerUp);
 
     let animId;
     const animate = (t) => {
       animId = requestAnimationFrame(animate);
 
-      if (isDragging && curUV && rippleCount < MAX_RIPPLES) {
+      if (isDragging && curUV && brushCount < MAX_BRUSHES) {
         const now   = performance.now();
         const moved = !prevUV ||
           (curUV[0]-prevUV[0])**2 + (curUV[1]-prevUV[1])**2 > 4e-6;
-        if (moved && now - lastRipple >= RIPPLE_INTERVAL) {
-          addDrop(curUV[0], curUV[1]);
-          lastRipple  = now;
-          rippleCount++;
-          prevUV = [curUV[0], curUV[1]];
+        if (moved && now - lastBrush >= BRUSH_INTERVAL) {
+          dragWater(prevUV || curUV, curUV, now);
         }
       }
 
@@ -623,17 +667,19 @@ export default function KoiPond() {
 
     return () => {
       cancelAnimationFrame(animId);
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
       ro.disconnect();
-      canvas.removeEventListener("mousedown", onMouseDown);
-      canvas.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup",   onMouseUp);
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      canvas.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup",   onPointerUp);
+      window.removeEventListener("pointercancel", onPointerUp);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: "100%", height: "100%", display: "block", cursor: "crosshair" }}
+      style={{ width: "100%", height: "100%", display: "block", cursor: "crosshair", touchAction: "none" }}
     />
   );
 }

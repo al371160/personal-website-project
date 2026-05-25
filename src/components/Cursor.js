@@ -43,12 +43,12 @@ export default function Cursor() {
       setLabel("");
     };
 
-    document.addEventListener("mousemove",  onMove,  { passive: true });
+    window.addEventListener("pointermove",  onMove,  { passive: true, capture: true });
     document.addEventListener("mouseover",  onOver,  { passive: true });
     document.addEventListener("mouseleave", onLeave);
 
     return () => {
-      document.removeEventListener("mousemove",  onMove);
+      window.removeEventListener("pointermove",  onMove, { capture: true });
       document.removeEventListener("mouseover",  onOver);
       document.removeEventListener("mouseleave", onLeave);
     };

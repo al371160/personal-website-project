@@ -1,11 +1,10 @@
 import GalleryCard from "../components/GalleryCard";
+import HeroInfo from "../components/HeroInfo";
 import KoiPond from "../components/KoiPond";
-import StickyBoard from "../components/StickyBoard";
 import { projects } from "../data/projects";
 import { useEffect, useRef } from "react";
 
 const REVEAL_VARIANTS = ["left", "right", "left", "right", "left", "right"];
-const CARD_RATIOS = ["16/9", "4/3", "3/2", "16/9", "4/3", "1/1"];
 
 export default function Home({ onReady, onProgress }) {
   const pageRef   = useRef(null);
@@ -80,7 +79,7 @@ export default function Home({ onReady, onProgress }) {
             <KoiPond />
           </div>
           <div className="hero-panel hero-panel--right reveal-right" ref={rightRef}>
-            <StickyBoard />
+            <HeroInfo />
           </div>
         </div>
       </section>
@@ -97,11 +96,9 @@ export default function Home({ onReady, onProgress }) {
               key={project.slug}
               slug={project.slug}
               title={project.title}
-              description={project.description}
               hero={project.thumbnail}
               revealVariant={REVEAL_VARIANTS[i % 2 === 0 ? 0 : 1]}
               revealDelay={0}
-              aspectRatio={CARD_RATIOS[i % CARD_RATIOS.length]}
             />
           ))}
         </div>

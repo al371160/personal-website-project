@@ -4,6 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const isResizeObserverLoopError = (message) =>
+  message === 'ResizeObserver loop completed with undelivered notifications.' ||
+  message === 'ResizeObserver loop limit exceeded';
+
+window.addEventListener('error', (event) => {
+  if (isResizeObserverLoopError(event.message)) {
+    event.stopImmediatePropagation();
+  }
+});
+
+window.addEventListener('unhandledrejection', (event) => {
+  if (isResizeObserverLoopError(event.reason?.message)) {
+    event.preventDefault();
+  }
+});
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
