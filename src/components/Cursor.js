@@ -67,7 +67,7 @@ export default function Cursor() {
           left:          0,
           pointerEvents: "none",
           whiteSpace:    "nowrap",
-          fontFamily:    "'DM Mono', monospace",
+          fontFamily:    '-apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif',
           fontSize:      "11px",
           fontWeight:    "300",
           letterSpacing: "0.07em",

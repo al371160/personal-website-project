@@ -86,7 +86,7 @@ export default function Home({ onReady, onProgress }) {
 
       <section className="gallery-section" id="gallery-section">
         <div className="gallery-section-header">
-          <span className="gallery-section-label">Selected Work</span>
+          <span className="gallery-section-label">Work</span>
           <span className="gallery-section-count">— {projects.length}</span>
         </div>
 

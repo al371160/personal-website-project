@@ -16,7 +16,7 @@ export default function HeroInfo() {
   return (
     <section className="hero-info-panel" aria-label="About Alexander Liu">
       <div className="hero-info-copy">
-        <h1>Designing quiet tools, playful interfaces, and visual systems.</h1>
+        <h1>Alex is an interdisciplinary design engineer with a passion for computer graphics.</h1>
       </div>
 
       <div className="hero-info-lists">
