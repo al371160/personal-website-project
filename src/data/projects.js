@@ -141,7 +141,7 @@ export const projects = [
     // Image/video for Home page gallery card
     thumbnail: {
       type: "photo",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442451/PER_car_drifting_better_v2_ps_cvjatn.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1779599480/Untitled_design_euajtv.png",
     },
 
     // Hero image/video for Detail page
@@ -213,6 +213,7 @@ export const projects = [
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_6_phw7ny.jpg",
         caption: "",
       },
+      
       {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/IMG_2018_2_guzdye.png",

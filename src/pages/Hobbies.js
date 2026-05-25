@@ -8,8 +8,8 @@ export default function Hobbies({ onReady }) {
   return (
     <main className="page">
       <div className="subpage-header">
-        <h3>GALLERY</h3>
-        <h1>Hobbies</h1>
+        <h3>ABOUT</h3>
+        <h1>About</h1>
       </div>
 
       <section className="gallery">

@@ -1,44 +1,31 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function TopBar() {
-  const [open, setOpen] = useState(false);
-  const wrapperRef = useRef(null);
+  const location = useLocation();
 
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-        setOpen(false);
+  function handleWorkClick(e) {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      const el = document.getElementById("gallery-section");
+      if (!el) return;
+      if (window.__lenis) {
+        window.__lenis.scrollTo(el);
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
       }
-    };
-    document.addEventListener("pointerdown", handler);
-    return () => document.removeEventListener("pointerdown", handler);
-  }, [open]);
+    }
+  }
 
   return (
     <header className="topbar">
       <div className="topbar-inner">
-        <Link to="/" className="topbar-logo">
-          Alexander Liu
-        </Link>
+        <Link to="/" className="topbar-logo">Alexander Liu</Link>
 
-        <div className="topbar-nav">
-          <div ref={wrapperRef} className={`emoji-nav-wrapper${open ? " open" : ""}`}>
-            <div className="emoji-sidebar">
-              <Link to="/artwork" className="sidebar-item" onClick={() => setOpen(false)}>artwork</Link>
-              <Link to="/hobbies" className="sidebar-item" onClick={() => setOpen(false)}>hobbies</Link>
-            </div>
-            <span
-              className="emoji-link"
-              onClick={() => {
-                if (window.matchMedia("(hover: none)").matches) setOpen((o) => !o);
-              }}
-            >
-              ٩(˶^ᗜ^˵)و
-            </span>
-          </div>
-        </div>
+        <nav className="topbar-nav">
+          <Link to="/" className="topbar-link" onClick={handleWorkClick}>work</Link>
+          <Link to="/playground" className="topbar-link">playground</Link>
+          <Link to="/about" className="topbar-link">about</Link>
+        </nav>
       </div>
     </header>
   );
