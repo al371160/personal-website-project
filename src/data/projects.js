@@ -10,17 +10,17 @@ export const projects = [
     },
 
     hero: {
-      type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220305/Untitled_Artwork_56_ppoklz.png",
+      type: "video",
+      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1780539409/Screen_Recording_2026-06-03_at_7.15.23_PM_mleipg.mov",
     },
 
     meta: {
-      role: "UI Lead",
+      role: "Solo Developer",
       roleDescription:
-        "Owned visual language, iOS UI implementation, and motion for the assistant experience. Coordinated frontend structure in Xcode and integrated sponsor APIs into the shipping demo.",
-      collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
+        "Everything!",
+      collaborators: "",
       duration: "2026",
-      tools: "Rive, XCode, ARKit, Swift, Antigravity, Overshoot API",
+      tools: "Cursor, React, Cesium, Google 3D Tiles, Playwright MCP"
     },
 
     content: [
@@ -32,57 +32,25 @@ export const projects = [
       },
       {
         type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220430/Screenshot_2026-01-23_at_9.07.00_PM_gbwxam.png",
-        caption: "Brand mark and app identity",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780538718/IMG_2071_peicap.jpg",
+        caption: "UI and app structure brainstorming",
       },
       {
         type: "text",
         title: "Interface & build",
         body:
-          "I set up the SwiftUI structure, dependency graph, and screen flow so the team could iterate quickly. Screens were designed for thumb reach and clear hierarchy under bright demo lighting.",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769221063/Screenshot_2026-01-23_at_9.17.37_PM_raqzba.png",
-        caption: "Xcode frontend — file organization and package management",
-      },
-      {
-        type: "text",
-        title: "Motion & AR",
-        body:
-          "Assistant motion was prototyped in Rive and Blender, then synced to voice and AR cues for the final walkthrough.",
-      },
-      {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220305/look_back0001-0072_ffci2z.mp4",
-        caption: "Blender test render — Omni AR assistant in scene",
+          "",
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "video",
-            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769221622/Screen_Recording_2026-01-23_at_9.22.51_PM_qsy0dd.mov",
-            caption: "Rive-driven assistant animation",
-          },
-          {
-            type: "video",
-            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220289/IMG_5241_wu0tga.mov",
-            caption: "Voice-sync pass on assistant states",
-          },
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780348329/Screenshot_2026-05-31_at_1.53.46_AM_jwljs2.png",
+            caption: "Light mode - less performance-heavy, from 1.2 GB to 200 MB",
+          }
         ],
-      },
-      {
-        type: "text",
-        title: "Ship & writeup",
-        body:
-          "Helped coordinate integrations (Overshoot, Gemini, LiveKit) and wrote the primary Devpost submission for the team.",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769222275/IMG_5214_d3mw7p.png",
-        caption: "Devpost writeup — https://devpost.com/software/omni-hzxqra",
       },
     ],
   },
