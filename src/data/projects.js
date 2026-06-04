@@ -68,7 +68,7 @@ export const projects = [
 
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780547661/Screenshot_2026-06-03_at_9.34.15_PM_tva0hq.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780553617/copy_of_screenshot_2026-06-03_at_110949_pm_nsbvux.png",
     },
 
     meta: {
