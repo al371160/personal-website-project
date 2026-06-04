@@ -24,6 +24,7 @@ This is a **Create React App** personal portfolio site (React 19, react-router-d
 
 All project content lives in **`src/data/projects.js`** as a plain JS array. Each project has:
 - `slug` — URL identifier
+- `visitUrl?` — external link; shows a “Visit project” button in the detail sidebar
 - `thumbnail` — media object (`{type, src}`) shown on the Home gallery card
 - `hero` — media object shown full-width at the top of the Detail page
 - `meta` — `{role, roleDescription?, collaborators, duration, tools}`

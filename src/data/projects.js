@@ -3,6 +3,7 @@ export const projects = [
     slug: "alex-twin",
     title: "AlexTwin",
     description: "Web-based, 3D world simulation for distribution",
+    visitUrl: "https://alex-twin.com/",
 
     thumbnail: {
       type: "photo",
@@ -58,6 +59,7 @@ export const projects = [
     slug: "ragebaiter",
     title: "Ragebaiter",
     description: "Gamifying the approach to online discussion of sensitive topics",
+    visitUrl: "https://ragebaiter-three.vercel.app/",
 
     thumbnail: {
       type: "photo",
@@ -141,6 +143,7 @@ export const projects = [
     slug: "omni",
     title: "Omni",
     description: "Accessible, interactive toolmaking for users",
+    visitUrl: "https://devpost.com/software/omni-hzxqra",
 
     thumbnail: {
       type: "video",
@@ -222,6 +225,7 @@ export const projects = [
     slug: "orble-tea",
     title: "Orble Tea",
     description: "Comprehensive branding and business work",
+    visitUrl: "https://orble-tea.com/",
 
     thumbnail: {
       type: "video",
@@ -329,6 +333,7 @@ export const projects = [
     slug: "penn-electric-racing",
     title: "Penn Electric Racing",
     description: "Design and operations for formula racing team",
+    visitUrl: "https://www.pennelectricracing.com/",
 
     thumbnail: {
       type: "photo",
@@ -478,6 +483,7 @@ export const projects = [
     slug: "y-prize",
     title: "Y-Prize",
     description: "Led design and prototyping for sustainable startup competition",
+    visitUrl: "https://youtu.be/k8fP14yVEa8",
 
     thumbnail: {
       type: "video",
@@ -559,6 +565,7 @@ export const projects = [
     slug: "pawfond",
     title: "PawFond",
     description: "Product design and web development for pet care startup",
+    visitUrl: "https://mypawfond.com/",
 
     thumbnail: {
       type: "image",

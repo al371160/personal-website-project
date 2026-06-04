@@ -75,15 +75,28 @@ export default function Detail({ onReady, onProgress }) {
       <div className="detail-layout">
 
         <aside className="detail-sidebar">
-          <h1>{project.title}</h1>
-          {project.meta.role && (
-            <p className="detail-role">{project.meta.role}</p>
-          )}
-          {project.meta.roleDescription && (
-            <p className="detail-role-description">{project.meta.roleDescription}</p>
-          )}
-          {project.description && (
-            <p className="detail-tagline">{project.description}</p>
+          <div className="detail-sidebar-intro">
+            <h1>{project.title}</h1>
+            {project.meta.role && (
+              <p className="detail-role">{project.meta.role}</p>
+            )}
+            {project.meta.roleDescription && (
+              <p className="detail-role-description">{project.meta.roleDescription}</p>
+            )}
+            {project.description && (
+              <p className="detail-tagline">{project.description}</p>
+            )}
+          </div>
+          {project.visitUrl && (
+            <a
+              className="detail-visit-btn"
+              href={project.visitUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit project
+              <span className="detail-visit-btn-icon" aria-hidden="true">↗</span>
+            </a>
           )}
         </aside>
 
