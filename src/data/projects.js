@@ -83,30 +83,8 @@ export const projects = [
         type: "text",
         title: "Overview",
         body:
-          "Ragebaiter reframes argumentative online threads as a playable loop: users earn feedback for clarity and lose momentum for pure provocation. The hypothesis is that scoring and visible progress nudge people toward substance without removing spontaneity.",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780358115/Screenshot_2026-06-01_at_4.54.37_PM_wceqgw.png",
-        caption: "Primary UI — thread view with reaction scoring",
-      },
-      {
-        type: "text",
-        title: "Product loop",
-        body:
-          "Each session surfaces a hot take, tracks replies in real time, and maps tone + argument quality into a simple XP bar. The UI stays minimal so the game layer reads instantly on mobile widths.",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780216126/Omni_Gaussian_Splatting_w2m03u.jpg",
-        caption: "Environment visual — spatial backdrop for demo capture",
-      },
-      {
-        type: "text",
-        title: "Build",
-        body:
-          "React front end talks to a lightweight Python service for classification and session state. Cursor sped up iteration on layout and API wiring during a short build window.",
-      },
+          "Coming soon!",
+      }
     ],
   },
   {
