@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { projects } from "../data/projects";
+import DetailContentBlock from "../components/DetailContentBlock";
 import { useEffect, useRef } from "react";
 
 export default function Detail({ onReady, onProgress }) {
@@ -53,7 +54,6 @@ export default function Detail({ onReady, onProgress }) {
   return (
     <main className="detail-page" ref={pageRef}>
 
-      {/* HERO */}
       <section className="detail-hero">
         {project.hero.type === "image" && (
           <img src={project.hero.src} alt={project.title} />
@@ -72,58 +72,47 @@ export default function Detail({ onReady, onProgress }) {
         )}
       </section>
 
-      {/* TWO-COLUMN LAYOUT */}
       <div className="detail-layout">
 
-        {/* LEFT: scrolling content */}
+        <aside className="detail-sidebar">
+          <h1>{project.title}</h1>
+          {project.meta.role && (
+            <p className="detail-role">{project.meta.role}</p>
+          )}
+          {project.meta.roleDescription && (
+            <p className="detail-role-description">{project.meta.roleDescription}</p>
+          )}
+          {project.description && (
+            <p className="detail-tagline">{project.description}</p>
+          )}
+        </aside>
+
         <section className="detail-content">
           <div className="detail-meta">
             <div className="meta-box">
-              <h3>ROLE</h3>
+              <h3>Role</h3>
               <p>{project.meta.role}</p>
             </div>
             <div className="meta-box">
-              <h3>COLLABORATORS</h3>
+              <h3>Collaborators</h3>
               <p>{project.meta.collaborators}</p>
             </div>
             <div className="meta-box">
-              <h3>DURATION</h3>
+              <h3>Duration</h3>
               <p>{project.meta.duration}</p>
             </div>
             <div className="meta-box">
-              <h3>TOOLS</h3>
+              <h3>Tools</h3>
               <p>{project.meta.tools}</p>
             </div>
           </div>
 
-          {project.content.map((block, i) => (
-            <figure key={i} className="detail-block">
-              {block.type === "image" && (
-                <img src={block.src} alt={block.caption || ""} />
-              )}
-
-              {block.type === "video" && (
-                <video
-                  src={block.src}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
-              )}
-
-              {block.caption && (
-                <figcaption>{block.caption}</figcaption>
-              )}
-            </figure>
-          ))}
+          <div className="detail-blocks">
+            {project.content.map((block, i) => (
+              <DetailContentBlock key={i} block={block} index={i} />
+            ))}
+          </div>
         </section>
-
-        {/* LEFT: sticky sidebar — title + headline */}
-        <aside className="detail-sidebar">
-          <h1>{project.title}</h1>
-          <p className="detail-subtitle">{project.description}</p>
-        </aside>
 
       </div>
 

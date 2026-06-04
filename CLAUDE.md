@@ -26,10 +26,13 @@ All project content lives in **`src/data/projects.js`** as a plain JS array. Eac
 - `slug` — URL identifier
 - `thumbnail` — media object (`{type, src}`) shown on the Home gallery card
 - `hero` — media object shown full-width at the top of the Detail page
-- `meta` — `{role, collaborators, duration, tools}`
-- `content` — array of `{type, src, caption}` blocks rendered sequentially on the Detail page
+- `meta` — `{role, roleDescription?, collaborators, duration, tools}`
+- `content` — array of content blocks rendered sequentially on the Detail page:
+  - Media: `{type: "image"|"video"|"photo", src, caption?}` — image/video with optional caption below
+  - Text: `{type: "text", title?, body}` — sans-serif prose section (distinct from captions); `body` is a string or paragraph array
+  - Gallery: `{type: "gallery", columns?: 1|2|3, items: [{type, src, caption?}]}` — grid of media with optional per-item captions
 
-Media types are `"image"`, `"video"`, or `"photo"` (photo renders as `<img>`). All assets are hosted on Cloudinary (`dak0zi45d`).
+All assets are hosted on Cloudinary (`dak0zi45d`).
 
 ### Loading System
 

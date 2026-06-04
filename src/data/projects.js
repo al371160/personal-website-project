@@ -1,16 +1,14 @@
 export const projects = [
   {
-    slug: "omni",
-    title: "Omni",
-    description: "Accessible, interactive toolmaking for users",
-    
-    // Image/video for Home page gallery card
+    slug: "alex-twin",
+    title: "AlexTwin",
+    description: "Web-based, 3D world simulation for distribution",
+
     thumbnail: {
-      type: "video",
-      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220262/IMG_5239_pwu4jw.mov",
+      type: "photo",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780348329/Screenshot_2026-05-31_at_1.56.03_AM_i2cikb.png",
     },
 
-    // Hero image/video for Detail page
     hero: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220305/Untitled_Artwork_56_ppoklz.png",
@@ -18,6 +16,8 @@ export const projects = [
 
     meta: {
       role: "UI Lead",
+      roleDescription:
+        "Owned visual language, iOS UI implementation, and motion for the assistant experience. Coordinated frontend structure in Xcode and integrated sponsor APIs into the shipping demo.",
       collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
       duration: "2026",
       tools: "Rive, XCode, ARKit, Swift, Antigravity, Overshoot API",
@@ -25,34 +25,250 @@ export const projects = [
 
     content: [
       {
+        type: "text",
+        title: "Overview",
+        body:
+          "AlexTwin is a web-based 3D world simulation built for distribution and live demo. The goal was to make a dense AR + assistant stack feel legible on a phone in a single hackathon sprint.",
+      },
+      {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220430/Screenshot_2026-01-23_at_9.07.00_PM_gbwxam.png",
-        caption: "logo design",
+        caption: "Brand mark and app identity",
+      },
+      {
+        type: "text",
+        title: "Interface & build",
+        body:
+          "I set up the SwiftUI structure, dependency graph, and screen flow so the team could iterate quickly. Screens were designed for thumb reach and clear hierarchy under bright demo lighting.",
       },
       {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769221063/Screenshot_2026-01-23_at_9.17.37_PM_raqzba.png",
-        caption: "vibe-coding IOS app frontend within XCode, created file organization system and managed package dependencies",
+        caption: "Xcode frontend — file organization and package management",
+      },
+      {
+        type: "text",
+        title: "Motion & AR",
+        body:
+          "Assistant motion was prototyped in Rive and Blender, then synced to voice and AR cues for the final walkthrough.",
       },
       {
         type: "video",
         src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220305/look_back0001-0072_ffci2z.mp4",
-        caption: "test render of Omni AR assistant in action, made with Blender",
+        caption: "Blender test render — Omni AR assistant in scene",
       },
       {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769221622/Screen_Recording_2026-01-23_at_9.22.51_PM_qsy0dd.mov",
-        caption: "Omni assistant animation created with Rive",
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769221622/Screen_Recording_2026-01-23_at_9.22.51_PM_qsy0dd.mov",
+            caption: "Rive-driven assistant animation",
+          },
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220289/IMG_5241_wu0tga.mov",
+            caption: "Voice-sync pass on assistant states",
+          },
+        ],
       },
       {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220289/IMG_5241_wu0tga.mov",
-        caption: "Helped with animation-voice syncing of Omni assistant",
+        type: "text",
+        title: "Ship & writeup",
+        body:
+          "Helped coordinate integrations (Overshoot, Gemini, LiveKit) and wrote the primary Devpost submission for the team.",
       },
       {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769222275/IMG_5214_d3mw7p.png",
-        caption: "Helped with time management and organization, as well as incorporating various sponsor APIs into the app such as Overshoot, Gemini and LiveKit. Created primary writeup for Devpost here: https://devpost.com/software/omni-hzxqra?_gl=1*148dkh4*_gcl_au*MjA5MjkxMzAzNC4xNzY4NjY3ODUy*_ga*MTQ3NjA3NjkyOS4xNzY4NjY3ODUy*_ga_0YHJK3Y10M*czE3NjkyMjI2NTQkbzEyJGcxJHQxNzY5MjIyNjY2JGo0OCRsMCRoMA..",
+        caption: "Devpost writeup — https://devpost.com/software/omni-hzxqra",
+      },
+    ],
+  },
+  {
+    slug: "ragebaiter",
+    title: "Ragebaiter",
+    description: "Gamifying the approach to online discussion of sensitive topics",
+
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780358115/Screenshot_2026-06-01_at_4.54.37_PM_wceqgw.png",
+    },
+
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780216126/Omni_Gaussian_Splatting_w2m03u.jpg",
+    },
+
+    meta: {
+      role: "Solo Developer",
+      roleDescription:
+        "Designed and built the full stack solo — product concept, UI, and inference pipeline — to test whether game mechanics could make heated threads more constructive.",
+      collaborators: "Solo",
+      duration: "2026",
+      tools: "Cursor, React, Python",
+    },
+
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body:
+          "Ragebaiter reframes argumentative online threads as a playable loop: users earn feedback for clarity and lose momentum for pure provocation. The hypothesis is that scoring and visible progress nudge people toward substance without removing spontaneity.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780358115/Screenshot_2026-06-01_at_4.54.37_PM_wceqgw.png",
+        caption: "Primary UI — thread view with reaction scoring",
+      },
+      {
+        type: "text",
+        title: "Product loop",
+        body:
+          "Each session surfaces a hot take, tracks replies in real time, and maps tone + argument quality into a simple XP bar. The UI stays minimal so the game layer reads instantly on mobile widths.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780216126/Omni_Gaussian_Splatting_w2m03u.jpg",
+        caption: "Environment visual — spatial backdrop for demo capture",
+      },
+      {
+        type: "text",
+        title: "Build",
+        body:
+          "React front end talks to a lightweight Python service for classification and session state. Cursor sped up iteration on layout and API wiring during a short build window.",
+      },
+    ],
+  },
+  {
+    slug: "aquara",
+    title: "Aquara",
+    description: "Direct, modular UI for professional clients",
+
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780352903/Screenshot_2026-06-01_at_3.28.05_PM_qx6qst.png",
+    },
+
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780352903/Screenshot_2026-06-01_at_3.28.05_PM_qx6qst.png",
+    },
+
+    meta: {
+      role: "UI Lead",
+      roleDescription:
+        "Led interface architecture for a client-facing dashboard — modular panels, dense data tables, and a calm visual system that still feels fast at a glance.",
+      collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
+      duration: "2026",
+      tools: "Figma, React, TypeScript",
+    },
+
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body:
+          "Aquara is a professional client portal built around clarity under load: accountants and ops leads need numbers, status, and actions without hunting through nested menus.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780352903/Screenshot_2026-06-01_at_3.28.05_PM_qx6qst.png",
+        caption: "Dashboard shell — modular cards and primary actions",
+      },
+      {
+        type: "text",
+        title: "Design principles",
+        body:
+          "Type scale and spacing follow an 8px grid. Components are swappable blocks (summary, ledger, alerts) so new client verticals reuse the same frame.\n\nColor is mostly neutral with a single accent for CTAs and risk states.",
+      },
+      {
+        type: "text",
+        title: "Next steps",
+        body:
+          "Continuing to tighten responsive breakpoints and empty states for first-time client onboarding.",
+      },
+    ],
+  },
+  {
+    slug: "omni",
+    title: "Omni",
+    description: "Accessible, interactive toolmaking for users",
+
+    thumbnail: {
+      type: "video",
+      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220262/IMG_5239_pwu4jw.mov",
+    },
+
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220305/Untitled_Artwork_56_ppoklz.png",
+    },
+
+    meta: {
+      role: "UI Lead",
+      roleDescription:
+        "Directed UI for an AR assistant that helps users build tools in context — from layout and motion to Xcode implementation and demo-ready polish.",
+      collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
+      duration: "2026",
+      tools: "Rive, XCode, ARKit, Swift, Antigravity, Overshoot API",
+    },
+
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body:
+          "Omni is an accessible AR assistant for interactive toolmaking: users describe what they need, see it in space, and refine through voice and touch. The interface had to stay calm while the backend orchestration stayed complex.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220430/Screenshot_2026-01-23_at_9.07.00_PM_gbwxam.png",
+        caption: "Logo and visual identity",
+      },
+      {
+        type: "text",
+        title: "iOS interface",
+        body:
+          "Built the SwiftUI shell, navigation, and component library in Xcode so engineering could plug in ARKit sessions and live API streams without redesigning screens.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769221063/Screenshot_2026-01-23_at_9.17.37_PM_raqzba.png",
+        caption: "App structure in Xcode — dependencies and screen map",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220305/look_back0001-0072_ffci2z.mp4",
+        caption: "Blender pre-visualization of assistant in AR",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769221622/Screen_Recording_2026-01-23_at_9.22.51_PM_qsy0dd.mov",
+            caption: "Rive animation system for the assistant",
+          },
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220289/IMG_5241_wu0tga.mov",
+            caption: "Animation synced to voice input",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Integrations",
+        body:
+          "Supported Overshoot, Gemini, and LiveKit hooks for the hackathon demo and authored the public Devpost writeup.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769222275/IMG_5214_d3mw7p.png",
+        caption: "Submission snapshot — https://devpost.com/software/omni-hzxqra",
       },
     ],
   },
@@ -60,14 +276,12 @@ export const projects = [
     slug: "orble-tea",
     title: "Orble Tea",
     description: "Comprehensive branding and business work",
-    
-    // Image/video for Home page gallery card
+
     thumbnail: {
       type: "video",
       src: "https://orble-tea.com/media/next-gen-render-video.mp4",
     },
 
-    // Hero image/video for Detail page
     hero: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444772/Screenshot_2026-01-14_at_9.39.22_PM_qrxnda.png",
@@ -75,6 +289,8 @@ export const projects = [
 
     meta: {
       role: "Brand Designer / Developer",
+      roleDescription:
+        "Shape Orble's visual identity, hardware storytelling, and marketing site — from CAD-backed renders to vinyl wraps and architectural viz for investor decks.",
       collaborators: "Orble Tea Team",
       duration: "2025 – Present",
       tools: "Astro, Blender, Maya, Onshape, React",
@@ -82,54 +298,84 @@ export const projects = [
 
     content: [
       {
+        type: "text",
+        title: "Overview",
+        body:
+          "Orble Tea is an automated boba concept spanning product design, brand, and go-to-market visuals. My work ties physical machine design to a coherent digital presence on orble-tea.com.",
+      },
+      {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772842030/IMG_5522_2_1_gfa0m8.png",
-        caption: "Designed and created vinyl wrap for 'coming soon' box",
+        caption: "Vinyl wrap for the 'coming soon' launch box",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773974232/Untitled_Artwork_64_yrjse5.png",
-        caption: "Orble beta vending machine design",
+        type: "text",
+        title: "Hardware & beta unit",
+        body:
+          "Beta vending concepts combine Onshape CAD, Substance texturing, and Blender lighting so stakeholders can read materials and footprint before fabrication.",
       },
       {
-        type: "image",
-        src: "https://orble-tea.com/.netlify/images?url=_astro%2Ffront-left.D0kYN4sG.jpg&w=1280&h=1280&dpl=69483ebca7d51e0008be244d",
-        caption: "Orble Beta vending machine, card reader and boba texture from Sketchfab",
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773974232/Untitled_Artwork_64_yrjse5.png",
+            caption: "Beta vending machine — industrial design pass",
+          },
+          {
+            type: "image",
+            src: "https://orble-tea.com/.netlify/images?url=_astro%2Ffront-left.D0kYN4sG.jpg&w=1280&h=1280&dpl=69483ebca7d51e0008be244d",
+            caption: "Beta unit render — card reader and boba materials",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768445467/textured_reexport_v2_pattern_BaseColor_qdm7px.png",
+            caption: "Substance Painter surface maps",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768446936/orble_next_gen_render_1_720_zykg6e.png",
+            caption: "Next-gen machine — Onshape CAD with custom materials",
+          },
+        ],
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768445467/textured_reexport_v2_pattern_BaseColor_qdm7px.png",
-        caption: "textures made on Substance Painter",
+        type: "text",
+        title: "Architectural visualization",
+        body:
+          "Location renders (airport, apartment, campus) place the machine in real contexts for pitch decks and partner conversations.",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444581/airport_render_3_wmsjre.jpg",
-        caption: "",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444580/airport_render_png_sr8ls4.jpg",
-        caption: "Airport/station visualization",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768554175/Screenshot_2026-01-16_at_4.02.36_AM_cgw82a.png",
-        caption: "wireframe view for airport/station visualization",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768446826/archviz_apartment_1_vaftas.jpg",
-        caption: "Apartment visualization",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768554330/archviz_1_with_people_studying_1_lkmnqf.jpg",
-        caption: "Academic building visualization",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768446936/orble_next_gen_render_1_720_zykg6e.png",
-        caption: "Orble Next-Gen render, made from Onshape CAD file with custom materials",
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444581/airport_render_3_wmsjre.jpg",
+            caption: "Airport / station placement study",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444580/airport_render_png_sr8ls4.jpg",
+            caption: "Station visualization — final lighting",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768554175/Screenshot_2026-01-16_at_4.02.36_AM_cgw82a.png",
+            caption: "Wireframe overlay for layout review",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768446826/archviz_apartment_1_vaftas.jpg",
+            caption: "Apartment lobby context",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768554330/archviz_1_with_people_studying_1_lkmnqf.jpg",
+            caption: "Academic building — foot traffic study",
+          },
+        ],
       },
     ],
   },
@@ -137,14 +383,12 @@ export const projects = [
     slug: "penn-electric-racing",
     title: "Penn Electric Racing",
     description: "Design and operations for formula racing team",
-    
-    // Image/video for Home page gallery card
+
     thumbnail: {
       type: "photo",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1779599480/Untitled_design_euajtv.png",
     },
 
-    // Hero image/video for Detail page
     hero: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
@@ -152,6 +396,8 @@ export const projects = [
 
     meta: {
       role: "Media / Business Operations / Project Manager",
+      roleDescription:
+        "Bridge design, media, and ops for PER — livery exploration, car renders, sponsor-facing posters, and tooling that keeps the business team aligned with engineering milestones.",
       collaborators: "Operations Team",
       duration: "2025 – Present",
       tools: "Solidworks, Vercel, Blender, Maya, Adobe Suite, Procreate, Notion",
@@ -159,100 +405,139 @@ export const projects = [
 
     content: [
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
-        caption: "Livery prototyping with Solidworks",
+        type: "text",
+        title: "Overview",
+        body:
+          "Penn Electric Racing (REV11) needs visuals that work for sponsors, social, and internal morale. I split time between livery iteration, car visualization, and business presentation assets.",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291728/download_2_kkzpq4.png",
-        caption: "Final revision of livery prototyping with Blender texture painting",
+        type: "text",
+        title: "Livery exploration",
+        body:
+          "Livery directions are prototyped in Solidworks and Blender texture painting so the team can compare scale, contrast, and sponsor lockups before paint shop commitments.",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.45.57_PM_rs34rx.png",
-        caption: "Livery prototyping with Blender texture painting",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.47.32_PM_gpil4p.png",
-        caption: "Livery prototyping with Blender texture painting",
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
+            caption: "Solidworks livery prototype",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291728/download_2_kkzpq4.png",
+            caption: "Final revision — Blender texture paint",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.45.57_PM_rs34rx.png",
+            caption: "Livery iteration A",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.47.32_PM_gpil4p.png",
+            caption: "Livery iteration B",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
+            caption: "Early livery roughs board",
+          },
+        ],
       },
       {
         type: "video",
         src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1772842240/rev_11_logo_test_v4_el956p.mp4",
-        caption: "Animated REV11 logo with rive",
+        caption: "REV11 logo animation — Rive",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442453/per_good_render_2_lnzuf6.jpg",
-        caption: "",
+        type: "text",
+        title: "Car visualization",
+        body:
+          "Full-car renders combine Solidworks CAD, Visualize, and Maya for lighting passes used in decks and Instagram.",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_3_ptceqx.jpg",
-        caption: "",
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442453/per_good_render_2_lnzuf6.jpg",
+            caption: "Studio render — three-quarter front",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_3_ptceqx.jpg",
+            caption: "Studio render — side elevation",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_5_ml3xcb.jpg",
+            caption: "Solidworks → Visualize → Maya pipeline",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_6_phw7ny.jpg",
+            caption: "Detail render — aero and sponsor panels",
+          },
+        ],
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_5_ml3xcb.jpg",
-        caption: "Car visualization using Solidworks, Visualize and Maya",
+        type: "text",
+        title: "Posters & business media",
+        body:
+          "Poster and cover art support recruitment and sponsor meetings — often starting in 3D and finishing in Photoshop or Procreate for hand-tuned typography.",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
-        caption: "Livery design roughs",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442451/PER_car_drifting_better_v2_ps_cvjatn.png",
-        caption: "Poster design, using Photoshop and Gemini",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_6_phw7ny.jpg",
-        caption: "",
-      },
-      
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/IMG_2018_2_guzdye.png",
-        caption: "Render to poster process: Maya and Procreate",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443294/cover_design_2_dt5pgo.png",
-        caption: "Business presentation cover visual",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/Rev_11_comic_better_lettering_t3y9nt.png",
-        caption: "Rally car-style poster design",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442716/Untitled_Artwork_1_bs0bnx.png",
-        caption: "",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442715/Untitled_-_December_11_2025_01.13.36_ybcmhj.jpg",
-        caption: "More poster design rough sketches",
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442451/PER_car_drifting_better_v2_ps_cvjatn.png",
+            caption: "Poster — Photoshop and Gemini assist",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/IMG_2018_2_guzdye.png",
+            caption: "Render-to-poster workflow — Maya and Procreate",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443294/cover_design_2_dt5pgo.png",
+            caption: "Business presentation cover",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/Rev_11_comic_better_lettering_t3y9nt.png",
+            caption: "Rally-style poster variant",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442716/Untitled_Artwork_1_bs0bnx.png",
+            caption: "Concept sketch — composition study",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442715/Untitled_-_December_11_2025_01.13.36_ybcmhj.jpg",
+            caption: "Poster rough sketches",
+          },
+        ],
       },
     ],
   },
   {
     slug: "y-prize",
     title: "Y-Prize",
-    description: "led design and prototyping for sustainable startup competition",
-    
-    // Image/video for Home page gallery card
+    description: "Led design and prototyping for sustainable startup competition",
+
     thumbnail: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768447371/Screen_Recording_2026-01-14_at_10.20.36_PM_hfnucs.mov",
     },
 
-    // Hero image/video for Detail page
     hero: {
       type: "youtube",
       src: "k8fP14yVEa8",
@@ -260,6 +545,8 @@ export const projects = [
 
     meta: {
       role: "Team Lead",
+      roleDescription:
+        "Led a five-person team through Y-Prize 2025 — story, visual identity, Blender prototypes, and the five-minute pitch film that anchored our submission.",
       collaborators: "Shaomin Kee, Corina Chen, Reine Huang, Joanne Lin",
       duration: "2025",
       tools: "Blender, Capcut, Microsoft PowerPoint, Google Slides",
@@ -267,49 +554,71 @@ export const projects = [
 
     content: [
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450142/Y-Prize_2025-images-0_lke54o.jpg",
-        caption: "",
+        type: "text",
+        title: "Overview",
+        body:
+          "Y-Prize is Penn's startup design competition. Our entry packaged a sustainable product narrative into a tight deck plus a cinematic Blender pitch video.",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450145/Y-Prize_2025-images-1_n6vjy1.jpg",
-        caption: "",
+        type: "text",
+        title: "Pitch deck",
+        body:
+          "Five slides cover problem, solution, market, prototype, and ask — designed for legibility on a projector and PDF export.",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450143/Y-Prize_2025-images-2_z4j26i.jpg",
-        caption: "",
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450142/Y-Prize_2025-images-0_lke54o.jpg",
+            caption: "Deck slide 1 — problem framing",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450145/Y-Prize_2025-images-1_n6vjy1.jpg",
+            caption: "Deck slide 2 — solution",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450143/Y-Prize_2025-images-2_z4j26i.jpg",
+            caption: "Deck slide 3 — market",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450144/Y-Prize_2025-images-3_c2ec4z.jpg",
+            caption: "Deck slide 4 — prototype",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450144/Y-Prize_2025-images-4_owz80v.jpg",
+            caption: "Deck slide 5 — team & ask",
+          },
+        ],
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450144/Y-Prize_2025-images-3_c2ec4z.jpg",
-        caption: "",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450144/Y-Prize_2025-images-4_owz80v.jpg",
-        caption: "5 page pitch deck",
+        type: "text",
+        title: "Pitch film",
+        body:
+          "The hero video above is the full five-minute pitch. Blender models were edited in CapCut with VO and music for submission.",
       },
       {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768524628/Screenshot_2026-01-15_at_7.49.13_PM_vykmri.png",
-        caption: "5 minute long YouTube video pitch, models made in Blender. Link here: https://youtu.be/k8fP14yVEa8"
-      }
+        caption: "YouTube pitch — https://youtu.be/k8fP14yVEa8",
+      },
     ],
   },
   {
     slug: "pawfond",
     title: "PawFond",
-    description: "Product Design and web development for pet care startup",
-    
-    // Image/video for Home page gallery card
+    description: "Product design and web development for pet care startup",
+
     thumbnail: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451779/16oz_packaging_blue_fpowis.png",
     },
 
-    // Hero image/video for Detail page
     hero: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768592032/pawfond_hero_u323pp.mov",
@@ -317,6 +626,8 @@ export const projects = [
 
     meta: {
       role: "Product Designer / Developer",
+      roleDescription:
+        "Owned packaging exploration and the Shopify storefront — translating brand sketches into shelf-ready dielines and a shoppable site the team could run without engineers on call.",
       collaborators: "PawFond Team",
       duration: "2025",
       tools: "Procreate, Adobe Fresco, Adobe Illustrator, Shopify",
@@ -324,34 +635,57 @@ export const projects = [
 
     content: [
       {
+        type: "text",
+        title: "Overview",
+        body:
+          "PawFond is a pet-care startup spanning physical product and DTC web. Work focused on trustworthy packaging and a simple purchase path for first-time customers.",
+      },
+      {
         type: "video",
         src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768526150/Screen_Recording_2026-01-15_at_8.10.29_PM_wdjscw.mov",
-        caption: "Shopify Website creation",
+        caption: "Shopify theme build and product setup",
+      },
+      {
+        type: "text",
+        title: "Packaging system",
+        body:
+          "Explored 8 oz and 16 oz formats in blue-forward palettes, keeping typography readable at arm's length on shelf and in unboxing photos.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451908/8oz_packagin_design_v2_ssbpjw.png",
+            caption: "8 oz — alternate layout v2",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451691/Untitled_Artwork_51_yd3pcx.png",
+            caption: "Brand illustration explorations",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451889/8oz_packagin_design_blue_f01q6t.png",
+            caption: "8 oz — blue primary",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451693/16oz_packaging_blue_t3tyfp.png",
+            caption: "16 oz — production candidate",
+          },
+        ],
       },
       {
         type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451908/8oz_packagin_design_v2_ssbpjw.png",
-        caption: "",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451691/Untitled_Artwork_51_yd3pcx.png",
-        caption: "",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451889/8oz_packagin_design_blue_f01q6t.png",
-        caption: "",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451693/16oz_packaging_blue_t3tyfp.png",
-        caption: "16 oz packaging",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451779/16oz_packaging_blue_fpowis.png",
+        caption: "16 oz hero SKU — thumbnail asset",
       },
       {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768526880/pawfond_display_7736b524-df3c-4f3a-ab41-ced9397e3db1_ywzt1a.webp",
-        caption: "Render of packaging",
+        caption: "Retail display render",
       },
     ],
   },
@@ -359,14 +693,12 @@ export const projects = [
     slug: "rum-rush",
     title: "Rum Rush",
     description: "Game development leadership under schedule",
-    
-    // Image/video for Home page gallery card
+
     thumbnail: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768527339/Rum_rush_thumbnail_z1x6cb.png",
     },
 
-    // Hero image/video for Detail page
     hero: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768552482/Screenshot_2026-01-16_at_3.34.33_AM_evwmzc.png",
@@ -374,6 +706,8 @@ export const projects = [
 
     meta: {
       role: "Producer / Team Lead",
+      roleDescription:
+        "Produced Rum Rush under a fixed schedule — game design doc, milestone planning, and hands-on Unity systems (physics, ragdoll, audio, post) so the team could ship a vertical slice.",
       collaborators: "Rajas Nanda, Chris Wang, Andrew Han",
       duration: "2025",
       tools: "Unity, C#, Blender",
@@ -381,32 +715,48 @@ export const projects = [
 
     content: [
       {
+        type: "text",
+        title: "Overview",
+        body:
+          "Rum Rush is a time-manipulation action prototype built in Unity. As producer I kept scope honest while still landing distinctive feel: slow-mo combat, readable pickups, and punchy feedback.",
+      },
+      {
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768552649/Screenshot_2026-01-16_at_3.36.06_AM_jyqwts.png",
-        caption: "Created and supervised game design doc: (link: https://docs.google.com/document/d/1whl24mmz1ueF_pX9FL21w8iHkfytmpR0FFxYYhbG_nk/edit?usp=sharing)",
+        caption: "Game design document — https://docs.google.com/document/d/1whl24mmz1ueF_pX9FL21w8iHkfytmpR0FFxYYhbG_nk/edit",
       },
       {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768552902/rigidbody_demo_rl2tpq.mov",
-        caption: "Interactive pickup and rigidbody system",
+        type: "text",
+        title: "Systems",
+        body:
+          "Core loops were proven with short capture clips before polish passes. Each system below was scoped to support the slow-time fantasy without bloating the build.",
       },
       {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768553309/ragdoll_demo_rjzmdu.mov",
-        caption: "Dynamic ragdoll system for enemies",
-      },
-      {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768553492/mixer_demo_k224rc.mov",
-        caption: "Dynamic audio mixer for time-slow mechanic",
-      },
-      {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768553724/post_processing_demo_mpbgvn.mov",
-        caption: "Dynamic post-processing effects for time-slow mechanic",
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768552902/rigidbody_demo_rl2tpq.mov",
+            caption: "Pickup and rigidbody interaction",
+          },
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768553309/ragdoll_demo_rjzmdu.mov",
+            caption: "Enemy ragdoll on impact",
+          },
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768553492/mixer_demo_k224rc.mov",
+            caption: "Dynamic audio mixer for slow-time",
+          },
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768553724/post_processing_demo_mpbgvn.mov",
+            caption: "Post-processing tied to slow-time",
+          },
+        ],
       },
     ],
   },
-  
-  
 ];
