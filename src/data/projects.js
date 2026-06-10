@@ -126,6 +126,27 @@ export const projects = [
         caption: "Dashboard shell — modular cards and primary actions",
       },
       {
+        type: "gallery",
+        columns: 3,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/605565783-10a40fe6-62d1-4e2c-acde-876730388469_ffsfpv.png",
+            caption: "Settings layout for the chrome extension sidepanel",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/605566129-7f5cc883-6063-4493-80d4-b67e5039c3b1_rzi9mp.png",
+            caption: "Onboarding checklist",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/605566359-5cc8e0e4-7b30-4dc1-aecf-1e6b0c9c7b1b_slimdt.png",
+            caption: "Onboarding tutorial",
+          },
+        ],
+      },
+      {
         type: "text",
         title: "Design principles",
         body:
