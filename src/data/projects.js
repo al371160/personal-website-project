@@ -1,130 +1,33 @@
 export const projects = [
   {
-    slug: "alex-twin",
-    title: "AlexTwin",
-    description: "Web-based, 3D world simulation for distribution",
-    visitUrl: "https://alex-twin.com/",
-
-    thumbnail: {
-      type: "photo",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780348329/Screenshot_2026-05-31_at_1.56.03_AM_i2cikb.png",
-    },
-
-    hero: {
-      type: "video",
-      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1780539409/Screen_Recording_2026-06-03_at_7.15.23_PM_mleipg.mov",
-    },
-
-    meta: {
-      role: "Solo Developer",
-      roleDescription:
-        "Everything!",
-      collaborators: "",
-      duration: "2026",
-      tools: "Cursor, React, Cesium, Google 3D Tiles, Playwright MCP"
-    },
-
-    content: [
-      {
-        type: "text",
-        title: "Overview",
-        body:
-          "AlexTwin is a web-based 3D world simulation built for distribution and live demo. The goal was to make a dense AR + assistant stack feel legible on a phone in a single hackathon sprint.",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780538718/IMG_2071_peicap.jpg",
-        caption: "UI and app structure brainstorming",
-      },
-      {
-        type: "text",
-        title: "Interface & build",
-        body:
-          "",
-      },
-      {
-        type: "gallery",
-        columns: 1,
-        items: [
-          {
-            type: "video",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780348329/Screenshot_2026-05-31_at_1.53.46_AM_jwljs2.png",
-            caption: "Light mode - less performance-heavy, from 1.2 GB to 200 MB",
-          }
-        ],
-      },
-    ],
-  },
-  {
-    slug: "ragebaiter",
-    title: "Ragebaiter",
-    description: "Gamifying the approach to online discussion of sensitive topics",
-    visitUrl: "https://ragebaiter-three.vercel.app/",
-
-    thumbnail: {
-      type: "photo",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780358115/Screenshot_2026-06-01_at_4.54.37_PM_wceqgw.png",
-    },
-
-    hero: {
-      type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780553617/copy_of_screenshot_2026-06-03_at_110949_pm_nsbvux.png",
-    },
-
-    meta: {
-      role: "Solo Developer",
-      roleDescription:
-        "Designed and built the full stack solo — product concept, UI, and inference pipeline — to test whether game mechanics could make heated threads more constructive.",
-      collaborators: "Solo",
-      duration: "2026",
-      tools: "Cursor, React, Python",
-    },
-
-    content: [
-      {
-        type: "text",
-        title: "Overview",
-        body:
-          "Coming soon!",
-      }
-    ],
-  },
-  {
     slug: "provelis",
     title: "Provelis",
     description: "Complete UI overhaul and frontend–backend integration for a recruiting platform",
-
     thumbnail: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453857/Screen_Recording_2026-07-19_at_5.35.46_AM_exov4y.mov",
     },
-
     hero: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453476/Screen_Recording_2026-07-19_at_5.29.23_AM_gd3tts.mov",
     },
-
     meta: {
       role: "UI Overhaul / Frontend–Backend Integration",
-      roleDescription:
-        "Owned a full UI rebuild of the recruiting console and wired it to live backend services — navigation, dashboards, interview review, workflows, and sourcing surfaces that recruiters use every day.",
+      roleDescription: "Owned a full UI rebuild of the recruiting console and wired it to live backend services — navigation, dashboards, interview review, workflows, and sourcing surfaces that recruiters use every day.",
       collaborators: "Axiom / Caliber team",
       duration: "2026",
       tools: "React, TypeScript, Cursor",
     },
-
     content: [
       {
         type: "text",
         title: "Overview",
-        body:
-          "Provelis is a complete UI overhaul of a production recruiting platform (Axiom US / Compass), with frontend–backend integration across home, requirements, interviews, workflows, analytics, and deep search. The goal: denser ops data that still feels calm and scannable.",
+        body: "Provelis is a complete UI overhaul of a production recruiting platform (Axiom US / Compass), with frontend–backend integration across home, requirements, interviews, workflows, analytics, and deep search. The goal: denser ops data that still feels calm and scannable.",
       },
       {
         type: "text",
         title: "Home & pipeline",
-        body:
-          "The home dashboard surfaces open requirements, submissions, interview volume, and funnel health so delivery leads can see where hiring stands without opening five tabs.",
+        body: "The home dashboard surfaces open requirements, submissions, interview volume, and funnel health so delivery leads can see where hiring stands without opening five tabs.",
       },
       {
         type: "gallery",
@@ -145,8 +48,7 @@ export const projects = [
       {
         type: "text",
         title: "Recruiters & analytics",
-        body:
-          "Recruiter performance and live analytics pull from completed interviews so ops can track verdicts, weekly throughput, and submit rates in one place.",
+        body: "Recruiter performance and live analytics pull from completed interviews so ops can track verdicts, weekly throughput, and submit rates in one place.",
       },
       {
         type: "gallery",
@@ -167,8 +69,7 @@ export const projects = [
       {
         type: "text",
         title: "Workflow builder",
-        body:
-          "Interview workflows are editable node graphs — from simple round sequences to multi-step outreach, wait, and verification flows with live save state and AI-assisted resets.",
+        body: "Interview workflows are editable node graphs — from simple round sequences to multi-step outreach, wait, and verification flows with live save state and AI-assisted resets.",
       },
       {
         type: "image",
@@ -194,8 +95,7 @@ export const projects = [
       {
         type: "text",
         title: "Interview review",
-        body:
-          "Candidate review combines recording, transcript, AI verdict, strengths/weaknesses, and proctoring signals so recruiters can advance, hold, or reject from one screen.",
+        body: "Candidate review combines recording, transcript, AI verdict, strengths/weaknesses, and proctoring signals so recruiters can advance, hold, or reject from one screen.",
       },
       {
         type: "image",
@@ -221,8 +121,7 @@ export const projects = [
       {
         type: "text",
         title: "Sourcing & ops",
-        body:
-          "Deep Search and Problems close the loop — external-only candidate sourcing with verification, plus a severity queue for stalled requirements.",
+        body: "Deep Search and Problems close the loop — external-only candidate sourcing with verification, plus a severity queue for stalled requirements.",
       },
       {
         type: "gallery",
@@ -243,36 +142,107 @@ export const projects = [
     ],
   },
   {
-    slug: "aquara",
-    title: "Aquara",
-    description: "The deal database that builds itself",
-    visitUrl: "https://aquara.ai",
-
+    slug: "alex-twin",
+    title: "AlexTwin",
+    description: "Web-based, 3D world simulation for distribution",
+    visitUrl: "https://alex-twin.com/",
     thumbnail: {
       type: "photo",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784454542/Screenshot_2026-07-19_at_5.48.55_AM_bqvfne.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780348329/Screenshot_2026-05-31_at_1.56.03_AM_i2cikb.png",
     },
-
     hero: {
-      type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784454542/Screenshot_2026-07-19_at_5.48.55_AM_bqvfne.png",
+      type: "video",
+      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1780539409/Screen_Recording_2026-06-03_at_7.15.23_PM_mleipg.mov",
     },
-
     meta: {
-      role: "UI Lead",
-      roleDescription:
-        "Placeholder — led product UI for Aquara’s self-building deal database, from brand system through client-facing surfaces.",
-      collaborators: "TBD",
+      role: "Solo Developer",
+      roleDescription: "Everything!",
+      collaborators: "",
       duration: "2026",
-      tools: "Figma, React, TypeScript",
+      tools: "Cursor, React, Cesium, Google 3D Tiles, Playwright MCP",
     },
-
     content: [
       {
         type: "text",
         title: "Overview",
-        body:
-          "Aquara is a deal database that builds itself — placeholder copy pending full case study writeup.",
+        body: "AlexTwin is a web-based 3D world simulation built for distribution and live demo. The goal was to make a dense AR + assistant stack feel legible on a phone in a single hackathon sprint.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780538718/IMG_2071_peicap.jpg",
+        caption: "UI and app structure brainstorming",
+      },
+      {
+        type: "text",
+        title: "Interface & build",
+        body: "",
+      },
+      {
+        type: "gallery",
+        columns: 1,
+        items: [
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780348329/Screenshot_2026-05-31_at_1.53.46_AM_jwljs2.png",
+            caption: "Light mode - less performance-heavy, from 1.2 GB to 200 MB",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "ragebaiter",
+    title: "Ragebaiter",
+    description: "Gamifying the approach to online discussion of sensitive topics",
+    visitUrl: "https://ragebaiter-three.vercel.app/",
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780358115/Screenshot_2026-06-01_at_4.54.37_PM_wceqgw.png",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780553617/copy_of_screenshot_2026-06-03_at_110949_pm_nsbvux.png",
+    },
+    meta: {
+      role: "Solo Developer",
+      roleDescription: "Designed and built the full stack solo — product concept, UI, and inference pipeline — to test whether game mechanics could make heated threads more constructive.",
+      collaborators: "Solo",
+      duration: "2026",
+      tools: "Cursor, React, Python",
+    },
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body: "Coming soon!",
+      },
+    ],
+  },
+  {
+    slug: "aquara",
+    title: "Aquara",
+    description: "The deal database that builds itself",
+    visitUrl: "https://aquara.ai",
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780352903/Screenshot_2026-06-01_at_3.28.05_PM_qx6qst.png",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784454542/Screenshot_2026-07-19_at_5.48.55_AM_bqvfne.png",
+    },
+    meta: {
+      role: "UI Lead",
+      roleDescription: "Placeholder — led product UI for Aquara’s self-building deal database, from brand system through client-facing surfaces.",
+      collaborators: "TBD",
+      duration: "2026",
+      tools: "Figma, React, TypeScript",
+    },
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body: "Aquara is a deal database that builds itself — placeholder copy pending full case study writeup.",
       },
       {
         type: "image",
@@ -282,8 +252,7 @@ export const projects = [
       {
         type: "text",
         title: "Next steps",
-        body:
-          "More product screens and process notes coming soon.",
+        body: "More product screens and process notes coming soon.",
       },
     ],
   },
@@ -292,32 +261,26 @@ export const projects = [
     title: "Omni",
     description: "Accessible, interactive toolmaking for users",
     visitUrl: "https://devpost.com/software/omni-hzxqra",
-
     thumbnail: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1769220262/IMG_5239_pwu4jw.mov",
     },
-
     hero: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220305/Untitled_Artwork_56_ppoklz.png",
     },
-
     meta: {
       role: "UI Lead",
-      roleDescription:
-        "Directed UI for an AR assistant that helps users build tools in context — from layout and motion to Xcode implementation and demo-ready polish.",
+      roleDescription: "Directed UI for an AR assistant that helps users build tools in context — from layout and motion to Xcode implementation and demo-ready polish.",
       collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
       duration: "2026",
       tools: "Rive, XCode, ARKit, Swift, Antigravity, Overshoot API",
     },
-
     content: [
       {
         type: "text",
         title: "Overview",
-        body:
-          "Omni is an accessible AR assistant for interactive toolmaking: users describe what they need, see it in space, and refine through voice and touch. The interface had to stay calm while the backend orchestration stayed complex.",
+        body: "Omni is an accessible AR assistant for interactive toolmaking: users describe what they need, see it in space, and refine through voice and touch. The interface had to stay calm while the backend orchestration stayed complex.",
       },
       {
         type: "image",
@@ -327,8 +290,7 @@ export const projects = [
       {
         type: "text",
         title: "iOS interface",
-        body:
-          "Built the SwiftUI shell, navigation, and component library in Xcode so engineering could plug in ARKit sessions and live API streams without redesigning screens.",
+        body: "Built the SwiftUI shell, navigation, and component library in Xcode so engineering could plug in ARKit sessions and live API streams without redesigning screens.",
       },
       {
         type: "image",
@@ -359,8 +321,7 @@ export const projects = [
       {
         type: "text",
         title: "Integrations",
-        body:
-          "Supported Overshoot, Gemini, and LiveKit hooks for the hackathon demo and authored the public Devpost writeup.",
+        body: "Supported Overshoot, Gemini, and LiveKit hooks for the hackathon demo and authored the public Devpost writeup.",
       },
       {
         type: "image",
@@ -374,32 +335,26 @@ export const projects = [
     title: "Orble Tea",
     description: "Comprehensive branding and business work",
     visitUrl: "https://orble-tea.com/",
-
     thumbnail: {
       type: "video",
       src: "https://orble-tea.com/media/next-gen-render-video.mp4",
     },
-
     hero: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444772/Screenshot_2026-01-14_at_9.39.22_PM_qrxnda.png",
     },
-
     meta: {
       role: "Brand Designer / Developer",
-      roleDescription:
-        "Shape Orble's visual identity, hardware storytelling, and marketing site — from CAD-backed renders to vinyl wraps and architectural viz for investor decks.",
+      roleDescription: "Shape Orble's visual identity, hardware storytelling, and marketing site — from CAD-backed renders to vinyl wraps and architectural viz for investor decks.",
       collaborators: "Orble Tea Team",
       duration: "2025 – Present",
       tools: "Astro, Blender, Maya, Onshape, React",
     },
-
     content: [
       {
         type: "text",
         title: "Overview",
-        body:
-          "Orble Tea is an automated boba concept spanning product design, brand, and go-to-market visuals. My work ties physical machine design to a coherent digital presence on orble-tea.com.",
+        body: "Orble Tea is an automated boba concept spanning product design, brand, and go-to-market visuals. My work ties physical machine design to a coherent digital presence on orble-tea.com.",
       },
       {
         type: "image",
@@ -409,8 +364,7 @@ export const projects = [
       {
         type: "text",
         title: "Hardware & beta unit",
-        body:
-          "Beta vending concepts combine Onshape CAD, Substance texturing, and Blender lighting so stakeholders can read materials and footprint before fabrication.",
+        body: "Beta vending concepts combine Onshape CAD, Substance texturing, and Blender lighting so stakeholders can read materials and footprint before fabrication.",
       },
       {
         type: "gallery",
@@ -441,8 +395,7 @@ export const projects = [
       {
         type: "text",
         title: "Architectural visualization",
-        body:
-          "Location renders (airport, apartment, campus) place the machine in real contexts for pitch decks and partner conversations.",
+        body: "Location renders (airport, apartment, campus) place the machine in real contexts for pitch decks and partner conversations.",
       },
       {
         type: "gallery",
@@ -482,38 +435,31 @@ export const projects = [
     title: "Penn Electric Racing",
     description: "Design and operations for formula racing team",
     visitUrl: "https://www.pennelectricracing.com/",
-
     thumbnail: {
       type: "photo",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1779599480/Untitled_design_euajtv.png",
     },
-
     hero: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
     },
-
     meta: {
       role: "Media / Business Operations / Project Manager",
-      roleDescription:
-        "Bridge design, media, and ops for PER — livery exploration, car renders, sponsor-facing posters, and tooling that keeps the business team aligned with engineering milestones.",
+      roleDescription: "Bridge design, media, and ops for PER — livery exploration, car renders, sponsor-facing posters, and tooling that keeps the business team aligned with engineering milestones.",
       collaborators: "Operations Team",
       duration: "2025 – Present",
       tools: "Solidworks, Vercel, Blender, Maya, Adobe Suite, Procreate, Notion",
     },
-
     content: [
       {
         type: "text",
         title: "Overview",
-        body:
-          "Penn Electric Racing (REV11) needs visuals that work for sponsors, social, and internal morale. I split time between livery iteration, car visualization, and business presentation assets.",
+        body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social, and internal morale. I split time between livery iteration, car visualization, and business presentation assets.",
       },
       {
         type: "text",
         title: "Livery exploration",
-        body:
-          "Livery directions are prototyped in Solidworks and Blender texture painting so the team can compare scale, contrast, and sponsor lockups before paint shop commitments.",
+        body: "Livery directions are prototyped in Solidworks and Blender texture painting so the team can compare scale, contrast, and sponsor lockups before paint shop commitments.",
       },
       {
         type: "gallery",
@@ -554,8 +500,7 @@ export const projects = [
       {
         type: "text",
         title: "Car visualization",
-        body:
-          "Full-car renders combine Solidworks CAD, Visualize, and Maya for lighting passes used in decks and Instagram.",
+        body: "Full-car renders combine Solidworks CAD, Visualize, and Maya for lighting passes used in decks and Instagram.",
       },
       {
         type: "gallery",
@@ -586,8 +531,7 @@ export const projects = [
       {
         type: "text",
         title: "Posters & business media",
-        body:
-          "Poster and cover art support recruitment and sponsor meetings — often starting in 3D and finishing in Photoshop or Procreate for hand-tuned typography.",
+        body: "Poster and cover art support recruitment and sponsor meetings — often starting in 3D and finishing in Photoshop or Procreate for hand-tuned typography.",
       },
       {
         type: "gallery",
@@ -632,38 +576,31 @@ export const projects = [
     title: "Y-Prize",
     description: "Led design and prototyping for sustainable startup competition",
     visitUrl: "https://youtu.be/k8fP14yVEa8",
-
     thumbnail: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768447371/Screen_Recording_2026-01-14_at_10.20.36_PM_hfnucs.mov",
     },
-
     hero: {
       type: "youtube",
       src: "k8fP14yVEa8",
     },
-
     meta: {
       role: "Team Lead",
-      roleDescription:
-        "Led a five-person team through Y-Prize 2025 — story, visual identity, Blender prototypes, and the five-minute pitch film that anchored our submission.",
+      roleDescription: "Led a five-person team through Y-Prize 2025 — story, visual identity, Blender prototypes, and the five-minute pitch film that anchored our submission.",
       collaborators: "Shaomin Kee, Corina Chen, Reine Huang, Joanne Lin",
       duration: "2025",
       tools: "Blender, Capcut, Microsoft PowerPoint, Google Slides",
     },
-
     content: [
       {
         type: "text",
         title: "Overview",
-        body:
-          "Y-Prize is Penn's startup design competition. Our entry packaged a sustainable product narrative into a tight deck plus a cinematic Blender pitch video.",
+        body: "Y-Prize is Penn's startup design competition. Our entry packaged a sustainable product narrative into a tight deck plus a cinematic Blender pitch video.",
       },
       {
         type: "text",
         title: "Pitch deck",
-        body:
-          "Five slides cover problem, solution, market, prototype, and ask — designed for legibility on a projector and PDF export.",
+        body: "Five slides cover problem, solution, market, prototype, and ask — designed for legibility on a projector and PDF export.",
       },
       {
         type: "gallery",
@@ -699,8 +636,7 @@ export const projects = [
       {
         type: "text",
         title: "Pitch film",
-        body:
-          "The hero video above is the full five-minute pitch. Blender models were edited in CapCut with VO and music for submission.",
+        body: "The hero video above is the full five-minute pitch. Blender models were edited in CapCut with VO and music for submission.",
       },
       {
         type: "image",
@@ -714,32 +650,26 @@ export const projects = [
     title: "PawFond",
     description: "Product design and web development for pet care startup",
     visitUrl: "https://mypawfond.com/",
-
     thumbnail: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451779/16oz_packaging_blue_fpowis.png",
     },
-
     hero: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768592032/pawfond_hero_u323pp.mov",
     },
-
     meta: {
       role: "Product Designer / Developer",
-      roleDescription:
-        "Owned packaging exploration and the Shopify storefront — translating brand sketches into shelf-ready dielines and a shoppable site the team could run without engineers on call.",
+      roleDescription: "Owned packaging exploration and the Shopify storefront — translating brand sketches into shelf-ready dielines and a shoppable site the team could run without engineers on call.",
       collaborators: "PawFond Team",
       duration: "2025",
       tools: "Procreate, Adobe Fresco, Adobe Illustrator, Shopify",
     },
-
     content: [
       {
         type: "text",
         title: "Overview",
-        body:
-          "PawFond is a pet-care startup spanning physical product and DTC web. Work focused on trustworthy packaging and a simple purchase path for first-time customers.",
+        body: "PawFond is a pet-care startup spanning physical product and DTC web. Work focused on trustworthy packaging and a simple purchase path for first-time customers.",
       },
       {
         type: "video",
@@ -749,8 +679,7 @@ export const projects = [
       {
         type: "text",
         title: "Packaging system",
-        body:
-          "Explored 8 oz and 16 oz formats in blue-forward palettes, keeping typography readable at arm's length on shelf and in unboxing photos.",
+        body: "Explored 8 oz and 16 oz formats in blue-forward palettes, keeping typography readable at arm's length on shelf and in unboxing photos.",
       },
       {
         type: "gallery",
@@ -794,32 +723,26 @@ export const projects = [
     slug: "rum-rush",
     title: "Rum Rush",
     description: "Game development leadership under schedule",
-
     thumbnail: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768527339/Rum_rush_thumbnail_z1x6cb.png",
     },
-
     hero: {
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768552482/Screenshot_2026-01-16_at_3.34.33_AM_evwmzc.png",
     },
-
     meta: {
       role: "Producer / Team Lead",
-      roleDescription:
-        "Produced Rum Rush under a fixed schedule — game design doc, milestone planning, and hands-on Unity systems (physics, ragdoll, audio, post) so the team could ship a vertical slice.",
+      roleDescription: "Produced Rum Rush under a fixed schedule — game design doc, milestone planning, and hands-on Unity systems (physics, ragdoll, audio, post) so the team could ship a vertical slice.",
       collaborators: "Rajas Nanda, Chris Wang, Andrew Han",
       duration: "2025",
       tools: "Unity, C#, Blender",
     },
-
     content: [
       {
         type: "text",
         title: "Overview",
-        body:
-          "Rum Rush is a time-manipulation action prototype built in Unity. As producer I kept scope honest while still landing distinctive feel: slow-mo combat, readable pickups, and punchy feedback.",
+        body: "Rum Rush is a time-manipulation action prototype built in Unity. As producer I kept scope honest while still landing distinctive feel: slow-mo combat, readable pickups, and punchy feedback.",
       },
       {
         type: "image",
@@ -829,8 +752,7 @@ export const projects = [
       {
         type: "text",
         title: "Systems",
-        body:
-          "Core loops were proven with short capture clips before polish passes. Each system below was scoped to support the slow-time fantasy without bloating the build.",
+        body: "Core loops were proven with short capture clips before polish passes. Each system below was scoped to support the slow-time fantasy without bloating the build.",
       },
       {
         type: "gallery",
