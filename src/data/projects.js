@@ -90,25 +90,179 @@ export const projects = [
     ],
   },
   {
+    slug: "provelis",
+    title: "Provelis",
+    description: "Complete UI overhaul and frontend–backend integration for a recruiting platform",
+
+    thumbnail: {
+      type: "video",
+      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453857/Screen_Recording_2026-07-19_at_5.35.46_AM_exov4y.mov",
+    },
+
+    hero: {
+      type: "video",
+      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453476/Screen_Recording_2026-07-19_at_5.29.23_AM_gd3tts.mov",
+    },
+
+    meta: {
+      role: "UI Overhaul / Frontend–Backend Integration",
+      roleDescription:
+        "Owned a full UI rebuild of the recruiting console and wired it to live backend services — navigation, dashboards, interview review, workflows, and sourcing surfaces that recruiters use every day.",
+      collaborators: "Axiom / Caliber team",
+      duration: "2026",
+      tools: "React, TypeScript, Cursor",
+    },
+
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body:
+          "Provelis is a complete UI overhaul of a production recruiting platform (Axiom US / Compass), with frontend–backend integration across home, requirements, interviews, workflows, analytics, and deep search. The goal: denser ops data that still feels calm and scannable.",
+      },
+      {
+        type: "text",
+        title: "Home & pipeline",
+        body:
+          "The home dashboard surfaces open requirements, submissions, interview volume, and funnel health so delivery leads can see where hiring stands without opening five tabs.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.19_AM_vuuepl.png",
+            caption: "Home — KPI cards and pipeline health funnel",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.28_AM_lbrjo0.png",
+            caption: "Requirements — jobs table with pipeline and conversion",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Recruiters & analytics",
+        body:
+          "Recruiter performance and live analytics pull from completed interviews so ops can track verdicts, weekly throughput, and submit rates in one place.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453340/Screenshot_2026-07-12_at_4.50.53_AM_ujaa7y.png",
+            caption: "Recruiters — performance table and throughput widgets",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453340/Screenshot_2026-07-12_at_4.51.10_AM_btd9ws.png",
+            caption: "Analytics — verdict distribution and weekly completions",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Workflow builder",
+        body:
+          "Interview workflows are editable node graphs — from simple round sequences to multi-step outreach, wait, and verification flows with live save state and AI-assisted resets.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.51.31_AM_rwb6s2.png",
+        caption: "Workflows list — active journeys and running counts",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453340/Screenshot_2026-07-13_at_10.58.43_AM_xvcquv.png",
+            caption: "Interview rounds — linear workflow canvas",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453340/Screenshot_2026-07-12_at_4.52.39_AM_b62ijs.png",
+            caption: "Prompt Engineer workflow — nodes, edges, and action inspector",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Interview review",
+        body:
+          "Candidate review combines recording, transcript, AI verdict, strengths/weaknesses, and proctoring signals so recruiters can advance, hold, or reject from one screen.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.11_AM_mcitvj.png",
+        caption: "Interview overview — score cards, AI verdict, strengths / weaknesses",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453339/Screenshot_2026-07-13_at_11.02.48_AM_irbgsg.png",
+            caption: "Evaluation — webcam + transcript beside decision panel",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453339/Screenshot_2026-07-13_at_11.02.57_AM_fs7hct.png",
+            caption: "Verify — cheating likelihood and proctoring signals",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Sourcing & ops",
+        body:
+          "Deep Search and Problems close the loop — external-only candidate sourcing with verification, plus a severity queue for stalled requirements.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453339/Screenshot_2026-07-13_at_11.04.19_AM_p9xuqq.png",
+            caption: "Deep Search — JD parse and external source config",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453339/Screenshot_2026-07-13_at_11.04.14_AM_c9fsbd.png",
+            caption: "Problems — idle severity queue for open requirements",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "aquara",
     title: "Aquara",
-    description: "Direct, modular UI for professional clients",
+    description: "The deal database that builds itself",
+    visitUrl: "https://aquara.ai",
 
     thumbnail: {
       type: "photo",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780352903/Screenshot_2026-06-01_at_3.28.05_PM_qx6qst.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784454542/Screenshot_2026-07-19_at_5.48.55_AM_bqvfne.png",
     },
 
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/Screenshot_2026-06-09_at_11.41.06_PM_acnflh.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784454542/Screenshot_2026-07-19_at_5.48.55_AM_bqvfne.png",
     },
 
     meta: {
       role: "UI Lead",
       roleDescription:
-        "Led interface architecture for a client-facing dashboard — modular panels, dense data tables, and a calm visual system that still feels fast at a glance.",
-      collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
+        "Placeholder — led product UI for Aquara’s self-building deal database, from brand system through client-facing surfaces.",
+      collaborators: "TBD",
       duration: "2026",
       tools: "Figma, React, TypeScript",
     },
@@ -118,45 +272,18 @@ export const projects = [
         type: "text",
         title: "Overview",
         body:
-          "Aquara is a professional client portal built around clarity under load: accountants and ops leads need numbers, status, and actions without hunting through nested menus.",
+          "Aquara is a deal database that builds itself — placeholder copy pending full case study writeup.",
       },
       {
         type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780352903/Screenshot_2026-06-01_at_3.28.05_PM_qx6qst.png",
-        caption: "Dashboard shell — modular cards and primary actions",
-      },
-      {
-        type: "gallery",
-        columns: 3,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/605565783-10a40fe6-62d1-4e2c-acde-876730388469_ffsfpv.png",
-            caption: "Settings layout for the chrome extension sidepanel",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/605566129-7f5cc883-6063-4493-80d4-b67e5039c3b1_rzi9mp.png",
-            caption: "Onboarding checklist",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/605566359-5cc8e0e4-7b30-4dc1-aecf-1e6b0c9c7b1b_slimdt.png",
-            caption: "Onboarding tutorial",
-          },
-        ],
-      },
-      {
-        type: "text",
-        title: "Design principles",
-        body:
-          "Type scale and spacing follow an 8px grid. Components are swappable blocks (summary, ledger, alerts) so new client verticals reuse the same frame.\n\nColor is mostly neutral with a single accent for CTAs and risk states.",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784454542/Screenshot_2026-07-19_at_5.48.55_AM_bqvfne.png",
+        caption: "Brand lockup — aquara.ai",
       },
       {
         type: "text",
         title: "Next steps",
         body:
-          "Continuing to tighten responsive breakpoints and empty states for first-time client onboarding.",
+          "More product screens and process notes coming soon.",
       },
     ],
   },
