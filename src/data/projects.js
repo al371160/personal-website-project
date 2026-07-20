@@ -240,6 +240,11 @@ export const projects = [
     },
     content: [
       {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784514310/Screen_Recording_2026-07-19_at_10.15.40_PM_ajusoi.mov",
+        caption: "A brief overview of the UI features implemented, including onboarding, dashboard, and settings.",
+      },
+      {
         type: "text",
         title: "Overview",
         body: "Aquara is a professional client portal built around clarity under load: accountants and ops leads need numbers, status, and actions without hunting through nested menus.",
