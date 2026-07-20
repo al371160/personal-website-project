@@ -228,9 +228,9 @@ export const projects = [
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780352903/Screenshot_2026-06-01_at_3.28.05_PM_qx6qst.png",
     },
     hero: {
-      type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/Screenshot_2026-06-09_at_11.41.06_PM_acnflh.png",
-    },
+      type: "video",
+      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784514310/Screen_Recording_2026-07-19_at_10.15.40_PM_ajusoi.mov",
+      },
     meta: {
       role: "UI Lead",
       roleDescription: "Led interface architecture for a client-facing dashboard — modular panels, dense data tables, and a calm visual system that still feels fast at a glance.",
@@ -240,9 +240,9 @@ export const projects = [
     },
     content: [
       {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784514310/Screen_Recording_2026-07-19_at_10.15.40_PM_ajusoi.mov",
-        caption: "A brief overview of the UI features implemented, including onboarding, dashboard, and settings.",
+        type: "photo",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/Screenshot_2026-06-09_at_11.41.06_PM_acnflh.png",
+        caption: "Designs for LinkedIn banners.",
       },
       {
         type: "text",
