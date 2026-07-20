@@ -221,7 +221,7 @@ export const projects = [
   {
     slug: "aquara",
     title: "Aquara",
-    description: "The deal database that builds itself",
+    description: "Direct, modular UI for professional clients",
     visitUrl: "https://aquara.ai",
     thumbnail: {
       type: "photo",
@@ -229,12 +229,12 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784454542/Screenshot_2026-07-19_at_5.48.55_AM_bqvfne.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/Screenshot_2026-06-09_at_11.41.06_PM_acnflh.png",
     },
     meta: {
       role: "UI Lead",
-      roleDescription: "Placeholder — led product UI for Aquara’s self-building deal database, from brand system through client-facing surfaces.",
-      collaborators: "TBD",
+      roleDescription: "Led interface architecture for a client-facing dashboard — modular panels, dense data tables, and a calm visual system that still feels fast at a glance.",
+      collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
       duration: "2026",
       tools: "Figma, React, TypeScript",
     },
@@ -242,17 +242,43 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Aquara is a deal database that builds itself — placeholder copy pending full case study writeup.",
+        body: "Aquara is a professional client portal built around clarity under load: accountants and ops leads need numbers, status, and actions without hunting through nested menus.",
       },
       {
         type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784454542/Screenshot_2026-07-19_at_5.48.55_AM_bqvfne.png",
-        caption: "Brand lockup — aquara.ai",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780352903/Screenshot_2026-06-01_at_3.28.05_PM_qx6qst.png",
+        caption: "Dashboard shell — modular cards and primary actions",
+      },
+      {
+        type: "gallery",
+        columns: 3,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/605565783-10a40fe6-62d1-4e2c-acde-876730388469_ffsfpv.png",
+            caption: "Settings layout for the chrome extension sidepanel",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/605566129-7f5cc883-6063-4493-80d4-b67e5039c3b1_rzi9mp.png",
+            caption: "Onboarding checklist",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/605566359-5cc8e0e4-7b30-4dc1-aecf-1e6b0c9c7b1b_slimdt.png",
+            caption: "Onboarding tutorial",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Design principles",
+        body: "Type scale and spacing follow an 8px grid. Components are swappable blocks (summary, ledger, alerts) so new client verticals reuse the same frame.\n\nColor is mostly neutral with a single accent for CTAs and risk states.",
       },
       {
         type: "text",
         title: "Next steps",
-        body: "More product screens and process notes coming soon.",
+        body: "Continuing to tighten responsive breakpoints and empty states for first-time client onboarding.",
       },
     ],
   },
