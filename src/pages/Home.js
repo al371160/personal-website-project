@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 const LINKS = [
   { label: "GitHub", href: "https://github.com/al371160" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/alexander-liu-282739206/" },
-  { label: "Resume", href: "/resume.pdf" },
+  { label: "Resume", href: "https://drive.google.com/file/d/1qvzjvyCNFUYIFTxiBk1JDlgEpBxXouGc/view?usp=sharing" },
   { label: "Email", href: "mailto:aliu10@seas.upenn.edu" },
 ];
 
