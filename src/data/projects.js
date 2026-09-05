@@ -141,7 +141,7 @@ export const projects = [
         ],
       },
     ],
-  },
+  }, /*
   {
     slug: "alex-twin",
     title: "AlexTwin",
@@ -191,7 +191,7 @@ export const projects = [
         ],
       },
     ],
-  },
+  }, */
   {
     slug: "ragebaiter",
     title: "Ragebaiter",
