@@ -2,6 +2,7 @@ export const projects = [
   {
     slug: "provelis",
     title: "Provelis",
+    category: "UI / Product",
     description: "Complete UI overhaul and frontend–backend integration for a recruiting platform",
     thumbnail: {
       type: "video",
@@ -144,6 +145,7 @@ export const projects = [
   {
     slug: "alex-twin",
     title: "AlexTwin",
+    category: "WebGL / 3D",
     description: "Web-based, 3D world simulation for distribution",
     visitUrl: "https://alex-twin.com/",
     thumbnail: {
@@ -193,6 +195,7 @@ export const projects = [
   {
     slug: "ragebaiter",
     title: "Ragebaiter",
+    category: "Product / Experiment",
     description: "Gamifying the approach to online discussion of sensitive topics",
     visitUrl: "https://ragebaiter-three.vercel.app/",
     thumbnail: {
@@ -221,6 +224,7 @@ export const projects = [
   {
     slug: "aquara",
     title: "Aquara",
+    category: "UI / Brand",
     description: "Direct, modular UI for professional clients",
     visitUrl: "https://aquara.ai",
     thumbnail: {
@@ -290,6 +294,7 @@ export const projects = [
   {
     slug: "omni",
     title: "Omni",
+    category: "Product / Tools",
     description: "Accessible, interactive toolmaking for users",
     visitUrl: "https://devpost.com/software/omni-hzxqra",
     thumbnail: {
@@ -364,6 +369,7 @@ export const projects = [
   {
     slug: "orble-tea",
     title: "Orble Tea",
+    category: "Brand / Business",
     description: "Comprehensive branding and business work",
     visitUrl: "https://orble-tea.com/",
     thumbnail: {
@@ -464,6 +470,7 @@ export const projects = [
   {
     slug: "penn-electric-racing",
     title: "Penn Electric Racing",
+    category: "Design / 3D",
     description: "Design and operations for formula racing team",
     visitUrl: "https://www.pennelectricracing.com/",
     thumbnail: {
@@ -605,6 +612,7 @@ export const projects = [
   {
     slug: "y-prize",
     title: "Y-Prize",
+    category: "Strategy / Design",
     description: "Led design and prototyping for sustainable startup competition",
     visitUrl: "https://youtu.be/k8fP14yVEa8",
     thumbnail: {
@@ -679,6 +687,7 @@ export const projects = [
   {
     slug: "pawfond",
     title: "PawFond",
+    category: "Product / Web",
     description: "Product design and web development for pet care startup",
     visitUrl: "https://mypawfond.com/",
     thumbnail: {
@@ -753,6 +762,7 @@ export const projects = [
   {
     slug: "rum-rush",
     title: "Rum Rush",
+    category: "Game / 3D",
     description: "Game development leadership under schedule",
     thumbnail: {
       type: "image",

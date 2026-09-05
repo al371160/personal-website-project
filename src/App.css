@@ -1,336 +1,205 @@
 /* ======================= */
-/* CUSTOM CURSOR           */
-/* ======================= */
-@media (hover: hover) {
-  * { cursor: none !important; }
-}
-
-.custom-cursor {
-  position: fixed;
-  top: 0; left: 0;
-  width: 12px; height: 12px;
-  border-radius: 6px;
-  background: #4499ff;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 99999;
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition:
-    width        0.38s cubic-bezier(0.22, 1, 0.36, 1),
-    height       0.32s cubic-bezier(0.22, 1, 0.36, 1),
-    border-radius 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity      0.15s ease;
-  will-change: left, top, width, height, opacity;
-}
-
-.custom-cursor--visible {
-  opacity: 1;
-}
-
-.custom-cursor--labeled {
-  /* width / height / border-radius driven by JS */
-}
-
-.custom-cursor-label {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  color: #ffffff;
-  white-space: nowrap;
-  letter-spacing: 0.07em;
-  opacity: 0;
-  transition: opacity 0.16s ease 0.14s;
-  pointer-events: none;
-  user-select: none;
-}
-
-.custom-cursor--labeled .custom-cursor-label {
-  opacity: 1;
-}
-
-/* ======================= */
 /* PAGE                    */
 /* ======================= */
 .page {
-  max-width: 1500px;
+  max-width: 1560px;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* ======================= */
-/* HERO SECTION            */
-/* ======================= */
-.hero-section {
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-panels {
-  flex: none;
-  display: flex;
-  gap: 28px;
-  padding: 10px 0 28px;
-  height: clamp(600px, calc(100svh - 5px), 650px);
-  min-height: 0;
-}
-
-.hero-panel {
-  flex: 1 1 0;
-  border-radius: 40px;
+/* Playground: pannable/zoomable canvas gallery */
+.page-canvas {
+  max-width: none;
+  width: calc(100% + 56px);
+  margin: 0 -28px;
   overflow: hidden;
-  background: #0d1a26;
+}
+
+.canvas-gallery {
   position: relative;
+  width: 100%;
+  height: calc(100svh - 60px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04), transparent 70%),
+    #0e0e0e;
+  touch-action: none;
+  user-select: none;
 }
 
-.hero-panel--left,
-.hero-panel--right {
-  flex: 1 1 0;
+.canvas-gallery-world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
 }
 
-.hero-info-panel {
-  min-height: 100%;
-  box-sizing: border-box;
-  padding: clamp(34px, 4.6vw, 62px);
+.canvas-card {
+  position: absolute;
+  border-radius: 2px;
+  overflow: hidden;
+  background: #161616;
+}
+
+.canvas-card--koi {
+  left: 40px;
+  top: 40px;
+  width: 460px;
+  height: 420px;
+}
+
+.canvas-card--ascii {
+  left: 820px;
+  top: 40px;
+  width: 420px;
+  height: 340px;
+}
+
+.canvas-card--placeholder {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: clamp(36px, 6vw, 80px);
-  background: #101010;
-  color: #f5f5f5;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+  letter-spacing: 0.02em;
 }
 
-.hero-info-copy {
-  max-width: 720px;
-}
-
-.hero-info-eyebrow {
-  margin: 0 0 18px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.46);
-}
-
-.hero-info-copy h1 {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(34px, 4.6vw, 62px);
-  line-height: 0.98;
-  letter-spacing: -0.052em;
-  font-weight: 700;
-  color: #f5f5f5;
-}
-
-.hero-info-copy p:last-child {
-  max-width: 560px;
-  margin: 26px 0 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(16px, 1.35vw, 22px);
-  line-height: 1.45;
-  letter-spacing: -0.018em;
-  color: rgba(0, 0, 0, 0.62);
-}
-
-.hero-info-lists {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(28px, 4vw, 56px);
-}
-
-.hero-info-list {
-  padding-top: 0px;
-}
-
-.hero-info-list h2 {
-  margin: 0 0 12px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
-}
-
-.hero-info-list a {
-  display: table;
-  width: fit-content;
-  padding: 1px 0 2px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(15px, 1.08vw, 18px);
-  line-height: 1.14;
-  letter-spacing: -0.035em;
-  font-weight: 700;
-  color: #f5f5f5;
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.hero-info-list sup {
-  margin-left: 2px;
-  position: relative;
-  top: -0.18em;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.62em;
-  line-height: 0;
-  color: #4499ff;
-  text-decoration: none;
-}
-
-.hero-info-list a:hover {
-  opacity: 0.7;
-  transform: translateX(4px);
-}
-
-/* Panel scroll-reveal — same spring curve as gallery cards */
-.hero-panel.reveal-left,
-.hero-panel.reveal-right {
-  transition:
-    opacity 0.82s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.82s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.7s ease;
-}
-
-.hero-panel.reveal-left {
+/* Flashing pointing-finger icon, top-right, when hovering an interactive card */
+.canvas-card--interactive::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 22px;
+  height: 22px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.2 19.6 C5.6 18.2 5.2 15.6 6.4 13.3 L10.2 12.2 L10.2 6.8 A1.8 1.8 0 0 1 13.8 6.8 L13.8 12.2 C15.6 12.6 17 13.3 17.8 14.9 C18.8 16.9 18.4 19.1 17.2 20.3 C15.9 21.5 14 21.7 12 21.7 C10 21.7 8.6 21.2 7.2 19.6 Z'/%3E%3C/svg%3E") center / contain no-repeat;
   opacity: 0;
-  transform: translateX(-48px) scale(0.96);
-  filter: blur(10px);
+  pointer-events: none;
 }
 
-.hero-panel.reveal-right {
-  opacity: 0;
-  transform: translateX(48px) scale(0.96);
-  filter: blur(10px);
-}
-
-.hero-panel.revealed {
+.canvas-card--interactive:hover::after {
   opacity: 1;
-  transform: none;
-  filter: none;
+  animation: finger-flash 0.9s ease-in-out infinite;
 }
 
-@media (max-width: 800px) {
-  .hero-panels {
-    flex-direction: column;
-    gap: 28px;
-    height: auto;
-    min-height: 0;
-  }
-
-  .hero-panel--left,
-  .hero-panel--right {
-    flex: none;
-    height: 50vw;
-    min-height: 260px;
-  }
-
-  .hero-panel--right {
-    height: auto;
-    min-height: 0;
-  }
-  .hero-section {
-    min-height: 0;
-  }
-
-  .gallery {
-    columns: 1;
-  }
-
-  .hero-info-panel {
-    padding: 28px;
-    gap: 40px;
-  }
-
-  .hero-info-copy h1 {
-    font-size: clamp(28px, 8vw, 48px);
-  }
-
-  .hero-info-lists {
-    grid-template-columns: 1fr 1fr;
-    gap: 24px 20px;
-  }
-
-  .hero-info-list {
-    min-width: 0;
-  }
-
-  .hero-info-list a {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    font-size: clamp(14px, 3.8vw, 17px);
-    word-break: break-word;
-  }
+@keyframes finger-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
 }
-
-@media (max-width: 520px) {
-  .hero-info-lists {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .hero-info-list a {
-    font-size: 16px;
-    padding: 4px 0;
-  }
-}
-
 
 /* ======================= */
-/* GALLERY SECTION HEADER  */
+/* HOME INTRO              */
 /* ======================= */
-.gallery-section {
-  padding-bottom: 80px;
-}
-
-.gallery-section-header {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 28px;
-  padding-top: 28px;
+.home-intro {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  padding: clamp(16px, 2.4vw, 28px) 0;
   border-top: 1px solid #1e1e1e;
 }
 
-.gallery-section-label {
-  font-size: 11px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  opacity: 0.45;
+.turntable-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
 }
 
-.gallery-section-count {
-  font-size: 11px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  opacity: 0.2;
+.turntable-canvas canvas {
+  display: block;
+}
+
+.turntable-canvas:active {
+  cursor: grabbing;
+}
+
+.intro-col--main {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: clamp(24px, 3vw, 48px);
+  min-width: 0;
+}
+
+.intro-links {
+  display: flex;
+  flex-direction: column;
+  margin-right: -100px;
+}
+
+.intro-label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: 300;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.intro-copy {
+  margin: 0;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  color: #f5f5f5;
+  max-width: 38ch;
+}
+
+.intro-copy a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.intro-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.intro-list li + li {
+  margin-top: 0;
+}
+
+.intro-list a {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+.intro-list a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 /* ======================= */
-/* GALLERY */
+/* ARCHIVE / PROJECT GRID  */
 /* ======================= */
+.archive-section {
+  padding: clamp(10px, 1.6vw, 18px) 0 clamp(72px, 8vw, 110px);
+}
+
 .gallery {
-  columns: 2;
-  column-gap: 28px;
+  columns: 3;
+  column-gap: 12px;
 }
 
-/* Card */
 .gallery-card {
   display: block;
   break-inside: avoid;
-  border-radius: 30px;
-  overflow: hidden;
-  background: #161616;
   text-decoration: none;
-  color: white;
-  margin-bottom: 28px;
+  color: #ffffff;
+  margin-bottom: 20px;
 }
 
 .gallery-media {
@@ -345,50 +214,49 @@
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.5s ease;
 }
 
-.gallery-card:hover .gallery-media img,
-.gallery-card:hover .gallery-media video {
-  transform: scale(1.04);
+.gallery-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+}
+
+.gallery-title {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+/* Title hover — simple underline, matching the other link hovers */
+.gallery-card:hover .gallery-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 /* ======================= */
-/* SCROLL REVEAL           */
+/* RESPONSIVE HOME         */
 /* ======================= */
-.gallery-card.reveal-left,
-.gallery-card.reveal-right,
-.gallery-card.reveal-center {
-  transition:
-    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.65s ease;
+@media (max-width: 900px) {
+  .home-intro {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .gallery {
+    columns: 2;
+  }
 }
 
-.gallery-card.reveal-left {
-  opacity: 0;
-  transform: translateX(-55px) rotate(-5deg) scale(0.93);
-  filter: blur(8px);
+@media (max-width: 560px) {
+  .gallery {
+    columns: 1;
+  }
 }
-
-.gallery-card.reveal-right {
-  opacity: 0;
-  transform: translateX(55px) rotate(5deg) scale(0.93);
-  filter: blur(8px);
-}
-
-.gallery-card.reveal-center {
-  opacity: 0;
-  transform: translateY(48px) rotate(-1.5deg) scale(0.93);
-  filter: blur(8px);
-}
-
-.gallery-card.revealed {
-  opacity: 1;
-  transform: none;
-  filter: none;
-}
-
 
 /* ======================= */
 /* TOPBAR / HEADER */
@@ -415,17 +283,19 @@
 
 
 .topbar-logo {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  color: #ffffff;
-  opacity: 0.55;
-  transition: opacity 0.15s ease;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.15s ease;
 }
 
 .topbar-logo:hover {
-  opacity: 1;
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .topbar-nav {
@@ -437,17 +307,19 @@
 /* TOPBAR LINKS            */
 /* ======================= */
 .topbar-link {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  color: #ffffff;
-  opacity: 0.55;
-  transition: opacity 0.15s ease;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.15s ease;
 }
 
 .topbar-link:hover {
-  opacity: 1;
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 /* ======================= */
@@ -460,20 +332,20 @@
 
 .subpage-header h3 {
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   opacity: 0.6;
   margin: 0 0 4px;
 }
 
 .subpage-header h1 {
   font-size: 32px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-weight: normal;
   margin: 0;
 }
 
 .subpage-empty {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
   opacity: 0.4;
   margin-top: 60px;
@@ -523,7 +395,7 @@
 }
 
 .art-card-multi-badge span {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 11px;
   color: #ffffff;
   line-height: 1;
@@ -534,11 +406,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
-}
-
-.art-card:hover .art-card-media img {
-  transform: scale(1.03);
 }
 
 .art-card-info {
@@ -549,19 +416,19 @@
 }
 
 .art-card-title {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   color: #ffffff;
 }
 
 .art-card-date {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 12px;
   opacity: 0.4;
 }
 
 .art-card-desc {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 13px;
   opacity: 0.65;
   margin: 4px 0 0;
@@ -702,20 +569,20 @@
 }
 
 .lightbox-title {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 20px;
   color: #ffffff;
   line-height: 1.3;
 }
 
 .lightbox-date {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 12px;
   opacity: 0.4;
 }
 
 .lightbox-desc {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 13px;
   opacity: 0.65;
   margin: 8px 0 0;
@@ -798,38 +665,21 @@
 
 .detail-sidebar h1 {
   font-size: 26px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-weight: normal;
-  margin: 0 0 10px;
-  word-break: break-word;
-}
-
-.detail-role {
-  margin: 0 0 12px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #ffffff;
-}
-
-.detail-role-description {
-  margin: 0 0 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.55;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
   letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.1;
+  margin: 0 0 14px;
+  word-break: break-word;
 }
 
 .detail-tagline {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
   letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .detail-sidebar-intro .detail-tagline:last-child {
@@ -840,31 +690,30 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 24px;
+  margin-top: 28px;
   padding: 12px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(68, 153, 255, 0.45);
-  background: rgba(68, 153, 255, 0.12);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  border-radius: 2px;
+  background: #161616;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   color: #ffffff;
   text-decoration: none;
-  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  transition: color 0.15s ease;
 }
 
 .detail-visit-btn:hover {
-  background: rgba(68, 153, 255, 0.22);
-  border-color: rgba(68, 153, 255, 0.7);
-  transform: translateX(3px);
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .detail-visit-btn-icon {
   font-size: 14px;
   line-height: 1;
-  color: #4499ff;
+  color: #ffffff;
 }
 
 /* CONTENT (right) */
@@ -898,7 +747,7 @@
 
 .meta-box h3 {
   font-size: 10px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #ffffff;
@@ -908,7 +757,7 @@
 
 .meta-box p {
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   margin: 0;
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.65);
@@ -935,7 +784,7 @@
 .detail-block figcaption {
   margin-top: 10px;
   font-size: 12px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.45;
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.38);
@@ -948,7 +797,7 @@
 
 .detail-text-title {
   margin: 0 0 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -957,7 +806,7 @@
 }
 
 .detail-text-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
 .detail-text-body p {
@@ -1004,7 +853,7 @@
 .detail-gallery-item figcaption {
   margin-top: 8px;
   font-size: 12px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.38);
 }

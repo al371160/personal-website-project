@@ -1,17 +1,17 @@
 import GalleryCard from "../components/GalleryCard";
-import HeroInfo from "../components/HeroInfo";
-import KoiPond from "../components/KoiPond";
 import { projects } from "../data/projects";
 import { useEffect, useRef } from "react";
 
-const REVEAL_VARIANTS = ["left", "right", "left", "right", "left", "right"];
+const LINKS = [
+  { label: "GitHub", href: "https://github.com/al371160" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/alexander-liu-282739206/" },
+  { label: "Resume", href: "/resume.pdf" },
+  { label: "Email", href: "mailto:aliu10@seas.upenn.edu" },
+];
 
 export default function Home({ onReady, onProgress }) {
-  const pageRef   = useRef(null);
-  const leftRef   = useRef(null);
-  const rightRef  = useRef(null);
+  const pageRef = useRef(null);
 
-  // Page-load readiness (unchanged logic)
   useEffect(() => {
     let cancelled = false;
     const container = pageRef.current;
@@ -48,48 +48,29 @@ export default function Home({ onReady, onProgress }) {
     return () => { cancelled = true; clearTimeout(timeout); };
   }, [onReady, onProgress]);
 
-  // Panel scroll-reveal (same IntersectionObserver pattern as GalleryCard)
-  useEffect(() => {
-    const entries = [
-      { ref: leftRef,  delay: 0 },
-      { ref: rightRef, delay: 0.13 },
-    ];
-    const observers = entries.map(({ ref, delay }) => {
-      const el = ref.current;
-      if (!el) return null;
-      const obs = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          el.style.transitionDelay = `${delay}s`;
-          el.classList.add("revealed");
-          obs.unobserve(el);
-          setTimeout(() => { if (el) el.style.transitionDelay = "0s"; }, (delay + 0.9) * 1000);
-        }
-      }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
-      obs.observe(el);
-      return obs;
-    });
-    return () => observers.forEach(o => o?.disconnect());
-  }, []);
-
   return (
     <main className="page" ref={pageRef}>
-      <section className="hero-section">
-        <div className="hero-panels">
-          <div className="hero-panel hero-panel--left reveal-left" ref={leftRef}>
-            <KoiPond />
-          </div>
-          <div className="hero-panel hero-panel--right reveal-right" ref={rightRef}>
-            <HeroInfo />
+      <section className="home-intro">
+        <div className="intro-col intro-col--main">
+          <p className="intro-copy">
+            I'm studying Computer Graphics and Computer Science at the University of
+            Pennsylvania, building work at the intersection of design, technology,
+            and engineering.
+          </p>
+
+          <div className="intro-links">
+            <ul className="intro-list">
+              {LINKS.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      <section className="gallery-section" id="gallery-section">
-        <div className="gallery-section-header">
-          <span className="gallery-section-label">Work</span>
-          <span className="gallery-section-count">— {projects.length}</span>
-        </div>
-
+      <section className="archive-section" id="gallery-section">
         <div className="gallery">
           {projects.map((project, i) => (
             <GalleryCard
@@ -97,8 +78,7 @@ export default function Home({ onReady, onProgress }) {
               slug={project.slug}
               title={project.title}
               hero={project.thumbnail}
-              revealVariant={REVEAL_VARIANTS[i % 2 === 0 ? 0 : 1]}
-              revealDelay={0}
+              featured={i === 0}
             />
           ))}
         </div>

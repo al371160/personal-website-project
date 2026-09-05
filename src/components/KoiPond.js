@@ -6,10 +6,10 @@ const SIM     = 256;
 const GRID    = 256;
 const CTEX    = 1024;
 
-const EYE    = [1.4, 3.1, 0.9];
-const CENTER = [0.6, WATER_Y, 0.4];
-const UP     = [0.0, 1.0,  0.0];
-const FOV    = 0.50;
+const EYE    = [0.0, 3.0, 0.0];
+const CENTER = [0.0, WATER_Y, 0.0];
+const UP     = [0.0, 0.0, -1.0];
+const FOV    = 0.9;
 
 function norm3(v) {
   const l = Math.sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);

@@ -77,12 +77,6 @@ export default function Detail({ onReady, onProgress }) {
         <aside className="detail-sidebar">
           <div className="detail-sidebar-intro">
             <h1>{project.title}</h1>
-            {project.meta.role && (
-              <p className="detail-role">{project.meta.role}</p>
-            )}
-            {project.meta.roleDescription && (
-              <p className="detail-role-description">{project.meta.roleDescription}</p>
-            )}
             {project.description && (
               <p className="detail-tagline">{project.description}</p>
             )}
@@ -102,10 +96,6 @@ export default function Detail({ onReady, onProgress }) {
 
         <section className="detail-content">
           <div className="detail-meta">
-            <div className="meta-box">
-              <h3>Role</h3>
-              <p>{project.meta.role}</p>
-            </div>
             <div className="meta-box">
               <h3>Collaborators</h3>
               <p>{project.meta.collaborators}</p>
