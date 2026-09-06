@@ -247,6 +247,14 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  .intro-col--main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .intro-links {
+    margin-right: 0;
+  }
   .gallery {
     columns: 2;
   }
