@@ -23,41 +23,58 @@ function PageLoader({ isLoading, progress }) {
 
 function AppContent() {
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [readyKeys, setReadyKeys] = useState(() => new Set());
+  const [progressByKey, setProgressByKey] = useState({});
+
+  const ready = readyKeys.has(location.key);
+  const progress = progressByKey[location.key] ?? 0;
+
+  // Records this route as ready once its page calls onReady.
+  const handleReady = useCallback(() => {
+    setReadyKeys((prev) => {
+      if (prev.has(location.key)) return prev;
+      const next = new Set(prev);
+      next.add(location.key);
+      return next;
+    });
+  }, [location.key]);
+
+  const handleProgress = useCallback(
+    (p) => {
+      setProgressByKey((prev) =>
+        prev[location.key] === p ? prev : { ...prev, [location.key]: p }
+      );
+    },
+    [location.key]
+  );
 
   useEffect(() => {
-    setLoading(true);
-    setProgress(0);
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Stable callback — prevents Home/Detail effects from re-running on every progress update
-  const handleReady = useCallback(() => setLoading(false), []);
-
   return (
     <>
-      <PageLoader isLoading={loading} progress={progress} />
+      <PageLoader isLoading={!ready} progress={progress} />
 
-      <div className={`app ${loading ? "app-loading" : "app-ready"}`}>
+      <div className={`app ${ready ? "app-ready" : "app-loading"}`}>
         <TopBar />
 
         <Routes>
           <Route
             path="/"
-            element={<Home onReady={handleReady} onProgress={setProgress} />}
+            element={<Home onReady={handleReady} onProgress={handleProgress} />}
           />
           <Route
             path="/work/:slug"
-            element={<Detail onReady={handleReady} onProgress={setProgress} />}
+            element={<Detail onReady={handleReady} onProgress={handleProgress} />}
           />
           <Route
             path="/playground"
-            element={<Playground onReady={handleReady} onProgress={setProgress} />}
+            element={<Playground onReady={handleReady} onProgress={handleProgress} />}
           />
           <Route
             path="/about"
-            element={<Hobbies onReady={handleReady} onProgress={setProgress} />}
+            element={<Hobbies onReady={handleReady} onProgress={handleProgress} />}
           />
         </Routes>
       </div>
