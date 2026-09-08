@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const { Client } = require("@notionhq/client");
-const { queryArtwork } = require("./api/_notion");
+const { queryArtwork, queryPlayground } = require("./api/_notion");
 
 const app = express();
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
@@ -9,6 +9,16 @@ const notion = new Client({ auth: process.env.NOTION_TOKEN });
 app.get("/api/artwork", async (req, res, next) => {
   try {
     const items = await queryArtwork(notion, process.env.NOTION_ARTWORK_DB);
+    res.json(items);
+  } catch (err) {
+    console.error("Notion API error:", err.message);
+    next(err);
+  }
+});
+
+app.get("/api/playground", async (req, res, next) => {
+  try {
+    const items = await queryPlayground(notion, process.env.NOTION_PLAYGROUND_DB);
     res.json(items);
   } catch (err) {
     console.error("Notion API error:", err.message);

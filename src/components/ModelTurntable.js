@@ -132,7 +132,16 @@ export default function ModelTurntable() {
     const mount = mountRef.current;
     if (!mount) return;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (err) {
+      // Context could not be created (e.g. too many live WebGL contexts).
+      // Leave an empty card rather than crashing the whole app.
+      console.warn("ModelTurntable: WebGL context unavailable", err);
+      return;
+    }
+    if (!renderer.getContext()) return;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
     mount.appendChild(renderer.domElement);

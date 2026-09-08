@@ -40,6 +40,29 @@ img {
   display: block;
 }
 
+/* Only real content — headings and body paragraphs — is selectable/copyable.
+   Images and UI chrome (topbar logo/nav, buttons, labels, badges) are not, and
+   images can't be dragged out of the page. */
+* {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+p,
+h1, h2, h3, h4, h5, h6,
+li,
+figcaption,
+pre,
+code {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+img,
+video {
+  -webkit-user-drag: none;
+}
+
 /* Base app */
 .app {
   transition: filter 0.8s ease, opacity 0.8s ease;

@@ -328,7 +328,9 @@ void main(){
   vec4 info = texture(u_tex, uv);
   float t = u_time * 0.001;
 
-  // four wave trains moving in different directions
+  // four wave trains moving in different directions — injected as velocity so
+  // the height stays centered (writing to height directly would accumulate a DC
+  // offset each frame until the surface saturates flat and the sim dies)
   float n =
     noise(uv*4.0  + vec2( t*1.3,  t*0.7 )) * 0.0012 +  // NE
     noise(uv*4.0  + vec2(-t*0.9,  t*1.1 )) * 0.0012 +  // NW
@@ -337,7 +339,7 @@ void main(){
     noise(uv*13.0 + vec2( t*1.7,  t*1.0 )) * 0.0003 +  // fine detail A
     noise(uv*13.0 + vec2(-t*1.0,  t*1.8 )) * 0.0003;   // fine detail B
 
-  info.r += n;
+  info.g += n;
   frag = info;
 }`;
 
@@ -640,8 +642,16 @@ export default function KoiPond() {
     window.addEventListener("pointercancel", onPointerUp);
 
     let animId;
+    // Pause the sim entirely while the card is offscreen, so idle copies don't
+    // burn CPU (several WebGL cards can be mounted at once in the mosaic).
+    let paused = false;
+    const io = new IntersectionObserver(([entry], obs) => {
+      paused = !entry.isIntersecting;
+    });
+    io.observe(canvas);
     const animate = (t) => {
       animId = requestAnimationFrame(animate);
+      if (paused) return;
 
       if (isDragging && curUV && brushCount < MAX_BRUSHES) {
         const now   = performance.now();
@@ -668,6 +678,7 @@ export default function KoiPond() {
     return () => {
       cancelAnimationFrame(animId);
       if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      io.disconnect();
       ro.disconnect();
       canvas.removeEventListener("pointerdown", onPointerDown);
       canvas.removeEventListener("pointermove", onPointerMove);

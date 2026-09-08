@@ -39,7 +39,7 @@ async function queryWorks(notion, dbId) {
   });
 }
 
-async function queryArtwork(notion, dbId) {
+async function queryMedia(notion, dbId) {
   const response = await notion.databases.query({
     database_id: dbId,
     sorts: [{ property: "Date", direction: "descending" }],
@@ -56,4 +56,13 @@ async function queryArtwork(notion, dbId) {
   });
 }
 
-module.exports = { queryArtwork, queryWorks };
+async function queryArtwork(notion, dbId) {
+  return queryMedia(notion, dbId);
+}
+
+// Playground cards share the same shape: Name / Date / Description / Image (multi-file).
+async function queryPlayground(notion, dbId) {
+  return queryMedia(notion, dbId);
+}
+
+module.exports = { queryArtwork, queryPlayground, queryWorks };

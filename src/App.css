@@ -65,27 +65,237 @@
   letter-spacing: 0.02em;
 }
 
-/* Flashing pointing-finger icon, top-right, when hovering an interactive card */
-.canvas-card--interactive::after {
-  content: "";
+/* ======================= */
+/* PLAYGROUND MOSAIC       */
+/* ======================= */
+.mosaic-viewport {
+  /* Sizes read by MosaicScroller (getComputedStyle). colW drives the card
+     grid; gap-ratio scales the uniform gutter between cards and blocks. */
+  --mosaic-col: 120px;
+  --mosaic-gap-ratio: 4;
+  position: relative;
+  width: 100vw;
+  height: calc(100svh - 60px);
+  margin: 0 -28px;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 70%),
+    #0e0e0e;
+}
+
+.mosaic-viewport:active {
+  cursor: grabbing;
+}
+
+.mosaic-world {
+  position: relative;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.mosaic-card {
+  position: absolute;
+  overflow: hidden;
+  background: #161616;
+  border-radius: 2px;
+  will-change: transform;
+  cursor: pointer;
+  outline: 1px solid transparent;
+  outline-offset: 3px;
+  transition: outline-color 0.15s ease;
+}
+
+.mosaic-card img,
+.mosaic-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* While zoomed into a card, show the whole image at its original aspect
+   (multi-image navigation may swap in a file with a different ratio than the
+   one the box was sized for). */
+.mosaic-card--focused img,
+.mosaic-card--focused video {
+  object-fit: contain;
+}
+
+/* Soft outline on hover; strong outline while focused (detail zoom) */
+.mosaic-card:hover,
+.mosaic-card:focus-visible {
+  outline-color: rgba(255, 255, 255, 0.28);
+}
+
+.mosaic-card--focused,
+.mosaic-card--focused:hover {
+  outline-color: rgba(255, 255, 255, 0.55);
+}
+
+.mosaic-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  z-index: 2;
+}
+
+.mosaic-arrow:hover {
+  background: rgba(255, 255, 255, 0.85);
+  color: #0e0e0e;
+}
+
+.mosaic-arrow--prev {
+  left: 8px;
+}
+
+.mosaic-arrow--next {
+  right: 8px;
+}
+
+/* Focused detail panel — sits to the right of the focused card's top-right
+   corner (positioned via inline left/top from MosaicScroller) */
+.mosaic-detail-panel {
+  position: absolute;
+  z-index: 5;
+  width: 240px;
+  padding: 0 18px;
+  backdrop-filter: blur(8px);
+  pointer-events: auto;
+}
+
+.mosaic-detail-date {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.mosaic-detail-desc {
+  margin: 0;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.mosaic-detail-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.mosaic-detail-close:hover {
+  background: #ffffff;
+  color: #0e0e0e;
+}
+
+.mosaic-card-fallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #161616, #1e1e1e);
+}
+
+.mosaic-card-top {
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 22px;
-  height: 22px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.2 19.6 C5.6 18.2 5.2 15.6 6.4 13.3 L10.2 12.2 L10.2 6.8 A1.8 1.8 0 0 1 13.8 6.8 L13.8 12.2 C15.6 12.6 17 13.3 17.8 14.9 C18.8 16.9 18.4 19.1 17.2 20.3 C15.9 21.5 14 21.7 12 21.7 C10 21.7 8.6 21.2 7.2 19.6 Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mosaic-card-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  padding: 3px 6px 3px 5px;
   pointer-events: none;
 }
 
-.canvas-card--interactive:hover::after {
-  opacity: 1;
-  animation: finger-flash 0.9s ease-in-out infinite;
+.mosaic-card-badge span {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 11px;
+  color: #ffffff;
+  line-height: 1;
 }
 
-@keyframes finger-flash {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.2; }
+.mosaic-detail-title {
+  display: block;
+  margin: 0 0 4px;
+  padding-right: 30px;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+@media (max-width: 1100px) {
+  .mosaic-viewport {
+    --mosaic-col: 104px;
+    --mosaic-gap-ratio: 3.5;
+  }
+}
+
+@media (max-width: 700px) {
+  .mosaic-viewport {
+    --mosaic-col: 88px;
+    --mosaic-gap-ratio: 3;
+  }
+}
+
+/* Fullscreen webgl stage inside the lightbox */
+.lightbox-stage {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.lightbox-stage > * {
+  width: 100%;
+  height: 100%;
 }
 
 /* ======================= */
@@ -358,6 +568,35 @@
   opacity: 0.4;
   margin-top: 60px;
   text-align: center;
+}
+
+.playground-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.playground-error .subpage-empty {
+  margin: 16px 0 0;
+}
+
+.playground-retry {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.playground-retry:hover {
+  border-color: #ffffff;
 }
 
 /* ======================= */

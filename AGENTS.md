@@ -13,12 +13,24 @@ npm test -- --watchAll=false  # run tests once (CI mode)
 
 ## Architecture
 
-This is a **Create React App** personal portfolio site (React 19, react-router-dom v7). It's a two-page SPA with a custom loading transition system.
+This is a **Create React App** personal portfolio site (React 19, react-router-dom v7). It's an SPA with a custom loading transition system.
 
 ### Routing
 
 - `/` → `src/pages/Home.js` — bio/links section + project gallery grid
 - `/work/:slug` → `src/pages/Detail.js` — individual project detail page
+- `/playground` → `src/pages/Playground.js` — tessellated infinite mosaic of work
+- `/about` → `src/pages/Hobbies.js` — placeholder page
+
+### Playground
+
+`/playground` renders an infinite, drag-to-pan mosaic (`src/components/MosaicScroller.js`). The viewport is a fixed-size pannable canvas (`touch-action: none`, pointer + wheel handlers). One "cycle" holds a full copy of the collection laid out in a 12-column grid computed entirely in JS (`buildLayout`), so the same documents repeat in every direction; only cards overlapping the viewport are mounted. Pan is applied as a CSS transform (rAF-throttled); positions stay small because pan is never folded back into cycles (keys never churn). Card width comes from the pattern span (`c * --mosaic-col`); card height preserves each tile's own aspect ratio — WebGL tiles declare `ratio` in `WEBGL_TILES`, image tiles report their natural ratio when the cover loads. Sizing comes from CSS variables on `.mosaic-viewport` (`--mosaic-col`, `--mosaic-gap-ratio`). Tiles come from a unified collection builder, `src/data/playground.js`, which merges:
+- `WEBGL_TILES` — local interactive 3D cards (`KoiPond`, `ModelTurntable`); add new ones here (title/description/component).
+- Notion projects fetched from `/api/playground` — serverless fn `api/playground.js` (dev: `server.js` route), which reads `NOTION_PLAYGROUND_DB`. The DB uses the same shape as artwork: Name / Date / Description / Image (multi-file).
+
+Every card is interactive: hovering draws a soft outline and clicking any card (project or WebGL) zooms into it with an eased, center-anchored view `{x, y, s}` and shows its title + description in a borderless panel anchored just right of the card's top-right corner (+14px, ~80px down from the card top). The detail zoom level is computed per card so each object's height fills ~75% of the viewport, with the card's top edge pinned ~30px below the viewport top (top-aligned, not centered). Multi-image cards are clicked into the same detail view, where small circular arrow buttons (`onNav`, via `moveDetail`) cycle their files; navigating refits the focused box to the newly shown file's ratio and re-zooms so a taller/wider image always fits (per-file ratios are stored as `` `${tile.id}:${index}` ``, layout boxes follow index 0). Every image keeps its own aspect ratio: the card reports natural dimensions via `onLoad` plus a mount-effect fallback (cached images and videos don't fire `load`, so `complete/naturalWidth` and `videoWidth/videoHeight` are read directly), and while focused the media renders `object-fit: contain` so a swapped-in file is never cropped. WebGL cards are mounted/deloaded by the same proximity `IntersectionObserver` as images (only cards near the viewport create WebGL contexts), pause their render loops while offscreen, and degrade to an empty card if a context can't be created — so panning/zooming through the infinite mosaic can't exhaust the browser's context limit or crash. Clicks are gesture-gated: a press that moves ≥5px is treated as pan/rotate, not a click (`gestureRef`). Scroll / trackpad-pinch zooms about the viewport center only; drag pans outside cards; WebGL cards keep their own drags (rotate/stir); pan/zoom are locked while in a detail view, and Escape, the × button, clicking empty space, or re-clicking the focused card zooms back out to the pre-detail view.
+
+Tile the mosaic via `MOSAIC_PATTERN` in `src/data/playground.js` (every span group sums to 12 columns so it tiles without gaps).
 
 ### Data
 
@@ -37,10 +49,10 @@ All assets are hosted on Cloudinary (`dak0zi45d`).
 
 ### Loading System
 
-`App.js` wraps routes in a `PageLoader` overlay + `AppContent` component. On every route change:
-1. `loading` state is set to `true` — shows the SVG loader overlay and hides the app (`.app-loading` = opacity 0)
-2. Each page calls `onReady()` when its content is ready (Home calls immediately; Detail waits for the hero image/video to load)
-3. `onReady()` sets `loading` to `false` — hides the loader and fades the app in (`.app-ready` = opacity 1)
+`App.js` wraps routes in a `PageLoader` overlay + `AppContent` component. Readiness is derived per-navigation from `location.key`:
+1. A route starts not-ready → the loader overlay is visible (`.app-loading` = opacity 0)
+2. Each page calls `onReady()` when its content is ready (Home immediately; Detail waits for the hero; Artwork/Playground wait for the Notion fetch + cover preloads)
+3. `onReady()` records the current `location.key` as ready → loader hides and the app fades in (`.app-ready` = opacity 1)
 
 ### Styling
 
