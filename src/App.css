@@ -90,6 +90,25 @@
   cursor: grabbing;
 }
 
+.mosaic-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 5;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.mosaic-hint.mosaic-hint--faded {
+  opacity: 0;
+}
+
 .mosaic-world {
   position: relative;
   width: 0;
@@ -480,8 +499,10 @@
 /* TOPBAR / HEADER */
 /* ======================= */
 .topbar {
-  position: sticky;
+  position: fixed;
   top: 0px;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 60px;
   background: rgba(14, 14, 14, 0.95);

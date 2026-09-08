@@ -56,9 +56,9 @@ function AppContent() {
     <>
       <PageLoader isLoading={!ready} progress={progress} />
 
-      <div className={`app ${ready ? "app-ready" : "app-loading"}`}>
-        <TopBar />
+      <TopBar />
 
+      <div className={`app ${ready ? "app-ready" : "app-loading"}`}>
         <Routes>
           <Route
             path="/"

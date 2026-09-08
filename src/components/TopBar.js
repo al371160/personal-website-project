@@ -7,7 +7,7 @@ export default function TopBar() {
         <Link to="/" className="topbar-logo">Alexander Liu</Link>
 
         <nav className="topbar-nav">
-          <Link to="/playground" className="topbar-link">Playground</Link>
+          <Link to="/playground" className="topbar-link">More</Link>
         </nav>
       </div>
     </header>

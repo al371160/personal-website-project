@@ -77,6 +77,18 @@ export default function MosaicScroller({ tiles }) {
   const panRaf = useRef(0);
   const animRaf = useRef(0);
   const initRef = useRef(false);
+  const hintTimer = useRef(0);
+  const [hintFaded, setHintFaded] = useState(false);
+
+  // The drag-to-explore hint fades out while the user is moving through the
+  // mosaic and fades back in after a quiet stretch (10s).
+  const pokeHint = useCallback(() => {
+    setHintFaded(true);
+    clearTimeout(hintTimer.current);
+    hintTimer.current = setTimeout(() => setHintFaded(false), 10000);
+  }, []);
+
+  useEffect(() => () => clearTimeout(hintTimer.current), []);
 
   const L = tiles.length;
 
@@ -171,8 +183,9 @@ export default function MosaicScroller({ tiles }) {
     const prev = prevViewRef.current;
     const cur = viewRef.current;
     prevViewRef.current = null;
+    pokeHint();
     animateTo(prev ? { ...prev } : { x: cur.x, y: cur.y, s: 1 });
-  }, [animateTo]);
+  }, [animateTo, pokeHint]);
 
   // Fit a card box of size (w, h) into the detail view: zoom so its height
   // fills ~75% of the viewport, pinned top-aligned.
@@ -195,10 +208,11 @@ export default function MosaicScroller({ tiles }) {
       // Remember where we were so exiting a detail view returns to that zoom.
       prevViewRef.current = { ...viewRef.current };
       focusRef.current = card.key;
+      pokeHint();
       setFocused({ key: card.key, tile: card.tile, x: card.x, y: card.y, w: card.w, h: card.h, index: 0 });
       fitDetail(card.w, card.h, card.x, card.y);
     },
-    [fitDetail, zoomOut]
+    [fitDetail, zoomOut, pokeHint]
   );
 
   // Multi-image navigation inside the focused card's detail zoom. If the newly
@@ -213,9 +227,10 @@ export default function MosaicScroller({ tiles }) {
       const ratio = ratios[`${focused.tile.id}:${index}`] ?? focused.w / focused.h;
       const h = Math.max(MIN_H, focused.w / Math.max(0.05, ratio));
       setFocused({ ...focused, index, h });
+      pokeHint();
       fitDetail(focused.w, h, focused.x, focused.y);
     },
-    [focused, metrics, ratios, fitDetail]
+    [focused, metrics, ratios, fitDetail, pokeHint]
   );
 
   // Reframe once the newly shown file's natural ratio actually lands (the
@@ -283,6 +298,7 @@ export default function MosaicScroller({ tiles }) {
         start.vx = viewRef.current.x;
         start.vy = viewRef.current.y;
         start.s = viewRef.current.s;
+        pokeHint();
       }
       gestureRef.current = true;
       viewRef.current = {
@@ -309,7 +325,7 @@ export default function MosaicScroller({ tiles }) {
       window.removeEventListener("pointerup", onUp);
       window.removeEventListener("pointercancel", onUp);
     };
-  }, [queueView, zoomOut]);
+  }, [queueView, zoomOut, pokeHint]);
 
   // --- Wheel: scroll/pinch zooms about the viewport center (no pan) ---
   useEffect(() => {
@@ -324,12 +340,13 @@ export default function MosaicScroller({ tiles }) {
       e.preventDefault();
       const cur = viewRef.current;
       stopAnim();
+      pokeHint();
       const ns = Math.min(MAX_S, Math.max(MIN_S, cur.s * Math.exp(-e.deltaY * 0.0016)));
       animateTo({ x: cur.x, y: cur.y, s: ns });
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
-  }, [animateTo, stopAnim]);
+  }, [animateTo, stopAnim, pokeHint]);
 
   // Escape exits the focused zoom.
   useEffect(() => {
@@ -433,6 +450,13 @@ export default function MosaicScroller({ tiles }) {
           </p>
         </aside>
       )}
+
+      <span
+        className={`mosaic-hint${hintFaded ? " mosaic-hint--faded" : ""}`}
+        aria-hidden="true"
+      >
+        drag around and click on works to move and expand. Scroll to zoom.
+      </span>
     </div>
   );
 }

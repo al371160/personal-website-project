@@ -65,6 +65,7 @@ video {
 
 /* Base app */
 .app {
+  padding-top: 60px;
   transition: filter 0.8s ease, opacity 0.8s ease;
 }
 
