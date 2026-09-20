@@ -9,6 +9,10 @@ export const projects = [
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453857/Screen_Recording_2026-07-19_at_5.35.46_AM_exov4y.mov",
     },
     hero: {
+      type: "image",
+      src: "/heroes/provelis-hero.png",
+    },
+    heroVideo: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453476/Screen_Recording_2026-07-19_at_5.29.23_AM_gd3tts.mov",
     },
@@ -232,9 +236,13 @@ export const projects = [
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1780352903/Screenshot_2026-06-01_at_3.28.05_PM_qx6qst.png",
     },
     hero: {
+      type: "image",
+      src: "/heroes/aquara-hero.png",
+    },
+    heroVideo: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784514310/Screen_Recording_2026-07-19_at_10.15.40_PM_ajusoi.mov",
-      },
+    },
     meta: {
       role: "UI Lead",
       roleDescription: "Led interface architecture for a client-facing dashboard — modular panels, dense data tables, and a calm visual system that still feels fast at a glance.",
@@ -303,7 +311,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220305/Untitled_Artwork_56_ppoklz.png",
+      src: "/heroes/omni-hero.png",
     },
     meta: {
       role: "UI Lead",
@@ -317,6 +325,11 @@ export const projects = [
         type: "text",
         title: "Overview",
         body: "Omni is an accessible AR assistant for interactive toolmaking: users describe what they need, see it in space, and refine through voice and touch. The interface had to stay calm while the backend orchestration stayed complex.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220305/Untitled_Artwork_56_ppoklz.png",
+        caption: "Assistant character and UI sketch sheet",
       },
       {
         type: "image",
@@ -378,7 +391,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444772/Screenshot_2026-01-14_at_9.39.22_PM_qrxnda.png",
+      src: "/heroes/orble-hero.png",
     },
     meta: {
       role: "Brand Designer / Developer",
@@ -392,6 +405,11 @@ export const projects = [
         type: "text",
         title: "Overview",
         body: "Orble Tea is an automated boba concept spanning product design, brand, and go-to-market visuals. My work ties physical machine design to a coherent digital presence on orble-tea.com.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444772/Screenshot_2026-01-14_at_9.39.22_PM_qrxnda.png",
+        caption: "Marketing site and brand snapshot",
       },
       {
         type: "image",
@@ -479,7 +497,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
+      src: "/heroes/per-hero.png",
     },
     meta: {
       role: "Media / Business Operations / Project Manager",
@@ -620,6 +638,10 @@ export const projects = [
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768447371/Screen_Recording_2026-01-14_at_10.20.36_PM_hfnucs.mov",
     },
     hero: {
+      type: "image",
+      src: "/heroes/yprize-hero.png",
+    },
+    heroVideo: {
       type: "youtube",
       src: "k8fP14yVEa8",
     },
@@ -675,7 +697,7 @@ export const projects = [
       {
         type: "text",
         title: "Pitch film",
-        body: "The hero video above is the full five-minute pitch. Blender models were edited in CapCut with VO and music for submission.",
+        body: "The video above the writeup is the full five-minute pitch. Blender models were edited in CapCut with VO and music for submission.",
       },
       {
         type: "image",
@@ -695,6 +717,10 @@ export const projects = [
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451779/16oz_packaging_blue_fpowis.png",
     },
     hero: {
+      type: "image",
+      src: "/heroes/pawfond-hero.png",
+    },
+    heroVideo: {
       type: "video",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768592032/pawfond_hero_u323pp.mov",
     },
@@ -770,7 +796,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768552482/Screenshot_2026-01-16_at_3.34.33_AM_evwmzc.png",
+      src: "/heroes/rumrush-hero.png",
     },
     meta: {
       role: "Producer / Team Lead",
@@ -784,6 +810,11 @@ export const projects = [
         type: "text",
         title: "Overview",
         body: "Rum Rush is a time-manipulation action prototype built in Unity. As producer I kept scope honest while still landing distinctive feel: slow-mo combat, readable pickups, and punchy feedback.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768552482/Screenshot_2026-01-16_at_3.34.33_AM_evwmzc.png",
+        caption: "Unity graybox — bar and pickup layout",
       },
       {
         type: "image",

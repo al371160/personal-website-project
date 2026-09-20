@@ -4,13 +4,19 @@
   box-sizing: border-box;
 }
 
+:root {
+  --page-gutter: 28px;
+  --page-max: 1500px;
+  --band: #f3f4f6;
+}
+
 html {
   height: 100%;
 }
 
 body {
   margin: 0px;
-  padding: 0 28px;
+  padding: 0 var(--page-gutter);
   width: 100%;
   min-height: 100%;
 }
@@ -165,7 +171,8 @@ video {
 [data-theme="light"] .gallery-section-count { color: #1a1a1a; }
 [data-theme="light"] .hero-panel { background: #e8e2d8; }
 [data-theme="light"] .detail-sidebar h1,
-[data-theme="light"] .detail-subtitle,
+[data-theme="light"] .detail-intro,
 [data-theme="light"] .meta-box h3,
 [data-theme="light"] .meta-box p { color: #1a1a1a; }
-[data-theme="light"] .detail-block figcaption { color: #555; }
+[data-theme="light"] .detail-block figcaption,
+[data-theme="light"] .detail-gallery-item figcaption { color: #555; }

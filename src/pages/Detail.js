@@ -3,6 +3,22 @@ import { projects } from "../data/projects";
 import DetailContentBlock from "../components/DetailContentBlock";
 import { useEffect, useRef } from "react";
 
+function HeroMedia({ media, title }) {
+  if (media.type === "video") {
+    return <video src={media.src} autoPlay muted loop playsInline />;
+  }
+  if (media.type === "youtube") {
+    return (
+      <iframe
+        src={`https://www.youtube.com/embed/${media.src}`}
+        title={title}
+        allowFullScreen
+      />
+    );
+  }
+  return <img src={media.src} alt={title} />;
+}
+
 export default function Detail({ onReady, onProgress }) {
   const { slug } = useParams();
   const project = projects.find(p => p.slug === slug);
@@ -51,51 +67,33 @@ export default function Detail({ onReady, onProgress }) {
     return <p>Project not found.</p>;
   }
 
+  const intro = project.meta.roleDescription || project.description;
+
   return (
     <main className="detail-page" ref={pageRef}>
 
-      <section className="detail-hero">
-        {project.hero.type === "image" && (
-          <img src={project.hero.src} alt={project.title} />
-        )}
-
-        {project.hero.type === "video" && (
-          <video src={project.hero.src} autoPlay muted loop playsInline />
-        )}
-
-        {project.hero.type === "youtube" && (
-          <iframe
-            src={`https://www.youtube.com/embed/${project.hero.src}`}
-            title={project.title}
-            allowFullScreen
-          />
-        )}
+      <section className="detail-band detail-band--hero">
+        <div className="detail-band-inner">
+          <HeroMedia media={project.hero} title={project.title} />
+        </div>
       </section>
 
-      <div className="detail-layout">
-
+      <div className="detail-header">
         <aside className="detail-sidebar">
-          <div className="detail-sidebar-intro">
-            <h1>{project.title}</h1>
-            {project.description && (
-              <p className="detail-tagline">{project.description}</p>
-            )}
-          </div>
-          {project.visitUrl && (
-            <a
-              className="detail-visit-btn"
-              href={project.visitUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Visit project
-              <span className="detail-visit-btn-icon" aria-hidden="true">↗</span>
-            </a>
+          <h1>{project.title}</h1>
+          {project.category && (
+            <p className="detail-category">{project.category}</p>
           )}
         </aside>
 
-        <section className="detail-content">
+        <section className="detail-header-main">
+          {intro && <p className="detail-intro">{intro}</p>}
+
           <div className="detail-meta">
+            <div className="meta-box">
+              <h3>Role</h3>
+              <p>{project.meta.role}</p>
+            </div>
             <div className="meta-box">
               <h3>Collaborators</h3>
               <p>{project.meta.collaborators}</p>
@@ -110,13 +108,32 @@ export default function Detail({ onReady, onProgress }) {
             </div>
           </div>
 
-          <div className="detail-blocks">
-            {project.content.map((block, i) => (
-              <DetailContentBlock key={i} block={block} index={i} />
-            ))}
+          {project.visitUrl && (
+            <a
+              className="detail-visit-btn"
+              href={project.visitUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit project
+              <span className="detail-visit-btn-icon" aria-hidden="true">↗</span>
+            </a>
+          )}
+        </section>
+      </div>
+
+      {project.heroVideo && (
+        <section className="detail-band">
+          <div className="detail-band-inner">
+            <HeroMedia media={project.heroVideo} title={`${project.title} video`} />
           </div>
         </section>
+      )}
 
+      <div className="detail-blocks">
+        {project.content.map((block, i) => (
+          <DetailContentBlock key={i} block={block} index={i} />
+        ))}
       </div>
 
     </main>
