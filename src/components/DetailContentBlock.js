@@ -21,14 +21,6 @@ function TextBody({ body }) {
   );
 }
 
-function Band({ children }) {
-  return (
-    <div className="detail-band">
-      <div className="detail-band-inner">{children}</div>
-    </div>
-  );
-}
-
 export default function DetailContentBlock({ block, index }) {
   if (block.type === "text") {
     return (
@@ -41,57 +33,49 @@ export default function DetailContentBlock({ block, index }) {
 
   if (block.type === "gallery") {
     return (
-      <Band>
-        <div
-          key={index}
-          className="detail-gallery"
-          data-columns={block.columns || undefined}
-        >
-          {block.items.map((item, i) => (
-            <figure key={i} className="detail-gallery-item">
-              {renderMedia(item)}
-              {item.caption && <figcaption>{item.caption}</figcaption>}
-            </figure>
-          ))}
-        </div>
-      </Band>
+      <div
+        key={index}
+        className="detail-gallery"
+        data-columns={block.columns || undefined}
+      >
+        {block.items.map((item, i) => (
+          <figure key={i} className="detail-gallery-item">
+            {renderMedia(item)}
+            {item.caption && <figcaption>{item.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
     );
   }
 
   if (block.type === "image" || block.type === "photo") {
     return (
-      <Band>
-        <figure key={index} className="detail-block detail-block--media">
-          <img src={block.src} alt={block.caption || ""} />
-          {block.caption && <figcaption>{block.caption}</figcaption>}
-        </figure>
-      </Band>
+      <figure key={index} className="detail-block detail-block--media">
+        <img src={block.src} alt={block.caption || ""} />
+        {block.caption && <figcaption>{block.caption}</figcaption>}
+      </figure>
     );
   }
 
   if (block.type === "video") {
     return (
-      <Band>
-        <figure key={index} className="detail-block detail-block--media">
-          <video src={block.src} autoPlay muted loop playsInline />
-          {block.caption && <figcaption>{block.caption}</figcaption>}
-        </figure>
-      </Band>
+      <figure key={index} className="detail-block detail-block--media">
+        <video src={block.src} autoPlay muted loop playsInline />
+        {block.caption && <figcaption>{block.caption}</figcaption>}
+      </figure>
     );
   }
 
   if (block.type === "youtube") {
     return (
-      <Band>
-        <figure key={index} className="detail-block detail-block--media">
-          <iframe
-            src={`https://www.youtube.com/embed/${block.src}`}
-            title={block.caption || "Video"}
-            allowFullScreen
-          />
-          {block.caption && <figcaption>{block.caption}</figcaption>}
-        </figure>
-      </Band>
+      <figure key={index} className="detail-block detail-block--media">
+        <iframe
+          src={`https://www.youtube.com/embed/${block.src}`}
+          title={block.caption || "Video"}
+          allowFullScreen
+        />
+        {block.caption && <figcaption>{block.caption}</figcaption>}
+      </figure>
     );
   }
 

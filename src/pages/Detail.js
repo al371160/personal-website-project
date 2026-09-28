@@ -30,8 +30,9 @@ export default function Detail({ onReady, onProgress }) {
     const container = pageRef.current;
     if (!container) { onProgress?.(100); onReady?.(); return; }
 
-    const imgs = [...container.querySelectorAll("img")];
-    const videos = [...container.querySelectorAll("video")];
+    const hero = container.querySelector(".detail-hero") || container;
+    const imgs = [...hero.querySelectorAll("img")];
+    const videos = [...hero.querySelectorAll("video")];
     const total = imgs.length + videos.length;
     if (total === 0) { onProgress?.(100); onReady?.(); return; }
 
@@ -72,42 +73,16 @@ export default function Detail({ onReady, onProgress }) {
   return (
     <main className="detail-page" ref={pageRef}>
 
-      <section className="detail-band detail-band--hero">
-        <div className="detail-band-inner">
-          <HeroMedia media={project.hero} title={project.title} />
-        </div>
+      <section className="detail-hero">
+        <HeroMedia media={project.hero} title={project.title} />
       </section>
 
-      <div className="detail-header">
+      <div className="detail-layout">
         <aside className="detail-sidebar">
           <h1>{project.title}</h1>
           {project.category && (
             <p className="detail-category">{project.category}</p>
           )}
-        </aside>
-
-        <section className="detail-header-main">
-          {intro && <p className="detail-intro">{intro}</p>}
-
-          <div className="detail-meta">
-            <div className="meta-box">
-              <h3>Role</h3>
-              <p>{project.meta.role}</p>
-            </div>
-            <div className="meta-box">
-              <h3>Collaborators</h3>
-              <p>{project.meta.collaborators}</p>
-            </div>
-            <div className="meta-box">
-              <h3>Duration</h3>
-              <p>{project.meta.duration}</p>
-            </div>
-            <div className="meta-box">
-              <h3>Tools</h3>
-              <p>{project.meta.tools}</p>
-            </div>
-          </div>
-
           {project.visitUrl && (
             <a
               className="detail-visit-btn"
@@ -119,21 +94,44 @@ export default function Detail({ onReady, onProgress }) {
               <span className="detail-visit-btn-icon" aria-hidden="true">↗</span>
             </a>
           )}
-        </section>
-      </div>
+        </aside>
 
-      {project.heroVideo && (
-        <section className="detail-band">
-          <div className="detail-band-inner">
-            <HeroMedia media={project.heroVideo} title={`${project.title} video`} />
+        <div className="detail-content">
+          <section className="detail-header-main">
+            {intro && <p className="detail-intro">{intro}</p>}
+
+            <div className="detail-meta">
+              <div className="meta-box">
+                <h3>Role</h3>
+                <p>{project.meta.role}</p>
+              </div>
+              <div className="meta-box">
+                <h3>Collaborators</h3>
+                <p>{project.meta.collaborators}</p>
+              </div>
+              <div className="meta-box">
+                <h3>Duration</h3>
+                <p>{project.meta.duration}</p>
+              </div>
+              <div className="meta-box">
+                <h3>Tools</h3>
+                <p>{project.meta.tools}</p>
+              </div>
+            </div>
+          </section>
+
+          {project.heroVideo && (
+            <figure className="detail-block detail-block--media">
+              <HeroMedia media={project.heroVideo} title={`${project.title} video`} />
+            </figure>
+          )}
+
+          <div className="detail-blocks">
+            {project.content.map((block, i) => (
+              <DetailContentBlock key={i} block={block} index={i} />
+            ))}
           </div>
-        </section>
-      )}
-
-      <div className="detail-blocks">
-        {project.content.map((block, i) => (
-          <DetailContentBlock key={i} block={block} index={i} />
-        ))}
+        </div>
       </div>
 
     </main>

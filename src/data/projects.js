@@ -10,7 +10,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "/heroes/provelis-hero.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.19_AM_vuuepl.png",
     },
     heroVideo: {
       type: "video",
@@ -237,7 +237,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "/heroes/aquara-hero.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1781073756/Screenshot_2026-06-09_at_11.41.06_PM_acnflh.png",
     },
     heroVideo: {
       type: "video",
@@ -311,7 +311,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "/heroes/omni-hero.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769220305/Untitled_Artwork_56_ppoklz.png",
     },
     meta: {
       role: "UI Lead",
@@ -391,7 +391,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "/heroes/orble-hero.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444772/Screenshot_2026-01-14_at_9.39.22_PM_qrxnda.png",
     },
     meta: {
       role: "Brand Designer / Developer",
@@ -497,7 +497,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "/heroes/per-hero.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
     },
     meta: {
       role: "Media / Business Operations / Project Manager",
@@ -639,7 +639,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "/heroes/yprize-hero.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450142/Y-Prize_2025-images-0_lke54o.jpg",
     },
     heroVideo: {
       type: "youtube",
@@ -718,7 +718,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "/heroes/pawfond-hero.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768451908/8oz_packagin_design_v2_ssbpjw.png",
     },
     heroVideo: {
       type: "video",
@@ -796,7 +796,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "/heroes/rumrush-hero.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768552482/Screenshot_2026-01-16_at_3.34.33_AM_evwmzc.png",
     },
     meta: {
       role: "Producer / Team Lead",
