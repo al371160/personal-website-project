@@ -1,6 +1,6 @@
 import GalleryCard from "../components/GalleryCard";
 import { projects } from "../data/projects";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LINKS = [
   { label: "GitHub", href: "https://github.com/al371160" },
@@ -9,8 +9,37 @@ const LINKS = [
   { label: "Email", href: "mailto:aliu10@seas.upenn.edu" },
 ];
 
+// The 900px breakpoint must match the .intro-col--main media query in App.css.
+const COLUMN_QUERIES = [
+  { query: "(max-width: 560px)", columns: 1 },
+  { query: "(max-width: 900px)", columns: 2 },
+];
+
+function getColumnCount() {
+  const match = COLUMN_QUERIES.find(({ query }) => window.matchMedia(query).matches);
+  return match ? match.columns : 3;
+}
+
+function useColumnCount() {
+  const [count, setCount] = useState(getColumnCount);
+
+  useEffect(() => {
+    const lists = COLUMN_QUERIES.map(({ query }) => window.matchMedia(query));
+    const update = () => setCount(getColumnCount());
+    lists.forEach((mql) => mql.addEventListener("change", update));
+    return () => lists.forEach((mql) => mql.removeEventListener("change", update));
+  }, []);
+
+  return count;
+}
+
 export default function Home({ onReady, onProgress }) {
   const pageRef = useRef(null);
+  const columnCount = useColumnCount();
+
+  // Round-robin so cards read left-to-right, then down, while each column stacks tightly.
+  const columns = Array.from({ length: columnCount }, () => []);
+  projects.forEach((project, i) => columns[i % columnCount].push({ project, i }));
 
   useEffect(() => {
     let cancelled = false;
@@ -71,15 +100,22 @@ export default function Home({ onReady, onProgress }) {
       </section>
 
       <section className="archive-section" id="gallery-section">
-        <div className="gallery">
-          {projects.map((project, i) => (
-            <GalleryCard
-              key={project.slug}
-              slug={project.slug}
-              title={project.title}
-              hero={project.thumbnail}
-              featured={i === 0}
-            />
+        <div
+          className="gallery"
+          style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
+        >
+          {columns.map((column, c) => (
+            <div className="gallery-column" key={c}>
+              {column.map(({ project, i }) => (
+                <GalleryCard
+                  key={project.slug}
+                  slug={project.slug}
+                  title={project.title}
+                  hero={project.thumbnail}
+                  featured={i === 0}
+                />
+              ))}
+            </div>
           ))}
         </div>
       </section>

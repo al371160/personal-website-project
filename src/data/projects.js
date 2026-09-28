@@ -1,5 +1,147 @@
 export const projects = [
   {
+    slug: "penn-electric-racing",
+    title: "Penn Electric Racing",
+    category: "Design / 3D",
+    description: "Design and operations for formula racing team",
+    visitUrl: "https://www.pennelectricracing.com/",
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1779599480/Untitled_design_euajtv.png",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
+    },
+    meta: {
+      role: "Media / Business Operations / Project Manager",
+      roleDescription: "Bridge design, media, and ops for PER — livery exploration, car renders, sponsor-facing posters, and tooling that keeps the business team aligned with engineering milestones.",
+      collaborators: "Operations Team",
+      duration: "2025 – Present",
+      tools: "Solidworks, Vercel, Blender, Maya, Adobe Suite, Procreate, Notion",
+    },
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social, and internal morale. I split time between livery iteration, car visualization, and business presentation assets.",
+      },
+      {
+        type: "text",
+        title: "Livery exploration",
+        body: "Livery directions are prototyped in Solidworks and Blender texture painting so the team can compare scale, contrast, and sponsor lockups before paint shop commitments.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
+            caption: "Solidworks livery prototype",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291728/download_2_kkzpq4.png",
+            caption: "Final revision — Blender texture paint",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.45.57_PM_rs34rx.png",
+            caption: "Livery iteration A",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.47.32_PM_gpil4p.png",
+            caption: "Livery iteration B",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
+            caption: "Early livery roughs board",
+          },
+        ],
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1772842240/rev_11_logo_test_v4_el956p.mp4",
+        caption: "REV11 logo animation — Rive",
+      },
+      {
+        type: "text",
+        title: "Car visualization",
+        body: "Full-car renders combine Solidworks CAD, Visualize, and Maya for lighting passes used in decks and Instagram.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442453/per_good_render_2_lnzuf6.jpg",
+            caption: "Studio render — three-quarter front",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_3_ptceqx.jpg",
+            caption: "Studio render — side elevation",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_5_ml3xcb.jpg",
+            caption: "Solidworks → Visualize → Maya pipeline",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_6_phw7ny.jpg",
+            caption: "Detail render — aero and sponsor panels",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Posters & business media",
+        body: "Poster and cover art support recruitment and sponsor meetings — often starting in 3D and finishing in Photoshop or Procreate for hand-tuned typography.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442451/PER_car_drifting_better_v2_ps_cvjatn.png",
+            caption: "Poster — Photoshop and Gemini assist",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/IMG_2018_2_guzdye.png",
+            caption: "Render-to-poster workflow — Maya and Procreate",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443294/cover_design_2_dt5pgo.png",
+            caption: "Business presentation cover",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/Rev_11_comic_better_lettering_t3y9nt.png",
+            caption: "Rally-style poster variant",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442716/Untitled_Artwork_1_bs0bnx.png",
+            caption: "Concept sketch — composition study",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442715/Untitled_-_December_11_2025_01.13.36_ybcmhj.jpg",
+            caption: "Poster rough sketches",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "provelis",
     title: "Provelis",
     category: "UI / Product",
@@ -197,6 +339,133 @@ export const projects = [
     ],
   }, */
   {
+    slug: "orble-tea",
+    title: "Orble Tea",
+    category: "Brand / Business",
+    description: "Comprehensive branding and business work",
+    visitUrl: "https://orble-tea.com/",
+    thumbnail: {
+      type: "video",
+      src: "https://orble-tea.com/media/next-gen-render-video.mp4",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444772/Screenshot_2026-01-14_at_9.39.22_PM_qrxnda.png",
+    },
+    meta: {
+      role: "Brand Designer / Developer",
+      roleDescription: "Shape Orble's visual identity, hardware storytelling, and marketing site — from CAD-backed renders to vinyl wraps and architectural viz for investor decks.",
+      collaborators: "Orble Tea Team",
+      duration: "2025 – Present",
+      tools: "Astro, Blender, Maya, Onshape, React",
+    },
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body: "Orble Tea is an automated boba concept spanning product design, brand, and go-to-market visuals. My work ties physical machine design to a coherent digital presence on orble-tea.com.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444772/Screenshot_2026-01-14_at_9.39.22_PM_qrxnda.png",
+        caption: "Marketing site and brand snapshot",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772842030/IMG_5522_2_1_gfa0m8.png",
+        caption: "Vinyl wrap for the 'coming soon' launch box",
+      },
+      {
+        type: "text",
+        title: "Hardware & beta unit",
+        body: "Beta vending concepts combine Onshape CAD, Substance texturing, and Blender lighting so stakeholders can read materials and footprint before fabrication.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773974232/Untitled_Artwork_64_yrjse5.png",
+            caption: "Beta vending machine — industrial design pass",
+          },
+          {
+            type: "image",
+            src: "https://orble-tea.com/.netlify/images?url=_astro%2Ffront-left.D0kYN4sG.jpg&w=1280&h=1280&dpl=69483ebca7d51e0008be244d",
+            caption: "Beta unit render — card reader and boba materials",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768445467/textured_reexport_v2_pattern_BaseColor_qdm7px.png",
+            caption: "Substance Painter surface maps",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768446936/orble_next_gen_render_1_720_zykg6e.png",
+            caption: "Next-gen machine — Onshape CAD with custom materials",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Architectural visualization",
+        body: "Location renders (airport, apartment, campus) place the machine in real contexts for pitch decks and partner conversations.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444581/airport_render_3_wmsjre.jpg",
+            caption: "Airport / station placement study",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444580/airport_render_png_sr8ls4.jpg",
+            caption: "Station visualization — final lighting",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768554175/Screenshot_2026-01-16_at_4.02.36_AM_cgw82a.png",
+            caption: "Wireframe overlay for layout review",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768446826/archviz_apartment_1_vaftas.jpg",
+            caption: "Apartment lobby context",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768554330/archviz_1_with_people_studying_1_lkmnqf.jpg",
+            caption: "Academic building — foot traffic study",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "saturn",
+    title: "Saturn",
+    category: "Long term indie project",
+    visitUrl: "https://al371160.itch.io/saturn",
+    thumbnail: {
+      type: "video",
+      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1790636205/Screen_Recording_2025-08-05_at_8.05.04_AM_w94srq.mov",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790636355/Screenshot_2026-05-08_at_11.10.00_PM_mxxr1n.png",
+    },
+    meta: {
+      role: "Solo Developer",
+      collaborators: "Solo Developer",
+      duration: "Sep 2025 - Present",
+      tools: "Adobe Substance 3D, Blender, Maya, Procreate, Unity, Cursor",
+    },
+    content: [],
+  },
+  /* {
     slug: "ragebaiter",
     title: "Ragebaiter",
     category: "Product / Experiment",
@@ -224,7 +493,7 @@ export const projects = [
         body: "Coming soon!",
       },
     ],
-  },
+  }, */
   {
     slug: "aquara",
     title: "Aquara",
@@ -376,254 +645,6 @@ export const projects = [
         type: "image",
         src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1769222275/IMG_5214_d3mw7p.png",
         caption: "Submission snapshot — https://devpost.com/software/omni-hzxqra",
-      },
-    ],
-  },
-  {
-    slug: "orble-tea",
-    title: "Orble Tea",
-    category: "Brand / Business",
-    description: "Comprehensive branding and business work",
-    visitUrl: "https://orble-tea.com/",
-    thumbnail: {
-      type: "video",
-      src: "https://orble-tea.com/media/next-gen-render-video.mp4",
-    },
-    hero: {
-      type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444772/Screenshot_2026-01-14_at_9.39.22_PM_qrxnda.png",
-    },
-    meta: {
-      role: "Brand Designer / Developer",
-      roleDescription: "Shape Orble's visual identity, hardware storytelling, and marketing site — from CAD-backed renders to vinyl wraps and architectural viz for investor decks.",
-      collaborators: "Orble Tea Team",
-      duration: "2025 – Present",
-      tools: "Astro, Blender, Maya, Onshape, React",
-    },
-    content: [
-      {
-        type: "text",
-        title: "Overview",
-        body: "Orble Tea is an automated boba concept spanning product design, brand, and go-to-market visuals. My work ties physical machine design to a coherent digital presence on orble-tea.com.",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444772/Screenshot_2026-01-14_at_9.39.22_PM_qrxnda.png",
-        caption: "Marketing site and brand snapshot",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772842030/IMG_5522_2_1_gfa0m8.png",
-        caption: "Vinyl wrap for the 'coming soon' launch box",
-      },
-      {
-        type: "text",
-        title: "Hardware & beta unit",
-        body: "Beta vending concepts combine Onshape CAD, Substance texturing, and Blender lighting so stakeholders can read materials and footprint before fabrication.",
-      },
-      {
-        type: "gallery",
-        columns: 2,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773974232/Untitled_Artwork_64_yrjse5.png",
-            caption: "Beta vending machine — industrial design pass",
-          },
-          {
-            type: "image",
-            src: "https://orble-tea.com/.netlify/images?url=_astro%2Ffront-left.D0kYN4sG.jpg&w=1280&h=1280&dpl=69483ebca7d51e0008be244d",
-            caption: "Beta unit render — card reader and boba materials",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768445467/textured_reexport_v2_pattern_BaseColor_qdm7px.png",
-            caption: "Substance Painter surface maps",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768446936/orble_next_gen_render_1_720_zykg6e.png",
-            caption: "Next-gen machine — Onshape CAD with custom materials",
-          },
-        ],
-      },
-      {
-        type: "text",
-        title: "Architectural visualization",
-        body: "Location renders (airport, apartment, campus) place the machine in real contexts for pitch decks and partner conversations.",
-      },
-      {
-        type: "gallery",
-        columns: 2,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444581/airport_render_3_wmsjre.jpg",
-            caption: "Airport / station placement study",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768444580/airport_render_png_sr8ls4.jpg",
-            caption: "Station visualization — final lighting",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768554175/Screenshot_2026-01-16_at_4.02.36_AM_cgw82a.png",
-            caption: "Wireframe overlay for layout review",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768446826/archviz_apartment_1_vaftas.jpg",
-            caption: "Apartment lobby context",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768554330/archviz_1_with_people_studying_1_lkmnqf.jpg",
-            caption: "Academic building — foot traffic study",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "penn-electric-racing",
-    title: "Penn Electric Racing",
-    category: "Design / 3D",
-    description: "Design and operations for formula racing team",
-    visitUrl: "https://www.pennelectricracing.com/",
-    thumbnail: {
-      type: "photo",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1779599480/Untitled_design_euajtv.png",
-    },
-    hero: {
-      type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
-    },
-    meta: {
-      role: "Media / Business Operations / Project Manager",
-      roleDescription: "Bridge design, media, and ops for PER — livery exploration, car renders, sponsor-facing posters, and tooling that keeps the business team aligned with engineering milestones.",
-      collaborators: "Operations Team",
-      duration: "2025 – Present",
-      tools: "Solidworks, Vercel, Blender, Maya, Adobe Suite, Procreate, Notion",
-    },
-    content: [
-      {
-        type: "text",
-        title: "Overview",
-        body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social, and internal morale. I split time between livery iteration, car visualization, and business presentation assets.",
-      },
-      {
-        type: "text",
-        title: "Livery exploration",
-        body: "Livery directions are prototyped in Solidworks and Blender texture painting so the team can compare scale, contrast, and sponsor lockups before paint shop commitments.",
-      },
-      {
-        type: "gallery",
-        columns: 2,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
-            caption: "Solidworks livery prototype",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291728/download_2_kkzpq4.png",
-            caption: "Final revision — Blender texture paint",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.45.57_PM_rs34rx.png",
-            caption: "Livery iteration A",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.47.32_PM_gpil4p.png",
-            caption: "Livery iteration B",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
-            caption: "Early livery roughs board",
-          },
-        ],
-      },
-      {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1772842240/rev_11_logo_test_v4_el956p.mp4",
-        caption: "REV11 logo animation — Rive",
-      },
-      {
-        type: "text",
-        title: "Car visualization",
-        body: "Full-car renders combine Solidworks CAD, Visualize, and Maya for lighting passes used in decks and Instagram.",
-      },
-      {
-        type: "gallery",
-        columns: 2,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442453/per_good_render_2_lnzuf6.jpg",
-            caption: "Studio render — three-quarter front",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_3_ptceqx.jpg",
-            caption: "Studio render — side elevation",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_5_ml3xcb.jpg",
-            caption: "Solidworks → Visualize → Maya pipeline",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_6_phw7ny.jpg",
-            caption: "Detail render — aero and sponsor panels",
-          },
-        ],
-      },
-      {
-        type: "text",
-        title: "Posters & business media",
-        body: "Poster and cover art support recruitment and sponsor meetings — often starting in 3D and finishing in Photoshop or Procreate for hand-tuned typography.",
-      },
-      {
-        type: "gallery",
-        columns: 2,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442451/PER_car_drifting_better_v2_ps_cvjatn.png",
-            caption: "Poster — Photoshop and Gemini assist",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/IMG_2018_2_guzdye.png",
-            caption: "Render-to-poster workflow — Maya and Procreate",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443294/cover_design_2_dt5pgo.png",
-            caption: "Business presentation cover",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/Rev_11_comic_better_lettering_t3y9nt.png",
-            caption: "Rally-style poster variant",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442716/Untitled_Artwork_1_bs0bnx.png",
-            caption: "Concept sketch — composition study",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442715/Untitled_-_December_11_2025_01.13.36_ybcmhj.jpg",
-            caption: "Poster rough sketches",
-          },
-        ],
       },
     ],
   },

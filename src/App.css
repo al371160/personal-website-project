@@ -340,16 +340,22 @@
   cursor: grabbing;
 }
 
+/* Shares the gallery's 3-column grid so the links line up with column 3 */
 .intro-col--main {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 12px;
   align-items: start;
-  justify-content: space-between;
-  gap: clamp(24px, 3vw, 48px);
   width: 100%;
   min-width: 0;
 }
 
+.intro-copy {
+  grid-column: 1 / span 2;
+}
+
 .intro-links {
+  grid-column: 3;
   display: flex;
   flex-direction: column;
 }
@@ -415,17 +421,26 @@
   padding: clamp(10px, 1.6vw, 18px) 0 clamp(72px, 8vw, 110px);
 }
 
+/* Column count is set inline by Home.js */
 .gallery {
-  columns: 3;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 12px;
+  align-items: start;
+}
+
+.gallery-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
 }
 
 .gallery-card {
   display: block;
-  break-inside: avoid;
+  min-width: 0;
   text-decoration: none;
   color: #ffffff;
-  margin-bottom: 20px;
 }
 
 .gallery-media {
@@ -470,18 +485,14 @@
 /* ======================= */
 @media (max-width: 900px) {
   .intro-col--main {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 24px;
   }
-  .gallery {
-    columns: 2;
+  .intro-copy {
+    grid-column: 1 / -1;
   }
-}
-
-@media (max-width: 560px) {
-  .gallery {
-    columns: 1;
+  .intro-links {
+    grid-column: 1;
   }
 }
 
