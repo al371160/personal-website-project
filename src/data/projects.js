@@ -11,7 +11,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790653516/d962af16-0a03-459f-abe1-0a1cc4d5ff76.png",
     },
     meta: {
       role: "Media / Business Operations / Project Manager",
@@ -26,6 +26,37 @@ export const projects = [
         title: "Overview",
         body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social, and internal morale. I split time between livery iteration, car visualization, and business presentation assets.",
       },
+      {
+        type: "text",
+        title: "GM Presentation",
+        body: "Created presentation that utilized limited space and optimized design and clarity of content.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790651510/e30507f3-6321-4ca8-9b2c-4bcd1068d2eb.png",
+        caption: "Process breakdown",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790649636/Penn_Electric_Racing_070_-_2026_Excellence_in_Technical_Innovation_Award_Submission-3_uinwhv.png",
+        caption: "Finalized slides. The presentation won 1st place in the Excellence in Technical Innovation category, earning ~$8,000 in prize money for free registration for the team.",
+      },
+      {
+        type: "text",
+        title: "Business Presentation",
+        body: "Created stylized renders to visually demonstrate presentation topics.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443294/cover_design_2_dt5pgo.png",
+        caption: "Business presentation cover, made using Photoshop and Maya",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1779599483/0000-0630_PER_biz_prez_ctejsr.mov",
+        caption: "Video breaking down different part categories",
+      },
+
       {
         type: "text",
         title: "Livery exploration",
@@ -105,8 +136,13 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790648869/design-1778317614466_qvzjvu.png",
+            caption: "Competition uniforms design",
+          },
           {
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442451/PER_car_drifting_better_v2_ps_cvjatn.png",
@@ -116,11 +152,6 @@ export const projects = [
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442913/IMG_2018_2_guzdye.png",
             caption: "Render-to-poster workflow — Maya and Procreate",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443294/cover_design_2_dt5pgo.png",
-            caption: "Business presentation cover",
           },
           {
             type: "image",
@@ -138,6 +169,11 @@ export const projects = [
             caption: "Poster rough sketches",
           },
         ],
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790652314/000383660022_l9sne0.jpg",
+        caption: "Penn Electric Racing was one of the most stressful, challenging and exhilarating experiences of my freshman year. I learned so much and I'll do it again without hesitation, but I will also keep the life lessons in my heart.",
       },
     ],
   },
