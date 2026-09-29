@@ -153,7 +153,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790646880/provelis_hero_x8pwce.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790647084/ddf97bda-00dd-4f01-9c0b-430bd12d2585.png",
     },
     heroVideo: {
       type: "video",
