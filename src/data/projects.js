@@ -148,11 +148,12 @@ export const projects = [
     description: "Complete UI overhaul and frontend–backend integration for a recruiting platform",
     thumbnail: {
       type: "video",
+      //src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790642179/d7790251-8429-4deb-af56-9ff3ca85aa63.png",
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453857/Screen_Recording_2026-07-19_at_5.35.46_AM_exov4y.mov",
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.19_AM_vuuepl.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790646880/provelis_hero_x8pwce.png",
     },
     heroVideo: {
       type: "video",
