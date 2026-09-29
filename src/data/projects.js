@@ -64,22 +64,17 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
-            caption: "Solidworks livery prototype",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291728/download_2_kkzpq4.png",
-            caption: "Final revision — Blender texture paint",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
+            caption: "Early livery roughs board",
           },
           {
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.45.57_PM_rs34rx.png",
-            caption: "Livery iteration A",
+            caption: "Livery iteration A. These 3D mockups are done with texture painting in Blender, with retopologized cad models and low-poly versions of the car modeled by myself.",
           },
           {
             type: "image",
@@ -88,15 +83,25 @@ export const projects = [
           },
           {
             type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
-            caption: "Early livery roughs board",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291728/download_2_kkzpq4.png",
+            caption: "Final revision — Blender texture paint",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
+            caption: "Solidworks livery prototype",
+          },
+                    {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790653122/DSC04492_aoifds.jpg",
+            caption: "Finalized livery design. Image credit: Arjun Sharma",
           },
         ],
       },
       {
         type: "video",
         src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1772842240/rev_11_logo_test_v4_el956p.mp4",
-        caption: "REV11 logo animation — Rive",
+        caption: "REV11 logo animation — done in Rive",
       },
       {
         type: "text",

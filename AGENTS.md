@@ -36,7 +36,8 @@ Tile the mosaic via `MOSAIC_PATTERN` in `src/data/playground.js` (every span gro
 
 All project content lives in **`src/data/projects.js`** as a plain JS array. Each project has:
 - `slug` — URL identifier
-- `visitUrl?` — external link; shows a “Visit project” button in the detail sidebar
+- `links?` — `[{url, label?}]`; each renders a button in the detail sidebar under the title (label defaults to “Visit project”)
+- `visitUrl?` — shorthand for a single `links` entry with the default label (ignored when `links` is set)
 - `thumbnail` — media object (`{type, src}`) shown on the Home gallery card
 - `hero` — media object shown full-width at the top of the Detail page
 - `meta` — `{role, roleDescription?, collaborators, duration, tools}`

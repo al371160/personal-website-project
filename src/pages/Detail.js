@@ -69,6 +69,7 @@ export default function Detail({ onReady, onProgress }) {
   }
 
   const intro = project.meta.roleDescription || project.description;
+  const links = project.links || (project.visitUrl ? [{ url: project.visitUrl }] : []);
 
   return (
     <main className="detail-page" ref={pageRef}>
@@ -83,16 +84,21 @@ export default function Detail({ onReady, onProgress }) {
           {project.category && (
             <p className="detail-category">{project.category}</p>
           )}
-          {project.visitUrl && (
-            <a
-              className="detail-visit-btn"
-              href={project.visitUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Visit project
-              <span className="detail-visit-btn-icon" aria-hidden="true">↗</span>
-            </a>
+          {links.length > 0 && (
+            <div className="detail-links">
+              {links.map((link) => (
+                <a
+                  key={link.url}
+                  className="detail-visit-btn"
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {link.label || "Visit project"}
+                  <span className="detail-visit-btn-icon" aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
           )}
         </aside>
 

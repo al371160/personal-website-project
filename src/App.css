@@ -1008,12 +1008,18 @@
   word-break: break-word;
 }
 
+.detail-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+}
+
 .detail-visit-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: 24px;
   padding: 14px 20px;
   border-radius: 0;
   background: #1a1a1a;
