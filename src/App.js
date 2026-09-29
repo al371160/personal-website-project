@@ -23,26 +23,28 @@ function PageLoader({ isLoading, progress }) {
 
 function AppContent() {
   const location = useLocation();
-  const [readyKeys, setReadyKeys] = useState(() => new Set());
-  const [progressByKey, setProgressByKey] = useState({});
+  // Readiness is tracked per visit, not per history entry: going back to a
+  // previously-ready entry remounts the page, so it has to load again.
+  const [visit, setVisit] = useState({ key: location.key, ready: false, progress: 0 });
+  if (visit.key !== location.key) {
+    setVisit({ key: location.key, ready: false, progress: 0 });
+  }
 
-  const ready = readyKeys.has(location.key);
-  const progress = progressByKey[location.key] ?? 0;
+  const current = visit.key === location.key;
+  const ready = current && visit.ready;
+  const progress = current ? visit.progress : 0;
 
-  // Records this route as ready once its page calls onReady.
+  // Callbacks are bound to the visit's key so a stale page can't mark a newer visit ready.
   const handleReady = useCallback(() => {
-    setReadyKeys((prev) => {
-      if (prev.has(location.key)) return prev;
-      const next = new Set(prev);
-      next.add(location.key);
-      return next;
-    });
+    setVisit((prev) =>
+      prev.key !== location.key || prev.ready ? prev : { ...prev, ready: true }
+    );
   }, [location.key]);
 
   const handleProgress = useCallback(
     (p) => {
-      setProgressByKey((prev) =>
-        prev[location.key] === p ? prev : { ...prev, [location.key]: p }
+      setVisit((prev) =>
+        prev.key !== location.key || prev.progress === p ? prev : { ...prev, progress: p }
       );
     },
     [location.key]

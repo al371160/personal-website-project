@@ -110,7 +110,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -220,7 +220,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -241,7 +241,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -267,7 +267,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -293,7 +293,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -314,7 +314,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -424,7 +424,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -455,7 +455,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -664,7 +664,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "video",
@@ -728,7 +728,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -812,7 +812,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "image",
@@ -891,7 +891,7 @@ export const projects = [
       },
       {
         type: "gallery",
-        columns: 2,
+        columns: 1,
         items: [
           {
             type: "video",

@@ -53,7 +53,7 @@ All assets are hosted on Cloudinary (`dak0zi45d`).
 `App.js` wraps routes in a `PageLoader` overlay + `AppContent` component. Readiness is derived per-navigation from `location.key`:
 1. A route starts not-ready → the loader overlay is visible (`.app-loading` = opacity 0)
 2. Each page calls `onReady()` when its content is ready (Home immediately; Detail waits for the hero; Artwork/Playground wait for the Notion fetch + cover preloads)
-3. `onReady()` records the current `location.key` as ready → loader hides and the app fades in (`.app-ready` = opacity 1)
+3. `onReady()` marks the current visit as ready → loader hides and the app fades in (`.app-ready` = opacity 1). Readiness resets on every `location.key` change, including back/forward to an entry that was ready before, since the page remounts and reloads its media.
 
 ### Styling
 

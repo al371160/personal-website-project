@@ -1,10 +1,17 @@
-function renderMedia(item) {
+import { optimizeImage } from "../utils/cloudinary";
+
+// Content column is ~1000px wide; 2x covers retina. Multi-column galleries
+// collapse to one column on phones, so they still need ~1200px.
+const FULL_WIDTH = 2000;
+const GALLERY_TILE_WIDTH = 1200;
+
+function renderMedia(item, width) {
   if (item.type === "video") {
     return (
       <video src={item.src} autoPlay muted loop playsInline />
     );
   }
-  return <img src={item.src} alt={item.caption || ""} />;
+  return <img src={optimizeImage(item.src, width)} alt={item.caption || ""} />;
 }
 
 function TextBody({ body }) {
@@ -32,6 +39,7 @@ export default function DetailContentBlock({ block, index }) {
   }
 
   if (block.type === "gallery") {
+    const width = (block.columns || 1) > 1 ? GALLERY_TILE_WIDTH : FULL_WIDTH;
     return (
       <div
         key={index}
@@ -40,7 +48,7 @@ export default function DetailContentBlock({ block, index }) {
       >
         {block.items.map((item, i) => (
           <figure key={i} className="detail-gallery-item">
-            {renderMedia(item)}
+            {renderMedia(item, width)}
             {item.caption && <figcaption>{item.caption}</figcaption>}
           </figure>
         ))}
@@ -51,7 +59,7 @@ export default function DetailContentBlock({ block, index }) {
   if (block.type === "image" || block.type === "photo") {
     return (
       <figure key={index} className="detail-block detail-block--media">
-        <img src={block.src} alt={block.caption || ""} />
+        <img src={optimizeImage(block.src, FULL_WIDTH)} alt={block.caption || ""} />
         {block.caption && <figcaption>{block.caption}</figcaption>}
       </figure>
     );

@@ -59,9 +59,13 @@ export default function Home({ onReady, onProgress }) {
       if (completed >= total) onReady?.();
     };
 
+    // Wait for decode too, so images are paintable when the loader lifts.
+    const settle = (img) =>
+      (img.decode ? img.decode() : Promise.resolve()).catch(() => {}).then(done);
+
     imgs.forEach(img => {
-      if (img.complete) { done(); return; }
-      img.addEventListener("load",  done, { once: true });
+      if (img.complete) { settle(img); return; }
+      img.addEventListener("load",  () => settle(img), { once: true });
       img.addEventListener("error", done, { once: true });
     });
     videos.forEach(v => {
