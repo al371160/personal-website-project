@@ -99,6 +99,22 @@ export const projects = [
       },
       {
         type: "text",
+        title: "Next Steps",
+        body: "The current system is time consuming and stressful to operate. With the appearance of new technology that connects CAD with other types of rendering and simulation software, I'm currently working on modular, efficient software that allows different parts of the team to access certain parts of a vehicle's information without overriding anything.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790822506/3c1531cc-9fc5-4e37-8579-1ab4e699ad3c.png",
+        caption: "The proposed software stack. Currently building using Cursor and GrokBot.",
+      },
+      {
+        type: "callout",
+        icon: "notebook-pen",
+        title: "Final Thoughts",
+        body: "In a new era of photorealistic graphics, as a cutting-edge competition racing team, I feel like I've taken us a step forward. In the coming year, I will work closely with the vehicle dynamics team and the driverless team to improve my system. Although the technological hurdle is significant, I believe that with the time saved transferring between different file systems and the potential of agents to automate the maintenance of vehicle systems as a whole, this can be more than a fancy pipeline for 3D renderings. It can be a way to speed up all kinds of testing and design work.",
+      },
+      {
+        type: "text",
         title: "GM Presentation",
         body: "Created presentation that utilized limited space and optimized design and clarity of content.",
       },
