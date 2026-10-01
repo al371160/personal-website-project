@@ -43,16 +43,24 @@ All project content lives in **`src/data/projects.js`** as a plain JS array. Eac
 - `meta` — `{role, roleDescription?, collaborators, duration, tools}`
 - `content` — array of content blocks rendered sequentially on the Detail page:
   - Media: `{type: "image"|"video"|"photo", src, caption?}` — image/video with optional caption below
-  - Text: `{type: "text", title?, body}` — sans-serif prose section (distinct from captions); `body` is a string or paragraph array
-  - Gallery: `{type: "gallery", columns?: 1|2|3, items: [{type, src, caption?}]}` — grid of media with optional per-item captions
+  - Text: `{type: "text", title?, body}` — sans-serif prose section (distinct from captions); `body` is a string or paragraph array, optional for a title-only heading
+  - Gallery: `{type: "gallery", columns?: 1|2|3, items: [{type, src, caption?}]}` — grid of media with optional per-item captions (defaults to 1 column; multi-column collapses to 1 at ≤800px)
+  - Callout: `{type: "callout", icon?, title?, body}` — Lucide icon (kebab-case name, e.g. `"hammer"`, loaded on demand) beside a title and text on a slightly lighter box; for several cards side by side use `{type: "callout", columns?: 1|2|3, items: [{icon?, title?, body}]}` (defaults to 1 column; collapses to 1 at ≤800px)
 
-All assets are hosted on Cloudinary (`dak0zi45d`).
+The project intro (`meta.roleDescription`, falling back to `description`) is folded into the `Overview` text block as its first paragraph; without an Overview block it renders under the details grid.
+
+All assets are hosted on Cloudinary (`dak0zi45d`). `src/utils/cloudinary.js` rewrites URLs at render time:
+- `optimizeImage` — `c_limit,w_…/f_auto/q_auto` on every image except hero images.
+- `optimizeVideo` — `c_limit,w_…/q_auto/vc_h264` MP4 (H.264 output also tone-maps HDR sources to SDR); home cards add `du_8` to preview only the first 8s.
+- `videoPoster` — first frame (`so_0`) used as the `<video>` poster.
+
+Videos render through `src/components/VideoPlayer.js` and always start paused: on project pages with a play/pause button (`preload="none"`), on home cards playing only while hovered. New video URLs are transcoded on first request (Cloudinary returns 423 until ready), so request them once after adding a video.
 
 ### Loading System
 
 `App.js` wraps routes in a `PageLoader` overlay + `AppContent` component. Readiness is derived per-navigation from `location.key`:
 1. A route starts not-ready → the loader overlay is visible (`.app-loading` = opacity 0)
-2. Each page calls `onReady()` when its content is ready (Home immediately; Detail waits for the hero; Artwork/Playground wait for the Notion fetch + cover preloads)
+2. Each page calls `onReady()` when its content is ready (Home waits for every card image/video poster; Detail waits for the hero; both via `src/utils/waitForMedia.js`; Artwork/Playground wait for the Notion fetch + cover preloads)
 3. `onReady()` marks the current visit as ready → loader hides and the app fades in (`.app-ready` = opacity 1). Readiness resets on every `location.key` change, including back/forward to an entry that was ready before, since the page remounts and reloads its media.
 
 ### Styling

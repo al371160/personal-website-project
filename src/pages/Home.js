@@ -1,6 +1,7 @@
 import GalleryCard from "../components/GalleryCard";
 import { projects } from "../data/projects";
 import { useEffect, useRef, useState } from "react";
+import { waitForMedia } from "../utils/waitForMedia";
 
 const LINKS = [
   { label: "GitHub", href: "https://github.com/al371160" },
@@ -46,33 +47,8 @@ export default function Home({ onReady, onProgress }) {
     const container = pageRef.current;
     if (!container) { onProgress?.(100); onReady?.(); return; }
 
-    const imgs   = [...container.querySelectorAll("img")];
-    const videos = [...container.querySelectorAll("video")];
-    const total  = imgs.length + videos.length;
-    if (total === 0) { onProgress?.(100); onReady?.(); return; }
-
-    let completed = 0;
-    const done = () => {
-      if (cancelled) return;
-      completed++;
-      onProgress?.(Math.round((completed / total) * 100));
-      if (completed >= total) onReady?.();
-    };
-
-    // Wait for decode too, so images are paintable when the loader lifts.
-    const settle = (img) =>
-      (img.decode ? img.decode() : Promise.resolve()).catch(() => {}).then(done);
-
-    imgs.forEach(img => {
-      if (img.complete) { settle(img); return; }
-      img.addEventListener("load",  () => settle(img), { once: true });
-      img.addEventListener("error", done, { once: true });
-    });
-    videos.forEach(v => {
-      if (v.readyState >= 2) { done(); return; }
-      v.addEventListener("loadeddata", done, { once: true });
-      v.addEventListener("error",      done, { once: true });
-    });
+    waitForMedia(container, (p) => { if (!cancelled) onProgress?.(p); })
+      .then(() => { if (!cancelled) onReady?.(); });
 
     const timeout = setTimeout(() => {
       if (!cancelled) { onProgress?.(100); onReady?.(); }

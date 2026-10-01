@@ -1,11 +1,15 @@
 import { useParams } from "react-router-dom";
 import { projects } from "../data/projects";
 import DetailContentBlock from "../components/DetailContentBlock";
+import VideoPlayer from "../components/VideoPlayer";
 import { useEffect, useRef } from "react";
+import { waitForMedia } from "../utils/waitForMedia";
+
+const VIDEO_WIDTH = 2000;
 
 function HeroMedia({ media, title }) {
   if (media.type === "video") {
-    return <video src={media.src} autoPlay muted loop playsInline />;
+    return <VideoPlayer src={media.src} width={VIDEO_WIDTH} title={title} />;
   }
   if (media.type === "youtube") {
     return (
@@ -17,6 +21,24 @@ function HeroMedia({ media, title }) {
     );
   }
   return <img src={media.src} alt={title} />;
+}
+
+function toParagraphs(body) {
+  return Array.isArray(body)
+    ? body
+    : String(body ?? "").split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+}
+
+// Folds the intro into the Overview text block as its first paragraph when there is one.
+function mergeIntoOverview(content, intro) {
+  const index = content.findIndex(
+    (block) => block.type === "text" && block.title?.trim().toLowerCase() === "overview"
+  );
+  if (!intro || index === -1) return { content, merged: false };
+
+  const merged = [...content];
+  merged[index] = { ...content[index], body: [intro, ...toParagraphs(content[index].body)] };
+  return { content: merged, merged: true };
 }
 
 export default function Detail({ onReady, onProgress }) {
@@ -31,30 +53,8 @@ export default function Detail({ onReady, onProgress }) {
     if (!container) { onProgress?.(100); onReady?.(); return; }
 
     const hero = container.querySelector(".detail-hero") || container;
-    const imgs = [...hero.querySelectorAll("img")];
-    const videos = [...hero.querySelectorAll("video")];
-    const total = imgs.length + videos.length;
-    if (total === 0) { onProgress?.(100); onReady?.(); return; }
-
-    let completed = 0;
-    const done = () => {
-      if (cancelled) return;
-      completed++;
-      onProgress?.(Math.round((completed / total) * 100));
-      if (completed >= total) onReady?.();
-    };
-
-    imgs.forEach(img => {
-      if (img.complete) { done(); return; }
-      img.addEventListener("load", done, { once: true });
-      img.addEventListener("error", done, { once: true });
-    });
-
-    videos.forEach(v => {
-      if (v.readyState >= 2) { done(); return; }
-      v.addEventListener("loadeddata", done, { once: true });
-      v.addEventListener("error", done, { once: true });
-    });
+    waitForMedia(hero, (p) => { if (!cancelled) onProgress?.(p); })
+      .then(() => { if (!cancelled) onReady?.(); });
 
     const timeout = setTimeout(() => {
       if (!cancelled) { onProgress?.(100); onReady?.(); }
@@ -69,6 +69,7 @@ export default function Detail({ onReady, onProgress }) {
   }
 
   const intro = project.meta.roleDescription || project.description;
+  const { content, merged: introInOverview } = mergeIntoOverview(project.content, intro);
   const links = project.links || (project.visitUrl ? [{ url: project.visitUrl }] : []);
 
   return (
@@ -81,9 +82,6 @@ export default function Detail({ onReady, onProgress }) {
       <div className="detail-layout">
         <aside className="detail-sidebar">
           <h1>{project.title}</h1>
-          {project.category && (
-            <p className="detail-category">{project.category}</p>
-          )}
           {links.length > 0 && (
             <div className="detail-links">
               {links.map((link) => (
@@ -104,8 +102,6 @@ export default function Detail({ onReady, onProgress }) {
 
         <div className="detail-content">
           <section className="detail-header-main">
-            {intro && <p className="detail-intro">{intro}</p>}
-
             <div className="detail-meta">
               <div className="meta-box">
                 <h3>Role</h3>
@@ -124,6 +120,8 @@ export default function Detail({ onReady, onProgress }) {
                 <p>{project.meta.tools}</p>
               </div>
             </div>
+
+            {intro && !introInOverview && <p className="detail-intro">{intro}</p>}
           </section>
 
           {project.heroVideo && (
@@ -133,7 +131,7 @@ export default function Detail({ onReady, onProgress }) {
           )}
 
           <div className="detail-blocks">
-            {project.content.map((block, i) => (
+            {content.map((block, i) => (
               <DetailContentBlock key={i} block={block} index={i} />
             ))}
           </div>

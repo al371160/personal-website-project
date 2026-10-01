@@ -1,15 +1,20 @@
+import { lazy, Suspense } from "react";
 import { optimizeImage } from "../utils/cloudinary";
+import VideoPlayer from "./VideoPlayer";
 
 // Content column is ~1000px wide; 2x covers retina. Multi-column galleries
 // collapse to one column on phones, so they still need ~1200px.
 const FULL_WIDTH = 2000;
 const GALLERY_TILE_WIDTH = 1200;
 
+// Lucide's name lookup table is large, so only pages with a callout download it.
+const DynamicIcon = lazy(() =>
+  import("lucide-react/dynamic").then((m) => ({ default: m.DynamicIcon }))
+);
+
 function renderMedia(item, width) {
   if (item.type === "video") {
-    return (
-      <video src={item.src} autoPlay muted loop playsInline />
-    );
+    return <VideoPlayer src={item.src} width={width} title={item.caption} />;
   }
   return <img src={optimizeImage(item.src, width)} alt={item.caption || ""} />;
 }
@@ -31,10 +36,40 @@ function TextBody({ body }) {
 export default function DetailContentBlock({ block, index }) {
   if (block.type === "text") {
     return (
-      <section key={index} className="detail-text-block">
+      <section
+        key={index}
+        className={`detail-text-block${block.body ? "" : " detail-text-block--heading"}`}
+      >
         {block.title && <h2 className="detail-text-title">{block.title}</h2>}
-        <TextBody body={block.body} />
+        {block.body && <TextBody body={block.body} />}
       </section>
+    );
+  }
+
+  if (block.type === "callout") {
+    const items = block.items || [block];
+    return (
+      <div
+        key={index}
+        className="detail-callouts"
+        data-columns={block.columns || undefined}
+      >
+        {items.map((item, i) => (
+          <aside key={i} className="detail-callout">
+            {item.icon && (
+              <span className="detail-callout-icon" aria-hidden="true">
+                <Suspense fallback={null}>
+                  <DynamicIcon name={item.icon} size={28} strokeWidth={1.75} />
+                </Suspense>
+              </span>
+            )}
+            <div className="detail-callout-text">
+              {item.title && <h3 className="detail-callout-title">{item.title}</h3>}
+              {item.body && <TextBody body={item.body} />}
+            </div>
+          </aside>
+        ))}
+      </div>
     );
   }
 
@@ -68,7 +103,7 @@ export default function DetailContentBlock({ block, index }) {
   if (block.type === "video") {
     return (
       <figure key={index} className="detail-block detail-block--media">
-        <video src={block.src} autoPlay muted loop playsInline />
+        <VideoPlayer src={block.src} width={FULL_WIDTH} title={block.caption} />
         {block.caption && <figcaption>{block.caption}</figcaption>}
       </figure>
     );

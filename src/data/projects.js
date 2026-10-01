@@ -4,7 +4,10 @@ export const projects = [
     title: "Penn Electric Racing",
     category: "Design / 3D",
     description: "Design and operations for formula racing team",
-    visitUrl: "https://www.pennelectricracing.com/",
+    links: [
+      { url: "https://www.pennelectricracing.com/" },
+      { url: "https://www.youtube.com/watch?v=Tpl9AfQJKxo", label: "Watch Unveiling Video" },
+    ],
     thumbnail: {
       type: "photo",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1779599480/Untitled_design_euajtv.png",
@@ -25,6 +28,74 @@ export const projects = [
         type: "text",
         title: "Overview",
         body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social, and internal morale. I split time between livery iteration, car visualization, and business presentation assets.",
+      },
+      {
+        type: "callout",
+        icon: "lightbulb",
+        title: "Working with the system",
+        body: "Penn Electric Racing already has an established design language, evident in the maintenance of their website, social media, club colors and fonts. As a designer I try to create material that both emulates and expands on the visual style of the team.",
+      },
+      {
+        type: "text",
+        title: "Rendering 3D Models",
+        body: "PER can benefit from more sophisticated 3D models that serve as visuals for its social media and merch. I followed my own guidelines in creating a scalable and efficient pipeline to treat the thousands of parts on the car through different versions.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790648865/anduril_v4_mdfsnf.png",
+        caption: "A 3D model using the materials system I developed, used in our 2026-2027 sponsorship package. The layout is inspired by a graphic for the Anduril Fury.",
+      },
+      { type: "text", title: "Use Cases" },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "presentation",
+            title: "Presentation visual aid",
+            body: "The models have to match our business presentation's need of labeling individual parts without much visual clutter.",
+          },
+          {
+            icon: "shirt",
+            title: "Merch and Media",
+            body: "The models also have to be flexible enough to be incorporated into our sponsorship package, merch, unveiling and social media posts.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "A Messy Manual Pipeline",
+        body: "As I was making visuals for models, I started off with a raw import without any modifications from Solidworks to Maya, and immediately ran into performance issues. Seeing no apparent alternatives, I manually adjusted parameters in all of the 3D apps I imported the CAD to, with much chagrin.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790819098/REV11_fully_textured.jpg",
+      },
+      {
+        type: "callout",
+        icon: "frown",
+        title: "Solidworks Visualize",
+        body: "Although the materials transition was the easiest, the renderer struggled massively with the file size, taking 10 hours to render a video filled with graphical glitches due to an unoptimized model. I realized I needed to retopologize or delete some parts manually to keep the poly count low.",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1790819508/translucent_test_vid_1.mp4",
+      },
+      {
+        type: "callout",
+        icon: "frown",
+        title: "Maya",
+        body: "Maya was a better alternative, but it struggled with the massive amount of duplicate objects merged into each other and thousands of unwanted materials (opening Hypershade would crash my computer). However, I was able to utilize the nCloth feature to render a few test scenes for the car unveiling.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790819710/Screenshot_2026-03-27_at_1.23.22_AM.png",
+      },
+      {
+        type: "callout",
+        icon: "smile",
+        title: "Blender",
+        body: "I completed my retopology and added modifiers to different parts to create wireframe animations here. Using shader graphs, I created most of the animated shaders shown in the presentations and videos below.",
       },
       {
         type: "text",
@@ -505,7 +576,14 @@ export const projects = [
       duration: "Sep 2025 - Present",
       tools: "Adobe Substance 3D, Blender, Maya, Procreate, Unity, Cursor",
     },
-    content: [],
+    content: [
+      {
+        type: "callout",
+        icon: "hammer",
+        title: "In development",
+        body: "Saturn is a long-term indie project in active development. Follow along and play the latest build on itch.io.",
+      },
+    ],
   },
   /* {
     slug: "ragebaiter",
