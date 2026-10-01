@@ -158,7 +158,8 @@ video {
   background: rgba(245, 240, 232, 0.96);
 }
 [data-theme="light"] .topbar-logo,
-[data-theme="light"] .topbar-link {
+[data-theme="light"] .topbar-link,
+[data-theme="light"] .topbar-more {
   color: #1a1a1a;
 }
 [data-theme="light"] .loader { background: #f5f0e8; }

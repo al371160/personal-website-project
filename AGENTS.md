@@ -47,7 +47,7 @@ All project content lives in **`src/data/projects.js`** as a plain JS array. Eac
   - Gallery: `{type: "gallery", columns?: 1|2|3, items: [{type, src, caption?}]}` — grid of media with optional per-item captions (defaults to 1 column; multi-column collapses to 1 at ≤800px)
   - Callout: `{type: "callout", icon?, title?, body}` — Lucide icon (kebab-case name, e.g. `"hammer"`, loaded on demand) beside a title and text on a slightly lighter box; for several cards side by side use `{type: "callout", columns?: 1|2|3, items: [{icon?, title?, body}]}` (defaults to 1 column; collapses to 1 at ≤800px)
 
-The project intro (`meta.roleDescription`, falling back to `description`) is folded into the `Overview` text block as its first paragraph; without an Overview block it renders under the details grid.
+The project intro (`meta.roleDescription`) is folded into the `Overview` text block as its first paragraph; without an Overview block it renders under the details grid (falling back to `description`). Most projects now write one combined paragraph directly in the Overview body and omit `roleDescription`.
 
 All assets are hosted on Cloudinary (`dak0zi45d`). `src/utils/cloudinary.js` rewrites URLs at render time:
 - `optimizeImage` — `c_limit,w_…/f_auto/q_auto` on every image except hero images.

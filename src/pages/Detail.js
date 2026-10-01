@@ -68,7 +68,10 @@ export default function Detail({ onReady, onProgress }) {
     return <p>Project not found.</p>;
   }
 
-  const intro = project.meta.roleDescription || project.description;
+  const hasOverview = project.content.some(
+    (block) => block.type === "text" && block.title?.trim().toLowerCase() === "overview"
+  );
+  const intro = project.meta.roleDescription || (hasOverview ? null : project.description);
   const { content, merged: introInOverview } = mergeIntoOverview(project.content, intro);
   const links = project.links || (project.visitUrl ? [{ url: project.visitUrl }] : []);
 

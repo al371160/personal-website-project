@@ -540,6 +540,57 @@
   text-underline-offset: 4px;
 }
 
+/* "More": easel canvas that morphs into an iridescent right arrow on hover */
+.topbar-more {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.topbar-more svg {
+  width: 26px;
+  height: 26px;
+  overflow: visible;
+  stroke: currentColor;
+  transition: filter 0.3s ease;
+}
+
+.topbar-more-canvas {
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s ease;
+}
+
+.topbar-more-arrow path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.topbar-more--active svg,
+.topbar-more:hover svg,
+.topbar-more:focus-visible svg {
+  stroke: url(#topbar-iridescent);
+  filter: drop-shadow(0 0 6px rgba(96, 165, 250, 0.55));
+}
+
+.topbar-more:hover .topbar-more-canvas,
+.topbar-more:focus-visible .topbar-more-canvas {
+  transform: scale(0.3) rotate(-90deg);
+  opacity: 0;
+}
+
+.topbar-more:hover .topbar-more-arrow path,
+.topbar-more:focus-visible .topbar-more-arrow path {
+  stroke-dashoffset: 0;
+  transition-delay: 0.12s;
+}
+
+.topbar-more:hover .topbar-more-arrow path + path,
+.topbar-more:focus-visible .topbar-more-arrow path + path {
+  transition-delay: 0.25s;
+}
+
 .topbar-nav {
   display: flex;
   gap: 25px;
@@ -922,7 +973,7 @@
   grid-template-columns: 3fr 8fr;
   column-gap: calc(100% / 12);
   align-items: start;
-  margin-top: 32px;
+  margin-top: 48px;
   box-sizing: border-box;
 }
 
@@ -942,9 +993,9 @@
 
 .detail-sidebar h1 {
   font-size: 40px;
-  font-family: "Instrument Serif", "Times New Roman", serif;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   line-height: 1.1;
   margin: 0;
   color: rgba(255, 255, 255, 0.92);
@@ -1238,7 +1289,7 @@
   .detail-layout {
     grid-template-columns: 1fr;
     row-gap: 28px;
-    margin-top: 32px;
+    margin-top: 48px;
   }
 
   .detail-sidebar {

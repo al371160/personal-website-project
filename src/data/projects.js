@@ -18,7 +18,6 @@ export const projects = [
     },
     meta: {
       role: "Media / Business Operations / Project Manager",
-      roleDescription: "Bridge design, media, and ops for PER — livery exploration, car renders, sponsor-facing posters, and tooling that keeps the business team aligned with engineering milestones.",
       collaborators: "Operations Team",
       duration: "2025 – Present",
       tools: "Solidworks, Vercel, Blender, Maya, Adobe Suite, Procreate, Notion",
@@ -27,7 +26,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social, and internal morale. I split time between livery iteration, car visualization, and business presentation assets.",
+        body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social media, and internal morale. I bridge design, media, and operations for the team, splitting my time between livery exploration, car renders, sponsor-facing posters and presentation assets, and tooling that keeps the business team aligned with engineering milestones.",
       },
       {
         type: "callout",
@@ -289,7 +288,6 @@ export const projects = [
     },
     meta: {
       role: "UI Overhaul / Frontend–Backend Integration",
-      roleDescription: "Owned a full UI rebuild of the recruiting console and wired it to live backend services — navigation, dashboards, interview review, workflows, and sourcing surfaces that recruiters use every day.",
       collaborators: "Axiom / Caliber team",
       duration: "2026",
       tools: "React, TypeScript, Cursor",
@@ -298,7 +296,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Provelis is a complete UI overhaul of a production recruiting platform (Axiom US / Compass), with frontend–backend integration across home, requirements, interviews, workflows, analytics, and deep search. The goal: denser ops data that still feels calm and scannable.",
+        body: "Provelis is a complete UI overhaul of a production recruiting platform (Axiom US / Compass). I owned the full rebuild of the recruiting console and wired it to live backend services across home, requirements, interviews, workflows, analytics, and deep search — the surfaces recruiters use every day. The goal: denser ops data that still feels calm and scannable.",
       },
       {
         type: "text",
@@ -483,7 +481,6 @@ export const projects = [
     },
     meta: {
       role: "Brand Designer / Developer",
-      roleDescription: "Shape Orble's visual identity, hardware storytelling, and marketing site — from CAD-backed renders to vinyl wraps and architectural viz for investor decks.",
       collaborators: "Orble Tea Team",
       duration: "2025 – Present",
       tools: "Astro, Blender, Maya, Onshape, React",
@@ -492,7 +489,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Orble Tea is an automated boba concept spanning product design, brand, and go-to-market visuals. My work ties physical machine design to a coherent digital presence on orble-tea.com.",
+        body: "Orble Tea is an automated boba concept spanning product design, brand, and go-to-market visuals. I shape Orble's visual identity, hardware storytelling, and marketing site, tying physical machine design to a coherent digital presence on orble-tea.com — from CAD-backed renders to vinyl wraps and architectural viz for investor decks.",
       },
       {
         type: "image",
@@ -650,7 +647,6 @@ export const projects = [
     },
     meta: {
       role: "UI Lead",
-      roleDescription: "Led interface architecture for a client-facing dashboard — modular panels, dense data tables, and a calm visual system that still feels fast at a glance.",
       collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
       duration: "2026",
       tools: "Figma, React, TypeScript",
@@ -664,7 +660,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Aquara is a professional client portal built around clarity under load: accountants and ops leads need numbers, status, and actions without hunting through nested menus.",
+        body: "Aquara is a professional client portal built around clarity under load: accountants and ops leads need numbers, status, and actions without hunting through nested menus. I led the interface architecture — modular panels, dense data tables, and a calm visual system that still feels fast at a glance.",
       },
       {
         type: "image",
@@ -720,7 +716,6 @@ export const projects = [
     },
     meta: {
       role: "UI Lead",
-      roleDescription: "Directed UI for an AR assistant that helps users build tools in context — from layout and motion to Xcode implementation and demo-ready polish.",
       collaborators: "Benjamin Liu, Ivan Zhang, Theo Weises",
       duration: "2026",
       tools: "Rive, XCode, ARKit, Swift, Antigravity, Overshoot API",
@@ -729,7 +724,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Omni is an accessible AR assistant for interactive toolmaking: users describe what they need, see it in space, and refine through voice and touch. The interface had to stay calm while the backend orchestration stayed complex.",
+        body: "Omni is an accessible AR assistant for interactive toolmaking: users describe what they need, see it in space, and refine it through voice and touch. I directed the UI, from layout and motion to Xcode implementation and demo-ready polish, keeping the interface calm while the backend orchestration stayed complex.",
       },
       {
         type: "image",
@@ -804,7 +799,6 @@ export const projects = [
     },
     meta: {
       role: "Team Lead",
-      roleDescription: "Led a five-person team through Y-Prize 2025 — story, visual identity, Blender prototypes, and the five-minute pitch film that anchored our submission.",
       collaborators: "Shaomin Kee, Corina Chen, Reine Huang, Joanne Lin",
       duration: "2025",
       tools: "Blender, Capcut, Microsoft PowerPoint, Google Slides",
@@ -813,7 +807,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Y-Prize is Penn's startup design competition. Our entry packaged a sustainable product narrative into a tight deck plus a cinematic Blender pitch video.",
+        body: "Y-Prize is Penn's startup design competition. I led a five-person team through Y-Prize 2025, packaging a sustainable product narrative into a tight deck, a visual identity, Blender prototypes, and the five-minute cinematic pitch film that anchored our submission.",
       },
       {
         type: "text",
@@ -883,7 +877,6 @@ export const projects = [
     },
     meta: {
       role: "Product Designer / Developer",
-      roleDescription: "Owned packaging exploration and the Shopify storefront — translating brand sketches into shelf-ready dielines and a shoppable site the team could run without engineers on call.",
       collaborators: "PawFond Team",
       duration: "2025",
       tools: "Procreate, Adobe Fresco, Adobe Illustrator, Shopify",
@@ -892,7 +885,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "PawFond is a pet-care startup spanning physical product and DTC web. Work focused on trustworthy packaging and a simple purchase path for first-time customers.",
+        body: "PawFond is a pet-care startup spanning physical product and DTC web. I owned packaging exploration and the Shopify storefront, translating brand sketches into trustworthy, shelf-ready dielines and a simple purchase path for first-time customers — a shoppable site the team can run without engineers on call.",
       },
       {
         type: "video",
@@ -957,7 +950,6 @@ export const projects = [
     },
     meta: {
       role: "Producer / Team Lead",
-      roleDescription: "Produced Rum Rush under a fixed schedule — game design doc, milestone planning, and hands-on Unity systems (physics, ragdoll, audio, post) so the team could ship a vertical slice.",
       collaborators: "Rajas Nanda, Chris Wang, Andrew Han",
       duration: "2025",
       tools: "Unity, C#, Blender",
@@ -966,7 +958,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Rum Rush is a time-manipulation action prototype built in Unity. As producer I kept scope honest while still landing distinctive feel: slow-mo combat, readable pickups, and punchy feedback.",
+        body: "Rum Rush is a time-manipulation action prototype built in Unity. As producer under a fixed schedule, I wrote the game design doc, planned milestones, and built hands-on systems (physics, ragdoll, audio, post) — keeping scope honest so the team could ship a vertical slice that still landed a distinctive feel: slow-mo combat, readable pickups, and punchy feedback.",
       },
       {
         type: "image",
