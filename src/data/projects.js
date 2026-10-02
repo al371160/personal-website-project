@@ -26,7 +26,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social media, and internal morale. I bridge design, media, and operations for the team, splitting my time between livery exploration, car renders, sponsor-facing posters and presentation assets, and tooling that keeps the business team aligned with engineering milestones.",
+        body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social media, and internal morale. My role is to be in charge of creating the livery, car renders, sponsor-facing posters and presentation assets, and tooling that keeps the business team aligned with engineering milestones.",
       },
       {
         type: "callout",
@@ -282,26 +282,137 @@ export const projects = [
       type: "image",
       src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790647084/ddf97bda-00dd-4f01-9c0b-430bd12d2585.png",
     },
-    heroVideo: {
-      type: "video",
-      src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453476/Screen_Recording_2026-07-19_at_5.29.23_AM_gd3tts.mov",
-    },
     meta: {
-      role: "UI Overhaul / Frontend–Backend Integration",
+      role: "UI contractor",
       collaborators: "Axiom / Caliber team",
-      duration: "2026",
-      tools: "React, TypeScript, Cursor",
+      duration: "Jun – Jul 2026",
+      tools: "Figma, React, TypeScript, Cursor",
     },
     content: [
       {
         type: "text",
         title: "Overview",
-        body: "Provelis is a complete UI overhaul of a production recruiting platform (Axiom US / Compass). I owned the full rebuild of the recruiting console and wired it to live backend services across home, requirements, interviews, workflows, analytics, and deep search — the surfaces recruiters use every day. The goal: denser ops data that still feels calm and scannable.",
+        body: "Provelis is a talent-intelligence console for time-boxed staffing on large IT deals. Deal data comes in — what needs to be done, by whom, and where — and a recruiting supervisor tracks which job requirements are actually filling. I was hired on a short contract to overhaul a vibe-coded UI so it could hold up for enterprise users, and to wire the new screens to live backend services before a July go-live.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790910369/Untitled_Artwork_78.png",
+        caption: "How Provelis sits in the hiring loop. Candidates come in from job boards and people looking for work. Provelis runs interview flows out to recruiters, takes their manual reviews back in, and stays connected to Axiom so the console can handle a large, time-boxed search without the team leaving the tool.",
+      },
+      {
+        type: "text",
+        title: "The brief",
+        body: "The first assignment was one home screen. Most of the pipeline was already automated from requirement to shortlist. What still needed a person was candidates answering interviews and recruiters reviewing the top ones. The page had to show, in order: where that pipeline was stalling, open jobs and their status, AI interview scorecards, and who needed a decision — with a prompt button, not just a number. The look was corporate, data-dense, and still readable.",
+      },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "target",
+            title: "Shorter paths",
+            body: "Leadership and the backend lead wanted the distance between buttons and functions as short as possible.",
+          },
+          {
+            icon: "layers",
+            title: "Higher density",
+            body: "The same brief asked for more information on screen so hiring managers could act without hunting through extra pages.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Cleaning up v1",
+        body: "The first version had been coded with almost no design direction. It was full of duplicate screens, messy connections, and type and functions that did not need to be there. I stripped those out, then rebuilt the pages around modular windows and dense lists, taking cues from the S&P terminals investment bankers use — a format that already matched how Provelis stored its data. The first sample used scalable windows, a collapsible sidebar, and outlined clickable controls. I tried tiles for the important action items, then switched to a list because a list was easier to scan. That pass did shrink the distance between pages.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790908804/Untitled_Artwork_77.png",
+      },
+      {
+        type: "callout",
+        icon: "building-2",
+        title: "S&P as a model",
+        body: "Modular windows and long lists felt like the right language for a professional ops tool. I treated that as the design system for the first rebuild. After review I cut a large KPI strip of redundant numbers and a one-item notification banner that ate a full row for a single alert.",
+      },
+      {
+        type: "text",
+        title: "Initial feedback - it was confusing",
+        body: "Hiring managers — the people Provelis is actually for — said the rebuild was hard to use. The hiring tool they already used felt more intuitive and less cluttered, and it let them customize tables. I had to throw out the first system and start from their working habits instead of from a denser terminal.",
+      },
+      {
+        type: "callout",
+        icon: "frown",
+        title: "Talk to the users earlier",
+        body: "I designed against an internal brief instead of checking each feature idea with hiring managers. That is why the first version looked finished and still failed. Later click-throughs kept finding the same class of problem: table headers that did not stick, filters that did not filter, buttons that went nowhere, a search box that ate keystrokes, and a job description that was too small on the requirement canvas.",
+      },
+      {
+        type: "text",
+        title: "A clearer console",
+        body: "I dropped the top sliding bar of buttons for a side panel that opens and closes, reused the existing table assets instead of inventing new ones, and used icons plus changes in padding and type to mark what mattered. After the concepts landed, the home grid they asked for was client rows, stalls, recruiter output, and a schedule — each panel expandable to a full list. Urgency was the item that had sat longest, or the one closest to an SLA. The goal was the same density, but with a layout hiring managers already recognized.",
+      },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "panel-left",
+            title: "Collapsible side nav",
+            body: "Primary actions live in a panel that can get out of the way, instead of a sliding top bar.",
+          },
+          {
+            icon: "table",
+            title: "Reuse before invent",
+            body: "Tables, icons, and type scale do the hierarchy work. New UI chrome is expensive and, in this case, broke the prototype backend.",
+          },
+        ],
+      },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "app-window",
+            title: "One canvas, not a stack of popups",
+            body: "Clicking a job opens the description, candidates, and actions on one screen, with a breadcrumb back path — dashboard, then job, then candidate. Stalls and interviews get hover peeks instead of another hidden menu.",
+          },
+          {
+            icon: "swatch-book",
+            title: "Parchment over glass",
+            body: "Rounded Liquid Glass and frost looked pretty and read as unprofessional. Stakeholders picked the sharp, parchment, high-density direction. Blue and white to match the logo; no purple; no generic AI glyphs; no extra titles.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Redefining User Flow.",
+        body: "I redesigned roughly 40 screens across the console. The executive portal was the core. A recruiter-scoped twin followed — only assigned jobs, with louder review and advance actions. I also started a lighter pass on the candidate interview screens. Two surfaces mattered most while the rest of the system came together.",
+      },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "columns-2",
+            title: "Resume beside the job",
+            body: "A side-by-side view so hiring managers can read a resume against the job requirements without flipping between pages.",
+          },
+          {
+            icon: "list",
+            title: "Modular hire list",
+            body: "A list of hires that can be rearranged and scanned the way they already work through a pipeline.",
+          },
+        ],
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790920216/3ea4d7c8-cf28-47e8-a087-196eef7f1cb6.png",
+        caption: "Important details are never more than three links away. Pop-ups and half-pages sit on top of the main canvas so recruiters can move through large applicant piles without leaving the job. Many links between pages are not shown.",
       },
       {
         type: "text",
         title: "Home & pipeline",
-        body: "The home dashboard surfaces open requirements, submissions, interview volume, and funnel health so delivery leads can see where hiring stands without opening five tabs.",
+        body: "The home dashboard surfaces open requirements, submissions, interview volume, and funnel health so a supervisor can see which jobs are filling without opening five tabs.",
       },
       {
         type: "gallery",
@@ -310,12 +421,12 @@ export const projects = [
           {
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.19_AM_vuuepl.png",
-            caption: "Home — KPI cards and pipeline health funnel",
+            caption: "Home — open jobs, stalls, and funnel health on one grid, each panel expandable to a full list",
           },
           {
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.28_AM_lbrjo0.png",
-            caption: "Requirements — jobs table with pipeline and conversion",
+            caption: "Requirements — jobs table with pipeline and conversion, reused from the existing table language instead of a new chrome",
           },
         ],
       },
@@ -362,7 +473,7 @@ export const projects = [
           {
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453340/Screenshot_2026-07-12_at_4.52.39_AM_b62ijs.png",
-            caption: "Prompt Engineer workflow — nodes, edges, and action inspector",
+            caption: "Previous design for a workflow graph, scrapped due to graphical glitches and incomplete feature set",
           },
         ],
       },
@@ -409,9 +520,26 @@ export const projects = [
           {
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453339/Screenshot_2026-07-13_at_11.04.14_AM_c9fsbd.png",
-            caption: "Problems — idle severity queue for open requirements",
+            caption: "Problems — stalled requirements ordered by longest wait and closest SLA, not a pretty empty circle",
           },
         ],
+      },
+      {
+        type: "callout",
+        icon: "shield",
+        title: "No separate test backend",
+        body: "I could not fork production for security and clearance reasons, and I also could not run the full stack locally. Previews went through a shared cluster with 10–20 minute deploys, so a style change and a wiring bug looked the same until they landed. Interview video and resumes lived on a service with no safe development copy, which is why some paths stayed empty on the preview and why a visual rewrite could take the backend down. My lead unblocked cluster access. I owned the UI wiring.",
+      },
+      {
+        type: "callout",
+        icon: "notebook-pen",
+        title: "What I learned",
+        body: "Reuse what already works, talk to the people who run the desks — not only the internal brief — and be careful prompting agents so a visual rewrite cannot take the backend down. Treat click-through QA as part of the design, not a pass after ship. Do not invent new chrome when the existing tables already match how the team works.",
+      },
+      { type: "text", title: "Video demo" },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453476/Screen_Recording_2026-07-19_at_5.29.23_AM_gd3tts.mov",
       },
     ],
   }, /*
