@@ -564,7 +564,7 @@ export const projects = [
     },
     meta: {
       role: "Producer / Artist",
-      collaborators: "Team of five (Team XIV)",
+      collaborators: "Ryan Nguyen, Thomas Zhao, Kelin Levine, Andrew Koes",
       duration: "Jun – Aug 2024",
       tools: "Unity, Maya, Blender, Substance Painter, FL Studio, Jira",
     },
@@ -610,15 +610,42 @@ export const projects = [
         src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790966150/1l4i4LIQVV-Mj35tYcxD-LbW6BRTYiHdRg4RT7r6fk3M.gif",
         caption: "Early prototype — a playable bounce before the art pass",
       },
+      { type: "text", title: "Prototyping the trampoline" },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "video",
+            src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1790977878/Screen_Recording_2024-07-20_at_12.06.00_AM.mov",
+            caption: "Complex trampoline — the bounce worked, but the object cluttered every puzzle",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790977241/Screenshot_2024-07-23_at_8.49.53_PM.png",
+            caption: "Final, simpler trampoline — same mechanic, less visual noise",
+          },
+        ],
+      },
       {
         type: "text",
         title: "Weeks one and two",
         body: "Artists built the models while sound designed the feel: slow-motion treatments and 3D spatial audio so a bounce read in the headphones, not only on screen. I was on background assets, lighting, and the environmental optics we found we could afford once the first scenes were in. I also placed most of those assets in the engine so levels weren't a pile of gray boxes waiting on a final art pass.",
       },
       {
+        type: "video",
+        src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1790977405/Screen_Recording_2024-07-20_at_7.24.15_PM.mov",
+        caption: "Transition between 2D and 3D assets",
+      },
+      {
         type: "text",
         title: "Weeks two and three",
         body: "More models, more obstacles, and the camera, tutorial signaling, and UI that teach the first levels without a wall of text. The customizable level editor — custom game objects for trampolines and the rest of the kit — is what let us iterate levels without waiting on a programmer for every bounce.",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1790977511/Screen_Recording_2024-08-01_at_1.46.19_PM.mov",
+        caption: "Cannon particle effects",
       },
       {
         type: "callout",
@@ -707,7 +734,7 @@ export const projects = [
     visitUrl: "https://orble-tea.com/",
     thumbnail: {
       type: "video",
-      src: "https://orble-tea.com/media/next-gen-render-video.mp4",
+      src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1790978213/next-gen-render-video.mp4",
     },
     hero: {
       type: "image",
