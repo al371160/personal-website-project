@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { optimizeImage } from "../utils/cloudinary";
 
 const VIDEO_EXTS = /\.(mp4|mov|webm|ogg|m4v|avi)(\?|$)/i;
 
@@ -28,7 +29,7 @@ export function MediaEl({ file, alt, lightbox = false, onLoad, mediaRef }) {
   return (
     <img
       ref={mediaRef}
-      src={file.url}
+      src={optimizeImage(file.url, 2000)}
       alt={alt}
       className={lightbox ? "lightbox-img" : undefined}
       loading="lazy"

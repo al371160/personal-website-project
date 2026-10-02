@@ -4,6 +4,7 @@ import DetailContentBlock from "../components/DetailContentBlock";
 import VideoPlayer from "../components/VideoPlayer";
 import { useEffect, useRef } from "react";
 import { waitForMedia } from "../utils/waitForMedia";
+import { optimizeImage } from "../utils/cloudinary";
 
 const VIDEO_WIDTH = 2000;
 
@@ -20,7 +21,7 @@ function HeroMedia({ media, title }) {
       />
     );
   }
-  return <img src={media.src} alt={title} />;
+  return <img src={optimizeImage(media.src, VIDEO_WIDTH)} alt={title} />;
 }
 
 function toParagraphs(body) {

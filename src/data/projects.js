@@ -332,8 +332,13 @@ export const projects = [
       {
         type: "callout",
         icon: "building-2",
-        title: "S&P as a model",
+        title: "Initial brainstorming",
         body: "Modular windows and long lists felt like the right language for a professional ops tool. I treated that as the design system for the first rebuild. After review I cut a large KPI strip of redundant numbers and a one-item notification banner that ate a full row for a single alert.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790962707/bf25457f-d74a-4ecd-8cb3-0a3a1fd9efad.png",
+        caption: "Comparison between UI choices of S&P Capital and Provelis' dashboard. Note the information and page density of S&P as well as the necessarily larger monitor that the software must run on, which wasn't available to Provelis' users. This poor scaling and readability is one reason why this design didn't work!",
       },
       {
         type: "text",
@@ -385,7 +390,7 @@ export const projects = [
       },
       {
         type: "text",
-        title: "Redefining User Flow.",
+        title: "Redefining User Flow",
         body: "I redesigned roughly 40 screens across the console. The executive portal was the core. A recruiter-scoped twin followed — only assigned jobs, with louder review and advance actions. I also started a lighter pass on the candidate interview screens. Two surfaces mattered most while the rest of the system came together.",
       },
       {
@@ -534,12 +539,113 @@ export const projects = [
         type: "callout",
         icon: "notebook-pen",
         title: "What I learned",
-        body: "Reuse what already works, talk to the people who run the desks — not only the internal brief — and be careful prompting agents so a visual rewrite cannot take the backend down. Treat click-through QA as part of the design, not a pass after ship. Do not invent new chrome when the existing tables already match how the team works.",
+        body: "Reuse what already works, talk to the people who run the desks — not only the internal brief — and be careful prompting agents so a visual rewrite cannot take the backend down. Treat click-through QA as part of the design. One of my biggest regrets was wasting time designing an entire UI using a misguided philosophy. I should've conducted smoke tests way before I was finished to know what direction I should be headed in. With little guidance from my lead, I took this project as a learning experience to help me on my future endeavors in UI design.",
       },
       { type: "text", title: "Video demo" },
       {
         type: "video",
         src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1784453476/Screen_Recording_2026-07-19_at_5.29.23_AM_gd3tts.mov",
+      },
+    ],
+  },
+  {
+    slug: "clockwork-climb",
+    title: "Clockwork Climb",
+    category: "Game / 3D",
+    description: "Producer-led three-week physics puzzle game for a team of five",
+    visitUrl: "https://team-xiv.itch.io/clockwork-climb",
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790967228/clockwork-climb-thumbnail.png",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790967228/clockwork-climb-thumbnail.png",
+    },
+    meta: {
+      role: "Producer / Artist",
+      collaborators: "Team of five (Team XIV)",
+      duration: "Jun – Aug 2024",
+      tools: "Unity, Maya, Blender, Substance Painter, FL Studio, Jira",
+    },
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body: "Clockwork Climb is a physics puzzle-strategy game: you cannot steer the cuckoo birds. You draw bounce-belts they ricochet off, and you have to get the flock to the clock tower. I led a team of five through a three-week production — producer and project manager first, with executive say on design, plus the background assets, lighting, and in-engine placement.",
+      },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "target",
+            title: "Why this pitch",
+            body: "We took three ideas to the judges. This one won on scale and on a control scheme nobody else was doing: draw the path, don't drive the character.",
+          },
+          {
+            icon: "users",
+            title: "Five people, three weeks",
+            body: "My design time on any one screen was limited. The job was keeping tasks visible — Kanban, Sheets, Jira — and making the calls that kept the slice shippable.",
+          },
+        ],
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790966347/Pitch_Round2_Team14.png",
+        caption: "Early ideation slides — three pitches; this one won on scale and a control scheme nobody else was doing",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790966348/1Q8HtshOk5zNy3jDlab08Fug1BrQqrsQpxabGxKPTfKI.jpg",
+        caption: "Concept art for a steampunk feel",
+      },
+      {
+        type: "text",
+        title: "Paper, then a working bounce",
+        body: "The pitch started on paper so the mechanic was readable before anyone opened Unity. Programmers turned that into a playable level with working trampolines. That demo is what proved the idea was a game, not a drawing of one.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790966150/1l4i4LIQVV-Mj35tYcxD-LbW6BRTYiHdRg4RT7r6fk3M.gif",
+        caption: "Early prototype — a playable bounce before the art pass",
+      },
+      {
+        type: "text",
+        title: "Weeks one and two",
+        body: "Artists built the models while sound designed the feel: slow-motion treatments and 3D spatial audio so a bounce read in the headphones, not only on screen. I was on background assets, lighting, and the environmental optics we found we could afford once the first scenes were in. I also placed most of those assets in the engine so levels weren't a pile of gray boxes waiting on a final art pass.",
+      },
+      {
+        type: "text",
+        title: "Weeks two and three",
+        body: "More models, more obstacles, and the camera, tutorial signaling, and UI that teach the first levels without a wall of text. The customizable level editor — custom game objects for trampolines and the rest of the kit — is what let us iterate levels without waiting on a programmer for every bounce.",
+      },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "pencil-ruler",
+            title: "Level editor",
+            body: "Designers could drop custom objects — trampolines, belts, obstacles — and tune a puzzle without a code change. That is how a three-week team ships more than one good level.",
+          },
+          {
+            icon: "volume-2",
+            title: "Audio as feedback",
+            body: "Slow-motion and spatial audio were not garnish. They told you a bounce had landed when the camera was already moving.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "The hard part",
+        body: "The hard part was the clock, not the mechanic. Scope was the levels. We spent sleepless nights coding and debugging to hit the deadline. In hindsight there was not much backtracking — we scoped the project to what this team could actually finish. That is the producer work I care about: fewer heroic recoveries because the plan already fit the people.",
+      },
+      {
+        type: "callout",
+        icon: "notebook-pen",
+        title: "What I learned",
+        body: "A paper prototype and a trampoline demo beat a prettier pitch. Keep the team on one board. Own the unglamorous art — backgrounds, lighting, placement — so the levels look like a game while systems are still landing. Scope to the team's actual capacity, then protect that scope.",
       },
     ],
   }, /*

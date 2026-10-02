@@ -16,8 +16,11 @@ function transformUrl(src, segment, components) {
 
 // Serves a Cloudinary image in the best format/quality the browser supports,
 // capped at `width` px (never upscaled). Non-Cloudinary URLs pass through.
+// Keep these strings stable — a new transform URL is a new (paid) derivative.
 export function optimizeImage(src, width) {
   if (!isCloudinary(src, IMAGE_SEGMENT)) return src;
+  // f_auto/q_auto on a GIF often freezes it to the first frame.
+  if (/\.gif(?:$|\?)/i.test(src)) return src;
   return transformUrl(src, IMAGE_SEGMENT, [
     width && `c_limit,w_${width}`,
     "f_auto",
