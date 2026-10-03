@@ -857,6 +857,92 @@ export const projects = [
         title: "In development",
         body: "Saturn is a long-term indie project in active development. Follow along and play the latest build on itch.io.",
       },
+      { type: "text", title: "Part 1: Initial Ideation" },
+      {
+        type: "gallery",
+        columns: 1,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791062989/05c8860d-e4ae-4b0e-a8ee-1fbe382ed3fd.png",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791063307/eaeed77a-af2b-4b83-95c9-bad23d7f4fb4.png",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791063310/Life_Project___SATURN_DEVLOG_1.png",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791065080/e41c0717-ca2c-40e4-98f7-6859082db343.png",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791065411/Screenshot_2026-10-03_at_6.05.08_PM.png",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791065857/95c3dfe3-1992-4403-a049-463537f7a1a4.png",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Reddit feedback",
+        body: "I posted the first look on Reddit. The comments were more useful than the upvotes — they pointed at what was actually reading and what felt unfinished. There wasn't enough audience interest in the direction as-is, which is why I stopped chasing a more realistic look and went stylized instead.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791067542/678c003a-3c89-4589-8c0d-d317434c589c.png",
+            caption: "The Reddit post",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791067659/f185f8c0-fea1-4883-9cac-9929209d67af.png",
+            caption: "Thread replies — what to improve, and how little the first look landed",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Part 2: Building Environment System",
+        body: "Figuring out an optimized gameplay loop that allows for a balance between story elements and the freedom of an open-world-style game. More of the build process is in the playlist below.",
+      },
+      {
+        type: "youtube",
+        src: "AGbfwFoJGZU",
+        playlist: "PLRvPPpRI-yP37vS5DbYsB52kqjeDX1XBq",
+        caption: "Devlog playlist — more on building the environment system",
+      },
+      { type: "text", title: "Technology Highlights" },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "camera",
+            title: "Camera system",
+            body: "Cameras are driven by a Cinemachine controller. As the player enters and exits colliders, scripts on those colliders store distance, angle, and orientation — including what the camera should look at — and interpolate between positions. The result is a dynamic fixed-camera style closer to A Short Hike than a free orbit.",
+          },
+          {
+            icon: "messages-square",
+            title: "NPC system",
+            body: "A custom dialogue system covers multiple NPCs: physical movement, quests, world-space speech bubbles with player choices, branching dialogue (including cycles when a quest locks a path), and swapping models. Dialogue is the hard part — I still have to handwrite it at any length. Next I need interactions between different NPCs, not only player-to-NPC.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Part 3: Next Steps",
+        body: "I will try to make traversal between locations more engaging.",
+      },
+      { type: "text", title: "Current Gameplay Loop" },
     ],
   },
   /* {

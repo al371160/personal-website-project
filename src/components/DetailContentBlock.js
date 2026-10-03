@@ -110,11 +110,18 @@ export default function DetailContentBlock({ block, index }) {
   }
 
   if (block.type === "youtube") {
+    const src = block.playlist
+      ? `https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(block.playlist)}&index=0`
+      : `https://www.youtube.com/embed/${block.src}`;
     return (
-      <figure key={index} className="detail-block detail-block--media">
+      <figure
+        key={index}
+        className={`detail-block detail-block--media${block.playlist ? " detail-block--playlist" : ""}`}
+      >
         <iframe
-          src={`https://www.youtube.com/embed/${block.src}`}
+          src={src}
           title={block.caption || "Video"}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         />
         {block.caption && <figcaption>{block.caption}</figcaption>}
