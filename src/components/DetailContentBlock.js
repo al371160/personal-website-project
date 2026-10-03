@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { optimizeImage } from "../utils/cloudinary";
 import VideoPlayer from "./VideoPlayer";
+import YouTubePlaylist from "./YouTubePlaylist";
 
 // Content column is ~1000px wide; 2x covers retina. Multi-column galleries
 // collapse to one column on phones, so they still need ~1200px.
@@ -110,16 +111,13 @@ export default function DetailContentBlock({ block, index }) {
   }
 
   if (block.type === "youtube") {
-    const src = block.playlist
-      ? `https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(block.playlist)}&index=0`
-      : `https://www.youtube.com/embed/${block.src}`;
+    if (block.videos?.length) {
+      return <YouTubePlaylist videos={block.videos} caption={block.caption} />;
+    }
     return (
-      <figure
-        key={index}
-        className={`detail-block detail-block--media${block.playlist ? " detail-block--playlist" : ""}`}
-      >
+      <figure key={index} className="detail-block detail-block--media">
         <iframe
-          src={src}
+          src={`https://www.youtube.com/embed/${block.src}`}
           title={block.caption || "Video"}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen

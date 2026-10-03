@@ -889,6 +889,43 @@ export const projects = [
         ],
       },
       {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791067721/80febfd5-86e5-4d22-9ff0-0eeafaa1effa.png",
+            caption: "Player character — first look",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791067797/856c492e-d188-4ce3-9830-70a72fb2ec2f.png",
+            caption: "Player character — second look",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Shader graphs",
+        body: "Shader creation in Unity's Shader Graph produced two main types: outline and toon.",
+      },
+      {
+        type: "gallery",
+        columns: 2,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791067852/9b6f0d31-e023-45b0-9d94-47e2c1a7576f.png",
+            caption: "Outline shader",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791067878/fa1fc64c-2745-4b81-bc9e-9504ec516f49.png",
+            caption: "Toon shader",
+          },
+        ],
+      },
+      {
         type: "text",
         title: "Reddit feedback",
         body: "I posted the first look on Reddit. The comments were more useful than the upvotes — they pointed at what was actually reading and what felt unfinished. There wasn't enough audience interest in the direction as-is, which is why I stopped chasing a more realistic look and went stylized instead.",
@@ -916,9 +953,21 @@ export const projects = [
       },
       {
         type: "youtube",
-        src: "AGbfwFoJGZU",
-        playlist: "PLRvPPpRI-yP37vS5DbYsB52kqjeDX1XBq",
         caption: "Devlog playlist — more on building the environment system",
+        videos: [
+          { id: "1ZKG80DDljo", title: "1. A sci-fi game with cute characters" },
+          { id: "XbzYm5wNigI", title: "2. Particles" },
+          { id: "pDKNjWU0IOo", title: "3. A shovel" },
+          { id: "a1dzSb7StEY", title: "4. Sneak peek" },
+          { id: "verelvJnAJw", title: "5. Sneak peek" },
+          { id: "NpH4H6Ed2f8", title: "6. UI and sounds" },
+          { id: "qQqLht83Yc0", title: "7. Satisfying particles" },
+          { id: "RTczT0sMYUE", title: "8. Prototype minigame" },
+          { id: "TQKmx1rhYF4", title: "9. Better items" },
+          { id: "JYhZhSb9nVQ", title: "10. Multiply 10x" },
+          { id: "InTSJgn9ZNU", title: "11. AI navigation" },
+          { id: "AGbfwFoJGZU", title: "12. Chopping wood" },
+        ],
       },
       { type: "text", title: "Technology Highlights" },
       {
@@ -942,7 +991,16 @@ export const projects = [
         title: "Part 3: Next Steps",
         body: "I will try to make traversal between locations more engaging.",
       },
-      { type: "text", title: "Current Gameplay Loop" },
+      {
+        type: "text",
+        title: "Current Gameplay Loop",
+        body: "I organized a gameplay doc to pin down the loop — what the player does, what comes back, and where story beats sit against open-world freedom — before I keep adding systems.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791069707/4f823804-9f74-4263-8f55-09c8b2db2ce5.png",
+        caption: "Gameplay loop graph from the design doc",
+      },
     ],
   },
   /* {
