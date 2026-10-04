@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import PlaygroundCard from "./PlaygroundCard";
 
-// One finite cluster. At zoom 1 every photo is its real pixel size (a 3000px
-// image is 3000px on screen). WebGL cards take a long edge equal to the median
-// photo. `buildLayout` shelf-packs that set once, with a wide margin between
-// cards, and does not shrink the group to fit the window. Only cards
+// One finite cluster. Every card is the same visual size: the long edge is a
+// shared length, and the other edge follows that image's aspect ratio. A small
+// source file is not drawn as a speck next to a large one. `buildLayout`
+// shelf-packs the set once, with a wide margin between cards. Only cards
 // overlapping the viewport (+ padding) are mounted, so offscreen WebGL
 // contexts stay unloaded.
 //
@@ -16,47 +16,37 @@ import PlaygroundCard from "./PlaygroundCard";
 // (outside of interactive elements).
 const PAD = 1400;
 const DEFAULT_RATIO = 4 / 3;
-const DEFAULT_LONG = 1600;
+// Shared long edge, as a fraction of the shorter viewport side, so every image
+// is large enough to read and none are sized by their raw pixel count.
+const TARGET_LONG_FRAC = 0.72;
 const MAX_S_FLOOR = 4;
 const MAX_S_CAP = 64;
 const MIN_S_FLOOR = 0.02;
 // Detail zoom keeps the top edge pinned ~TOP_PAD below the viewport top.
 const DETAIL_HEIGHT_FRAC = 0.75;
 const DETAIL_TOP_PAD = 30;
-// Space between cards at full pixel scale. Wide enough to read as a margin,
-// not a hairline left over from fitting the cluster into the window.
+// Space between equally sized cards. Wide enough to read as a margin.
 const MARGIN = 160;
 
-function median(values) {
-  const sorted = [...values].sort((a, b) => a - b);
-  const mid = Math.floor(sorted.length / 2);
-  if (sorted.length % 2) return sorted[mid];
-  return (sorted[mid - 1] + sorted[mid]) / 2;
+function tileSize(tile, targetLong) {
+  const ratio =
+    tile.pixelW > 0 && tile.pixelH > 0
+      ? tile.pixelW / tile.pixelH
+      : tile.ratio > 0
+        ? tile.ratio
+        : DEFAULT_RATIO;
+  if (ratio >= 1) return { w: targetLong, h: targetLong / ratio };
+  return { w: targetLong * ratio, h: targetLong };
 }
 
-function tileSize(tile, medianLong) {
-  if (tile.pixelW > 0 && tile.pixelH > 0) {
-    return { w: tile.pixelW, h: tile.pixelH };
-  }
-  const ratio = tile.ratio > 0 ? tile.ratio : DEFAULT_RATIO;
-  if (ratio >= 1) return { w: medianLong, h: medianLong / ratio };
-  return { w: medianLong * ratio, h: medianLong };
-}
-
-// Shelf-pack `tiles` in collection order at 1:1 pixel size. Zoom 1 shows every
-// photo at its real dimensions. `minS` can frame the whole cluster or the
-// tallest card; `maxS` can fill the detail view with the shortest card.
+// Shelf-pack `tiles` in collection order. Every card shares one long-edge
+// length, so relative sizes match. `minS` can frame the whole cluster; `maxS`
+// can fill the detail view with the shortest card.
 export function buildLayout(tiles, viewportW, viewportH) {
   if (!viewportW || !viewportH || tiles.length === 0) return null;
 
-  const photoEdges = [];
-  for (const tile of tiles) {
-    if (tile.pixelW > 0 && tile.pixelH > 0) {
-      photoEdges.push(Math.max(tile.pixelW, tile.pixelH));
-    }
-  }
-  const medianLong = photoEdges.length ? median(photoEdges) : DEFAULT_LONG;
-  const sizes = tiles.map((tile) => tileSize(tile, medianLong));
+  const targetLong = Math.max(420, Math.min(viewportW, viewportH) * TARGET_LONG_FRAC);
+  const sizes = tiles.map((tile) => tileSize(tile, targetLong));
 
   let widest = 0;
   let totalArea = 0;
@@ -157,7 +147,7 @@ export default function MosaicScroller({ tiles, onReady }) {
 
   // Pack once per collection. Rebuilding on resize would move every card under
   // a camera the user may already have panned. A new collection (retry) recenters.
-  const layoutSig = tiles.map((t) => `${t.id}:${t.pixelW || 0}x${t.pixelH || 0}`).join("|");
+  const layoutSig = `equal|${tiles.map((t) => `${t.id}:${t.pixelW || 0}x${t.pixelH || 0}`).join("|")}`;
   if (layoutSigRef.current !== layoutSig) {
     layoutSigRef.current = layoutSig;
     initRef.current = false;
