@@ -2,6 +2,67 @@ import { useEffect, useState } from "react";
 import MosaicScroller from "../components/MosaicScroller";
 import { buildPlaygroundCollection } from "../data/playground";
 
+const MEASURE_TIMEOUT_MS = 12000;
+
+// Read the cover's real pixel size before layout so a large file stays large
+// next to a small one. Videos only need metadata; a timeout falls back to the
+// median size in the packer.
+function measureFile(file) {
+  return new Promise((resolve) => {
+    if (!file?.url) {
+      resolve(null);
+      return;
+    }
+    let videoEl = null;
+    const timer = setTimeout(() => {
+      videoEl?.remove();
+      resolve(null);
+    }, MEASURE_TIMEOUT_MS);
+    const finish = (w, h) => {
+      clearTimeout(timer);
+      resolve(w > 0 && h > 0 ? { width: w, height: h } : null);
+    };
+    if (file.type === "video") {
+      const video = videoEl = document.createElement("video");
+      video.preload = "metadata";
+      video.muted = true;
+      video.setAttribute("playsinline", "");
+      // Some browsers skip loadedmetadata until the element is in the document.
+      video.style.cssText = "position:fixed;width:0;height:0;opacity:0;pointer-events:none";
+      document.body.appendChild(video);
+      const done = (w, h) => {
+        video.remove();
+        finish(w, h);
+      };
+      video.onloadedmetadata = () => done(video.videoWidth, video.videoHeight);
+      video.onerror = () => done(0, 0);
+      video.src = file.url;
+      return;
+    }
+    const img = new window.Image();
+    img.onload = () => finish(img.naturalWidth, img.naturalHeight);
+    img.onerror = () => finish(0, 0);
+    img.src = file.url;
+  });
+}
+
+async function measureCovers(items, onProgress) {
+  const total = Math.max(items.length, 1);
+  let done = 0;
+  return Promise.all(
+    items.map(async (item) => {
+      const files = item.files ?? [];
+      const size = files[0] ? await measureFile(files[0]) : null;
+      done += 1;
+      onProgress?.(70 + Math.round((done / total) * 25));
+      if (!size) return item;
+      const nextFiles = files.slice();
+      nextFiles[0] = { ...files[0], ...size };
+      return { ...item, files: nextFiles };
+    })
+  );
+}
+
 export default function Playground({ onReady, onProgress }) {
   const [items, setItems] = useState(null);
   const [error, setError] = useState(false);
@@ -17,38 +78,24 @@ export default function Playground({ onReady, onProgress }) {
         if (!r.ok) throw new Error(r.statusText);
         return r.json();
       })
-      .then((data) => {
+      .then(async (data) => {
         if (cancelled) return;
-        setItems(data);
-        setError(false);
         onProgress?.(70);
-
-        const covers = data
-          .flatMap((item) => item.files ?? [])
-          .filter((f) => f.type === "image")
-          .slice(0, 8);
-
-        if (covers.length === 0) { onReady?.(); return; }
-
-        let remaining = covers.length;
-        const done = () => { if (--remaining <= 0) onReady?.(); };
-        covers.forEach((f) => {
-          const img = new window.Image();
-          img.onload = img.onerror = done;
-          img.src = f.url;
-        });
+        const measured = await measureCovers(data, onProgress);
+        if (cancelled) return;
+        setItems(measured);
+        setError(false);
       })
       .catch(() => {
         if (cancelled) return;
         setError(true);
         setItems([]);
-        onReady?.();
       });
 
     return () => { cancelled = true; clearTimeout(timeout); controller.abort(); };
-  }, [onReady, onProgress, reloadKey]);
+  }, [onProgress, reloadKey]);
 
-  const tiles = buildPlaygroundCollection(items ?? []);
+  const tiles = items ? buildPlaygroundCollection(items) : [];
 
   return (
     <main className="page page-canvas">
@@ -61,7 +108,9 @@ export default function Playground({ onReady, onProgress }) {
         </div>
       )}
 
-      {tiles.length > 0 && <MosaicScroller tiles={tiles} />}
+      {items && (
+        <MosaicScroller tiles={tiles} onReady={onReady} />
+      )}
     </main>
   );
 }

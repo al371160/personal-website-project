@@ -1,16 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import PlaygroundCard from "./PlaygroundCard";
-import { MOSAIC_PATTERN } from "../data/playground";
 
-// The mosaic is an infinite 2D lattice. One "cycle" holds one full copy of the
-// collection, laid out in a 12-column grid computed entirely in JS (no CSS
-// grid), so the same documents repeat in every direction. Only cards
-// overlapping the viewport (+ padding) are mounted, and pan is unbounded (no
-// fold), so a card's cycle key never changes until it truly leaves the mounted
-// range — WebGL cards are torn down only after they exit the view. Card width
-// comes from the pattern span (c * colW); card height preserves each tile's own
-// aspect ratio (natural image ratio, or the component ratio for the 3D VFX
-// cards).
+// One finite cluster. Photos keep their real pixel size relative to each
+// other; WebGL cards take a long edge equal to the median photo. `buildLayout`
+// shelf-packs that set once (left to right, wrapping so the cluster is about
+// the shape of the viewport) with a thin gutter, then scales the whole cluster
+// so it fits the viewport at zoom 1. Only cards overlapping the viewport
+// (+ padding) are mounted, so offscreen WebGL contexts stay unloaded.
 //
 // The view is centered & zoomable: `view = { x, y, s }` is the world
 // coordinate pinned to the viewport center plus a uniform scale. The world is
@@ -18,52 +14,102 @@ import { MOSAIC_PATTERN } from "../data/playground";
 // so zoom-in/out eases smoothly while the world point under the center stays
 // put. Scroll / trackpad-pinch zooms about the viewport center; drag pans
 // (outside of interactive elements).
-const GRID_COLS = 12;
 const PAD = 1400;
 const DEFAULT_RATIO = 4 / 3;
-const MIN_H = 80;
+const DEFAULT_LONG = 1600;
 const MIN_S = 0.4;
-const MAX_S = 4;
+const MAX_S_FLOOR = 4;
+const MAX_S_CAP = 64;
 // Detail zoom keeps the top edge pinned ~TOP_PAD below the viewport top.
 const DETAIL_HEIGHT_FRAC = 0.75;
 const DETAIL_TOP_PAD = 30;
+// Gutter as a fraction of the median long edge — tight, not a tiled gap.
+const GAP_FRAC = 0.015;
+// Fit the cluster inside the viewport with a little padding at s = 1.
+const FIT_PAD = 0.92;
 
-// Greedy 12-column pack of the collection (per-one-cycle layout). Row-blocks
-// break when a tile would exceed 12 columns; within a block, cards accumulate
-// with one uniform `gap` between them (and one `gap` between stacked blocks).
-export function buildLayout(tiles, colW, gap, ratioOf, pattern = MOSAIC_PATTERN) {
+function median(values) {
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  if (sorted.length % 2) return sorted[mid];
+  return (sorted[mid - 1] + sorted[mid]) / 2;
+}
+
+function tileSize(tile, medianLong) {
+  if (tile.pixelW > 0 && tile.pixelH > 0) {
+    return { w: tile.pixelW, h: tile.pixelH };
+  }
+  const ratio = tile.ratio > 0 ? tile.ratio : DEFAULT_RATIO;
+  if (ratio >= 1) return { w: medianLong, h: medianLong / ratio };
+  return { w: medianLong * ratio, h: medianLong };
+}
+
+// Shelf-pack `tiles` in collection order. Sizes are proportional to pixel
+// dimensions (one shared scale). The result is in viewport units: the cluster
+// fits inside the viewport at zoom 1, and `maxS` is high enough that the
+// shortest card can still fill the detail view.
+export function buildLayout(tiles, viewportW, viewportH) {
+  if (!viewportW || !viewportH || tiles.length === 0) return null;
+
+  const photoEdges = [];
+  for (const tile of tiles) {
+    if (tile.pixelW > 0 && tile.pixelH > 0) {
+      photoEdges.push(Math.max(tile.pixelW, tile.pixelH));
+    }
+  }
+  const medianLong = photoEdges.length ? median(photoEdges) : DEFAULT_LONG;
+  const sizes = tiles.map((tile) => tileSize(tile, medianLong));
+  const gap = median(sizes.map((s) => Math.max(s.w, s.h))) * GAP_FRAC;
+
+  let widest = 0;
+  let totalArea = 0;
+  for (const s of sizes) {
+    widest = Math.max(widest, s.w);
+    totalArea += s.w * s.h;
+  }
+  const aspect = viewportW / viewportH;
+  const rowWidth = Math.max(widest, Math.sqrt(totalArea * aspect));
+
   const positions = [];
-  let unitCol = 0;
-  let blockMaxH = 0;
   let x = 0;
   let y = 0;
+  let rowH = 0;
   let maxX = 0;
-
   for (let i = 0; i < tiles.length; i++) {
-    const s = pattern[i % pattern.length];
-    if (unitCol + s.c > GRID_COLS) {
-      unitCol = 0;
-      y += blockMaxH + gap;
-      blockMaxH = 0;
+    const { w, h } = sizes[i];
+    if (x > 0 && x + w > rowWidth) {
+      y += rowH + gap;
       x = 0;
+      rowH = 0;
     }
-    const w = s.c * colW;
-    const h = Math.max(MIN_H, w / Math.max(0.05, ratioOf(tiles[i])));
     positions.push({ idx: i, x, y, w, h });
-    unitCol += s.c;
     x += w + gap;
-    blockMaxH = Math.max(blockMaxH, h);
+    rowH = Math.max(rowH, h);
     maxX = Math.max(maxX, x - gap);
   }
 
-  const cycleW = maxX + gap;
-  const cycleH = y + blockMaxH + gap;
-  return { positions, cycleW, cycleH };
+  const clusterW = Math.max(maxX, 1);
+  const clusterH = Math.max(y + rowH, 1);
+  const fit = Math.min((viewportW * FIT_PAD) / clusterW, (viewportH * FIT_PAD) / clusterH);
+
+  let maxS = MAX_S_FLOOR;
+  const scaled = positions.map((p) => {
+    const h = p.h * fit;
+    if (h > 0) maxS = Math.max(maxS, (viewportH * DETAIL_HEIGHT_FRAC) / h);
+    return { idx: p.idx, x: p.x * fit, y: p.y * fit, w: p.w * fit, h };
+  });
+
+  return {
+    positions: scaled,
+    width: clusterW * fit,
+    height: clusterH * fit,
+    maxS: Math.min(maxS, MAX_S_CAP),
+  };
 }
 
-export default function MosaicScroller({ tiles }) {
+export default function MosaicScroller({ tiles, onReady }) {
   const [view, setView] = useState({ x: 0, y: 0, s: 1 });
-  const [metrics, setMetrics] = useState(null); // { colW, gap, center, w, h }
+  const [metrics, setMetrics] = useState(null); // { center, w, h }
   const [ratios, setRatios] = useState({}); // `${tile.id}:${index}` -> w/h
   const [focused, setFocused] = useState(null); // { key, tile, x, y, w, h, index } detail view
 
@@ -77,6 +123,9 @@ export default function MosaicScroller({ tiles }) {
   const panRaf = useRef(0);
   const animRaf = useRef(0);
   const initRef = useRef(false);
+  const layoutSigRef = useRef("");
+  const layoutHold = useRef(null);
+  const maxSRef = useRef(MAX_S_FLOOR);
   const hintTimer = useRef(0);
   const [hintFaded, setHintFaded] = useState(false);
 
@@ -92,42 +141,58 @@ export default function MosaicScroller({ tiles }) {
 
   const L = tiles.length;
 
-  // Derive sizes (colW / gap) from CSS variables, plus the viewport center.
+  // Viewport size. The center is local to the canvas so the cluster sits in
+  // the middle of the playground, not offset by the top bar.
   useEffect(() => {
     const measure = () => {
       const el = viewportRef.current;
       if (!el) return;
-      const cs = getComputedStyle(el);
       const rect = el.getBoundingClientRect();
-      const colW = parseFloat(cs.getPropertyValue("--mosaic-col")) || 120;
-      const gRatio = parseFloat(cs.getPropertyValue("--mosaic-gap-ratio")) || 8;
-      const center = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-      setMetrics({ colW, gap: colW * gRatio, center, w: rect.width, h: rect.height });
-      if (!initRef.current) {
-        // Pin the world origin to the viewport's top-left (like the old pan).
-        initRef.current = true;
-        const v = { x: center.x, y: center.y, s: 1 };
-        viewRef.current = v;
-        setView(v);
-      }
+      setMetrics({
+        center: { x: rect.width / 2, y: rect.height / 2 },
+        w: rect.width,
+        h: rect.height,
+      });
     };
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
   }, []);
 
-  const ratioOf = useCallback(
-    // Layout boxes follow each tile's first image; per-index ratios are used
-    // to refit the focused box when navigating multi-image files.
-    (tile) => tile.ratio ?? ratios[`${tile.id}:0`] ?? DEFAULT_RATIO,
-    [ratios]
-  );
+  // Pack once per collection. Rebuilding on resize would move every card under
+  // a camera the user may already have panned. A new collection (retry) recenters.
+  const layoutSig = tiles.map((t) => `${t.id}:${t.pixelW || 0}x${t.pixelH || 0}`).join("|");
+  if (layoutSigRef.current !== layoutSig) {
+    layoutSigRef.current = layoutSig;
+    initRef.current = false;
+  }
+  if (metrics && L > 0 && layoutHold.current?.sig !== layoutSig) {
+    const next = buildLayout(tiles, metrics.w, metrics.h);
+    if (next) layoutHold.current = { sig: layoutSig, layout: next };
+  }
+  const layout = layoutHold.current?.sig === layoutSig ? layoutHold.current.layout : null;
+  maxSRef.current = layout?.maxS ?? MAX_S_FLOOR;
 
-  const layout =
-    metrics && L > 0 ? buildLayout(tiles, metrics.colW, metrics.gap, ratioOf) : null;
+  // First frame pins the cluster center to the viewport at zoom 1. Later pans
+  // and zooms are left alone. The page stays behind the loader until this fit
+  // exists, so the cluster doesn't appear in the corner and then jump.
+  const fitted = layout && !initRef.current
+    ? { x: layout.width / 2, y: layout.height / 2, s: 1 }
+    : null;
+  if (fitted) viewRef.current = fitted;
+  const frame = fitted ?? view;
 
-  // Set the natural aspect ratio of one displayed media file. Idempotent:
-  // repeated copies of the same tile report the same value, so no re-render.
+  useEffect(() => {
+    if (!layout || initRef.current) return;
+    initRef.current = true;
+    const v = { x: layout.width / 2, y: layout.height / 2, s: 1 };
+    viewRef.current = v;
+    setView(v);
+    onReady?.();
+  }, [layout, onReady]);
+
+  // Set the natural aspect ratio of one displayed media file. Idempotent, so a
+  // repeat report of the same file does not re-render.
   const onRatio = useCallback((id, idx, ratio) => {
     const key = `${id}:${idx}`;
     setRatios((prev) => (prev[key] === ratio ? prev : { ...prev, [key]: ratio }));
@@ -192,7 +257,10 @@ export default function MosaicScroller({ tiles }) {
   const fitDetail = useCallback(
     (w, h, x, y) => {
       if (!metrics) return;
-      const targetS = Math.min(MAX_S, Math.max(MIN_S, (metrics.h * DETAIL_HEIGHT_FRAC) / h));
+      const targetS = Math.min(
+        maxSRef.current,
+        Math.max(MIN_S, (metrics.h * DETAIL_HEIGHT_FRAC) / h)
+      );
       const topY = y + (metrics.h / 2 - DETAIL_TOP_PAD) / targetS;
       animateTo({ x: x + w / 2, y: topY, s: targetS });
     },
@@ -225,7 +293,7 @@ export default function MosaicScroller({ tiles }) {
       if (files.length < 2) return;
       const index = (focused.index + dir + files.length) % files.length;
       const ratio = ratios[`${focused.tile.id}:${index}`] ?? focused.w / focused.h;
-      const h = Math.max(MIN_H, focused.w / Math.max(0.05, ratio));
+      const h = focused.w / Math.max(0.05, ratio);
       setFocused({ ...focused, index, h });
       pokeHint();
       fitDetail(focused.w, h, focused.x, focused.y);
@@ -239,7 +307,7 @@ export default function MosaicScroller({ tiles }) {
     if (!focused || !metrics || focused.index === 0) return;
     const ratio = ratios[`${focused.tile.id}:${focused.index}`];
     if (!ratio) return;
-    const h = Math.max(MIN_H, focused.w / Math.max(0.05, ratio));
+    const h = focused.w / Math.max(0.05, ratio);
     if (h === focused.h) return;
     setFocused((prev) => (prev && prev.index === focused.index ? { ...prev, h } : prev));
     fitDetail(focused.w, h, focused.x, focused.y);
@@ -341,7 +409,7 @@ export default function MosaicScroller({ tiles }) {
       const cur = viewRef.current;
       stopAnim();
       pokeHint();
-      const ns = Math.min(MAX_S, Math.max(MIN_S, cur.s * Math.exp(-e.deltaY * 0.0016)));
+      const ns = Math.min(maxSRef.current, Math.max(MIN_S, cur.s * Math.exp(-e.deltaY * 0.0016)));
       animateTo({ x: cur.x, y: cur.y, s: ns });
     };
     el.addEventListener("wheel", onWheel, { passive: false });
@@ -361,38 +429,25 @@ export default function MosaicScroller({ tiles }) {
   // when zoomed in).
   const cards = [];
   if (layout && metrics) {
-    const s = view.s;
+    const s = frame.s;
     const hw = (metrics.w / 2 + PAD) / s;
     const hh = (metrics.h / 2 + PAD) / s;
-    const minX = view.x - hw;
-    const maxX = view.x + hw;
-    const minY = view.y - hh;
-    const maxY = view.y + hh;
+    const minX = frame.x - hw;
+    const maxX = frame.x + hw;
+    const minY = frame.y - hh;
+    const maxY = frame.y + hh;
 
-    const startCx = Math.floor(minX / layout.cycleW);
-    const endCx = Math.ceil(maxX / layout.cycleW);
-    const startCy = Math.floor(minY / layout.cycleH);
-    const endCy = Math.ceil(maxY / layout.cycleH);
-
-    for (let cy = startCy; cy <= endCy; cy++) {
-      for (let cx = startCx; cx <= endCx; cx++) {
-        for (const p of layout.positions) {
-          const x = cx * layout.cycleW + p.x;
-          const y = cy * layout.cycleH + p.y;
-          const w = p.w;
-          const h = p.h;
-          if (x + w < minX || x > maxX || y + h < minY || y > maxY) continue;
-          const key = `${cx}-${cy}-${p.idx}`;
-          cards.push({ key, tile: tiles[p.idx], x, y, w, h });
-        }
-      }
+    for (const p of layout.positions) {
+      if (p.x + p.w < minX || p.x > maxX || p.y + p.h < minY || p.y > maxY) continue;
+      const tile = tiles[p.idx];
+      cards.push({ key: tile.id, tile, x: p.x, y: p.y, w: p.w, h: p.h });
     }
   }
 
   const C = metrics?.center ?? { x: 0, y: 0 };
-  const s = view.s;
+  const s = frame.s;
   const transform = C
-    ? `translate(${C.x - s * view.x}px, ${C.y - s * view.y}px) scale(${s})`
+    ? `translate(${C.x - s * frame.x}px, ${C.y - s * frame.y}px) scale(${s})`
     : "translate(0px, 0px) scale(1)";
 
   // Anchor the detail panel to the focused card's top-right corner (screen
@@ -401,8 +456,8 @@ export default function MosaicScroller({ tiles }) {
   let panelStyle = null;
   if (focused && metrics) {
     panelStyle = {
-      left: metrics.w / 2 + s * (focused.x + focused.w - view.x) + 14,
-      top: metrics.h / 2 + s * (focused.y - view.y) + 80,
+      left: metrics.w / 2 + s * (focused.x + focused.w - frame.x) + 14,
+      top: metrics.h / 2 + s * (focused.y - frame.y) + 80,
     };
   }
 

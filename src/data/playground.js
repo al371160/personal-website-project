@@ -1,25 +1,10 @@
 import KoiPond from "../components/KoiPond";
 import ModelTurntable from "../components/ModelTurntable";
 
-// 12-column mosaic pattern. Every group of spans sums to exactly 12 columns,
-// so the tiles pack with zero gaps. Sizing is pattern-driven (deterministic),
-// making the mosaic look tessellated without needing per-tile layout work.
-export const MOSAIC_PATTERN = [
-  { c: 4, r: 2 },
-  { c: 4, r: 2 },
-  { c: 4, r: 2 },
-  { c: 6, r: 1 },
-  { c: 6, r: 1 },
-  { c: 3, r: 2 },
-  { c: 3, r: 2 },
-  { c: 3, r: 2 },
-  { c: 3, r: 2 },
-];
-
-// Interactive 3D cards. Each renders inline in the mosaic; clicking zooms in
-// and shows the description. `ratio` keeps the card box at the canvas's
-// intended aspect ratio (w/h). Add new ones by pushing to this array —
-// everything else is wired up automatically.
+// Interactive 3D cards. Each renders inline in the cluster; clicking zooms in
+// and shows the description. `ratio` is the card's aspect (w/h). These have no
+// pixel size, so the layout gives them a long edge equal to the median photo.
+// Add new ones by pushing to this array — everything else is wired up.
 export const WEBGL_TILES = [
   {
     id: "koi-pond",
@@ -42,15 +27,23 @@ export const WEBGL_TILES = [
 ];
 
 // Merges Notion projects (images + title + date + description) with the local
-// 3D cards into one unified tile collection.
+// 3D cards into one unified tile collection. Cover pixel size (measured before
+// layout) is `pixelW` / `pixelH` so every photo keeps its real size relative
+// to the others.
 export function buildPlaygroundCollection(items = []) {
-  const projects = items.map((item) => ({
-    id: `pg-${item.id}`,
-    kind: "project",
-    title: item.title ?? "Untitled",
-    date: item.date ?? null,
-    description: item.description ?? "",
-    files: item.files ?? [],
-  }));
+  const projects = items.map((item) => {
+    const files = item.files ?? [];
+    const cover = files[0];
+    return {
+      id: `pg-${item.id}`,
+      kind: "project",
+      title: item.title ?? "Untitled",
+      date: item.date ?? null,
+      description: item.description ?? "",
+      files,
+      pixelW: cover?.width > 0 ? cover.width : null,
+      pixelH: cover?.height > 0 ? cover.height : null,
+    };
+  });
   return [...WEBGL_TILES, ...projects];
 }

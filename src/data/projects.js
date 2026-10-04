@@ -26,18 +26,18 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social media, and internal morale. My role is to be in charge of creating the livery, car renders, sponsor-facing posters and presentation assets, and tooling that keeps the business team aligned with engineering milestones.",
+        body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social media, and internal morale. My role is to be in charge of creating the livery, the car renders, the sponsor-facing posters and presentation assets, and the tooling that keeps the business team aligned with engineering milestones. Although the team already has a strong visual language, I believe my job is to keep that language moving forward as the car itself changes.",
       },
       {
         type: "callout",
         icon: "lightbulb",
         title: "Working with the system",
-        body: "Penn Electric Racing already has an established design language, evident in the maintenance of their website, social media, club colors and fonts. As a designer I try to create material that both emulates and expands on the visual style of the team.",
+        body: "Penn Electric Racing already has an established design language, which is evident in the maintenance of their website, social media, club colors, and fonts. As a designer I try to create material that both emulates and expands on the visual style of the team, rather than replacing it with a look that would only last one season.",
       },
       {
         type: "text",
         title: "Rendering 3D Models",
-        body: "PER can benefit from more sophisticated 3D models that serve as visuals for its social media and merch. I followed my own guidelines in creating a scalable and efficient pipeline to treat the thousands of parts on the car through different versions.",
+        body: "PER can benefit from more sophisticated 3D models that serve as visuals for its social media and merch. I followed my own guidelines in creating a scalable and efficient pipeline to treat the thousands of parts on the car through different versions, because I did not want every new render to start from a raw CAD dump again.",
       },
       {
         type: "image",
@@ -52,19 +52,19 @@ export const projects = [
           {
             icon: "presentation",
             title: "Presentation visual aid",
-            body: "The models have to match our business presentation's need of labeling individual parts without much visual clutter.",
+            body: "The models have to match our business presentation's need of labeling individual parts without much visual clutter, so a sponsor can read a system at a glance.",
           },
           {
             icon: "shirt",
             title: "Merch and Media",
-            body: "The models also have to be flexible enough to be incorporated into our sponsorship package, merch, unveiling and social media posts.",
+            body: "The models also have to be flexible enough to be incorporated into our sponsorship package, merch, unveiling, and social media posts. I believe that flexibility is what makes a pipeline worth the time it takes to build.",
           },
         ],
       },
       {
         type: "text",
         title: "A Messy Manual Pipeline",
-        body: "As I was making visuals for models, I started off with a raw import without any modifications from Solidworks to Maya, and immediately ran into performance issues. Seeing no apparent alternatives, I manually adjusted parameters in all of the 3D apps I imported the CAD to, with much chagrin.",
+        body: "As I was making visuals for models, I started off with a raw import without any modifications from Solidworks to Maya, and I immediately ran into performance issues. Seeing no apparent alternatives, I manually adjusted parameters in all of the 3D apps I imported the CAD to, with much chagrin. Although that work got images out the door, I knew it could not be the system we lived with.",
       },
       {
         type: "image",
@@ -74,7 +74,7 @@ export const projects = [
         type: "callout",
         icon: "frown",
         title: "Solidworks Visualize",
-        body: "Although the materials transition was the easiest, the renderer struggled massively with the file size, taking 10 hours to render a video filled with graphical glitches due to an unoptimized model. I realized I needed to retopologize or delete some parts manually to keep the poly count low.",
+        body: "Although the materials transition was the easiest, the renderer struggled massively with the file size, taking ten hours to render a video filled with graphical glitches due to an unoptimized model. I realized I needed to retopologize or delete some parts manually to keep the poly count low, or we would keep paying that wait on every revision.",
       },
       {
         type: "video",
@@ -84,7 +84,7 @@ export const projects = [
         type: "callout",
         icon: "frown",
         title: "Maya",
-        body: "Maya was a better alternative, but it struggled with the massive amount of duplicate objects merged into each other and thousands of unwanted materials (opening Hypershade would crash my computer). However, I was able to utilize the nCloth feature to render a few test scenes for the car unveiling.",
+        body: "Maya was a better alternative, but it struggled with the massive amount of duplicate objects merged into each other and thousands of unwanted materials — opening Hypershade would crash my computer. Even so, I was able to utilize the nCloth feature to render a few test scenes for the car unveiling, which is what convinced me the pipeline was worth continuing.",
       },
       {
         type: "image",
@@ -94,12 +94,12 @@ export const projects = [
         type: "callout",
         icon: "smile",
         title: "Blender",
-        body: "I completed my retopology and added modifiers to different parts to create wireframe animations here. Using shader graphs, I created most of the animated shaders shown in the presentations and videos below.",
+        body: "I completed my retopology in Blender and added modifiers to different parts to create wireframe animations. Using shader graphs, I created most of the animated shaders shown in the presentations and videos below, and I believe that is where the car finally started to look like it belonged in our decks.",
       },
       {
         type: "text",
         title: "Next Steps",
-        body: "The current system is time consuming and stressful to operate. With the appearance of new technology that connects CAD with other types of rendering and simulation software, I'm currently working on modular, efficient software that allows different parts of the team to access certain parts of a vehicle's information without overriding anything.",
+        body: "The current system is time consuming and stressful to operate. With the appearance of new technology that connects CAD with other types of rendering and simulation software, I am currently working on modular, efficient software that allows different parts of the team to access certain parts of a vehicle's information without overriding anything. Although that tool is still in progress, I believe it is the only way this pipeline becomes something the whole team can use.",
       },
       {
         type: "image",
@@ -115,7 +115,7 @@ export const projects = [
       {
         type: "text",
         title: "GM Presentation",
-        body: "Created presentation that utilized limited space and optimized design and clarity of content.",
+        body: "I created a presentation that utilized limited space and optimized the design and clarity of the content, because a projector will not forgive a crowded slide.",
       },
       {
         type: "image",
@@ -130,7 +130,7 @@ export const projects = [
       {
         type: "text",
         title: "Business Presentation",
-        body: "Created stylized renders to visually demonstrate presentation topics.",
+        body: "I created stylized renders to visually demonstrate the presentation topics, so the business team could talk about systems without pointing at a raw CAD screenshot.",
       },
       {
         type: "image",
@@ -146,7 +146,7 @@ export const projects = [
       {
         type: "text",
         title: "Livery exploration",
-        body: "Livery directions are prototyped in Solidworks and Blender texture painting so the team can compare scale, contrast, and sponsor lockups before paint shop commitments.",
+        body: "Livery directions are prototyped in Solidworks and Blender texture painting so the team can compare scale, contrast, and sponsor lockups before paint shop commitments. Although a decal is cheap to change on a screen, it is expensive to get wrong on the car.",
       },
       {
         type: "gallery",
@@ -192,7 +192,7 @@ export const projects = [
       {
         type: "text",
         title: "Car visualization",
-        body: "Full-car renders combine Solidworks CAD, Visualize, and Maya for lighting passes used in decks and Instagram.",
+        body: "Full-car renders combine Solidworks CAD, Visualize, and Maya for lighting passes used in decks and Instagram. I treat those images as the public face of the car long before the physical bodywork is finished.",
       },
       {
         type: "gallery",
@@ -223,7 +223,7 @@ export const projects = [
       {
         type: "text",
         title: "Posters & business media",
-        body: "Poster and cover art support recruitment and sponsor meetings — often starting in 3D and finishing in Photoshop or Procreate for hand-tuned typography.",
+        body: "Poster and cover art support recruitment and sponsor meetings. They often start in 3D and finish in Photoshop or Procreate, where I can hand-tune the typography once the car is already sitting in the frame.",
       },
       {
         type: "gallery",
@@ -292,7 +292,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Provelis is a talent-intelligence console for time-boxed staffing on large IT deals. Deal data comes in — what needs to be done, by whom, and where — and a recruiting supervisor tracks which job requirements are actually filling. I was hired on a short contract to overhaul a vibe-coded UI so it could hold up for enterprise users, and to wire the new screens to live backend services before a July go-live.",
+        body: "Provelis is a talent-intelligence console for time-boxed staffing on large IT deals. Deal data comes in — what needs to be done, by whom, and where — and a recruiting supervisor tracks which job requirements are actually filling. I was hired on a short contract to overhaul a vibe-coded UI so it could hold up for enterprise users, and to wire the new screens to live backend services before a July go-live. Although the window was only two months, I believe the work was less about making the console look finished and more about making it something a supervisor could trust under load.",
       },
       {
         type: "image",
@@ -302,7 +302,7 @@ export const projects = [
       {
         type: "text",
         title: "The brief",
-        body: "The first assignment was one home screen. Most of the pipeline was already automated from requirement to shortlist. What still needed a person was candidates answering interviews and recruiters reviewing the top ones. The page had to show, in order: where that pipeline was stalling, open jobs and their status, AI interview scorecards, and who needed a decision — with a prompt button, not just a number. The look was corporate, data-dense, and still readable.",
+        body: "The first assignment was one home screen. Most of the pipeline was already automated from requirement to shortlist, so what still needed a person was candidates answering interviews and recruiters reviewing the top ones. The page had to show, in order, where that pipeline was stalling, which jobs were open and what their status was, the AI interview scorecards, and who needed a decision — with a prompt button, not just a number. Although the look had to stay corporate and data-dense, I believed it still had to be readable on a normal laptop, not only on a trading-floor monitor.",
       },
       {
         type: "callout",
@@ -311,19 +311,19 @@ export const projects = [
           {
             icon: "target",
             title: "Shorter paths",
-            body: "Leadership and the backend lead wanted the distance between buttons and functions as short as possible.",
+            body: "Leadership and the backend lead wanted the distance between buttons and functions as short as possible, so a supervisor could act without hunting through extra pages.",
           },
           {
             icon: "layers",
             title: "Higher density",
-            body: "The same brief asked for more information on screen so hiring managers could act without hunting through extra pages.",
+            body: "The same brief asked for more information on a single screen. I took that to mean density had to serve a decision, not merely fill the canvas.",
           },
         ],
       },
       {
         type: "text",
         title: "Cleaning up v1",
-        body: "The first version had been coded with almost no design direction. It was full of duplicate screens, messy connections, and type and functions that did not need to be there. I stripped those out, then rebuilt the pages around modular windows and dense lists, taking cues from the S&P terminals investment bankers use — a format that already matched how Provelis stored its data. The first sample used scalable windows, a collapsible sidebar, and outlined clickable controls. I tried tiles for the important action items, then switched to a list because a list was easier to scan. That pass did shrink the distance between pages.",
+        body: "The first version had been coded with almost no design direction. It was full of duplicate screens, messy connections, and type and functions that did not need to be there. I stripped those out, then rebuilt the pages around modular windows and dense lists, taking cues from the S&P terminals investment bankers use — a format that already matched how Provelis stored its data. The first sample used scalable windows, a collapsible sidebar, and outlined clickable controls. I tried tiles for the important action items, then switched to a list because a list was easier to scan. Although that pass did shrink the distance between pages, I would later learn that a denser terminal is not the same thing as a clearer one.",
       },
       {
         type: "image",
@@ -333,7 +333,7 @@ export const projects = [
         type: "callout",
         icon: "building-2",
         title: "Initial brainstorming",
-        body: "Modular windows and long lists felt like the right language for a professional ops tool. I treated that as the design system for the first rebuild. After review I cut a large KPI strip of redundant numbers and a one-item notification banner that ate a full row for a single alert.",
+        body: "Modular windows and long lists felt like the right language for a professional ops tool, so I treated that as the design system for the first rebuild. After review I cut a large KPI strip of redundant numbers and a one-item notification banner that ate a full row for a single alert, because those pieces looked finished without actually helping anyone decide.",
       },
       {
         type: "image",
@@ -343,18 +343,18 @@ export const projects = [
       {
         type: "text",
         title: "Initial feedback - it was confusing",
-        body: "Hiring managers — the people Provelis is actually for — said the rebuild was hard to use. The hiring tool they already used felt more intuitive and less cluttered, and it let them customize tables. I had to throw out the first system and start from their working habits instead of from a denser terminal.",
+        body: "Hiring managers — the people Provelis is actually for — said the rebuild was hard to use. The hiring tool they already used felt more intuitive and less cluttered, and it let them customize tables. I had to throw out the first system and start from their working habits instead of from a denser terminal, even though that first pass had already taken a large share of the contract.",
       },
       {
         type: "callout",
         icon: "frown",
         title: "Talk to the users earlier",
-        body: "I designed against an internal brief instead of checking each feature idea with hiring managers. That is why the first version looked finished and still failed. Later click-throughs kept finding the same class of problem: table headers that did not stick, filters that did not filter, buttons that went nowhere, a search box that ate keystrokes, and a job description that was too small on the requirement canvas.",
+        body: "I designed against an internal brief instead of checking each feature idea with hiring managers, which is why the first version looked finished and still failed. Later click-throughs kept finding the same class of problem: table headers that did not stick, filters that did not filter, buttons that went nowhere, a search box that ate keystrokes, and a job description that was too small on the requirement canvas. I believe those issues are what smoke tests would have caught if I had run them earlier.",
       },
       {
         type: "text",
         title: "A clearer console",
-        body: "I dropped the top sliding bar of buttons for a side panel that opens and closes, reused the existing table assets instead of inventing new ones, and used icons plus changes in padding and type to mark what mattered. After the concepts landed, the home grid they asked for was client rows, stalls, recruiter output, and a schedule — each panel expandable to a full list. Urgency was the item that had sat longest, or the one closest to an SLA. The goal was the same density, but with a layout hiring managers already recognized.",
+        body: "I dropped the top sliding bar of buttons for a side panel that opens and closes, reused the existing table assets instead of inventing new ones, and used icons plus changes in padding and type to mark what mattered. After the concepts landed, the home grid they asked for was client rows, stalls, recruiter output, and a schedule — each panel expandable to a full list. Urgency was the item that had sat longest, or the one closest to an SLA. The goal was the same density, but with a layout hiring managers already recognized, and I think that recognition is what finally made the console usable.",
       },
       {
         type: "callout",
@@ -363,12 +363,12 @@ export const projects = [
           {
             icon: "panel-left",
             title: "Collapsible side nav",
-            body: "Primary actions live in a panel that can get out of the way, instead of a sliding top bar.",
+            body: "Primary actions live in a panel that can get out of the way, instead of a sliding top bar that competed with the data for attention.",
           },
           {
             icon: "table",
             title: "Reuse before invent",
-            body: "Tables, icons, and type scale do the hierarchy work. New UI chrome is expensive and, in this case, broke the prototype backend.",
+            body: "Tables, icons, and type scale do the hierarchy work. New UI chrome is expensive, and in this case a visual rewrite was enough to take the prototype backend down.",
           },
         ],
       },
@@ -379,19 +379,19 @@ export const projects = [
           {
             icon: "app-window",
             title: "One canvas, not a stack of popups",
-            body: "Clicking a job opens the description, candidates, and actions on one screen, with a breadcrumb back path — dashboard, then job, then candidate. Stalls and interviews get hover peeks instead of another hidden menu.",
+            body: "Clicking a job opens the description, candidates, and actions on one screen, with a breadcrumb back path — dashboard, then job, then candidate. Stalls and interviews get hover peeks instead of another hidden menu, so a recruiter can stay on the canvas while they move through a large pile.",
           },
           {
             icon: "swatch-book",
             title: "Parchment over glass",
-            body: "Rounded Liquid Glass and frost looked pretty and read as unprofessional. Stakeholders picked the sharp, parchment, high-density direction. Blue and white to match the logo; no purple; no generic AI glyphs; no extra titles.",
+            body: "Rounded Liquid Glass and frost looked pretty and read as unprofessional. Stakeholders picked the sharp, parchment, high-density direction: blue and white to match the logo, with no purple, no generic AI glyphs, and no extra titles sitting on top of the data.",
           },
         ],
       },
       {
         type: "text",
         title: "Redefining User Flow",
-        body: "I redesigned roughly 40 screens across the console. The executive portal was the core. A recruiter-scoped twin followed — only assigned jobs, with louder review and advance actions. I also started a lighter pass on the candidate interview screens. Two surfaces mattered most while the rest of the system came together.",
+        body: "I redesigned roughly 40 screens across the console. The executive portal was the core, and a recruiter-scoped twin followed — only assigned jobs, with louder review and advance actions. I also started a lighter pass on the candidate interview screens, although I did not land a finished candidate portal. Two surfaces mattered most while the rest of the system came together.",
       },
       {
         type: "callout",
@@ -400,12 +400,12 @@ export const projects = [
           {
             icon: "columns-2",
             title: "Resume beside the job",
-            body: "A side-by-side view so hiring managers can read a resume against the job requirements without flipping between pages.",
+            body: "A side-by-side view so hiring managers can read a resume against the job requirements without flipping between pages, which was one of the shortest paths the brief had asked for.",
           },
           {
             icon: "list",
             title: "Modular hire list",
-            body: "A list of hires that can be rearranged and scanned the way they already work through a pipeline.",
+            body: "A list of hires that can be rearranged and scanned the way they already work through a pipeline, instead of inventing a new chrome they would have to relearn.",
           },
         ],
       },
@@ -417,7 +417,7 @@ export const projects = [
       {
         type: "text",
         title: "Home & pipeline",
-        body: "The home dashboard surfaces open requirements, submissions, interview volume, and funnel health so a supervisor can see which jobs are filling without opening five tabs.",
+        body: "The home dashboard surfaces open requirements, submissions, interview volume, and funnel health so a supervisor can see which jobs are filling without opening five tabs. I wanted that grid to be the place a day starts, not a pretty empty circle that still required another page.",
       },
       {
         type: "gallery",
@@ -438,7 +438,7 @@ export const projects = [
       {
         type: "text",
         title: "Recruiters & analytics",
-        body: "Recruiter performance and live analytics pull from completed interviews so ops can track verdicts, weekly throughput, and submit rates in one place.",
+        body: "Recruiter performance and live analytics pull from completed interviews so ops can track verdicts, weekly throughput, and submit rates in one place. Although the numbers were already in the backend, they were not useful until they sat next to the people who had to act on them.",
       },
       {
         type: "gallery",
@@ -459,7 +459,7 @@ export const projects = [
       {
         type: "text",
         title: "Workflow builder",
-        body: "Interview workflows are editable node graphs — from simple round sequences to multi-step outreach, wait, and verification flows with live save state and AI-assisted resets.",
+        body: "Interview workflows are editable node graphs, from simple round sequences to multi-step outreach, wait, and verification flows with live save state and AI-assisted resets. I kept an earlier, more elaborate graph because it showed why we scrapped it: the feature set was incomplete, and the graphics could not be trusted.",
       },
       {
         type: "image",
@@ -485,7 +485,7 @@ export const projects = [
       {
         type: "text",
         title: "Interview review",
-        body: "Candidate review combines recording, transcript, AI verdict, strengths/weaknesses, and proctoring signals so recruiters can advance, hold, or reject from one screen.",
+        body: "Candidate review combines recording, transcript, AI verdict, strengths and weaknesses, and proctoring signals so recruiters can advance, hold, or reject from one screen. I believed that decision had to stay on the same canvas as the evidence, or the shorter path the brief asked for would collapse back into tab-hopping.",
       },
       {
         type: "image",
@@ -511,7 +511,7 @@ export const projects = [
       {
         type: "text",
         title: "Sourcing & ops",
-        body: "Deep Search and Problems close the loop — external-only candidate sourcing with verification, plus a severity queue for stalled requirements.",
+        body: "Deep Search and Problems close the loop: external-only candidate sourcing with verification, plus a severity queue for stalled requirements. I ordered that queue by the longest wait and the closest SLA, because a pretty empty circle would not have told a supervisor where to put the next hour.",
       },
       {
         type: "gallery",
@@ -533,13 +533,13 @@ export const projects = [
         type: "callout",
         icon: "shield",
         title: "No separate test backend",
-        body: "I could not fork production for security and clearance reasons, and I also could not run the full stack locally. Previews went through a shared cluster with 10–20 minute deploys, so a style change and a wiring bug looked the same until they landed. Interview video and resumes lived on a service with no safe development copy, which is why some paths stayed empty on the preview and why a visual rewrite could take the backend down. My lead unblocked cluster access. I owned the UI wiring.",
+        body: "I could not fork production for security and clearance reasons, and I also could not run the full stack locally. Previews went through a shared cluster with 10–20 minute deploys, so a style change and a wiring bug looked the same until they landed. Interview video and resumes lived on a service with no safe development copy, which is why some paths stayed empty on the preview and why a visual rewrite could take the backend down. My lead unblocked cluster access, and I owned the UI wiring. Although that constraint was frustrating, I believe it is also why click-through QA had to be part of the design rather than a pass after ship.",
       },
       {
         type: "callout",
         icon: "notebook-pen",
         title: "What I learned",
-        body: "Reuse what already works, talk to the people who run the desks — not only the internal brief — and be careful prompting agents so a visual rewrite cannot take the backend down. Treat click-through QA as part of the design. One of my biggest regrets was wasting time designing an entire UI using a misguided philosophy. I should've conducted smoke tests way before I was finished to know what direction I should be headed in. With little guidance from my lead, I took this project as a learning experience to help me on my future endeavors in UI design.",
+        body: "I will reuse what already works, talk to the people who run the desks — not only the internal brief — and be careful prompting agents so a visual rewrite cannot take the backend down. I will also treat click-through QA as part of the design. One of my biggest regrets was wasting time designing an entire UI using a misguided philosophy. I should have conducted smoke tests way before I was finished, so I would have known what direction I should be headed in. With little guidance from my lead, I took this project as a learning experience to help me on my future endeavors in UI design.",
       },
       { type: "text", title: "Video demo" },
       {
@@ -574,7 +574,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Clockwork Climb is a physics puzzle-strategy game: you cannot steer the cuckoo birds. You draw bounce-belts they ricochet off, and you have to get the flock to the clock tower. I led a team of five through a three-week production — producer and project manager first, with executive say on design, plus the background assets, lighting, and in-engine placement.",
+        body: "In Clockwork Climb, you cannot steer the cuckoo birds. You draw bounce-belts they ricochet off of, and you have to get the flock to the clock tower. I led a team of five through a three-week production, first as producer and project manager, with executive say on the design decisions that kept the slice shippable. Although my time on any one screen was limited, I also owned the background assets, the lighting, and most of the in-engine placement, so the levels could look like a game while the systems were still landing.",
       },
       {
         type: "callout",
@@ -583,12 +583,12 @@ export const projects = [
           {
             icon: "target",
             title: "Why this pitch",
-            body: "We took three ideas to the judges. This one won on scale and on a control scheme nobody else was doing: draw the path, don't drive the character.",
+            body: "We took three ideas to the judges, and this one was preferred because of its scale and because nobody else was asking the player to draw the path instead of driving the character. I believe that uniqueness is what made the mechanic worth building in three weeks.",
           },
           {
             icon: "users",
             title: "Five people, three weeks",
-            body: "My design time on any one screen was limited. The job was keeping tasks visible — Kanban, Sheets, Jira — and making the calls that kept the slice shippable.",
+            body: "Although my design time on any one screen was limited, I treated the board as the real design surface. I kept the team updated through Kanban, Google Sheets, and Jira, and I used that visibility to make the calls that kept the slice shippable.",
           },
         ],
       },
@@ -605,7 +605,7 @@ export const projects = [
       {
         type: "text",
         title: "Paper, then a working bounce",
-        body: "The pitch started on paper so the mechanic was readable before anyone opened Unity. Programmers turned that into a playable level with working trampolines. That demo is what proved the idea was a game, not a drawing of one.",
+        body: "The pitch started on paper so the mechanic would be readable before anyone opened Unity. Our programmers turned that drawing into a playable level with working trampolines, and that demo is what proved we were making a game rather than a picture of one.",
       },
       {
         type: "image",
@@ -632,7 +632,7 @@ export const projects = [
       {
         type: "text",
         title: "Weeks one and two",
-        body: "Artists built the models while sound designed the feel: slow-motion treatments and 3D spatial audio so a bounce read in the headphones, not only on screen. I was on background assets, lighting, and the environmental optics we found we could afford once the first scenes were in. I also placed most of those assets in the engine so levels weren't a pile of gray boxes waiting on a final art pass.",
+        body: "While the artists built the models, sound designed the feel of a bounce, including slow-motion treatments and 3D spatial audio so a landing could be heard as well as seen. I was responsible for most of the background assets, the lighting, and the environmental optics we discovered we could afford once the first scenes were in. I also placed most of those assets in the engine, because I did not want the levels to sit as gray boxes waiting on a final art pass.",
       },
       {
         type: "video",
@@ -642,7 +642,7 @@ export const projects = [
       {
         type: "text",
         title: "Weeks two and three",
-        body: "More models, more obstacles, and the camera, tutorial signaling, and UI that teach the first levels without a wall of text. The customizable level editor — custom game objects for trampolines and the rest of the kit — is what let us iterate levels without waiting on a programmer for every bounce.",
+        body: "In the second and third weeks we added more models, more obstacles, and the camera, tutorial signaling, and UI that teach the first levels without a wall of text. The customizable level editor, which used custom game objects for trampolines and the rest of the kit, is what let us iterate puzzles without waiting on a programmer for every bounce.",
       },
       {
         type: "video",
@@ -656,25 +656,35 @@ export const projects = [
           {
             icon: "pencil-ruler",
             title: "Level editor",
-            body: "Designers could drop custom objects — trampolines, belts, obstacles — and tune a puzzle without a code change. That is how a three-week team ships more than one good level.",
+            body: "Although we only had three weeks, the level editor meant designers could drop trampolines, belts, and obstacles and tune a puzzle without a code change. I believe that is how a small team ships more than one good level.",
           },
           {
             icon: "volume-2",
             title: "Audio as feedback",
-            body: "Slow-motion and spatial audio were not garnish. They told you a bounce had landed when the camera was already moving.",
+            body: "Slow-motion and spatial audio were not garnish. They told you a bounce had landed when the camera was already moving, and I think that feedback is a large part of why the mechanic felt readable on a phone.",
           },
         ],
       },
       {
         type: "text",
+        title: "Building for a Mobile Game",
+        body: "The trampoline aspect of the game is meant for a mobile-first experience, so we considered everything from both PC and mobile standpoints. Custom gestures can only happen one at a time, which is why we spaced the UI so that a swipe cannot touch any of the buttons. We also considered a lot of edge cases, including trampolines drawn at the edge of the screen and bird collisions. In the end, we playtested with a lot of students and faculty and used their feedback to improve the responsiveness of our trampolines and camera gestures, as well as the intuitiveness of the UI, given our time constraints.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791143117/Screenshot_2026-10-04_at_3.44.42_PM.png",
+        caption: "One of our student mentors, Airan, testing our game.",
+      },
+      {
+        type: "text",
         title: "The hard part",
-        body: "The hard part was the clock, not the mechanic. Scope was the levels. We spent sleepless nights coding and debugging to hit the deadline. In hindsight there was not much backtracking — we scoped the project to what this team could actually finish. That is the producer work I care about: fewer heroic recoveries because the plan already fit the people.",
+        body: "The most challenging part of the project was making sure everything was done on time. Because of the scope of our levels, we spent a lot of sleepless nights coding and debugging. In hindsight there was not that much backtracking, although there was a great deal of work. I believe we scoped the project to what this team could actually finish, and that is the producer work I care about: fewer heroic recoveries because the plan already fit the people.",
       },
       {
         type: "callout",
         icon: "notebook-pen",
         title: "What I learned",
-        body: "A paper prototype and a trampoline demo beat a prettier pitch. Keep the team on one board. Own the unglamorous art — backgrounds, lighting, placement — so the levels look like a game while systems are still landing. Scope to the team's actual capacity, then protect that scope.",
+        body: "A paper prototype and a trampoline demo beat a prettier pitch, and I will keep the team on one board next time. I also learned to own the unglamorous art — backgrounds, lighting, and placement — so the levels look like a game while systems are still landing. Although the clock was tight, I believe the lesson is to scope to the team's actual capacity, and then protect that scope.",
       },
     ],
   }, /*
@@ -857,7 +867,7 @@ export const projects = [
         type: "callout",
         icon: "hammer",
         title: "In development",
-        body: "Saturn is a long-term indie project in active development. Follow along and play the latest build on itch.io.",
+        body: "Saturn is a long-term indie project I am building in public. Although the systems are still moving, I believe the latest build on itch.io is the honest way to follow the work, rather than waiting for a finished trailer.",
       },
       { type: "text", title: "Part 1: Initial Ideation" },
       {
@@ -909,7 +919,7 @@ export const projects = [
       {
         type: "text",
         title: "Shader graphs",
-        body: "Shader creation in Unity's Shader Graph produced two main types: outline and toon.",
+        body: "I built the look in Unity's Shader Graph, and it settled into two main types: outline and toon. Although the first direction had been more photoreal, I believe these shaders are what made the stylized characters read as a world instead of as unshaded meshes.",
       },
       {
         type: "gallery",
@@ -930,7 +940,7 @@ export const projects = [
       {
         type: "text",
         title: "Reddit feedback",
-        body: "I posted the first look on Reddit. The comments were more useful than the upvotes — they pointed at what was actually reading and what felt unfinished. There wasn't enough audience interest in the direction as-is, which is why I stopped chasing a more realistic look and went stylized instead.",
+        body: "I posted the first look on Reddit. The comments were more useful than the upvotes, because they pointed at what was actually reading and what felt unfinished. There was not enough audience interest in the direction as-is, which is why I stopped chasing a more realistic look and went stylized instead. I believe that lack of interest was the most useful note I received.",
       },
       {
         type: "gallery",
@@ -951,7 +961,7 @@ export const projects = [
       {
         type: "text",
         title: "Part 2: Building Environment System",
-        body: "Figuring out an optimized gameplay loop that allows for a balance between story elements and the freedom of an open-world-style game. More of the build process is in the playlist below.",
+        body: "I have been figuring out an optimized gameplay loop that allows for a balance between story elements and the freedom of an open-world-style game. Although that balance is still in progress, more of the build process is in the playlist below, and I will keep posting as the loop gets tighter.",
       },
       {
         type: "youtube",
@@ -979,24 +989,24 @@ export const projects = [
           {
             icon: "camera",
             title: "Camera system",
-            body: "Cameras are driven by a Cinemachine controller. As the player enters and exits colliders, scripts on those colliders store distance, angle, and orientation — including what the camera should look at — and interpolate between positions. The result is a dynamic fixed-camera style closer to A Short Hike than a free orbit.",
+            body: "Cameras are driven by a Cinemachine controller. As the player enters and exits certain colliders, scripts on those colliders store distance, angle, and orientation — including what the camera should look at — and interpolate between positions. The result is a dynamic fixed-camera style closer to A Short Hike than a free orbit, and I believe that constraint is what makes a location feel authored.",
           },
           {
             icon: "messages-square",
             title: "NPC system",
-            body: "A custom dialogue system covers multiple NPCs: physical movement, quests, world-space speech bubbles with player choices, branching dialogue (including cycles when a quest locks a path), and swapping models. Dialogue is the hard part — I still have to handwrite it at any length. Next I need interactions between different NPCs, not only player-to-NPC.",
+            body: "A custom dialogue system covers multiple NPCs: physical movement, quests, world-space speech bubbles with player choices, branching dialogue — including cycles when a quest locks a path — and swapping models. Dialogue is the hard part, because I still have to handwrite it at any length. In the coming months I will need interactions between different NPCs, not only player-to-NPC, if the world is going to feel inhabited rather than queued.",
           },
         ],
       },
       {
         type: "text",
         title: "Part 3: Next Steps",
-        body: "I will try to make traversal between locations more engaging.",
+        body: "In the coming months I will try to make traversal between locations more engaging. Although the loop is starting to hold, I believe the walk from one place to another is still doing too little of the storytelling.",
       },
       {
         type: "text",
         title: "Current Gameplay Loop",
-        body: "I organized a gameplay doc to pin down the loop — what the player does, what comes back, and where story beats sit against open-world freedom — before I keep adding systems.",
+        body: "I organized a gameplay doc to pin down the loop — what the player does, what comes back, and where story beats sit against open-world freedom — before I keep adding systems. Although it is still a working document, I believe writing the loop down is what will keep the next features from drifting.",
       },
       {
         type: "image",
@@ -1067,7 +1077,7 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Aquara is a professional client portal built around clarity under load: accountants and ops leads need numbers, status, and actions without hunting through nested menus. I led the interface architecture — modular panels, dense data tables, and a calm visual system that still feels fast at a glance.",
+        body: "Aquara is a professional client portal built around clarity under load. Accountants and ops leads need numbers, status, and actions without hunting through nested menus. I led the interface architecture — modular panels, dense data tables, and a calm visual system that still feels fast at a glance — because I believe a portal that looks busy will be treated as busy work.",
       },
       {
         type: "image",
@@ -1098,12 +1108,12 @@ export const projects = [
       {
         type: "text",
         title: "Design principles",
-        body: "Type scale and spacing follow an 8px grid. Components are swappable blocks (summary, ledger, alerts) so new client verticals reuse the same frame.\n\nColor is mostly neutral with a single accent for CTAs and risk states.",
+        body: "Type scale and spacing follow an 8px grid. Components are swappable blocks — summary, ledger, alerts — so new client verticals can reuse the same frame instead of asking for a new product. Color is mostly neutral, with a single accent for CTAs and risk states, because I wanted urgency to be a rare signal rather than a default.",
       },
       {
         type: "text",
         title: "Next steps",
-        body: "Continuing to tighten responsive breakpoints and empty states for first-time client onboarding.",
+        body: "In the coming months I will continue to tighten the responsive breakpoints and the empty states for first-time client onboarding. Although the shell is in place, I believe those first-run screens are still where a professional product either earns trust or loses it.",
       },
     ],
   },
