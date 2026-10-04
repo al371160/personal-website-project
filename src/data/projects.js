@@ -553,14 +553,16 @@ export const projects = [
     title: "Clockwork Climb",
     category: "Game / 3D",
     description: "Producer-led three-week physics puzzle game for a team of five",
-    visitUrl: "https://team-xiv.itch.io/clockwork-climb",
+    links: [
+      { url: "https://team-xiv.itch.io/clockwork-climb", label: "Play Game" },
+    ],
     thumbnail: {
       type: "photo",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790967228/clockwork-climb-thumbnail.png",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1791076698/xVWkB7.png",
     },
     hero: {
-      type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790967228/clockwork-climb-thumbnail.png",
+      type: "youtube",
+      src: "ZJojZok5p28",
     },
     meta: {
       role: "Producer / Artist",
@@ -1195,10 +1197,6 @@ export const projects = [
       src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1768447371/Screen_Recording_2026-01-14_at_10.20.36_PM_hfnucs.mov",
     },
     hero: {
-      type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768450142/Y-Prize_2025-images-0_lke54o.jpg",
-    },
-    heroVideo: {
       type: "youtube",
       src: "k8fP14yVEa8",
     },
