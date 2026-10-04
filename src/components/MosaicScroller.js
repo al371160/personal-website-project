@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import PlaygroundCard from "./PlaygroundCard";
 
-// One finite cluster. Photos keep their real pixel size relative to each
-// other; WebGL cards take a long edge equal to the median photo. `buildLayout`
-// shelf-packs that set once (left to right, wrapping so the cluster is about
-// the shape of the viewport) with a thin gutter, then scales the whole cluster
-// so it fits the viewport at zoom 1. Only cards overlapping the viewport
-// (+ padding) are mounted, so offscreen WebGL contexts stay unloaded.
+// One finite cluster. At zoom 1 every photo is its real pixel size (a 3000px
+// image is 3000px on screen). WebGL cards take a long edge equal to the median
+// photo. `buildLayout` shelf-packs that set once, with a wide margin between
+// cards, and does not shrink the group to fit the window. Only cards
+// overlapping the viewport (+ padding) are mounted, so offscreen WebGL
+// contexts stay unloaded.
 //
 // The view is centered & zoomable: `view = { x, y, s }` is the world
 // coordinate pinned to the viewport center plus a uniform scale. The world is
@@ -17,16 +17,15 @@ import PlaygroundCard from "./PlaygroundCard";
 const PAD = 1400;
 const DEFAULT_RATIO = 4 / 3;
 const DEFAULT_LONG = 1600;
-const MIN_S = 0.4;
 const MAX_S_FLOOR = 4;
 const MAX_S_CAP = 64;
+const MIN_S_FLOOR = 0.02;
 // Detail zoom keeps the top edge pinned ~TOP_PAD below the viewport top.
 const DETAIL_HEIGHT_FRAC = 0.75;
 const DETAIL_TOP_PAD = 30;
-// Gutter as a fraction of the median long edge — tight, not a tiled gap.
-const GAP_FRAC = 0.015;
-// Fit the cluster inside the viewport with a little padding at s = 1.
-const FIT_PAD = 0.92;
+// Space between cards at full pixel scale. Wide enough to read as a margin,
+// not a hairline left over from fitting the cluster into the window.
+const MARGIN = 160;
 
 function median(values) {
   const sorted = [...values].sort((a, b) => a - b);
@@ -44,10 +43,9 @@ function tileSize(tile, medianLong) {
   return { w: medianLong * ratio, h: medianLong };
 }
 
-// Shelf-pack `tiles` in collection order. Sizes are proportional to pixel
-// dimensions (one shared scale). The result is in viewport units: the cluster
-// fits inside the viewport at zoom 1, and `maxS` is high enough that the
-// shortest card can still fill the detail view.
+// Shelf-pack `tiles` in collection order at 1:1 pixel size. Zoom 1 shows every
+// photo at its real dimensions. `minS` can frame the whole cluster or the
+// tallest card; `maxS` can fill the detail view with the shortest card.
 export function buildLayout(tiles, viewportW, viewportH) {
   if (!viewportW || !viewportH || tiles.length === 0) return null;
 
@@ -59,13 +57,16 @@ export function buildLayout(tiles, viewportW, viewportH) {
   }
   const medianLong = photoEdges.length ? median(photoEdges) : DEFAULT_LONG;
   const sizes = tiles.map((tile) => tileSize(tile, medianLong));
-  const gap = median(sizes.map((s) => Math.max(s.w, s.h))) * GAP_FRAC;
 
   let widest = 0;
   let totalArea = 0;
+  let tallest = 1;
+  let shortest = Infinity;
   for (const s of sizes) {
     widest = Math.max(widest, s.w);
-    totalArea += s.w * s.h;
+    tallest = Math.max(tallest, s.h);
+    shortest = Math.min(shortest, s.h);
+    totalArea += (s.w + MARGIN) * (s.h + MARGIN);
   }
   const aspect = viewportW / viewportH;
   const rowWidth = Math.max(widest, Math.sqrt(totalArea * aspect));
@@ -78,33 +79,27 @@ export function buildLayout(tiles, viewportW, viewportH) {
   for (let i = 0; i < tiles.length; i++) {
     const { w, h } = sizes[i];
     if (x > 0 && x + w > rowWidth) {
-      y += rowH + gap;
+      y += rowH + MARGIN;
       x = 0;
       rowH = 0;
     }
     positions.push({ idx: i, x, y, w, h });
-    x += w + gap;
+    x += w + MARGIN;
     rowH = Math.max(rowH, h);
-    maxX = Math.max(maxX, x - gap);
+    maxX = Math.max(maxX, x - MARGIN);
   }
 
   const clusterW = Math.max(maxX, 1);
   const clusterH = Math.max(y + rowH, 1);
-  const fit = Math.min((viewportW * FIT_PAD) / clusterW, (viewportH * FIT_PAD) / clusterH);
+  const fitAll = Math.min(viewportW / clusterW, viewportH / clusterH);
+  const fitTallest = (viewportH * DETAIL_HEIGHT_FRAC) / tallest;
+  const minS = Math.max(MIN_S_FLOOR, Math.min(1, fitAll, fitTallest));
+  const maxS = Math.min(
+    MAX_S_CAP,
+    Math.max(MAX_S_FLOOR, (viewportH * DETAIL_HEIGHT_FRAC) / shortest)
+  );
 
-  let maxS = MAX_S_FLOOR;
-  const scaled = positions.map((p) => {
-    const h = p.h * fit;
-    if (h > 0) maxS = Math.max(maxS, (viewportH * DETAIL_HEIGHT_FRAC) / h);
-    return { idx: p.idx, x: p.x * fit, y: p.y * fit, w: p.w * fit, h };
-  });
-
-  return {
-    positions: scaled,
-    width: clusterW * fit,
-    height: clusterH * fit,
-    maxS: Math.min(maxS, MAX_S_CAP),
-  };
+  return { positions, width: clusterW, height: clusterH, minS, maxS };
 }
 
 export default function MosaicScroller({ tiles, onReady }) {
@@ -126,6 +121,7 @@ export default function MosaicScroller({ tiles, onReady }) {
   const layoutSigRef = useRef("");
   const layoutHold = useRef(null);
   const maxSRef = useRef(MAX_S_FLOOR);
+  const minSRef = useRef(MIN_S_FLOOR);
   const hintTimer = useRef(0);
   const [hintFaded, setHintFaded] = useState(false);
 
@@ -172,6 +168,7 @@ export default function MosaicScroller({ tiles, onReady }) {
   }
   const layout = layoutHold.current?.sig === layoutSig ? layoutHold.current.layout : null;
   maxSRef.current = layout?.maxS ?? MAX_S_FLOOR;
+  minSRef.current = layout?.minS ?? MIN_S_FLOOR;
 
   // First frame pins the cluster center to the viewport at zoom 1. Later pans
   // and zooms are left alone. The page stays behind the loader until this fit
@@ -259,7 +256,7 @@ export default function MosaicScroller({ tiles, onReady }) {
       if (!metrics) return;
       const targetS = Math.min(
         maxSRef.current,
-        Math.max(MIN_S, (metrics.h * DETAIL_HEIGHT_FRAC) / h)
+        Math.max(minSRef.current, (metrics.h * DETAIL_HEIGHT_FRAC) / h)
       );
       const topY = y + (metrics.h / 2 - DETAIL_TOP_PAD) / targetS;
       animateTo({ x: x + w / 2, y: topY, s: targetS });
@@ -409,7 +406,7 @@ export default function MosaicScroller({ tiles, onReady }) {
       const cur = viewRef.current;
       stopAnim();
       pokeHint();
-      const ns = Math.min(maxSRef.current, Math.max(MIN_S, cur.s * Math.exp(-e.deltaY * 0.0016)));
+      const ns = Math.min(maxSRef.current, Math.max(minSRef.current, cur.s * Math.exp(-e.deltaY * 0.0016)));
       animateTo({ x: cur.x, y: cur.y, s: ns });
     };
     el.addEventListener("wheel", onWheel, { passive: false });
