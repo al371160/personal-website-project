@@ -26,7 +26,7 @@ const MIN_S_FLOOR = 0.02;
 const DETAIL_HEIGHT_FRAC = 0.75;
 const DETAIL_TOP_PAD = 30;
 // Space between equally sized cards. Wide enough to read as a margin.
-const MARGIN = 160;
+const MARGIN = 320;
 
 function tileSize(tile, targetLong) {
   const ratio =
@@ -147,7 +147,7 @@ export default function MosaicScroller({ tiles, onReady }) {
 
   // Pack once per collection. Rebuilding on resize would move every card under
   // a camera the user may already have panned. A new collection (retry) recenters.
-  const layoutSig = `equal|${tiles.map((t) => `${t.id}:${t.pixelW || 0}x${t.pixelH || 0}`).join("|")}`;
+  const layoutSig = `margin320|${tiles.map((t) => `${t.id}:${t.pixelW || 0}x${t.pixelH || 0}`).join("|")}`;
   if (layoutSigRef.current !== layoutSig) {
     layoutSigRef.current = layoutSig;
     initRef.current = false;
