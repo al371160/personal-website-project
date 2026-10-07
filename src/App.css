@@ -522,19 +522,65 @@
   text-underline-offset: 4px;
 }
 
-/* "More": easel canvas that morphs into an iridescent right arrow on hover */
+/* "More": canvas morphs into an arrow while the control stretches into a white label.
+   On the playground the same control is a home icon that opens to "Back". */
 .topbar-more {
   display: inline-flex;
   align-items: center;
+  height: 34px;
+  padding: 0 4px;
   color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  text-decoration: none;
+  transition: background-color 0.3s ease, padding 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .topbar-more svg {
   width: 26px;
   height: 26px;
+  flex: none;
   overflow: visible;
   stroke: currentColor;
   transition: filter 0.3s ease;
+}
+
+.topbar-more-label {
+  display: grid;
+  grid-template-columns: 0fr;
+  transition: grid-template-columns 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.topbar-more-label span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  padding-left: 8px;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: #0e0e0e;
+  transition: opacity 0.2s ease;
+}
+
+.topbar-more:hover,
+.topbar-more:focus-visible {
+  background: #fff;
+  padding-right: 12px;
+  text-decoration: none;
+}
+
+.topbar-more:hover .topbar-more-label,
+.topbar-more:focus-visible .topbar-more-label {
+  grid-template-columns: 1fr;
+}
+
+.topbar-more:hover .topbar-more-label span,
+.topbar-more:focus-visible .topbar-more-label span {
+  opacity: 1;
+  transition-delay: 0.12s;
 }
 
 .topbar-more-canvas {
@@ -549,11 +595,16 @@
   transition: stroke-dashoffset 0.3s ease;
 }
 
-.topbar-more--active svg,
 .topbar-more:hover svg,
 .topbar-more:focus-visible svg {
   stroke: url(#topbar-iridescent);
   filter: drop-shadow(0 0 6px rgba(96, 165, 250, 0.55));
+}
+
+.topbar-more--home:hover svg,
+.topbar-more--home:focus-visible svg {
+  stroke: #0e0e0e;
+  filter: none;
 }
 
 .topbar-more:hover .topbar-more-canvas,
@@ -1181,6 +1232,89 @@
   border-radius: 0;
 }
 
+.compare {
+  margin: 0;
+}
+
+.compare-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #0e0e0e;
+  touch-action: pan-y;
+  cursor: ew-resize;
+}
+
+.compare-frame:focus {
+  outline: none;
+}
+
+.compare-frame:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 6px;
+}
+
+.compare-frame .compare-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.compare-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 44px;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.compare-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: #0e0e0e;
+  box-shadow: 0 0 0 1px #fff;
+}
+
+.compare-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #fff;
+  color: #0e0e0e;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compare-grip svg {
+  display: block;
+}
+
+.compare-caption {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 .detail-block figcaption,
 .detail-gallery-item figcaption {
   margin-top: 10px;
@@ -1353,7 +1487,8 @@
 /* MOBILE */
 @media (max-width: 800px) {
   .detail-gallery[data-columns],
-  .detail-callouts[data-columns] {
+  .detail-callouts[data-columns],
+  .compare-caption {
     grid-template-columns: minmax(0, 1fr);
   }
 

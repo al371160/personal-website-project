@@ -175,7 +175,7 @@ export const projects = [
           {
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
-            caption: "Solidworks livery prototype",
+            caption: "Solidworks livery prototype. The livery is later projected onto a surface and cut out using Silhouette Studio and a Silhouette cutting machine along with sponsor stickers, with some areas being spray painted on.",
           },
                     {
             type: "image",
@@ -387,6 +387,17 @@ export const projects = [
             body: "Rounded Liquid Glass and frost looked pretty and read as unprofessional. Stakeholders picked the sharp, parchment, high-density direction: blue and white to match the logo, with no purple, no generic AI glyphs, and no extra titles sitting on top of the data.",
           },
         ],
+      },
+      {
+        type: "text",
+        body: "The first job screen put the description, the rubric, and the invite tools on one surface, so nothing told a recruiter where to go next. The revision clears that pile into open space. Navigation sits in a column on the left, the review runs downward through the recording and the transcript, and Advance, Hold, and Reject stay in view beside that scroll, so the way through the page is marked.",
+      },
+      {
+        type: "compare",
+        before: "https://res.cloudinary.com/dak0zi45d/image/upload/v1791262642/provelis/provelis-tear-v1.jpg",
+        after: "https://res.cloudinary.com/dak0zi45d/image/upload/v1791262643/provelis/provelis-tear-v2.jpg",
+        beforeCaption: "Before. The job, the score, and the next action all compete for the same screen.",
+        afterCaption: "After. Open space, a column to navigate, and a review you read downward.",
       },
       {
         type: "text",

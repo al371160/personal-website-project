@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { optimizeImage } from "../utils/cloudinary";
+import CompareSlider from "./CompareSlider";
 import VideoPlayer from "./VideoPlayer";
 import YouTubePlaylist from "./YouTubePlaylist";
 
@@ -71,6 +72,18 @@ export default function DetailContentBlock({ block, index }) {
           </aside>
         ))}
       </div>
+    );
+  }
+
+  if (block.type === "compare") {
+    return (
+      <CompareSlider
+        key={index}
+        before={block.before}
+        after={block.after}
+        beforeCaption={block.beforeCaption}
+        afterCaption={block.afterCaption}
+      />
     );
   }
 
