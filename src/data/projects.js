@@ -294,6 +294,33 @@ export const projects = [
         title: "Overview",
         body: "Provelis is a talent-intelligence console for time-boxed staffing on large IT deals. Deal data comes in — what needs to be done, by whom, and where — and a recruiting supervisor tracks which job requirements are actually filling. I was hired on a short contract to overhaul a vibe-coded UI so it could hold up for enterprise users, and to wire the new screens to live backend services before a July go-live. Although the window was only two months, I believe the work was less about making the console look finished and more about making it something a supervisor could trust under load.",
       },
+      { type: "text", title: "Final product" },
+      {
+        type: "gallery",
+        columns: 1,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.19_AM_vuuepl.png",
+            caption: "Home — open jobs, stalls, and funnel health on one grid, each panel expandable to a full list",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.28_AM_lbrjo0.png",
+            caption: "Requirements — jobs table with pipeline and conversion, reused from the existing table language instead of a new chrome",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.11_AM_mcitvj.png",
+            caption: "Interview overview — score cards, AI verdict, strengths / weaknesses",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453340/Screenshot_2026-07-12_at_4.50.53_AM_ujaa7y.png",
+            caption: "Recruiters — performance table and throughput widgets",
+          },
+        ],
+      },
       {
         type: "image",
         src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1790910369/Untitled_Artwork_78.png",
@@ -431,41 +458,14 @@ export const projects = [
         body: "The home dashboard surfaces open requirements, submissions, interview volume, and funnel health so a supervisor can see which jobs are filling without opening five tabs. I wanted that grid to be the place a day starts, not a pretty empty circle that still required another page.",
       },
       {
-        type: "gallery",
-        columns: 1,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.19_AM_vuuepl.png",
-            caption: "Home — open jobs, stalls, and funnel health on one grid, each panel expandable to a full list",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.28_AM_lbrjo0.png",
-            caption: "Requirements — jobs table with pipeline and conversion, reused from the existing table language instead of a new chrome",
-          },
-        ],
-      },
-      {
         type: "text",
         title: "Recruiters & analytics",
         body: "Recruiter performance and live analytics pull from completed interviews so ops can track verdicts, weekly throughput, and submit rates in one place. Although the numbers were already in the backend, they were not useful until they sat next to the people who had to act on them.",
       },
       {
-        type: "gallery",
-        columns: 1,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453340/Screenshot_2026-07-12_at_4.50.53_AM_ujaa7y.png",
-            caption: "Recruiters — performance table and throughput widgets",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453340/Screenshot_2026-07-12_at_4.51.10_AM_btd9ws.png",
-            caption: "Analytics — verdict distribution and weekly completions",
-          },
-        ],
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453340/Screenshot_2026-07-12_at_4.51.10_AM_btd9ws.png",
+        caption: "Analytics — verdict distribution and weekly completions",
       },
       {
         type: "text",
@@ -497,11 +497,6 @@ export const projects = [
         type: "text",
         title: "Interview review",
         body: "Candidate review combines recording, transcript, AI verdict, strengths and weaknesses, and proctoring signals so recruiters can advance, hold, or reject from one screen. I believed that decision had to stay on the same canvas as the evidence, or the shorter path the brief asked for would collapse back into tab-hopping.",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1784453341/Screenshot_2026-07-12_at_4.50.11_AM_mcitvj.png",
-        caption: "Interview overview — score cards, AI verdict, strengths / weaknesses",
       },
       {
         type: "gallery",
