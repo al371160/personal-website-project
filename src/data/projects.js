@@ -14,7 +14,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790653516/d962af16-0a03-459f-abe1-0a1cc4d5ff76.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790653115/20260620-DSC05127-2_epkwvg.jpg",
     },
     meta: {
       role: "Media / Business Operations / Project Manager",
