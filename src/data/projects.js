@@ -28,6 +28,28 @@ export const projects = [
         title: "Overview",
         body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social media, and internal morale. My role is to be in charge of creating the livery, the car renders, the sponsor-facing posters and presentation assets, and the tooling that keeps the business team aligned with engineering milestones. Although the team already has a strong visual language, I believe my job is to keep that language moving forward as the car itself changes.",
       },
+      { type: "text", title: "Final product" },
+      {
+        type: "gallery",
+        columns: 1,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443294/cover_design_2_dt5pgo.png",
+            caption: "Business presentation cover, made using Photoshop and Maya",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790649636/Penn_Electric_Racing_070_-_2026_Excellence_in_Technical_Innovation_Award_Submission-3_uinwhv.png",
+            caption: "Finalized slides. The presentation won 1st place in the Excellence in Technical Innovation category, earning ~$8,000 in prize money for free registration for the team.",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790653122/DSC04492_aoifds.jpg",
+            caption: "Finalized livery design. Image credit: Arjun Sharma",
+          },
+        ],
+      },
       {
         type: "callout",
         icon: "lightbulb",
@@ -123,19 +145,9 @@ export const projects = [
         caption: "Process breakdown",
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790649636/Penn_Electric_Racing_070_-_2026_Excellence_in_Technical_Innovation_Award_Submission-3_uinwhv.png",
-        caption: "Finalized slides. The presentation won 1st place in the Excellence in Technical Innovation category, earning ~$8,000 in prize money for free registration for the team.",
-      },
-      {
         type: "text",
         title: "Business Presentation",
         body: "I created stylized renders to visually demonstrate the presentation topics, so the business team could talk about systems without pointing at a raw CAD screenshot.",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443294/cover_design_2_dt5pgo.png",
-        caption: "Business presentation cover, made using Photoshop and Maya",
       },
       {
         type: "video",
@@ -176,11 +188,6 @@ export const projects = [
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
             caption: "Solidworks livery prototype. The livery is later projected onto a surface and cut out using Silhouette Studio and a Silhouette cutting machine along with sponsor stickers, with some areas being spray painted on.",
-          },
-                    {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790653122/DSC04492_aoifds.jpg",
-            caption: "Finalized livery design. Image credit: Arjun Sharma",
           },
         ],
       },
