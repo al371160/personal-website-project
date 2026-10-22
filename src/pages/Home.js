@@ -1,5 +1,5 @@
 import GalleryCard from "../components/GalleryCard";
-import { projects } from "../data/projects";
+import { homeProjects } from "../data/projects";
 import { useEffect, useRef, useState } from "react";
 import { waitForMedia } from "../utils/waitForMedia";
 
@@ -10,15 +10,14 @@ const LINKS = [
   { label: "Email", href: "mailto:aliu10@seas.upenn.edu" },
 ];
 
-// The 900px breakpoint must match the .intro-col--main media query in App.css.
+// Desktop is two columns. The 560px breakpoint matches the single-column home layout.
 const COLUMN_QUERIES = [
   { query: "(max-width: 560px)", columns: 1 },
-  { query: "(max-width: 900px)", columns: 2 },
 ];
 
 function getColumnCount() {
   const match = COLUMN_QUERIES.find(({ query }) => window.matchMedia(query).matches);
-  return match ? match.columns : 3;
+  return match ? match.columns : 2;
 }
 
 function useColumnCount() {
@@ -40,7 +39,7 @@ export default function Home({ onReady, onProgress }) {
 
   // Round-robin so cards read left-to-right, then down, while each column stacks tightly.
   const columns = Array.from({ length: columnCount }, () => []);
-  projects.forEach((project, i) => columns[i % columnCount].push({ project, i }));
+  homeProjects().forEach((project, i) => columns[i % columnCount].push({ project, i }));
 
   useEffect(() => {
     let cancelled = false;

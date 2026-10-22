@@ -1,4 +1,42 @@
+export const HOME_SLUGS = [
+  "reimagining-reconnection",
+  "penn-electric-racing",
+  "provelis",
+  "saturn",
+];
+
 export const projects = [
+  {
+    slug: "reimagining-reconnection",
+    title: "Reimagining Reconnection",
+    category: "Product / Design",
+    description: "Relationship-building app for SVSD Designathon 2026",
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792708272/fc79f467-0f17-4e29-ad2f-fcec742d8aea.png",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792708705/14de269c-0cc1-4355-8fd1-4b5655addeeb.png",
+    },
+    heroVideo: {
+      type: "video",
+      src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1792708380/pact_hero_clip.mov",
+    },
+    meta: {
+      role: "Designer",
+      collaborators: "Helen Luo, Cameron Zhang",
+      duration: "Oct 2026",
+      tools: "Cursor, React, Canva, Figma",
+    },
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body: "Participated in designing the relationship-building app Pact for SVSD Designathon 2026. Owned the Maps side of the project, using OpenStreetMaps data and custom shaders to create a tilt-shift effect.",
+      },
+    ],
+  },
   {
     slug: "penn-electric-racing",
     title: "Penn Electric Racing",
@@ -1430,3 +1468,12 @@ export const projects = [
     ],
   },
 ];
+
+export function homeProjects() {
+  return HOME_SLUGS.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean);
+}
+
+export function moreWorkProjects() {
+  const featured = new Set(HOME_SLUGS);
+  return projects.filter((project) => !featured.has(project.slug));
+}
