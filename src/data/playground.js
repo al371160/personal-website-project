@@ -1,4 +1,4 @@
-// Notion playground rows become sphere circles. Video-only rows are skipped
+// Notion playground rows become sphere tiles. Video-only rows are skipped
 // because the sphere only shows stills. WebGL cards stay in their component
 // files and are not part of this page.
 export function notionSphereImages(items = []) {

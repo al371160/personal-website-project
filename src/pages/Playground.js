@@ -6,6 +6,24 @@ import { optimizeImage, videoPoster } from "../utils/cloudinary";
 
 const THUMB_WIDTH = 800;
 
+function measureRatio(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const timer = setTimeout(() => resolve(1), 12000);
+    const finish = (ratio) => {
+      clearTimeout(timer);
+      resolve(ratio);
+    };
+    img.onload = () => {
+      const width = img.naturalWidth;
+      const height = img.naturalHeight;
+      finish(width > 0 && height > 0 ? width / height : 1);
+    };
+    img.onerror = () => finish(1);
+    img.src = src;
+  });
+}
+
 function measureSphereSize() {
   const width = window.innerWidth;
   const height = window.innerHeight - 60;
@@ -77,10 +95,23 @@ export default function Playground({ onReady, onProgress }) {
     };
   }, [onProgress, reloadKey]);
 
-  const images = useMemo(() => {
+  const baseImages = useMemo(() => {
     if (!items) return null;
     return [...notionSphereImages(items), ...projectSphereImages()];
   }, [items]);
+  const [images, setImages] = useState(null);
+
+  useEffect(() => {
+    if (!baseImages) return undefined;
+    let cancelled = false;
+    Promise.all(baseImages.map(async (image) => ({
+      ...image,
+      ratio: await measureRatio(image.src),
+    }))).then((measured) => {
+      if (!cancelled) setImages(measured);
+    });
+    return () => { cancelled = true; };
+  }, [baseImages]);
 
   const handleMediaProgress = useCallback((progress) => {
     onProgress?.(Math.round(30 + progress * 0.7));
