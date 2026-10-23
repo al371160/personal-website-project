@@ -48,7 +48,7 @@ export const projects = [
     ],
     thumbnail: {
       type: "photo",
-      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1779599480/Untitled_design_euajtv.png",
+      src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790653122/DSC04492_aoifds.jpg",
     },
     hero: {
       type: "image",

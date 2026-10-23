@@ -276,6 +276,7 @@ export default function SphereImageGrid({
               onPointerLeave={() => setHoveredIndex((current) => (current === index ? null : current))}
             >
               <img src={image.src} alt={image.alt} draggable={false} />
+              {image.title && <span className="sphere-node-title">{image.title}</span>}
             </div>
           );
         })}
