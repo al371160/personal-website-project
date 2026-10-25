@@ -6,6 +6,33 @@ export const HOME_SLUGS = [
 ];
 
 export const projects = [
+    {
+    slug: "penn-labs",
+    title: "Penn Labs",
+    category: "Design / Frontend",
+    description: "Redesign Penn Clubs frontend to be scalable, usable and consistent",
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898446/bb16382a-b777-4e20-b7fa-721c44a710cf.png",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898408/ec9f906a-de22-425e-8dc1-da514f9e9030.png",
+    },
+    meta: {
+      role: "Designer",
+      collaborators: "AJ Boyle, Gabe Weng, Shayaan Wadkar, PennClubs team",
+      duration: "Oct 2026 - Present",
+      tools: "Cursor, React, Canva, Figma",
+    },
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body: "More details coming soon!",
+      },
+    ],
+  },
   {
     slug: "reimagining-reconnection",
     title: "Reimagining Reconnection",
