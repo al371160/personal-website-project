@@ -33,17 +33,17 @@ export const projects = [
       },
       {
         type: "image",
-        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898719/2f45092b-b00f-4727-9a8f-a450265db04e.png",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792899529/47f37ae6-a533-4e19-936d-8da4753caed0.png",
         caption: "Member filtering and message to members that uses multi-select, based on user feedback",
       },
       {
         type: "image",
-        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898731/6c313e1f-d983-430a-8cea-14d7ca0c8c6f.png",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792899611/1325485f-c17a-459b-ba85-99fe64ca9333.png",
         caption: "Figma prototype for edit club page, the real frontend can scale to screen width",
       },
       {
         type: "image",
-        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898446/bb16382a-b777-4e20-b7fa-721c44a710cf.png",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792899550/8f0ec0d1-d4a6-4c2c-b108-62de8d461385.png",
         caption: "Events calendar & scheduling, enabling club admin to visually organize events without using a third-party app",
       },
     ],
