@@ -2,7 +2,6 @@ export const HOME_SLUGS = [
   "reimagining-reconnection",
   "penn-electric-racing",
   "penn-labs",
-  "provelis",
   "saturn",
 ];
 

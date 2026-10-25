@@ -528,11 +528,11 @@
   display: inline-flex;
   align-items: center;
   height: 34px;
-  padding: 0 4px;
+  padding: 0 12px 0 4px;
   color: rgba(255, 255, 255, 0.85);
   background: transparent;
   text-decoration: none;
-  transition: background-color 0.3s ease, padding 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .topbar-more svg {
@@ -546,29 +546,27 @@
 
 .topbar-more-label {
   display: grid;
-  grid-template-columns: 0fr;
-  transition: grid-template-columns 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  grid-template-columns: 1fr;
 }
 
 .topbar-more-label span {
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  opacity: 0;
+  opacity: 1;
   padding-left: 8px;
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1;
-  color: #0e0e0e;
-  transition: opacity 0.2s ease;
+  color: inherit;
 }
 
 .topbar-more:hover,
 .topbar-more:focus-visible {
   background: #fff;
-  padding-right: 12px;
+  color: #0e0e0e;
   text-decoration: none;
 }
 
@@ -580,7 +578,6 @@
 .topbar-more:hover .topbar-more-label span,
 .topbar-more:focus-visible .topbar-more-label span {
   opacity: 1;
-  transition-delay: 0.12s;
 }
 
 .topbar-more-canvas {
