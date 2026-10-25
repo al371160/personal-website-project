@@ -1,6 +1,7 @@
 export const HOME_SLUGS = [
   "reimagining-reconnection",
   "penn-electric-racing",
+  "penn-labs",
   "provelis",
   "saturn",
 ];
@@ -30,6 +31,21 @@ export const projects = [
         type: "text",
         title: "Overview",
         body: "More details coming soon!",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898719/2f45092b-b00f-4727-9a8f-a450265db04e.png",
+        caption: "Member filtering and message to members that uses multi-select, based on user feedback",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898731/6c313e1f-d983-430a-8cea-14d7ca0c8c6f.png",
+        caption: "Figma prototype for edit club page, the real frontend can scale to screen width",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898446/bb16382a-b777-4e20-b7fa-721c44a710cf.png",
+        caption: "Events calendar & scheduling, enabling club admin to visually organize events without using a third-party app",
       },
     ],
   },
