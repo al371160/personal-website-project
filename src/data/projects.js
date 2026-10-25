@@ -13,7 +13,7 @@ export const projects = [
     description: "Redesign Penn Clubs frontend to be scalable, usable and consistent",
     thumbnail: {
       type: "photo",
-      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898446/bb16382a-b777-4e20-b7fa-721c44a710cf.png",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792899550/8f0ec0d1-d4a6-4c2c-b108-62de8d461385.png",
     },
     hero: {
       type: "image",
