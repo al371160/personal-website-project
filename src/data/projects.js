@@ -1,8 +1,6 @@
 export const HOME_SLUGS = [
   "reimagining-reconnection",
-  "penn-electric-racing",
   "penn-labs",
-  "saturn",
 ];
 
 export const projects = [
@@ -108,7 +106,53 @@ export const projects = [
         title: "Overview",
         body: "Penn Electric Racing (REV11) needs visuals that work for sponsors, social media, and internal morale. My role is to be in charge of creating the livery, the car renders, the sponsor-facing posters and presentation assets, and the tooling that keeps the business team aligned with engineering milestones. Although the team already has a strong visual language, I believe my job is to keep that language moving forward as the car itself changes.",
       },
-      { type: "text", title: "Final product" },
+      {
+        type: "text",
+        title: "Livery exploration",
+        body: "Livery directions are prototyped in Solidworks and Blender texture painting so the team can compare scale, contrast, and sponsor lockups before paint shop commitments. Although a decal is cheap to change on a screen, it is expensive to get wrong on the car.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790653122/DSC04492_aoifds.jpg",
+        caption: "Finalized livery design. Image credit: Arjun Sharma",
+      },
+      {
+        type: "gallery",
+        columns: 1,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
+            caption: "Early livery roughs board",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.45.57_PM_rs34rx.png",
+            caption: "Livery iteration A. These 3D mockups are done with texture painting in Blender, with retopologized cad models and low-poly versions of the car modeled by myself.",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.47.32_PM_gpil4p.png",
+            caption: "Livery iteration B",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
+            caption: "Solidworks livery prototype. The livery is later projected onto a surface and cut out using Silhouette Studio and a Silhouette cutting machine along with sponsor stickers, with some areas being spray painted on.",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1793139735/IMG_8277_1.heic",
+            caption: "Final livery, with Rocky Balboa decal on the rear wing",
+          },
+        ],
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1772842240/rev_11_logo_test_v4_el956p.mp4",
+        caption: "REV11 logo animation — done in Rive",
+      },
+      { type: "text", title: "Presentation Design and Graphics" },
       {
         type: "gallery",
         columns: 1,
@@ -122,11 +166,6 @@ export const projects = [
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790649636/Penn_Electric_Racing_070_-_2026_Excellence_in_Technical_Innovation_Award_Submission-3_uinwhv.png",
             caption: "Finalized slides. The presentation won 1st place in the Excellence in Technical Innovation category, earning ~$8,000 in prize money for free registration for the team.",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790653122/DSC04492_aoifds.jpg",
-            caption: "Finalized livery design. Image credit: Arjun Sharma",
           },
         ],
       },
@@ -216,99 +255,6 @@ export const projects = [
       },
       {
         type: "text",
-        title: "GM Presentation",
-        body: "I created a presentation that utilized limited space and optimized the design and clarity of the content, because a projector will not forgive a crowded slide.",
-      },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790651510/e30507f3-6321-4ca8-9b2c-4bcd1068d2eb.png",
-        caption: "Process breakdown",
-      },
-      {
-        type: "text",
-        title: "Business Presentation",
-        body: "I created stylized renders to visually demonstrate the presentation topics, so the business team could talk about systems without pointing at a raw CAD screenshot.",
-      },
-      {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1779599483/0000-0630_PER_biz_prez_ctejsr.mov",
-        caption: "Video breaking down different part categories",
-      },
-
-      {
-        type: "text",
-        title: "Livery exploration",
-        body: "Livery directions are prototyped in Solidworks and Blender texture painting so the team can compare scale, contrast, and sponsor lockups before paint shop commitments. Although a decal is cheap to change on a screen, it is expensive to get wrong on the car.",
-      },
-      {
-        type: "gallery",
-        columns: 1,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768443546/livery_designs_fkypyc.png",
-            caption: "Early livery roughs board",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.45.57_PM_rs34rx.png",
-            caption: "Livery iteration A. These 3D mockups are done with texture painting in Blender, with retopologized cad models and low-poly versions of the car modeled by myself.",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1772938899/Screenshot_2026-02-08_at_8.47.32_PM_gpil4p.png",
-            caption: "Livery iteration B",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291728/download_2_kkzpq4.png",
-            caption: "Final revision — Blender texture paint",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1773291414/Screenshot_2026-03-11_225932_enfvvu.png",
-            caption: "Solidworks livery prototype. The livery is later projected onto a surface and cut out using Silhouette Studio and a Silhouette cutting machine along with sponsor stickers, with some areas being spray painted on.",
-          },
-        ],
-      },
-      {
-        type: "video",
-        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1772842240/rev_11_logo_test_v4_el956p.mp4",
-        caption: "REV11 logo animation — done in Rive",
-      },
-      {
-        type: "text",
-        title: "Car visualization",
-        body: "Full-car renders combine Solidworks CAD, Visualize, and Maya for lighting passes used in decks and Instagram. I treat those images as the public face of the car long before the physical bodywork is finished.",
-      },
-      {
-        type: "gallery",
-        columns: 1,
-        items: [
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442453/per_good_render_2_lnzuf6.jpg",
-            caption: "Studio render — three-quarter front",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_3_ptceqx.jpg",
-            caption: "Studio render — side elevation",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_5_ml3xcb.jpg",
-            caption: "Solidworks → Visualize → Maya pipeline",
-          },
-          {
-            type: "image",
-            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_6_phw7ny.jpg",
-            caption: "Detail render — aero and sponsor panels",
-          },
-        ],
-      },
-      {
-        type: "text",
         title: "Posters & business media",
         body: "Poster and cover art support recruitment and sponsor meetings. They often start in 3D and finish in Photoshop or Procreate, where I can hand-tune the typography once the car is already sitting in the frame.",
       },
@@ -345,6 +291,57 @@ export const projects = [
             type: "image",
             src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442715/Untitled_-_December_11_2025_01.13.36_ybcmhj.jpg",
             caption: "Poster rough sketches",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "GM Presentation",
+        body: "I created a presentation that utilized limited space and optimized the design and clarity of the content, because a projector will not forgive a crowded slide.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1790651510/e30507f3-6321-4ca8-9b2c-4bcd1068d2eb.png",
+        caption: "Process breakdown",
+      },
+      {
+        type: "text",
+        title: "Business Presentation",
+        body: "I created stylized renders to visually demonstrate the presentation topics, so the business team could talk about systems without pointing at a raw CAD screenshot.",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dak0zi45d/video/upload/v1779599483/0000-0630_PER_biz_prez_ctejsr.mov",
+        caption: "Video breaking down different part categories",
+      },
+      {
+        type: "text",
+        title: "Car visualization",
+        body: "Full-car renders combine Solidworks CAD, Visualize, and Maya for lighting passes used in decks and Instagram. I treat those images as the public face of the car long before the physical bodywork is finished.",
+      },
+      {
+        type: "gallery",
+        columns: 1,
+        items: [
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442453/per_good_render_2_lnzuf6.jpg",
+            caption: "Studio render — three-quarter front",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_3_ptceqx.jpg",
+            caption: "Studio render — side elevation",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_5_ml3xcb.jpg",
+            caption: "Solidworks → Visualize → Maya pipeline",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dak0zi45d/image/upload/v1768442452/per_good_render_6_phw7ny.jpg",
+            caption: "Detail render — aero and sponsor panels",
           },
         ],
       },
@@ -838,8 +835,8 @@ export const projects = [
     description: "Comprehensive branding and business work",
     visitUrl: "https://orble-tea.com/",
     thumbnail: {
-      type: "video",
-      src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1790978213/next-gen-render-video.mp4",
+      type: "photo",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1793139243/IMG_7753.heic",
     },
     hero: {
       type: "image",
@@ -1511,11 +1508,82 @@ export const projects = [
   },
 ];
 
+export const PLACEHOLDER_PROJECTS = [
+  {
+    slug: "hackprinceton-2026",
+    title: "HackPrinceton 2026",
+    placeholder: true,
+  },
+  {
+    slug: "government-ui-project",
+    title: "Government UI Project",
+    placeholder: true,
+  },
+  {
+    slug: "nasa-apps",
+    title: "NASA Apps",
+    placeholder: true,
+  },
+  {
+    slug: "mosaic",
+    title: "MOSAIC",
+    placeholder: true,
+  },
+  {
+    slug: "zipline",
+    title: "Zipline",
+    placeholder: true,
+  },
+  {
+    slug: "minecraft",
+    title: "Minecraft",
+    placeholder: true,
+  },
+];
+
+export const COLLECTIONS = {
+  home: {
+    title: "Home",
+    intro:
+      "Selected work across design, engineering, and interactive media — plus a few projects currently in progress.",
+    slugs: [
+      ...HOME_SLUGS,
+      "hackprinceton-2026",
+      "government-ui-project",
+    ],
+  },
+  design: {
+    title: "Design",
+    intro:
+      "Product, interface, and brand work. New case studies are being documented now.",
+    slugs: ["orble-tea", "penn-electric-racing", "nasa-apps", "mosaic"],
+  },
+  graphics: {
+    title: "Graphics",
+    intro:
+      "3D, rendering, visual development, and long-running game work.",
+    slugs: ["zipline", "minecraft", "saturn"],
+  },
+};
+
+function findProject(slug) {
+  return (
+    projects.find((project) => project.slug === slug) ||
+    PLACEHOLDER_PROJECTS.find((project) => project.slug === slug)
+  );
+}
+
+export function collectionProjects(name) {
+  return (COLLECTIONS[name]?.slugs || []).map(findProject).filter(Boolean);
+}
+
 export function homeProjects() {
-  return HOME_SLUGS.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean);
+  return collectionProjects("home");
 }
 
 export function moreWorkProjects() {
-  const featured = new Set(HOME_SLUGS);
-  return projects.filter((project) => !featured.has(project.slug));
+  const curated = new Set(
+    Object.values(COLLECTIONS).flatMap((collection) => collection.slugs)
+  );
+  return projects.filter((project) => !curated.has(project.slug));
 }

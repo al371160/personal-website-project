@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import Hobbies from "./pages/Hobbies";
 import Playground from "./pages/Playground";
+import Collection from "./pages/Collection";
 import "./App.css";
 
 function PageLoader({ isLoading, progress }) {
@@ -69,6 +70,14 @@ function AppContent() {
           <Route
             path="/work/:slug"
             element={<Detail onReady={handleReady} onProgress={handleProgress} />}
+          />
+          <Route
+            path="/design"
+            element={<Collection name="design" onReady={handleReady} onProgress={handleProgress} />}
+          />
+          <Route
+            path="/graphics"
+            element={<Collection name="graphics" onReady={handleReady} onProgress={handleProgress} />}
           />
           <Route
             path="/playground"

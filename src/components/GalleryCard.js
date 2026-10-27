@@ -7,9 +7,25 @@ import VideoPlayer from "./VideoPlayer";
 const CARD_WIDTH = 1200;
 const PREVIEW_SECONDS = 8;
 
-export default function GalleryCard({ slug, title, hero, featured = false }) {
+export default function GalleryCard({ slug, title, hero, featured = false, placeholder = false }) {
   const videoRef = useRef(null);
   const isVideo = hero?.type === "video";
+
+  if (placeholder) {
+    return (
+      <div
+        className={`gallery-card gallery-card--placeholder${featured ? " gallery-card--featured" : ""}`}
+        aria-label={`${title} — coming soon`}
+      >
+        <div className="gallery-media gallery-media--placeholder">
+          <span className="gallery-placeholder-label">Coming soon</span>
+        </div>
+        <div className="gallery-meta">
+          <span className="gallery-title">{title}</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Link
