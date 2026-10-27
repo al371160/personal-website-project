@@ -1553,15 +1553,9 @@ export const COLLECTIONS = {
     ],
   },
   design: {
-    title: "Design",
-    intro:
-      "Product, interface, and brand work. New case studies are being documented now.",
     slugs: ["orble-tea", "penn-electric-racing", "nasa-apps", "mosaic"],
   },
   graphics: {
-    title: "Graphics",
-    intro:
-      "3D, rendering, visual development, and long-running game work.",
     slugs: ["zipline", "minecraft", "saturn"],
   },
 };

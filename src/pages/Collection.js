@@ -29,12 +29,14 @@ export default function Collection({ name, onReady, onProgress }) {
 
   return (
     <main className="page" ref={pageRef}>
-      <section className="home-intro">
-        <div className="collection-intro">
-          <h1 className="collection-title">{collection.title}</h1>
-          <p className="intro-copy">{collection.intro}</p>
-        </div>
-      </section>
+      {(collection.title || collection.intro) && (
+        <section className="home-intro">
+          <div className="collection-intro">
+            {collection.title && <h1 className="collection-title">{collection.title}</h1>}
+            {collection.intro && <p className="intro-copy">{collection.intro}</p>}
+          </div>
+        </section>
+      )}
 
       <section className="archive-section">
         <ProjectGallery projects={projects} />
