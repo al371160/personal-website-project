@@ -80,6 +80,10 @@ function AppContent() {
             element={<Collection name="graphics" onReady={handleReady} onProgress={handleProgress} />}
           />
           <Route
+            path="/games"
+            element={<Collection name="graphics" onReady={handleReady} onProgress={handleProgress} />}
+          />
+          <Route
             path="/playground"
             element={<Playground onReady={handleReady} onProgress={handleProgress} />}
           />

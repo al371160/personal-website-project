@@ -27,13 +27,26 @@ export default function Collection({ name, onReady, onProgress }) {
     return <p>Collection not found.</p>;
   }
 
+  const links = collection.links || [];
+
   return (
     <main className="page" ref={pageRef}>
-      {(collection.title || collection.intro) && (
+      {(collection.intro || links.length > 0) && (
         <section className="home-intro">
-          <div className="collection-intro">
-            {collection.title && <h1 className="collection-title">{collection.title}</h1>}
+          <div className="intro-col intro-col--main">
             {collection.intro && <p className="intro-copy">{collection.intro}</p>}
+
+            {links.length > 0 && (
+              <div className="intro-links">
+                <ul className="intro-list">
+                  {links.map((item) => (
+                    <li key={item.label}>
+                      <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </section>
       )}

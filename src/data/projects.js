@@ -1556,7 +1556,16 @@ export const COLLECTIONS = {
     slugs: ["orble-tea", "penn-electric-racing", "nasa-apps", "mosaic"],
   },
   graphics: {
-    slugs: ["zipline", "minecraft", "saturn"],
+    intro:
+      "I've made many games on the Unity game engine, mostly focused on crafting detailed art styles. Recently, I've been pivoting to fast-production games with a goal to capture a playerbase.",
+    links: [{ label: "itch.io", href: "https://al371160.itch.io/" }],
+    slugs: [
+      "clockwork-climb",
+      "rum-rush",
+      "saturn",
+      "zipline",
+      "minecraft",
+    ],
   },
 };
 
