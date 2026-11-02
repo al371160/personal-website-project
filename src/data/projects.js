@@ -44,6 +44,21 @@ export const projects = [
         src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792899550/8f0ec0d1-d4a6-4c2c-b108-62de8d461385.png",
         caption: "Events calendar & scheduling, enabling club admin to visually organize events without using a third-party app",
       },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1793601468/Screen_Recording_2026-11-02_at_1.34.03_AM.mov",
+        caption: "Interactive Tables with adjustable rows",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1793601219/9f2c8206-7e3b-40bf-a351-6859ae5f8e71.png",
+        caption: "Applications section",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1793602736/Screen_Recording_2026-11-02_at_1.49.56_AM_online-video-cutter.com.mov",
+        caption: "Mobile scale of Applications section, with collapsible panels for greater clarity",
+      },
     ],
   },
   {
