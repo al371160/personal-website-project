@@ -51,8 +51,8 @@ export const projects = [
       },
       {
         type: "image",
-        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1793601219/9f2c8206-7e3b-40bf-a351-6859ae5f8e71.png",
-        caption: "Applications section",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1793763752/9e7e1cbf-aa9e-4238-b19e-408b65387ab2.png",
+        caption: "Applications section, featuring collapsible panels for easy of use on mobile",
       },
       /*{
         type: "video",
