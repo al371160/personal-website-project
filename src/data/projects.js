@@ -54,11 +54,11 @@ export const projects = [
         src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1793601219/9f2c8206-7e3b-40bf-a351-6859ae5f8e71.png",
         caption: "Applications section",
       },
-      {
+      /*{
         type: "video",
         src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1793602736/Screen_Recording_2026-11-02_at_1.49.56_AM_online-video-cutter.com.mov",
         caption: "Mobile scale of Applications section, with collapsible panels for greater clarity",
-      },
+      }, */
     ],
   },
   {
