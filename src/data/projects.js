@@ -15,7 +15,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792898408/ec9f906a-de22-425e-8dc1-da514f9e9030.png",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1793838287/a86357fe-8b83-4830-8158-c2e980b49aff.png",
     },
     meta: {
       role: "Designer",
