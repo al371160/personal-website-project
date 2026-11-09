@@ -305,8 +305,18 @@ export default function PoolScene({ onFirstFrame }) {
     const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
     /* ── renderer / scene ── */
-    const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+    // No canvas MSAA or depth: the scene is drawn into the composer's own
+    // targets, and only the final full-screen OutputPass touches the canvas, so
+    // a multisampled canvas would just hold ~30 bytes/pixel of unused memory.
+    const renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      depth: false,
+      stencil: false,
+      powerPreference: "high-performance",
+    });
+    // most of the frame is tilt-shift blurred, so extra pixels barely show;
+    // buffer memory grows with the square of this
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap; // PCFSoft is deprecated in this three.js and falls back to this anyway
@@ -1376,11 +1386,15 @@ export default function PoolScene({ onFirstFrame }) {
       if (firstFrame && pendingModels === 0) {
         firstFrame = false;
         onFirstFrameRef.current?.();
+        if (!onScreen) stop(); // loaded while scrolled away: rest until it's visible
       }
     };
 
+    // only animate while the tab is visible and the pool is on screen; keep
+    // going until the first frame lands so the page loader can finish
+    let onScreen = true;
     const run = () => {
-      if (!raf && !document.hidden) {
+      if (!raf && !document.hidden && (onScreen || firstFrame)) {
         last = performance.now();
         raf = requestAnimationFrame(tick);
       }
@@ -1391,6 +1405,12 @@ export default function PoolScene({ onFirstFrame }) {
     };
     const onVis = () => (document.hidden ? stop() : run());
     document.addEventListener("visibilitychange", onVis);
+    const io = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      if (onScreen) run();
+      else if (!firstFrame) stop();
+    });
+    io.observe(wrap);
     run();
 
     const saveTimer = setInterval(() => saveLayout(objs), 2000);
@@ -1403,6 +1423,7 @@ export default function PoolScene({ onFirstFrame }) {
       saveLayout(objs);
       stop();
       ro.disconnect();
+      io.disconnect();
       document.removeEventListener("visibilitychange", onVis);
       canvas.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerdown", onDown);
