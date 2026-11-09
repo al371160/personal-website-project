@@ -397,6 +397,283 @@
 }
 
 /* ======================= */
+/* POOL (HOME)             */
+/* ======================= */
+.page-pool {
+  position: relative;
+}
+
+.pool-bio {
+  padding: clamp(16px, 2.4vw, 28px) 0;
+}
+
+.pool {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: var(--page-gutter);
+  overflow: hidden;
+  background: #0e0e0e;
+}
+
+.pool-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* custom cursor over the pool: black box with a white plus, white label beside
+   it, and (for project props) the hero image underneath */
+.pool-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000; /* above the top bar and everything else on the page */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  will-change: transform;
+}
+
+.pool-cursor.is-on {
+  opacity: 1;
+}
+
+.pool-cursor-row {
+  display: flex;
+  align-items: stretch;
+  /* centre the plus box on the pointer */
+  transform: translate(-14px, -14px);
+}
+
+.pool-cursor-plus {
+  position: relative;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  background: #000000;
+}
+
+.pool-cursor-plus::before,
+.pool-cursor-plus::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #ffffff;
+  transform: translate(-50%, -50%);
+}
+
+.pool-cursor-plus::before {
+  width: 14px;
+  height: 2px;
+}
+
+.pool-cursor-plus::after {
+  width: 2px;
+  height: 14px;
+}
+
+.pool-cursor-label {
+  display: none;
+  align-items: center;
+  padding: 0 10px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #0e0e0e;
+  background: #ffffff;
+}
+
+.pool-cursor.has-label .pool-cursor-label {
+  display: flex;
+}
+
+.pool-cursor-img {
+  display: none;
+  width: 220px;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  margin: 0 0 0 14px;
+  transform: translate(0, -14px);
+  background: #151515;
+}
+
+.pool-cursor.has-label.has-image .pool-cursor-img {
+  display: block;
+}
+
+/* keyboard access to everything clickable in the pool; shown only on focus */
+.pool-links {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  clip-path: inset(50%);
+}
+
+.pool-links:focus-within {
+  clip-path: none;
+}
+
+.pool-links a,
+.pool-links button {
+  padding: 4px 9px;
+  font: inherit;
+  font-size: 12px;
+  color: #0e0e0e;
+  background: #ffffff;
+  border: 0;
+  cursor: pointer;
+}
+
+/* duck talk box: the white box right of the plus cursor, pinned where the duck
+   was clicked. Same look as the cursor label: white, dark text, no outline. */
+.duck-card {
+  position: absolute; /* page coordinates, set inline */
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  padding: 12px 14px 14px;
+  color: #0e0e0e;
+  background: #ffffff;
+  outline: none;
+}
+
+.duck-card--more {
+  cursor: pointer;
+}
+
+.duck-card-title {
+  margin: 0;
+  padding-right: 22px;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #0e0e0e;
+}
+
+.duck-card-line {
+  margin: 0;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #0e0e0e;
+}
+
+/* the "1" / "2" keys: little black key caps you can also click */
+.duck-card-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  color: #ffffff;
+  background: #0e0e0e;
+  border: 0;
+  cursor: pointer;
+  vertical-align: 1px;
+}
+
+.duck-card-key:hover,
+.duck-card-key:focus-visible {
+  background: #3a3a3a;
+  outline: none;
+}
+
+/* feedback pad: a plain square with a caret and an enter key bottom-right */
+.duck-card-pad {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.duck-card-pad textarea {
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px 44px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #0e0e0e;
+  caret-color: #0e0e0e;
+  background: #f1f1f1;
+  border: 0;
+  border-radius: 0;
+  resize: none;
+}
+
+.duck-card-pad textarea:focus {
+  outline: none;
+}
+
+.duck-card-enter {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: #ffffff;
+  background: #0e0e0e;
+  border: 0;
+  cursor: pointer;
+}
+
+.duck-card-enter:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.duck-card .duck-card-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
+
+.duck-card-error {
+  margin: 0;
+  font-size: 12px;
+  color: #c0392b;
+}
+
+.duck-card-error a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.duck-card-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  padding: 2px 6px;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(14, 14, 14, 0.5);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.duck-card-close:hover {
+  color: #0e0e0e;
+}
+
+/* ======================= */
 /* ARCHIVE / PROJECT GRID  */
 /* ======================= */
 .archive-section {
@@ -1562,23 +1839,15 @@
 
 .sphere-node {
   position: absolute;
-  transform: translate(-50%, -50%);
   cursor: pointer;
-}
-
-.sphere-node--hover img {
-  outline: 1px solid rgba(255, 255, 255, 0.85);
-  outline-offset: 3px;
+  will-change: transform, opacity, filter;
 }
 
 .sphere-node img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background: #161616;
-  border-radius: 2px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  object-fit: cover;
   pointer-events: none;
 }
 
@@ -1595,6 +1864,13 @@
   line-height: 1.25;
   letter-spacing: -0.01em;
   color: rgba(255, 255, 255, 0.88);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.sphere-node--hover .sphere-node-title {
+  opacity: 1;
 }
 
 .sphere-modal {
@@ -1605,7 +1881,7 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: rgba(0, 0, 0, 0.55);
+  background: transparent; /* the carousel stays fully visible behind the popup */
   animation: sphere-fade-in 0.3s ease-out;
 }
 
@@ -1613,7 +1889,6 @@
   width: min(860px, 100%);
   overflow: hidden;
   background: #161616;
-  border: 1px solid rgba(255, 255, 255, 0.12);
   animation: sphere-scale-in 0.3s ease-out;
 }
 
@@ -1645,14 +1920,13 @@
   justify-content: center;
   padding: 0;
   border: 0;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
+  background: #000000;
   color: #ffffff;
   cursor: pointer;
 }
 
 .sphere-modal-close:hover {
-  background: rgba(0, 0, 0, 0.75);
+  background: #222222;
 }
 
 .sphere-modal-body {
@@ -1679,9 +1953,21 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
-.sphere-modal-body .detail-visit-btn {
-  background: #2a2a2a;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+/* project button: the project name in a thin white outline, sized to the text */
+.project-btn {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid #ffffff;
+  text-decoration: none;
 }
 
 @keyframes sphere-fade-in {
@@ -1692,4 +1978,17 @@
 @keyframes sphere-scale-in {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+.detail-hero-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #151515;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }

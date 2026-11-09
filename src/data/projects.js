@@ -1521,6 +1521,29 @@ export const projects = [
       },
     ],
   },
+  {
+    // Empty project: the creeper in the home pool links here. Fill in when ready.
+    slug: "minecraft",
+    title: "Minecraft",
+    category: "Game",
+    description: "A new Minecraft project. Details coming soon.",
+    placeholder: true,
+    thumbnail: null,
+    hero: null,
+    meta: {
+      role: "",
+      collaborators: "",
+      duration: "",
+      tools: "",
+    },
+    content: [
+      {
+        type: "text",
+        title: "Overview",
+        body: "Coming soon.",
+      },
+    ],
+  },
 ];
 
 export const PLACEHOLDER_PROJECTS = [
@@ -1549,16 +1572,11 @@ export const PLACEHOLDER_PROJECTS = [
     title: "Zipline",
     placeholder: true,
   },
-  {
-    slug: "minecraft",
-    title: "Minecraft",
-    placeholder: true,
-  },
 ];
 
 export const COLLECTIONS = {
   home: {
-    title: "Home",
+    title: "UI",
     intro:
       "Selected work across design, engineering, and interactive media — plus a few projects currently in progress.",
     slugs: [

@@ -5,6 +5,7 @@ import { waitForMedia } from "../utils/waitForMedia";
 
 const DRAG_CLICK_THRESHOLD = 5;
 
+
 function degreesToRadians(degrees) {
   return degrees * (Math.PI / 180);
 }
@@ -47,32 +48,31 @@ function fibonacciPositions(count) {
 }
 
 function layoutScale(count) {
-  if (count <= 6) return { radiusRatio: 0.32, imageScale: 0.28 };
-  if (count <= 12) return { radiusRatio: 0.34, imageScale: 0.24 };
-  if (count <= 24) return { radiusRatio: 0.36, imageScale: 0.2 };
-  return { radiusRatio: 0.38, imageScale: 0.17 };
+  if (count <= 6) return 0.22;
+  if (count <= 12) return 0.17;
+  if (count <= 24) return 0.14;
+  return 0.115;
 }
 
-// Opaque in front, gone well into the back hemisphere. Smoothstep so a drag
-// eases images out instead of popping them at a hard depth cutoff.
-function fadeForDepth(z, radius) {
-  const fadeStart = radius * 0.2;
-  const fadeEnd = -radius * 0.72;
-  const t = Math.max(0, Math.min(1, (z - fadeEnd) / (fadeStart - fadeEnd)));
+const smooth = (a, b, v) => {
+  const t = Math.max(0, Math.min(1, (v - a) / (b - a)));
   return t * t * (3 - 2 * t);
-}
+};
 
-function projectPositions(spherical, rotation, radius) {
+// Points on a sphere stretched into a wide ellipsoid, then projected with
+// perspective. Depth (0 = far, 1 = near) drives scale, opacity, blur and
+// stacking, so every tile is strictly in front of or behind its neighbours.
+function projectPositions(spherical, rotation, radii, perspective) {
   const rotX = degreesToRadians(rotation.x);
   const rotY = degreesToRadians(rotation.y);
 
-  return spherical.map((pos) => {
+  return spherical.map((pos, index) => {
     const theta = degreesToRadians(pos.theta);
     const phi = degreesToRadians(pos.phi);
 
-    let x = radius * Math.sin(phi) * Math.cos(theta);
-    let y = radius * Math.cos(phi);
-    let z = radius * Math.sin(phi) * Math.sin(theta);
+    let x = Math.sin(phi) * Math.cos(theta);
+    let y = Math.cos(phi);
+    let z = Math.sin(phi) * Math.sin(theta);
 
     const x1 = x * Math.cos(rotY) + z * Math.sin(rotY);
     const z1 = -x * Math.sin(rotY) + z * Math.cos(rotY);
@@ -84,14 +84,18 @@ function projectPositions(spherical, rotation, radius) {
     y = y2;
     z = z2;
 
-    const depth = (z + radius) / (2 * radius);
+    const depth = (z + 1) / 2;
+    const zWorld = z * radii.z;
+    const persp = perspective / (perspective - zWorld);
     return {
-      x,
-      y,
-      z,
-      scale: 0.82 + depth * 0.36,
-      zIndex: Math.round(1000 + z),
-      fadeOpacity: fadeForDepth(z, radius),
+      x: x * radii.x * persp,
+      y: y * radii.y * persp,
+      depth,
+      scale: persp * (0.8 + depth * 0.3),
+      // depth plus a tiny per-index offset so no two tiles ever tie
+      zIndex: Math.round(depth * 100000) * 100 + index,
+      opacity: 0.22 + 0.78 * smooth(0.12, 0.72, depth),
+      blur: (1 - smooth(0.3, 0.82, depth)) * 9,
     };
   });
 }
@@ -105,20 +109,27 @@ function tileSize(longEdge, ratio) {
 export default function SphereImageGrid({
   images = [],
   containerSize = 600,
+  containerWidth,
+  containerHeight,
   dragSensitivity = 0.5,
   momentumDecay = 0.96,
   maxRotationSpeed = 6,
-  perspective = 1000,
+  perspective = 1400,
   autoRotate = true,
   autoRotateSpeed = 0.2,
   onReady,
   onProgress,
 }) {
-  const { radiusRatio, imageScale } = layoutScale(images.length);
-  const sphereRadius = containerSize * radiusRatio;
-  const longEdge = containerSize * imageScale;
+  const stageW = containerWidth ?? containerSize;
+  const stageH = containerHeight ?? containerSize;
+  const minSide = Math.min(stageW, stageH);
+  const longEdge = minSide * layoutScale(images.length);
+  const radii = useMemo(
+    () => ({ x: Math.min(stageW * 0.32, minSide * 0.62), y: stageH * 0.22, z: minSide * 0.42 }),
+    [stageW, stageH, minSide]
+  );
 
-  const [rotation, setRotation] = useState({ x: 15, y: 15, z: 0 });
+  const [rotation, setRotation] = useState({ x: 8, y: 15, z: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -134,8 +145,8 @@ export default function SphereImageGrid({
 
   const spherical = useMemo(() => fibonacciPositions(images.length), [images.length]);
   const worldPositions = useMemo(
-    () => projectPositions(spherical, rotation, sphereRadius),
-    [spherical, rotation, sphereRadius]
+    () => projectPositions(spherical, rotation, radii, perspective),
+    [spherical, rotation, radii, perspective]
   );
 
   const clampSpeed = useCallback((speed) => {
@@ -243,11 +254,7 @@ export default function SphereImageGrid({
       <div
         ref={containerRef}
         className={`sphere${isDragging ? " sphere--dragging" : ""}`}
-        style={{
-          width: containerSize,
-          height: containerSize,
-          perspective: `${perspective}px`,
-        }}
+        style={{ width: stageW, height: stageH }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -255,9 +262,10 @@ export default function SphereImageGrid({
       >
         {images.map((image, index) => {
           const position = worldPositions[index];
-          if (!position || position.fadeOpacity < 0.02) return null;
-          const { width, height } = tileSize(longEdge * position.scale, image.ratio);
-          const popped = hoveredIndex === index && !isDragging && position.fadeOpacity > 0.85;
+          if (!position) return null;
+          const { width, height } = tileSize(longEdge, image.ratio);
+          const popped = hoveredIndex === index && !isDragging && position.depth > 0.6;
+          const front = position.depth > 0.5;
           return (
             <div
               key={image.id}
@@ -266,11 +274,13 @@ export default function SphereImageGrid({
               style={{
                 width: `${width}px`,
                 height: `${height}px`,
-                left: `${containerSize / 2 + position.x}px`,
-                top: `${containerSize / 2 + position.y}px`,
-                opacity: position.fadeOpacity,
+                left: `${stageW / 2}px`,
+                top: `${stageH / 2}px`,
+                transform: `translate(-50%, -50%) translate3d(${position.x}px, ${position.y}px, 0) scale(${position.scale * (popped ? 1.04 : 1)})`,
+                opacity: position.opacity,
+                filter: position.blur > 0.4 ? `blur(${position.blur.toFixed(1)}px)` : "none",
                 zIndex: position.zIndex,
-                pointerEvents: position.fadeOpacity > 0.45 ? "auto" : "none",
+                pointerEvents: front ? "auto" : "none",
               }}
               onPointerEnter={() => setHoveredIndex(index)}
               onPointerLeave={() => setHoveredIndex((current) => (current === index ? null : current))}
@@ -312,14 +322,17 @@ export default function SphereImageGrid({
             </div>
             {(selectedImage.title || selectedImage.description || selectedImage.href) && (
               <div className="sphere-modal-body">
-                {selectedImage.title && <h3>{selectedImage.title}</h3>}
                 {selectedImage.href ? (
-                  <Link to={selectedImage.href} className="detail-visit-btn">
-                    Go to project
-                    <span className="detail-visit-btn-icon" aria-hidden="true">↗</span>
+                  // the project name is the button: just the text, outlined
+                  <Link to={selectedImage.href} className="project-btn">
+                    {selectedImage.title || "Go to project"}
+                    <span aria-hidden="true">↗</span>
                   </Link>
                 ) : (
-                  selectedImage.description && <p>{selectedImage.description}</p>
+                  <>
+                    {selectedImage.title && <h3>{selectedImage.title}</h3>}
+                    {selectedImage.description && <p>{selectedImage.description}</p>}
+                  </>
                 )}
               </div>
             )}

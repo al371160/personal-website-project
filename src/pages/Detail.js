@@ -9,6 +9,7 @@ import { optimizeImage } from "../utils/cloudinary";
 const VIDEO_WIDTH = 2000;
 
 function HeroMedia({ media, title }) {
+  if (!media) return <div className="detail-hero-empty">Coming soon</div>;
   if (media.type === "video") {
     return <VideoPlayer src={media.src} width={VIDEO_WIDTH} title={title} />;
   }

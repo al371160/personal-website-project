@@ -25,9 +25,10 @@ function measureRatio(src) {
 }
 
 function measureSphereSize() {
-  const width = window.innerWidth;
-  const height = window.innerHeight - 60;
-  return Math.max(280, Math.floor(Math.min(width, height) * 0.92));
+  return {
+    width: Math.max(320, window.innerWidth),
+    height: Math.max(320, window.innerHeight - 60),
+  };
 }
 
 function useSphereSize() {
@@ -132,7 +133,8 @@ export default function Playground({ onReady, onProgress }) {
         <div className="sphere-stage">
           <SphereImageGrid
             images={images}
-            containerSize={containerSize}
+            containerWidth={containerSize.width}
+            containerHeight={containerSize.height}
             onReady={onReady}
             onProgress={handleMediaProgress}
           />

@@ -65,4 +65,38 @@ async function queryPlayground(notion, dbId) {
   return queryMedia(notion, dbId);
 }
 
-module.exports = { queryArtwork, queryPlayground, queryWorks };
+// Duck messages: validates input and writes one page to the duck inbox database.
+// DB properties: Name (title), Message (rich text), Contact (rich text).
+function cleanDuckMessage(body = {}) {
+  if (typeof body === "string") {
+    try { body = JSON.parse(body); } catch { body = {}; }
+  }
+  if (body.website) return { spam: true }; // honeypot filled in: drop silently
+  const message = typeof body.message === "string" ? body.message.trim().slice(0, 2000) : "";
+  const contact = typeof body.contact === "string" ? body.contact.trim().slice(0, 200) : "";
+  if (!message) return { error: "Message is required." };
+  return { message, contact };
+}
+
+async function createDuckMessage(notion, dbId, { message, contact }) {
+  const text = (content) => [{ type: "text", text: { content } }];
+  await notion.pages.create({
+    parent: { database_id: dbId },
+    properties: {
+      Name: { title: text(message.slice(0, 80)) },
+      Message: { rich_text: text(message) },
+      Contact: { rich_text: contact ? text(contact) : [] },
+    },
+  });
+}
+
+async function handleDuck(notion, dbId, body) {
+  const input = cleanDuckMessage(body);
+  if (input.spam) return { status: 200, json: { ok: true } };
+  if (input.error) return { status: 400, json: { error: input.error } };
+  if (!dbId) return { status: 503, json: { error: "Duck inbox is not configured." } };
+  await createDuckMessage(notion, dbId, input);
+  return { status: 200, json: { ok: true } };
+}
+
+module.exports = { queryArtwork, queryPlayground, queryWorks, handleDuck };

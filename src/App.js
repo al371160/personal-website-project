@@ -72,6 +72,10 @@ function AppContent() {
             element={<Detail onReady={handleReady} onProgress={handleProgress} />}
           />
           <Route
+            path="/ui"
+            element={<Collection name="home" onReady={handleReady} onProgress={handleProgress} />}
+          />
+          <Route
             path="/design"
             element={<Collection name="design" onReady={handleReady} onProgress={handleProgress} />}
           />

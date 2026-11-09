@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "env": { "PORT": "3005", "BROWSER": "none" },
+      "port": 3005
+    }
+  ]
+}
