@@ -62,8 +62,8 @@ export const projects = [
     ],
   },
   {
-    slug: "reimagining-reconnection",
-    title: "Reimagining Reconnection",
+    slug: "pact",
+    title: "Pact",
     category: "Product / Design",
     description: "Relationship-building app for SVSD Designathon 2026",
     thumbnail: {
