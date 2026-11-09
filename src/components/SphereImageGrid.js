@@ -116,7 +116,7 @@ export default function SphereImageGrid({
   maxRotationSpeed = 6,
   perspective = 1400,
   autoRotate = true,
-  autoRotateSpeed = 0.2,
+  autoRotateSpeed = 0.1,
   onReady,
   onProgress,
 }) {
