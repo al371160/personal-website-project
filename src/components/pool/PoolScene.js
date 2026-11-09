@@ -17,7 +17,7 @@ import * as P from "./props";
 
 /* ───────────────────────── Content ───────────────────────── */
 
-const RESUME_URL = "https://drive.google.com/file/d/1qvzjvyCNFUYIFTxiBk1JDlgEpBxXouGc/view?usp=sharing";
+const RESUME_URL = "https://drive.google.com/file/d/1ymN-Ky85-mRS6CXPyQgMFEpfVzVcquae/view?usp=drive_link";
 
 // Everything floating in the pool. `href` makes it a link; `duck` opens the message card.
 const PROPS = [
