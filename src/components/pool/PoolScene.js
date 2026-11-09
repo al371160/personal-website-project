@@ -36,7 +36,7 @@ const PROPS = [
   // project props: click opens the project page, hover shows its hero image
   { id: "car", kind: "car", project: "penn-electric-racing" },
   { id: "beaker", kind: "beaker", project: "penn-labs" },
-  { id: "phone", kind: "phone", project: "reimagining-reconnection" },
+  { id: "phone", kind: "phone", project: "pact" },
   { id: "boba", kind: "boba", project: "orble-tea" },
   { id: "creeper", kind: "creeper", project: "minecraft" },
 ];

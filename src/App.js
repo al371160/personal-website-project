@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 
 import TopBar from "./components/TopBar";
@@ -67,6 +67,8 @@ function AppContent() {
             path="/"
             element={<Home onReady={handleReady} onProgress={handleProgress} />}
           />
+          {/* old slug, kept so existing links still land on Pact */}
+          <Route path="/work/reimagining-reconnection" element={<Navigate to="/work/pact" replace />} />
           <Route
             path="/work/:slug"
             element={<Detail onReady={handleReady} onProgress={handleProgress} />}

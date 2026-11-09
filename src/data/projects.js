@@ -1,5 +1,5 @@
 export const HOME_SLUGS = [
-  "reimagining-reconnection",
+  "pact",
   "penn-labs",
 ];
 
