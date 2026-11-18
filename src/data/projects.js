@@ -65,7 +65,8 @@ export const projects = [
     slug: "hackprinceton-2026",
     title: "Doodle Duel",
     category: "Game / Hackathon",
-    description: "Ink it. Link it. Fight to the finish.",
+    description:
+      "Our project for HackPrinceton was a reimagining of the original \"Animator vs Animation\" with modern AI techniques. I was responsible for the UI design and the procedural animation system, as well as hardware assembly and hardware concept design for the haptics headset. On the backend side, I participated in creating the drawing application that feeds the output into GPT Luna.",
     visitUrl: "https://devpost.com/software/doodle-duel-h3snau",
     thumbnail: {
       type: "photo",
@@ -82,6 +83,11 @@ export const projects = [
       tools: "JavaScript, Node.js, LangChain, OpenAI, Arduino",
     },
     content: [
+      {
+        type: "text",
+        title: "Overview",
+        body: "Our project for HackPrinceton was a reimagining of the original \"Animator vs Animation\" with modern AI techniques. I was responsible for the UI design and the procedural animation system, as well as hardware assembly and hardware concept design for the haptics headset. On the backend side, I participated in creating the drawing application that feeds the output into GPT Luna.",
+      },
       {
         type: "text",
         title: "Demo",
@@ -1575,17 +1581,43 @@ export const projects = [
       },
     ],
   },
+  {
+    slug: "nasa-apps",
+    title: "AEGIS",
+    category: "Design / Hackathon",
+    description: "NASA Space Apps Challenge 2026",
+    visitUrl: "https://www.spaceappschallenge.org/2026/find-a-team/pennguins/?tab=project",
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794985106/44d29c82-944d-4c8c-98dd-e4e22f1c7d30.png",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794984990/25e0377c-1f1d-4d92-ae5f-a0f3590fe076.png",
+    },
+    meta: {
+      role: "Developer",
+      collaborators: "Pennguins",
+      duration: "2026",
+      tools: "",
+    },
+    content: [
+      {
+        type: "youtube",
+        src: "ONFDzD3nlN8",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794985000/6605545e-5406-43ea-aed5-f61687a3c05f.png",
+      },
+    ],
+  },
 ];
 
 export const PLACEHOLDER_PROJECTS = [
   {
     slug: "government-ui-project",
     title: "Government UI Project",
-    placeholder: true,
-  },
-  {
-    slug: "nasa-apps",
-    title: "NASA Apps",
     placeholder: true,
   },
   {
