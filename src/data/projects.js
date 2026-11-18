@@ -1585,7 +1585,8 @@ export const projects = [
     slug: "nasa-apps",
     title: "AEGIS",
     category: "Design / Hackathon",
-    description: "NASA Space Apps Challenge 2026",
+    description:
+      "Led and produced dedicated medical software for spacewalks. We noticed the lack of technology and antiquated analogue methods for monitoring astronaut vital signs during spacewalks and embarked on a method to simulate what a digitized and streamlined method would look like, complete with an independent mouse-look eye-look system that imitates looking instead the visor while the body moves independently. We also built a backend \"mission control\" dashboard supporting packed data streams.",
     visitUrl: "https://www.spaceappschallenge.org/2026/find-a-team/pennguins/?tab=project",
     thumbnail: {
       type: "photo",
@@ -1593,7 +1594,7 @@ export const projects = [
     },
     hero: {
       type: "image",
-      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794984990/25e0377c-1f1d-4d92-ae5f-a0f3590fe076.png",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794987801/Screenshot_2026-11-15_at_11.57.12_PM.png",
     },
     meta: {
       role: "Developer",
@@ -1603,12 +1604,17 @@ export const projects = [
     },
     content: [
       {
+        type: "text",
+        title: "Overview",
+        body: "Led and produced dedicated medical software for spacewalks. We noticed the lack of technology and antiquated analogue methods for monitoring astronaut vital signs during spacewalks and embarked on a method to simulate what a digitized and streamlined method would look like, complete with an independent mouse-look eye-look system that imitates looking instead the visor while the body moves independently. We also built a backend \"mission control\" dashboard supporting packed data streams.",
+      },
+      {
         type: "youtube",
         src: "ONFDzD3nlN8",
       },
       {
         type: "image",
-        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794985000/6605545e-5406-43ea-aed5-f61687a3c05f.png",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794987804/Screenshot_2026-11-15_at_11.58.35_PM.png",
       },
     ],
   },
