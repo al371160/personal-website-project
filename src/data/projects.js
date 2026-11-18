@@ -1636,15 +1636,15 @@ export const COLLECTIONS = {
   home: {
     title: "UI",
     intro:
-      "Selected work across design, engineering, and interactive media — plus a few projects currently in progress.",
+      "The best ideas often come from \"looking at the fish,\" which is my process when asking questions for user feedback. This often results in novel yet logical ideas for interaction across interesting domains like geospatial representations, productivity and organization, cross-platform gaming controllers, and VR/AR interaction.",
     slugs: [
       ...HOME_SLUGS,
       "hackprinceton-2026",
-      "government-ui-project",
+      "nasa-apps",
     ],
   },
   design: {
-    slugs: ["orble-tea", "penn-electric-racing", "nasa-apps", "mosaic"],
+    slugs: ["orble-tea", "penn-electric-racing", "government-ui-project", "mosaic"],
   },
   graphics: {
     intro:
