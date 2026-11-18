@@ -62,6 +62,37 @@ export const projects = [
     ],
   },
   {
+    slug: "hackprinceton-2026",
+    title: "Doodle Duel",
+    category: "Game / Hackathon",
+    description: "Ink it. Link it. Fight to the finish.",
+    visitUrl: "https://devpost.com/software/doodle-duel-h3snau",
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794983965/8004d457-1407-47ef-b250-0bd2590a9ef7.png",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794979986/5009c395-33b2-445f-9258-4b5c16952514.png",
+    },
+    meta: {
+      role: "Developer",
+      collaborators: "Benjamin Liu, Richard Zhu, Anthony Yu",
+      duration: "Nov 2026",
+      tools: "JavaScript, Node.js, LangChain, OpenAI, Arduino",
+    },
+    content: [
+      {
+        type: "text",
+        title: "Demo",
+      },
+      {
+        type: "youtube",
+        src: "wvrTbLe0Ui0",
+      },
+    ],
+  },
+  {
     slug: "pact",
     title: "Pact",
     category: "Product / Design",
@@ -1547,11 +1578,6 @@ export const projects = [
 ];
 
 export const PLACEHOLDER_PROJECTS = [
-  {
-    slug: "hackprinceton-2026",
-    title: "HackPrinceton 2026",
-    placeholder: true,
-  },
   {
     slug: "government-ui-project",
     title: "Government UI Project",
