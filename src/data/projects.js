@@ -1618,6 +1618,26 @@ export const projects = [
       },
     ],
   },
+  {
+    slug: "zipline",
+    title: "Zipline",
+    category: "Graphics",
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1795112590/8e9a28e3-d5d4-4026-b0d4-ddea11d8e92f.png",
+    },
+    hero: {
+      type: "video",
+      src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1795112658/Screen_Recording_2026-11-19_at_1.56.35_AM.mov",
+    },
+    meta: {
+      role: "",
+      collaborators: "",
+      duration: "",
+      tools: "",
+    },
+    content: [],
+  },
 ];
 
 export const PLACEHOLDER_PROJECTS = [
@@ -1629,11 +1649,6 @@ export const PLACEHOLDER_PROJECTS = [
   {
     slug: "mosaic",
     title: "MOSAIC",
-    placeholder: true,
-  },
-  {
-    slug: "zipline",
-    title: "Zipline",
     placeholder: true,
   },
 ];
