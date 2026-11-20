@@ -167,14 +167,28 @@ const TABS = [
   { label: "Analytics", slot: 7 },
   { label: "Club Management", slot: 9, more: true },
 ];
-const CHAR_W = 6.62;
+// Label widths measured in DM Sans at 11px (canvas measureText); fallback estimate otherwise.
+const TEXT_W = {
+  "Admin Notes": 66,
+  Analytics: 48,
+  "Applications Page": 92,
+  "Club Management": 93,
+  "Edit Club Page": 74,
+  Events: 35,
+  Membership: 64,
+  Questions: 52,
+  Recruitment: 64,
+  Resources: 54,
+  Settings: 43,
+};
+const textW = (t) => TEXT_W[t] ?? Math.ceil(t.length * 5.6);
 const SWITCH_1 = 47;
 
 function LayoutFigure() {
   const css = [];
   let x = 48;
   const tabs = TABS.map((t, i) => {
-    const w = Math.round(t.label.length * CHAR_W + 20);
+    const w = textW(t.label) + 20;
     const bx = x;
     x += w + 6;
     const dx = 40 + (t.indent || 0) - bx;
@@ -195,13 +209,14 @@ function LayoutFigure() {
     );
     return { ...t, bx, w, i };
   });
+  const overflow = Math.max(0, Math.round(x - 6 - 760));
 
   css.push(
     kf("pc1-row", [
       [0, "transform:translateX(0px)"],
       [8, "transform:translateX(0px)"],
-      [18, "transform:translateX(-380px)"],
-      [24, "transform:translateX(-380px)"],
+      [18, `transform:translateX(-${overflow}px)`],
+      [24, `transform:translateX(-${overflow}px)`],
       [32, "transform:translateX(0px)"],
       [100, "transform:translateX(0px)"],
     ]),
@@ -732,20 +747,24 @@ function ApplicationsFigure() {
       {/* BEFORE */}
       <g style={animLinear("pc3-before")}>
         <text x="48" y="88" className="pc-t-h">Penn Pre-Professional Juggling Org</text>
-        {[["Membership", 48], ["Events", 136], ["Recruitment", 196], ["Applications Page", 292], ["Resources", 424], ["Questions", 504]].map(
-          ([t, tx]) => {
+        {(() => {
+          let tx = 48;
+          return ["Membership", "Events", "Recruitment", "Applications Page", "Resources", "Questions"].map((t) => {
             const dup = t === "Recruitment" || t === "Applications Page";
+            const w = textW(t) + 16;
+            const x0 = tx;
+            tx += w + 6;
             return (
               <g key={t}>
-                <rect x={tx} y="100" width={t.length * CHAR_W + 16} height="22" rx="4" fill="#222" stroke={dup ? C.bad : C.line} />
-                <text x={tx + 8} y="115" className="pc-t">{t}</text>
+                <rect x={x0} y="100" width={w} height="22" rx="4" fill="#222" stroke={dup ? C.bad : C.line} />
+                <text x={x0 + 8} y="115" className="pc-t">{t}</text>
               </g>
             );
-          }
-        )}
+          });
+        })()}
         <g style={animLinear("pc3-q")}>
-          <circle cx="288" cy="96" r="8" fill={C.bad} />
-          <text x="288" y="100" textAnchor="middle" className="pc-t" fill="#0e0e0e">?</text>
+          <circle cx="274" cy="96" r="8" fill={C.bad} />
+          <text x="274" y="100" textAnchor="middle" className="pc-t" fill="#0e0e0e">?</text>
         </g>
         <line x1="25" y1="130.5" x2="775" y2="130.5" stroke={C.line} />
         <svg x="0" y="131" width="800" height="304" viewBox="0 131 800 304" overflow="hidden">
