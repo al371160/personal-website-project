@@ -1729,7 +1729,53 @@ export const projects = [
       {
         type: "text",
         title: "The situation",
-        body: "We noticed how little technology goes into monitoring an astronaut's vital signs during a spacewalk, which still leans on antiquated, analog methods. Information moves slowly between the suit and the ground, so a change in someone's condition can go unnoticed.",
+        body: [
+          "A spacewalk is one of the most dangerous things an astronaut does. NASA's Human Research Program groups the risks of human spaceflight into five hazards: radiation, isolation and confinement, distance from Earth, gravity fields, and hostile, closed environments. Inside the station, walls, systems and crewmates buffer most of them. On a spacewalk, the suit is the only buffer left.",
+        ],
+      },
+      {
+        type: "animation",
+        name: "aegis-hazards",
+        caption: "NASA's five hazards of human spaceflight, applied to a spacewalk",
+      },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "radiation",
+            title: "Radiation",
+            body: "Outside the hull, only the suit stands between the astronaut and the sun. A solar event means getting back inside, fast.",
+          },
+          {
+            icon: "lock",
+            title: "Isolation & confinement",
+            body: "Spacewalks routinely run six hours or more, sealed in a suit with a narrow view and a voice link as the only contact.",
+          },
+          {
+            icon: "satellite-dish",
+            title: "Distance from Earth",
+            body: "Near Earth, help is a radio call away. From the Moon, every exchange takes over a second each way, and from Mars, minutes. The further out we go, the more the crew has to rely on its own data.",
+          },
+          {
+            icon: "orbit",
+            title: "Gravity",
+            body: "There's no up or down, every move depends on handholds and tethers, and working against a pressurized suit is exhausting, which drives heart rate and body heat up.",
+          },
+          {
+            icon: "thermometer",
+            title: "Hostile, closed environment",
+            body: "The suit is a tiny closed habitat: oxygen, CO₂ scrubbing and water cooling all have to keep working, while the outside swings by hundreds of degrees between sunlight and shadow.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "A scenario",
+        body: [
+          "Picture hour four of a six-hour spacewalk. The astronaut has been wrestling a stuck bolt and their heart rate is climbing. The station is about to pass from shadow into sunlight, and the suit's cooling loop is working harder than it should. None of these is an emergency alone, but together they can become one, and the person in the suit is the last to have the full picture.",
+          "This isn't hypothetical. In July 2013, water began pooling inside Luca Parmitano's helmet during a spacewalk outside the ISS, and the EVA was cut short. Moments like that are why we wanted the astronaut and the ground to see the same live data, instead of piecing it together over check-in calls.",
+        ],
       },
       {
         type: "animation",
