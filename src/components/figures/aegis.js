@@ -1,7 +1,7 @@
 import { C, Stage, anim, animLinear, kf, show } from "./kit";
 
-// AEGIS: the five hazards of a spacewalk, how vitals reach the ground (before vs. a live telemetry stream) and
-// the decoupled body/eye look used in the visor simulation.
+// AEGIS: the five hazards of a spacewalk and how vitals reach the ground
+// (before vs. a live telemetry stream).
 
 const AMBER = "#f2b84b";
 
@@ -270,97 +270,7 @@ function VitalsFigure() {
   );
 }
 
-/* 2. Look without turning: gaze decoupled from the body's heading */
-
-const TARGETS = {
-  tool: { x: 330, y: 118, label: "tool" },
-  light: { x: 470, y: 318, label: "warning light" },
-  hatch: { x: 600, y: 110, label: "hatch" },
-};
-const ORIGIN = [160, 222];
-
-function LookFigure() {
-  const tx = (x) => `transform:translateX(${x}px)`;
-  const rot = (d) => `transform:rotate(${d}deg)`;
-  const css = [
-    kf("ae2-pos", [
-      [0, tx(0)], [5, tx(0)], [14, tx(100)], [30, tx(100)], [40, tx(220)], [43, tx(220)],
-      [44, tx(0)], [48, tx(0)], [92, tx(460)], [96.5, tx(460)], [98, tx(0)], [100, tx(0)],
-    ]),
-    kf("ae2-body", [[0, rot(0)], [14, rot(0)], [18, rot(-56)], [26, rot(-56)], [30, rot(0)], [100, rot(0)]]),
-    kf("ae2-gaze", [
-      [0, rot(0)], [50, rot(0)], [54, rot(-49)], [60, rot(-74)], [63, rot(-74)], [65, rot(36)], [70, rot(54)],
-      [73, rot(54)], [76, rot(-39)], [82, rot(-55)], [85, rot(-55)], [89, rot(0)], [100, rot(0)],
-    ]),
-    show("ae2-who", [[0, 42], [47, 94]]),
-    show("ae2-tool", [[18, 26], [53, 62]]),
-    show("ae2-light", [[65, 72]]),
-    show("ae2-hatch", [[76, 84]]),
-    show("ae2-stop", [[16, 28]]),
-  ];
-
-  return (
-    <Stage
-      id="ae2"
-      label="Animation, top-down: an astronaut moving along a handrail. With typical controls they stop and turn their whole body to look at a tool; with AEGIS they keep moving while their gaze sweeps to a tool, a warning light and a hatch."
-      css={css}
-      captions={[
-        { text: "Typical first-person controls: to look at something, you turn your whole body and stop moving.", from: 0, to: 42 },
-        { text: "AEGIS decouples them: the body keeps moving along the handrail while the eyes look around freely.", from: 46, to: 94 },
-      ]}
-    >
-      <defs>
-        <linearGradient id="ae2-cone" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor={C.accent} stopOpacity=".45" />
-          <stop offset="1" stopColor={C.accent} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <text x="40" y="44" className="fig-t-s">TOP-DOWN VIEW</text>
-
-      {/* Handrail */}
-      <line x1="100" y1="252" x2="700" y2="252" stroke="#4a4a4a" strokeWidth="4" strokeLinecap="round" />
-      {Array.from({ length: 8 }, (_, i) => (
-        <rect key={i} x={116 + i * 80} y="252" width="6" height="12" fill="#3a3a3a" />
-      ))}
-      <text x="700" y="280" textAnchor="end" className="fig-t-s">handrail</text>
-
-      {Object.entries(TARGETS).map(([k, t]) => (
-        <g key={k}>
-          <circle cx={t.x} cy={t.y} r="22" fill={AMBER} fillOpacity=".12" stroke={AMBER} style={animLinear(`ae2-${k}`)} />
-          <circle cx={t.x} cy={t.y} r="7" fill="#555" />
-          <text x={t.x} y={t.y + 38} textAnchor="middle" className="fig-t-s">{t.label}</text>
-        </g>
-      ))}
-
-      <g transform={`translate(${ORIGIN[0]} ${ORIGIN[1]})`}>
-        <g style={animLinear("ae2-who")}>
-          <g style={anim("ae2-pos", "linear")}>
-            <text x="0" y="-36" textAnchor="middle" className="fig-t-note" style={animLinear("ae2-stop")}>stopped</text>
-            <g style={anim("ae2-body")}>
-              <g style={anim("ae2-gaze")}>
-                <path d="M10 0 L180 -64 A 192 192 0 0 1 180 64 Z" fill="url(#ae2-cone)" />
-              </g>
-              <rect x="-24" y="-13" width="10" height="26" rx="3" fill="#8a8a8a" />
-              <ellipse cx="0" cy="0" rx="13" ry="19" fill="#e6e6e6" />
-              <circle cx="4" cy="0" r="9" fill="#1d2840" stroke="#e6e6e6" strokeWidth="2" />
-              <path d="M24 -6 L32 0 L24 6" fill="none" stroke="#bdbdbd" strokeWidth="2" strokeLinecap="round" />
-            </g>
-          </g>
-        </g>
-      </g>
-
-      <g transform="translate(560 42)">
-        <path d="M0 -5 L8 0 L0 5" fill="none" stroke="#bdbdbd" strokeWidth="2" />
-        <text x="16" y="4" className="fig-t-s">body heading</text>
-        <path d="M100 0 L124 -8 L124 8 Z" fill={C.accent} fillOpacity=".5" />
-        <text x="132" y="4" className="fig-t-s">gaze</text>
-      </g>
-    </Stage>
-  );
-}
-
 export const AEGIS_FIGURES = {
   "aegis-hazards": HazardsFigure,
   "aegis-vitals": VitalsFigure,
-  "aegis-look": LookFigure,
 };

@@ -1739,37 +1739,6 @@ export const projects = [
         caption: "NASA's five hazards of human spaceflight, applied to a spacewalk",
       },
       {
-        type: "callout",
-        columns: 2,
-        items: [
-          {
-            icon: "radiation",
-            title: "Radiation",
-            body: "Outside the hull, only the suit stands between the astronaut and the sun. A solar event means getting back inside, fast.",
-          },
-          {
-            icon: "lock",
-            title: "Isolation & confinement",
-            body: "Spacewalks routinely run six hours or more, sealed in a suit with a narrow view and a voice link as the only contact.",
-          },
-          {
-            icon: "satellite-dish",
-            title: "Distance from Earth",
-            body: "Near Earth, help is a radio call away. From the Moon, every exchange takes over a second each way, and from Mars, minutes. The further out we go, the more the crew has to rely on its own data.",
-          },
-          {
-            icon: "orbit",
-            title: "Gravity",
-            body: "There's no up or down, every move depends on handholds and tethers, and working against a pressurized suit is exhausting, which drives heart rate and body heat up.",
-          },
-          {
-            icon: "thermometer",
-            title: "Hostile, closed environment",
-            body: "The suit is a tiny closed habitat: oxygen, CO₂ scrubbing and water cooling all have to keep working, while the outside swings by hundreds of degrees between sunlight and shadow.",
-          },
-        ],
-      },
-      {
         type: "text",
         title: "A scenario",
         body: [
@@ -1792,11 +1761,6 @@ export const projects = [
         type: "text",
         title: "Looking without turning",
         body: "To make the simulation feel like looking out from inside the visor, we built an independent mouse-look and eye-look system. The body moves on its own while the view looks around inside the helmet, the way an astronaut keeps working along a handrail while checking their surroundings.",
-      },
-      {
-        type: "animation",
-        name: "aegis-look",
-        caption: "Top-down: turning the whole body to look, versus a gaze that moves independently of the body",
       },
       { type: "text", title: "Demo" },
       {
