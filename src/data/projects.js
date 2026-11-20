@@ -27,12 +27,48 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "More details coming soon!",
+        body: [
+          "Penn Clubs is where every student organization at Penn manages its page, members, events and recruiting. The admin side grew one feature at a time for years, and it showed: club officers were working around the tool instead of with it.",
+          "With the Penn Clubs team, I redesigned the club admin dashboard to be scalable, usable and consistent. I started from what officers told us, narrowed it down to three needs, and designed each solution around a real task an officer does every recruiting season.",
+        ],
+      },
+      { type: "text", title: "Research" },
+      {
+        type: "callout",
+        columns: 2,
+        items: [
+          {
+            icon: "message-circle",
+            title: "What officers told us",
+            body: [
+              "We talked to a member of PEVC who had run their club's applications on Penn Clubs. Their pain points were specific: they were \"not able to batch select\" members, emails and applications were hard to tell apart, and they couldn't preview an email before it went out.",
+              "Being able to preview and edit the default congrats and rejection emails was, in their words, something that \"would be huge.\"",
+            ],
+          },
+          {
+            icon: "search",
+            title: "What we found ourselves",
+            body: [
+              "Auditing the dashboard, we found cluttered UI and deprecated buttons, layouts that didn't scale and left huge amounts of white space, and almost no navigation: a long top bar of tabs, with \"Applications\" and \"Recruitment\" duplicating each other.",
+            ],
+          },
+        ],
       },
       {
-        type: "image",
-        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792899529/47f37ae6-a533-4e19-936d-8da4753caed0.png",
-        caption: "Member filtering and message to members that uses multi-select, based on user feedback",
+        type: "text",
+        title: "Need 1: Large, confusing layout",
+        body: "Eleven tabs sat in one row that ran off the edge of the screen, while the actual content was squeezed into a narrow column in the middle of the page. Officers had to scroll sideways just to find a page, and two of those tabs did the same job.",
+      },
+      {
+        type: "animation",
+        name: "layout",
+        caption: "The tab row folds into a grouped sidebar, Recruitment and Applications merge into one section, rarely used pages collapse under \"More,\" and content expands to fill the screen",
+      },
+      {
+        type: "callout",
+        icon: "panel-left",
+        title: "Solution: a sidebar and a layout that scales",
+        body: "In lo-fi I tried collapsing extra tabs into a \"More\" menu, then moved to a sidebar inspired by dashboards like Vercel and GitHub. Navigation is grouped by task, so everything about recruiting lives in one place, and the content area is built from cards that reflow to the width of the screen instead of sitting in a fixed column.",
       },
       {
         type: "image",
@@ -40,25 +76,70 @@ export const projects = [
         caption: "Figma prototype for edit club page, the real frontend can scale to screen width",
       },
       {
+        type: "video",
+        src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1793601468/Screen_Recording_2026-11-02_at_1.34.03_AM.mov",
+        caption: "Interactive tables with adjustable rows",
+      },
+      {
+        type: "text",
+        title: "Need 2: Lack of advanced messaging features",
+        body: "Messaging members meant ticking checkboxes one row at a time, with no way to filter by status first. Acceptance and rejection emails went out without a preview, so officers couldn't check what an applicant would actually read.",
+      },
+      {
+        type: "animation",
+        name: "messaging",
+        caption: "Filter by status, select every match at once, then write from a congrats or rejection template and preview it with a real member's details before sending",
+      },
+      {
+        type: "callout",
+        icon: "mail-check",
+        title: "Solution: filter, batch select, preview",
+        body: "Members can be filtered by status and other columns, and a single select-all picks up everyone who matches. The compose panel starts from editable congrats and rejection templates, fills in fields like first name and committee, and has a preview mode, so nothing goes out unseen.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792899529/47f37ae6-a533-4e19-936d-8da4753caed0.png",
+        caption: "Member filtering and message to members that uses multi-select, based on user feedback",
+      },
+      {
+        type: "text",
+        title: "Need 3: Confusing application creation process",
+        body: "Creating an application meant working through one long page that mixed responses, status buttons, extensions, questions and emails, split across two tabs that looked like duplicates. Nothing told an officer where to start or when they were done.",
+      },
+      {
+        type: "animation",
+        name: "applications",
+        caption: "Application creation becomes four collapsible steps (details, questions, emails, publish) with a progress tracker",
+      },
+      {
+        type: "callout",
+        icon: "list-checks",
+        title: "Solution: a stepped, collapsible flow",
+        body: "Creating an application is now a guided sequence. Each step is a collapsible panel that closes with a check once it's finished, so officers always know what's left, and the panels stack cleanly on a phone. Default acceptance and rejection emails are part of the flow rather than an afterthought.",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1793763752/9e7e1cbf-aa9e-4238-b19e-408b65387ab2.png",
+        caption: "Applications section, featuring collapsible panels for ease of use on mobile",
+      },
+      {
+        type: "text",
+        title: "Quality of Life",
+        body: "Alongside the three main needs, I added smaller features that keep officers inside Penn Clubs instead of reaching for other apps.",
+      },
+      {
         type: "image",
         src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792899550/8f0ec0d1-d4a6-4c2c-b108-62de8d461385.png",
         caption: "Events calendar & scheduling, enabling club admin to visually organize events without using a third-party app",
       },
       {
-        type: "video",
-        src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1793601468/Screen_Recording_2026-11-02_at_1.34.03_AM.mov",
-        caption: "Interactive Tables with adjustable rows",
+        type: "text",
+        title: "Next Steps",
+        body: [
+          "Next, I'm adding more quality of life features and bringing the redesign to admins from different kinds of clubs (engineering, business and casual) to measure how satisfied they are with it, since each runs recruiting very differently.",
+          "We'll also run A/B tests against the current dashboard to check that the changes actually improve the experience, rather than assuming they do.",
+        ],
       },
-      {
-        type: "image",
-        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1793763752/9e7e1cbf-aa9e-4238-b19e-408b65387ab2.png",
-        caption: "Applications section, featuring collapsible panels for easy of use on mobile",
-      },
-      /*{
-        type: "video",
-        src: "https://res.cloudinary.com/fet3ks1c/video/upload/v1793602736/Screen_Recording_2026-11-02_at_1.49.56_AM_online-video-cutter.com.mov",
-        caption: "Mobile scale of Applications section, with collapsible panels for greater clarity",
-      }, */
     ],
   },
   {

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { optimizeImage } from "../utils/cloudinary";
 import CompareSlider from "./CompareSlider";
+import PennClubsFigure from "./PennClubsFigure";
 import VideoPlayer from "./VideoPlayer";
 import YouTubePlaylist from "./YouTubePlaylist";
 
@@ -73,6 +74,10 @@ export default function DetailContentBlock({ block, index }) {
         ))}
       </div>
     );
+  }
+
+  if (block.type === "animation") {
+    return <PennClubsFigure key={index} name={block.name} caption={block.caption} />;
   }
 
   if (block.type === "compare") {
