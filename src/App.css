@@ -2009,37 +2009,39 @@
   text-transform: uppercase;
 }
 
-/* ---- Penn Clubs animated figures ---- */
-.pc-fig-svg {
+/* ---- Animated project figures ---- */
+.anim-fig-svg {
   display: block;
   width: 100%;
   height: auto;
   background: #121212;
 }
 
-.pc-fig-svg text {
+.anim-fig-svg text {
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-size: 11px;
 }
 
 /* Default colors only where the element has no explicit fill attribute,
    since CSS fill would otherwise override the presentation attribute. */
-.pc-fig-svg text:not([fill]) { fill: #bdbdbd; }
-.pc-fig-svg .pc-t-s { font-size: 9.5px; }
-.pc-fig-svg .pc-t-s:not([fill]) { fill: #7a7a7a; }
-.pc-fig-svg .pc-t-h { font-size: 12.5px; font-weight: 600; }
-.pc-fig-svg .pc-t-h:not([fill]) { fill: #ffffff; }
-.pc-fig-svg .pc-t-note { font-size: 10.5px; }
-.pc-fig-svg .pc-t-note:not([fill]) { fill: #ef6a57; }
-.pc-fig-svg .pc-t-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; }
+.anim-fig-svg text:not([fill]) { fill: #bdbdbd; }
+.anim-fig-svg .fig-t-s { font-size: 9.5px; }
+.anim-fig-svg .fig-t-s:not([fill]) { fill: #7a7a7a; }
+.anim-fig-svg .fig-t-h { font-size: 12.5px; font-weight: 600; }
+.anim-fig-svg .fig-t-h:not([fill]) { fill: #ffffff; }
+.anim-fig-svg .fig-t-note { font-size: 10.5px; }
+.anim-fig-svg .fig-t-note:not([fill]) { fill: #ef6a57; }
+.anim-fig-svg .fig-t-cap { font-size: 14px; }
+.anim-fig-svg .fig-t-cap:not([fill]) { fill: #d6d6d6; }
+.anim-fig-svg .fig-t-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; }
 
-.pc-fig[data-playing="false"] .pc-fig-svg * {
+.anim-fig[data-playing="false"] .anim-fig-svg * {
   animation-play-state: paused !important;
 }
 
 /* Reduced motion: freeze each loop on its "after" state. */
 @media (prefers-reduced-motion: reduce) {
-  .pc-fig .pc-fig-svg * {
+  .anim-fig .anim-fig-svg * {
     animation-delay: -7.4s !important;
     animation-play-state: paused !important;
   }

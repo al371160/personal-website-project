@@ -208,6 +208,37 @@ export const projects = [
         title: "Overview",
         body: "Participated in designing the relationship-building app Pact for SVSD Designathon 2026. Owned the Maps side of the project, using OpenStreetMaps data and custom shaders to create a tilt-shift effect.",
       },
+      {
+        type: "text",
+        title: "The situation",
+        body: "Close friendships rarely end with a falling-out. They fade as schedules and distance pull people apart, and the moments they shared end up scattered across a camera roll, disconnected from the places where they happened.",
+      },
+      {
+        type: "animation",
+        name: "pact-drift",
+        caption: "Two friends drift apart over a year, and their shared photos sink into a camera roll",
+      },
+      {
+        type: "callout",
+        icon: "map-pin",
+        title: "The idea",
+        body: "Pact anchors shared moments to places. Photos taken with a friend are pinned to the map where they happened, so a city slowly becomes a record of the relationship.",
+      },
+      {
+        type: "text",
+        title: "My part: the map",
+        body: "I owned the Maps side of Pact. The map needed to feel personal rather than navigational, so I built it from OpenStreetMap data and wrote custom shaders for a tilt-shift effect that makes the city read like a miniature.",
+      },
+      {
+        type: "animation",
+        name: "pact-map",
+        caption: "From raw map data to a tilt-shifted city where shared photos bloom as flowers",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1792708272/fc79f467-0f17-4e29-ad2f-fcec742d8aea.png",
+        caption: "The finished map in the app, with shared moments as flowers across the city",
+      },
     ],
   },
   {
@@ -1693,8 +1724,35 @@ export const projects = [
       {
         type: "text",
         title: "Overview",
-        body: "Led and produced dedicated medical software for spacewalks. We noticed the lack of technology and antiquated analogue methods for monitoring astronaut vital signs during spacewalks and embarked on a method to simulate what a digitized and streamlined method would look like, complete with an independent mouse-look eye-look system that imitates looking instead the visor while the body moves independently. We also built a backend \"mission control\" dashboard supporting packed data streams.",
+        body: "AEGIS is dedicated medical software for spacewalks, built by our team, Pennguins, for the NASA Space Apps Challenge. I led the project and produced the simulation.",
       },
+      {
+        type: "text",
+        title: "The situation",
+        body: "We noticed how little technology goes into monitoring an astronaut's vital signs during a spacewalk, which still leans on antiquated, analog methods. Information moves slowly between the suit and the ground, so a change in someone's condition can go unnoticed.",
+      },
+      {
+        type: "animation",
+        name: "aegis-vitals",
+        caption: "Vitals by check-in versus a live telemetry stream shared by the visor and mission control",
+      },
+      {
+        type: "callout",
+        icon: "activity",
+        title: "Solution: one stream, two views",
+        body: "We simulated what a digitized, streamlined system could look like: vitals shown directly in the astronaut's visor, and a backend \"mission control\" dashboard fed by packed data streams, so the astronaut and the ground work from the same numbers.",
+      },
+      {
+        type: "text",
+        title: "Looking without turning",
+        body: "To make the simulation feel like looking out from inside the visor, we built an independent mouse-look and eye-look system. The body moves on its own while the view looks around inside the helmet, the way an astronaut keeps working along a handrail while checking their surroundings.",
+      },
+      {
+        type: "animation",
+        name: "aegis-look",
+        caption: "Top-down: turning the whole body to look, versus a gaze that moves independently of the body",
+      },
+      { type: "text", title: "Demo" },
       {
         type: "youtube",
         src: "ONFDzD3nlN8",
@@ -1702,6 +1760,7 @@ export const projects = [
       {
         type: "image",
         src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1794987804/Screenshot_2026-11-15_at_11.58.35_PM.png",
+        caption: "Suit systems check, stepping through each layer of the suit",
       },
     ],
   },

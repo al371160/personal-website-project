@@ -1,89 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { C, CYCLE, DUR, anim, animLinear, cursorPath, kf, rise, show } from "./kit";
 
-// Animated before → after diagrams for the Penn Clubs case study.
-// Every figure runs on one shared 10s loop; timings below are percentages of it.
-// Keyframes are generated per figure so each element's timeline lives next to
-// the element it moves.
-
-const DUR = 10;
-const EASE = "cubic-bezier(.65,0,.35,1)";
-const C = {
-  win: "#1a1a1a",
-  panel: "#1f1f1f",
-  line: "#2c2c2c",
-  ink: "#3a3a3a",
-  muted: "#7a7a7a",
-  accent: "#5b8cff",
-  bad: "#ef6a57",
-  good: "#4fbf7f",
-};
-
-const anim = (name, timing = EASE) => ({ animation: `${name} ${DUR}s ${timing} infinite` });
-const animLinear = (name) => anim(name, "linear");
-
-function kf(name, stops) {
-  const sorted = stops
-    .map(([p, css]) => [Math.max(0, Math.min(100, p)), css])
-    .sort((x, y) => x[0] - y[0]);
-  return `@keyframes ${name}{${sorted.map(([p, css]) => `${+p.toFixed(2)}%{${css}}`).join("")}}`;
-}
-
-// Opacity on during each [start, end] interval.
-function show(name, intervals, { ramp = 0.8, lo = 0, hi = 1 } = {}) {
-  const stops = [[0, `opacity:${lo}`], [100, `opacity:${lo}`]];
-  for (const [s, e] of intervals) {
-    stops.push(
-      [s, `opacity:${lo}`],
-      [s + ramp, `opacity:${hi}`],
-      [e, `opacity:${hi}`],
-      [e + ramp, `opacity:${lo}`]
-    );
-  }
-  return kf(name, stops);
-}
-
-// Fade + slide up at `start`, hold until `end`.
-function rise(name, start, end = 96) {
-  const hidden = "opacity:0;transform:translateY(10px)";
-  const shown = "opacity:1;transform:translateY(0px)";
-  return kf(name, [
-    [0, hidden],
-    [start, hidden],
-    [start + 3, shown],
-    [end, shown],
-    [end + 1.5, "opacity:0;transform:translateY(0px)"],
-    [100, hidden],
-  ]);
-}
-
-// Move between [pct, x, y] waypoints; `clicks` are pcts where the cursor presses.
-function cursorPath(name, points, clicks = []) {
-  const at = (p) => {
-    let prev = points[0];
-    for (const pt of points) {
-      if (pt[0] <= p) prev = pt;
-    }
-    return prev;
-  };
-  const stops = points.map(([p, x, y]) => [p, `transform:translate(${x}px,${y}px) scale(1)`]);
-  for (const c of clicks) {
-    const [, x, y] = at(c);
-    stops.push(
-      [c - 0.6, `transform:translate(${x}px,${y}px) scale(1)`],
-      [c, `transform:translate(${x}px,${y}px) scale(.78)`],
-      [c + 0.6, `transform:translate(${x}px,${y}px) scale(1)`]
-    );
-  }
-  return kf(name, stops);
-}
-
-const CYCLE = kf("pc-cycle", [
-  [0, "opacity:0"],
-  [2, "opacity:1"],
-  [95.5, "opacity:1"],
-  [98, "opacity:0"],
-  [100, "opacity:0"],
-]);
+// Before → after diagrams for the Penn Clubs case study.
 
 function Cursor({ name }) {
   return (
@@ -121,7 +38,7 @@ function Frame({ id, url, label, switchAt, css, children }) {
     show(`${id}-ba`, [[switchAt, 96]]),
   ];
   return (
-    <svg className="pc-fig-svg" viewBox="0 0 800 460" role="img" aria-label={label}>
+    <svg className="anim-fig-svg" viewBox="0 0 800 460" role="img" aria-label={label}>
       <style>{CYCLE + badges.join("") + css.join("")}</style>
       <defs>
         <clipPath id={`${id}-clip`}>
@@ -134,15 +51,15 @@ function Frame({ id, url, label, switchAt, css, children }) {
       {[44, 58, 72].map((cx) => (
         <circle key={cx} cx={cx} cy="42" r="4.5" fill="#333" />
       ))}
-      <text x="94" y="46" className="pc-t-s">{url}</text>
-      <g style={animLinear("pc-cycle")}>
+      <text x="94" y="46" className="fig-t-s">{url}</text>
+      <g style={animLinear("fig-cycle")}>
         <g style={animLinear(`${id}-bb`)}>
           <rect x="672" y="32" width="90" height="20" rx="10" fill="none" stroke={C.bad} />
-          <text x="717" y="46" textAnchor="middle" className="pc-t-badge" fill={C.bad}>BEFORE</text>
+          <text x="717" y="46" textAnchor="middle" className="fig-t-badge" fill={C.bad}>BEFORE</text>
         </g>
         <g style={animLinear(`${id}-ba`)}>
           <rect x="672" y="32" width="90" height="20" rx="10" fill={C.accent} fillOpacity=".16" stroke={C.accent} />
-          <text x="717" y="46" textAnchor="middle" className="pc-t-badge" fill={C.accent}>AFTER</text>
+          <text x="717" y="46" textAnchor="middle" className="fig-t-badge" fill={C.accent}>AFTER</text>
         </g>
         <g clipPath={`url(#${id}-clip)`}>{children}</g>
       </g>
@@ -263,38 +180,38 @@ function LayoutFigure() {
       <g style={animLinear("pc1-side")}>
         <rect x="25" y="61" width="180" height="374" fill="#161616" />
         <line x1="205.5" y1="61" x2="205.5" y2="435" stroke={C.line} />
-        <text x="40" y="90" className="pc-t-s">CLUB ADMIN</text>
+        <text x="40" y="90" className="fig-t-s">CLUB ADMIN</text>
       </g>
       <g style={animLinear("pc1-active")}>
         <rect x="32" y="108" width="166" height="24" rx="4" fill={C.accent} fillOpacity=".16" />
         <rect x="32" y="112" width="2.5" height="16" rx="1" fill={C.accent} />
       </g>
-      <text x="40" y="132" dy={9 * 30 - 8} className="pc-t" fill={C.muted} style={animLinear("pc1-morelabel")}>
+      <text x="40" y="132" dy={9 * 30 - 8} className="fig-t" fill={C.muted} style={animLinear("pc1-morelabel")}>
         More ▾
       </text>
 
       {/* Title slides into the content column */}
-      <text x="48" y="92" className="pc-t-h" style={anim("pc1-title")}>
+      <text x="48" y="92" className="fig-t-h" style={anim("pc1-title")}>
         Penn Pre-Professional Juggling Org
       </text>
 
       {/* BEFORE: narrow content column surrounded by dead space */}
       <g style={animLinear("pc1-before")}>
-        <text x="296" y="170" className="pc-t-h">Invite Members</text>
+        <text x="296" y="170" className="fig-t-h">Invite Members</text>
         {[[182, 208], [194, 196], [206, 150], [224, 208], [236, 200], [248, 208], [260, 120]].map(([y, w]) => (
           <rect key={y} x="296" y={y} width={w} height="5" rx="2" fill={C.ink} />
         ))}
         <rect x="296" y="274" width="208" height="56" rx="3" fill="none" stroke={C.line} />
-        <text x="296" y="352" className="pc-t-s">Permissions</text>
+        <text x="296" y="352" className="fig-t-s">Permissions</text>
         <rect x="296" y="358" width="208" height="22" rx="3" fill="none" stroke={C.line} />
-        <text x="296" y="400" className="pc-t-s">Title</text>
+        <text x="296" y="400" className="fig-t-s">Title</text>
         <rect x="296" y="406" width="208" height="22" rx="3" fill="none" stroke={C.line} />
       </g>
       <g style={animLinear("pc1-space")}>
         {[40, 520].map((rx) => (
           <g key={rx}>
             <rect x={rx} y="150" width="240" height="276" rx="6" fill={C.bad} fillOpacity=".05" stroke={C.bad} strokeOpacity=".55" strokeDasharray="5 5" />
-            <text x={rx + 120} y="292" textAnchor="middle" className="pc-t-note">unused space</text>
+            <text x={rx + 120} y="292" textAnchor="middle" className="fig-t-note">unused space</text>
           </g>
         ))}
       </g>
@@ -302,7 +219,7 @@ function LayoutFigure() {
       {/* AFTER: full-width cards */}
       <g style={anim("pc1-cardA")}>
         <rect x="220" y="108" width="340" height="312" rx="6" fill={C.panel} stroke={C.line} />
-        <text x="236" y="132" className="pc-t-h">General</text>
+        <text x="236" y="132" className="fig-t-h">General</text>
         {[0, 1, 2, 3, 4].map((k) => (
           <g key={k}>
             <rect x="236" y={148 + k * 52} width={60 + ((k * 23) % 40)} height="5" rx="2" fill={C.ink} />
@@ -312,14 +229,14 @@ function LayoutFigure() {
       </g>
       <g style={anim("pc1-cardB")}>
         <rect x="576" y="108" width="180" height="150" rx="6" fill={C.panel} stroke={C.line} />
-        <text x="592" y="132" className="pc-t-h">Club Logo</text>
+        <text x="592" y="132" className="fig-t-h">Club Logo</text>
         <rect x="592" y="144" width="148" height="98" rx="4" fill="none" stroke={C.ink} strokeDasharray="4 4" />
         <path d="M616 222 l24 -26 l16 16 l10 -10 l20 20 Z" fill={C.ink} />
         <circle cx="704" cy="172" r="7" fill={C.ink} />
       </g>
       <g style={anim("pc1-cardC")}>
         <rect x="576" y="272" width="180" height="148" rx="6" fill={C.panel} stroke={C.line} />
-        <text x="592" y="296" className="pc-t-h">Contact</text>
+        <text x="592" y="296" className="fig-t-h">Contact</text>
         {[0, 1, 2].map((k) => (
           <g key={k}>
             <rect x="592" y={308 + k * 36} width={40 + k * 12} height="5" rx="2" fill={C.ink} />
@@ -350,7 +267,7 @@ function LayoutFigure() {
                     .join(","),
                 }}
               />
-              <text x={t.bx + 10} y="120" className="pc-t" fill={t.slot === 0 ? "#fff" : undefined}>
+              <text x={t.bx + 10} y="120" className="fig-t" fill={t.slot === 0 ? "#fff" : undefined}>
                 {t.label}
               </text>
             </g>
@@ -363,13 +280,13 @@ function LayoutFigure() {
             stroke={C.bad}
             strokeWidth="1.2"
           />
-          <text x={(recruit.bx + apps.bx + apps.w) / 2} y="162" textAnchor="middle" className="pc-t-note">
+          <text x={(recruit.bx + apps.bx + apps.w) / 2} y="162" textAnchor="middle" className="fig-t-note">
             two tabs, one job
           </text>
         </g>
       </g>
       <g style={animLinear("pc1-overflow")}>
-        <text x="760" y="92" textAnchor="end" className="pc-t-note">
+        <text x="760" y="92" textAnchor="end" className="fig-t-note">
           11 tabs, overflowing →
         </text>
       </g>
@@ -462,35 +379,35 @@ function MessagingFigure() {
       switchAt={SWITCH_2}
       css={css}
     >
-      <text x="48" y="90" className="pc-t-h">Members</text>
+      <text x="48" y="90" className="fig-t-h">Members</text>
       {["c1", "c2", "c3"].map((c, k) => (
-        <text key={c} x="126" y="90" className="pc-t" fill={C.muted} style={animLinear(`pc2-${c}`)}>
+        <text key={c} x="126" y="90" className="fig-t" fill={C.muted} style={animLinear(`pc2-${c}`)}>
           {k + 1} of 40 selected
         </text>
       ))}
-      <text x="126" y="90" className="pc-t" fill={C.accent} style={animLinear("pc2-c4")}>
+      <text x="126" y="90" className="fig-t" fill={C.accent} style={animLinear("pc2-c4")}>
         4 selected
       </text>
-      <text x="760" y="90" textAnchor="end" className="pc-t-note" style={animLinear("pc2-note")}>
+      <text x="760" y="90" textAnchor="end" className="fig-t-note" style={animLinear("pc2-note")}>
         no filters · select one at a time
       </text>
 
       {/* Toolbar */}
       <rect x="48" y="102" width="172" height="24" rx="4" fill="#191919" stroke={C.line} />
-      <text x="58" y="118" className="pc-t-s">Search members…</text>
+      <text x="58" y="118" className="fig-t-s">Search members…</text>
       <rect x="230" y="102" width="70" height="24" rx="4" fill="none" stroke={C.line} />
-      <text x="242" y="118" className="pc-t">Filter ▾</text>
+      <text x="242" y="118" className="fig-t">Filter ▾</text>
       <g style={animLinear("pc2-filter")}>
         <rect x="308" y="102" width="146" height="24" rx="12" fill={C.accent} fillOpacity=".16" stroke={C.accent} />
-        <text x="320" y="118" className="pc-t" fill={C.accent}>Status: Accepted ×</text>
+        <text x="320" y="118" className="fig-t" fill={C.accent}>Status: Accepted ×</text>
       </g>
       <g style={animLinear("pc2-btnoff")}>
         <rect x="624" y="102" width="128" height="24" rx="4" fill="#202020" stroke={C.line} />
-        <text x="688" y="118" textAnchor="middle" className="pc-t" fill="#555">Message</text>
+        <text x="688" y="118" textAnchor="middle" className="fig-t" fill="#555">Message</text>
       </g>
       <g style={animLinear("pc2-btnon")}>
         <rect x="624" y="102" width="128" height="24" rx="4" fill={C.accent} />
-        <text x="688" y="118" textAnchor="middle" className="pc-t" fill="#fff">✉ Message 4</text>
+        <text x="688" y="118" textAnchor="middle" className="fig-t" fill="#fff">✉ Message 4</text>
       </g>
 
       {/* Table */}
@@ -499,7 +416,7 @@ function MessagingFigure() {
         <Check x={56} y={133} />
       </g>
       {[["Name", 84], ["Email", 210], ["Status", 360], ["Year", 456]].map(([t, hx]) => (
-        <text key={t} x={hx} y="144" className="pc-t-s">{t}</text>
+        <text key={t} x={hx} y="144" className="fig-t-s">{t}</text>
       ))}
       <line x1="48" y1="151.5" x2="752" y2="151.5" stroke={C.line} />
       {MEMBERS.map((s, i) => {
@@ -512,10 +429,10 @@ function MessagingFigure() {
               <rect x="84" y={r + 12} width={80 + ((i * 17) % 34)} height="6" rx="3" fill="#555" />
               <rect x="210" y={r + 12} width={110 + ((i * 23) % 36)} height="6" rx="3" fill={C.ink} />
               <rect x="356" y={r + 7} width="76" height="16" rx="8" fill={st.color} fillOpacity=".14" />
-              <text x="394" y={r + 19} textAnchor="middle" className="pc-t-s" fill={st.color}>
+              <text x="394" y={r + 19} textAnchor="middle" className="fig-t-s" fill={st.color}>
                 {st.label}
               </text>
-              <text x="456" y={r + 19} className="pc-t-s">{2026 + (i % 4)}</text>
+              <text x="456" y={r + 19} className="fig-t-s">{2026 + (i % 4)}</text>
             </g>
             {ROW_CHECKS[i] && (
               <g style={animLinear(`pc2-chk${i}`)}>
@@ -531,31 +448,31 @@ function MessagingFigure() {
       <g style={anim("pc2-panel")}>
         <rect x="452" y="61" width="324" height="374" fill="#202020" />
         <line x1="452.5" y1="61" x2="452.5" y2="435" stroke="#333" />
-        <text x="472" y="90" className="pc-t-h">New message</text>
+        <text x="472" y="90" className="fig-t-h">New message</text>
         <rect x="472" y="100" width="182" height="20" rx="10" fill={C.accent} fillOpacity=".16" />
-        <text x="484" y="114" className="pc-t-s" fill={C.accent}>To: 4 members · Accepted</text>
+        <text x="484" y="114" className="fig-t-s" fill={C.accent}>To: 4 members · Accepted</text>
 
-        <text x="472" y="146" className="pc-t" fill="#fff">Congrats</text>
-        <text x="556" y="146" className="pc-t" fill={C.muted}>Rejection</text>
-        <text x="646" y="146" className="pc-t" fill={C.muted}>Custom</text>
+        <text x="472" y="146" className="fig-t" fill="#fff">Congrats</text>
+        <text x="556" y="146" className="fig-t" fill={C.muted}>Rejection</text>
+        <text x="646" y="146" className="fig-t" fill={C.muted}>Custom</text>
         <rect x="472" y="152" width="56" height="2" fill={C.accent} />
         <line x1="472" y1="154.5" x2="756" y2="154.5" stroke="#2e2e2e" />
 
-        <text x="472" y="174" className="pc-t-s">Subject</text>
+        <text x="472" y="174" className="fig-t-s">Subject</text>
         <rect x="472" y="180" width="284" height="24" rx="4" fill="#1a1a1a" stroke={C.line} />
-        <text x="482" y="196" className="pc-t">Welcome to PPJO!</text>
+        <text x="482" y="196" className="fig-t">Welcome to PPJO!</text>
 
         <rect x="472" y="212" width="284" height="128" rx="4" fill="#1a1a1a" stroke={C.line} />
-        <text x="482" y="232" className="pc-t">Hi</text>
+        <text x="482" y="232" className="fig-t">Hi</text>
         <g style={animLinear("pc2-token")}>
           <rect x="502" y="220" width="94" height="17" rx="4" fill={C.accent} fillOpacity=".2" />
-          <text x="508" y="232" className="pc-t-s" fill={C.accent}>{"{first_name}"}</text>
+          <text x="508" y="232" className="fig-t-s" fill={C.accent}>{"{first_name}"}</text>
           <rect x="482" y="302" width="88" height="17" rx="4" fill={C.accent} fillOpacity=".2" />
-          <text x="488" y="314" className="pc-t-s" fill={C.accent}>{"{committee}"}</text>
+          <text x="488" y="314" className="fig-t-s" fill={C.accent}>{"{committee}"}</text>
         </g>
         <g style={animLinear("pc2-real")}>
-          <text x="504" y="232" className="pc-t" fill="#fff">Benjamin,</text>
-          <text x="482" y="314" className="pc-t" fill="#fff">Events committee</text>
+          <text x="504" y="232" className="fig-t" fill="#fff">Benjamin,</text>
+          <text x="482" y="314" className="fig-t" fill="#fff">Events committee</text>
         </g>
         {[[246, 250], [260, 230], [274, 256], [288, 170]].map(([y, w]) => (
           <rect key={y} x="482" y={y} width={w} height="5" rx="2" fill={C.ink} />
@@ -564,18 +481,18 @@ function MessagingFigure() {
 
         <rect x="472" y="352" width="132" height="24" rx="12" fill="none" stroke={C.line} />
         <rect x="474" y="354" width="62" height="20" rx="10" fill={C.accent} fillOpacity=".25" style={anim("pc2-toggle")} />
-        <text x="505" y="368" textAnchor="middle" className="pc-t">Edit</text>
-        <text x="571" y="368" textAnchor="middle" className="pc-t">Preview</text>
+        <text x="505" y="368" textAnchor="middle" className="fig-t">Edit</text>
+        <text x="571" y="368" textAnchor="middle" className="fig-t">Preview</text>
 
         <g style={animLinear("pc2-send")}>
           <rect x="664" y="350" width="92" height="28" rx="4" fill={C.accent} />
-          <text x="710" y="368" textAnchor="middle" className="pc-t" fill="#fff">Send</text>
+          <text x="710" y="368" textAnchor="middle" className="fig-t" fill="#fff">Send</text>
         </g>
         <g style={animLinear("pc2-sent")}>
           <rect x="664" y="350" width="92" height="28" rx="4" fill={C.good} />
-          <text x="710" y="368" textAnchor="middle" className="pc-t" fill="#0e0e0e">Sent ✓</text>
+          <text x="710" y="368" textAnchor="middle" className="fig-t" fill="#0e0e0e">Sent ✓</text>
         </g>
-        <text x="472" y="404" className="pc-t-s" style={animLinear("pc2-real")}>
+        <text x="472" y="404" className="fig-t-s" style={animLinear("pc2-real")}>
           Previewing as Benjamin Franklin
         </text>
       </g>
@@ -596,7 +513,7 @@ function buildLongForm() {
   let y = 142;
   let k = 0;
   const heading = (t) => {
-    els.push(<text key={k++} x="48" y={y + 12} className="pc-t-h">{t}</text>);
+    els.push(<text key={k++} x="48" y={y + 12} className="fig-t-h">{t}</text>);
     y += 24;
   };
   const lines = (n) => {
@@ -607,7 +524,7 @@ function buildLongForm() {
     y += 8;
   };
   const input = (label, w = 420) => {
-    els.push(<text key={k++} x="48" y={y + 8} className="pc-t-s">{label}</text>);
+    els.push(<text key={k++} x="48" y={y + 8} className="fig-t-s">{label}</text>);
     els.push(<rect key={k++} x="48" y={y + 14} width={w} height="22" rx="3" fill="none" stroke={C.line} />);
     y += 46;
   };
@@ -616,7 +533,7 @@ function buildLongForm() {
     for (const [t, c] of list) {
       const w = t.length * 6 + 18;
       els.push(<rect key={k++} x={bx} y={y} width={w} height="20" rx="3" fill={c} fillOpacity=".75" />);
-      els.push(<text key={k++} x={bx + 9} y={y + 14} className="pc-t-s" fill="#fff">{t}</text>);
+      els.push(<text key={k++} x={bx + 9} y={y + 14} className="fig-t-s" fill="#fff">{t}</text>);
       bx += w + 8;
     }
     y += 32;
@@ -626,7 +543,7 @@ function buildLongForm() {
       els.push(<rect key={k++} x="48" y={y + 4} width="10" height="10" rx="2" fill="none" stroke={C.bad} strokeOpacity=".6" />);
       els.push(<rect key={k++} x="72" y={y + 6} width={70 + (i * 13) % 30} height="5" rx="2" fill={C.ink} />);
       els.push(<rect key={k++} x="190" y={y + 6} width="150" height="5" rx="2" fill={C.ink} />);
-      els.push(<text key={k++} x="380" y={y + 12} className="pc-t-s">Pending</text>);
+      els.push(<text key={k++} x="380" y={y + 12} className="fig-t-s">Pending</text>);
       y += 20;
     }
     y += 12;
@@ -725,11 +642,11 @@ function ApplicationsFigure() {
   const header = (y, n, title, doneIdx, animName) => (
     <g style={animName ? anim(animName) : undefined}>
       <rect x="216" y={y} width="540" height="36" rx="5" fill="#222" stroke={C.line} />
-      <text x="232" y={y + 23} className="pc-t" fill="#fff">
+      <text x="232" y={y + 23} className="fig-t" fill="#fff">
         {n} · {title}
       </text>
       {doneIdx != null && (
-        <text x="740" y={y + 23} textAnchor="end" className="pc-t" fill={C.good} style={animLinear(`pc3-done${doneIdx}`)}>
+        <text x="740" y={y + 23} textAnchor="end" className="fig-t" fill={C.good} style={animLinear(`pc3-done${doneIdx}`)}>
           ✓ done
         </text>
       )}
@@ -746,7 +663,7 @@ function ApplicationsFigure() {
     >
       {/* BEFORE */}
       <g style={animLinear("pc3-before")}>
-        <text x="48" y="88" className="pc-t-h">Penn Pre-Professional Juggling Org</text>
+        <text x="48" y="88" className="fig-t-h">Penn Pre-Professional Juggling Org</text>
         {(() => {
           let tx = 48;
           return ["Membership", "Events", "Recruitment", "Applications Page", "Resources", "Questions"].map((t) => {
@@ -757,14 +674,14 @@ function ApplicationsFigure() {
             return (
               <g key={t}>
                 <rect x={x0} y="100" width={w} height="22" rx="4" fill="#222" stroke={dup ? C.bad : C.line} />
-                <text x={x0 + 8} y="115" className="pc-t">{t}</text>
+                <text x={x0 + 8} y="115" className="fig-t">{t}</text>
               </g>
             );
           });
         })()}
         <g style={animLinear("pc3-q")}>
           <circle cx="274" cy="96" r="8" fill={C.bad} />
-          <text x="274" y="100" textAnchor="middle" className="pc-t" fill="#0e0e0e">?</text>
+          <text x="274" y="100" textAnchor="middle" className="fig-t" fill="#0e0e0e">?</text>
         </g>
         <line x1="25" y1="130.5" x2="775" y2="130.5" stroke={C.line} />
         <svg x="0" y="131" width="800" height="304" viewBox="0 131 800 304" overflow="hidden">
@@ -774,8 +691,8 @@ function ApplicationsFigure() {
         <rect x="764" y="136" width="4" height="44" rx="2" fill="#555" style={anim("pc3-thumb", "linear")} />
         <g style={animLinear("pc3-note")}>
           <rect x="520" y="372" width="232" height="46" rx="6" fill="#1a1a1a" stroke={C.bad} />
-          <text x="636" y="391" textAnchor="middle" className="pc-t-note">one page, 30+ fields,</text>
-          <text x="636" y="407" textAnchor="middle" className="pc-t-note">no clear first step</text>
+          <text x="636" y="391" textAnchor="middle" className="fig-t-note">one page, 30+ fields,</text>
+          <text x="636" y="407" textAnchor="middle" className="fig-t-note">no clear first step</text>
         </g>
       </g>
 
@@ -783,7 +700,7 @@ function ApplicationsFigure() {
       <g style={animLinear("pc3-after")}>
         <rect x="25" y="61" width="180" height="374" fill="#161616" />
         <line x1="205.5" y1="61" x2="205.5" y2="435" stroke={C.line} />
-        <text x="40" y="90" className="pc-t-s">NEW APPLICATION</text>
+        <text x="40" y="90" className="fig-t-s">NEW APPLICATION</text>
         <line x1="56" y1="120" x2="56" y2="270" stroke="#333" strokeWidth="2" />
         <line
           x1="56"
@@ -800,20 +717,20 @@ function ApplicationsFigure() {
             <g style={animLinear(`pc3-step${i}`)}>
               <circle cx="56" cy={120 + i * 50} r="10" fill={C.accent} />
             </g>
-            <text x="56" y={124 + i * 50} textAnchor="middle" className="pc-t-s" fill="#fff">{i + 1}</text>
-            <text x="76" y={124 + i * 50} className="pc-t">{t}</text>
+            <text x="56" y={124 + i * 50} textAnchor="middle" className="fig-t-s" fill="#fff">{i + 1}</text>
+            <text x="76" y={124 + i * 50} className="fig-t">{t}</text>
           </g>
         ))}
 
-        <text x="216" y="92" className="pc-t-h">Fall 2026 General Member</text>
-        <text x="756" y="92" textAnchor="end" className="pc-t-s">draft · autosaved</text>
+        <text x="216" y="92" className="fig-t-h">Fall 2026 General Member</text>
+        <text x="756" y="92" textAnchor="end" className="fig-t-s">draft · autosaved</text>
 
         {/* Step bodies (drawn under the headers that slide over them) */}
         <g style={animLinear("pc3-body1")}>
           <rect x="216" y="150" width="540" height="118" rx="5" fill="#1c1c1c" />
-          <text x="232" y="170" className="pc-t-s">Application name</text>
+          <text x="232" y="170" className="fig-t-s">Application name</text>
           <rect x="232" y="176" width="320" height="24" rx="4" fill="#191919" stroke={C.line} />
-          <text x="242" y="192" className="pc-t" fill="#fff">Fall 2026 General Member</text>
+          <text x="242" y="192" className="fig-t" fill="#fff">Fall 2026 General Member</text>
           <rect
             x="240"
             y="178"
@@ -822,14 +739,14 @@ function ApplicationsFigure() {
             fill="#191919"
             style={{ ...anim("pc3-type", "steps(24,end)"), transformBox: "fill-box", transformOrigin: "right" }}
           />
-          <text x="572" y="170" className="pc-t-s">Deadline</text>
+          <text x="572" y="170" className="fig-t-s">Deadline</text>
           <rect x="572" y="176" width="168" height="24" rx="4" fill="#191919" stroke={C.line} />
-          <text x="582" y="192" className="pc-t">Dec 1 · 11:59pm</text>
-          <text x="232" y="222" className="pc-t-s">Committees</text>
+          <text x="582" y="192" className="fig-t">Dec 1 · 11:59pm</text>
+          <text x="232" y="222" className="fig-t-s">Committees</text>
           {["Events", "Finance", "Design"].map((t, i) => (
             <g key={t} style={anim(`pc3-chip${i}`)}>
               <rect x={232 + i * 82} y="230" width="74" height="22" rx="11" fill={C.accent} fillOpacity=".16" stroke={C.accent} />
-              <text x={269 + i * 82} y="245" textAnchor="middle" className="pc-t" fill={C.accent}>{t}</text>
+              <text x={269 + i * 82} y="245" textAnchor="middle" className="fig-t" fill={C.accent}>{t}</text>
             </g>
           ))}
         </g>
@@ -842,9 +759,9 @@ function ApplicationsFigure() {
           ].map(([q, kind], i) => (
             <g key={q} style={anim(`pc3-q${i}`)}>
               <rect x="232" y={202 + i * 34} width="508" height="28" rx="4" fill="#191919" stroke={C.line} />
-              <text x="244" y={220 + i * 34} className="pc-t-s" fill="#666">⋮⋮</text>
-              <text x="262" y={220 + i * 34} className="pc-t" fill="#fff">{q}</text>
-              <text x="728" y={220 + i * 34} textAnchor="end" className="pc-t-s">{kind}</text>
+              <text x="244" y={220 + i * 34} className="fig-t-s" fill="#666">⋮⋮</text>
+              <text x="262" y={220 + i * 34} className="fig-t" fill="#fff">{q}</text>
+              <text x="728" y={220 + i * 34} textAnchor="end" className="fig-t-s">{kind}</text>
             </g>
           ))}
         </g>
@@ -854,12 +771,12 @@ function ApplicationsFigure() {
             <g key={t} style={anim(`pc3-e${i}`)}>
               <rect x={232 + i * 262} y="246" width="246" height="94" rx="4" fill="#191919" stroke={C.line} />
               <rect x={232 + i * 262} y="246" width="3" height="94" rx="1" fill={c} />
-              <text x={246 + i * 262} y="266" className="pc-t" fill="#fff">{t}</text>
+              <text x={246 + i * 262} y="266" className="fig-t" fill="#fff">{t}</text>
               {[0, 1, 2].map((l) => (
                 <rect key={l} x={246 + i * 262} y={278 + l * 11} width={200 - l * 40} height="5" rx="2" fill={C.ink} />
               ))}
-              <text x={246 + i * 262} y="330" className="pc-t-s" fill={C.accent}>Preview ↗</text>
-              <text x={466 + i * 262} y="330" textAnchor="end" className="pc-t-s">default ✓</text>
+              <text x={246 + i * 262} y="330" className="fig-t-s" fill={C.accent}>Preview ↗</text>
+              <text x={466 + i * 262} y="330" textAnchor="end" className="fig-t-s">default ✓</text>
             </g>
           ))}
         </g>
@@ -871,45 +788,20 @@ function ApplicationsFigure() {
 
         <g style={animLinear("pc3-pub")}>
           <rect x="644" y="402" width="112" height="26" rx="4" fill={C.accent} />
-          <text x="700" y="419" textAnchor="middle" className="pc-t" fill="#fff">Publish</text>
+          <text x="700" y="419" textAnchor="middle" className="fig-t" fill="#fff">Publish</text>
         </g>
         <g style={animLinear("pc3-pubd")}>
           <rect x="644" y="402" width="112" height="26" rx="4" fill={C.good} />
-          <text x="700" y="419" textAnchor="middle" className="pc-t" fill="#0e0e0e">Published ✓</text>
+          <text x="700" y="419" textAnchor="middle" className="fig-t" fill="#0e0e0e">Published ✓</text>
         </g>
       </g>
     </Frame>
   );
 }
 
-const FIGURES = {
+
+export const PENN_CLUBS_FIGURES = {
   layout: LayoutFigure,
   messaging: MessagingFigure,
   applications: ApplicationsFigure,
 };
-
-export default function PennClubsFigure({ name, caption }) {
-  const ref = useRef(null);
-  const [playing, setPlaying] = useState(true);
-
-  // Pause off-screen loops so a long page doesn't keep animating hidden SVGs.
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || typeof IntersectionObserver === "undefined") return undefined;
-    const io = new IntersectionObserver(([entry]) => setPlaying(entry.isIntersecting), {
-      threshold: 0.1,
-    });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  const Figure = FIGURES[name];
-  if (!Figure) return null;
-
-  return (
-    <figure ref={ref} className="detail-block detail-block--media pc-fig" data-playing={playing}>
-      <Figure />
-      {caption && <figcaption>{caption}</figcaption>}
-    </figure>
-  );
-}
