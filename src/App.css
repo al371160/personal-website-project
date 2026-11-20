@@ -739,11 +739,6 @@
   text-underline-offset: 4px;
 }
 
-/* Placeholder cards keep the gallery rhythm without linking anywhere. */
-.gallery-card--placeholder {
-  cursor: default;
-}
-
 .gallery-media--placeholder {
   aspect-ratio: 16 / 10;
   display: flex;
@@ -756,15 +751,36 @@
   border: 1px solid #232323;
 }
 
-.gallery-placeholder-label {
-  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
+/* Coming-soon cards: not links; hover darkens the media and shows a label. */
+.gallery-card--soon {
+  cursor: default;
 }
 
-.gallery-card--placeholder:hover .gallery-title {
+.gallery-card--soon .gallery-media {
+  position: relative;
+}
+
+.gallery-soon-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.62);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.gallery-card--soon:hover .gallery-soon-overlay {
+  opacity: 1;
+}
+
+.gallery-card--soon:hover .gallery-title {
   text-decoration: none;
 }
 

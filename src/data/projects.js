@@ -1645,9 +1645,15 @@ export const projects = [
     title: "Minecraft",
     category: "Game",
     description: "A new Minecraft project. Details coming soon.",
-    placeholder: true,
-    thumbnail: null,
-    hero: null,
+    comingSoon: true,
+    thumbnail: {
+      type: "photo",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1795204456/440fc530-36db-4cfa-8e25-9002d9c28d9b.png",
+    },
+    hero: {
+      type: "image",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1795204456/440fc530-36db-4cfa-8e25-9002d9c28d9b.png",
+    },
     meta: {
       role: "",
       collaborators: "",
@@ -1700,9 +1706,10 @@ export const projects = [
     ],
   },
   {
-    slug: "zipline",
-    title: "Zipline",
-    category: "Graphics",
+    slug: "zplot",
+    title: "ZPlot",
+    category: "UI",
+    comingSoon: true,
     thumbnail: {
       type: "photo",
       src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1795112590/8e9a28e3-d5d4-4026-b0d4-ddea11d8e92f.png",
@@ -1721,16 +1728,17 @@ export const projects = [
   },
 ];
 
+// Cards without a thumbnail render as dark "coming soon" tiles.
 export const PLACEHOLDER_PROJECTS = [
   {
     slug: "government-ui-project",
     title: "Government UI Project",
-    placeholder: true,
+    comingSoon: true,
   },
   {
     slug: "mosaic",
     title: "MOSAIC",
-    placeholder: true,
+    comingSoon: true,
   },
 ];
 
@@ -1741,7 +1749,7 @@ export const COLLECTIONS = {
       "The best ideas often come from \"looking at the fish,\" which is my process when asking questions for user feedback. This often results in novel yet logical ideas for interaction across interesting domains like geospatial representations, productivity and organization, cross-platform gaming controllers, and VR/AR interaction.",
     slugs: [
       ...HOME_SLUGS,
-      "hackprinceton-2026",
+      "zplot",
       "nasa-apps",
     ],
   },
@@ -1756,7 +1764,7 @@ export const COLLECTIONS = {
       "clockwork-climb",
       "rum-rush",
       "saturn",
-      "zipline",
+      "hackprinceton-2026",
       "minecraft",
     ],
   },

@@ -45,7 +45,7 @@ export default function ProjectGallery({ projects }) {
               title={project.title}
               hero={project.thumbnail}
               featured={i === 0}
-              placeholder={project.placeholder}
+              comingSoon={project.comingSoon}
             />
           ))}
         </div>
