@@ -1754,8 +1754,11 @@ export const projects = [
       {
         type: "callout",
         icon: "activity",
-        title: "Solution: one stream, two views",
-        body: "We simulated what a digitized, streamlined system could look like: vitals shown directly in the astronaut's visor, and a backend \"mission control\" dashboard fed by packed data streams, so the astronaut and the ground work from the same numbers.",
+        title: "Solution: a medical kit inside the visor",
+        body: [
+          "Our primary innovation is putting diagnostics in the astronaut's own hands. AEGIS includes multiple self-administrable diagnostic tests, so astronauts can check on themselves without waiting on the ground, and lets them look up medical information on the spot without bringing a physical book or tablet.",
+          "Around that, we simulated what a digitized, streamlined system could look like: vitals shown directly in the visor, and a backend \"mission control\" dashboard fed by packed data streams, so the astronaut and the ground work from the same numbers.",
+        ],
       },
       {
         type: "text",
