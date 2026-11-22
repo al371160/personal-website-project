@@ -156,8 +156,11 @@ export function car() {
 export function beaker() {
   const g = new THREE.Group();
   const glass = new THREE.MeshPhysicalMaterial({
-    color: 0xe6f8ff, roughness: 0.04, transparent: true, opacity: 0.32, side: THREE.DoubleSide, depthWrite: false, clearcoat: 1,
+    color: 0xf2fbff, roughness: 0.04, transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false, clearcoat: 1,
+    envMapIntensity: 1.8,
   });
+  // bright rims so the glass reads against the water
+  const rim = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.35, roughness: 0.2 });
   const liquid = new THREE.MeshStandardMaterial({ color: 0x2bffa0, emissive: 0x13d27a, emissiveIntensity: 0.7, transparent: true, opacity: 0.85 });
   const marks = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.7 });
 
@@ -166,6 +169,9 @@ export function beaker() {
     [0.0, -0.12], [0.24, -0.12], [0.265, -0.1], [0.075, 0.3], [0.07, 0.34], [0.07, 0.47], [0.088, 0.5],
   ].map(([r, y]) => new THREE.Vector2(r, y));
   g.add(mesh(new THREE.LatheGeometry(profile, 48), glass));
+  g.add(mesh(new THREE.TorusGeometry(0.088, 0.012, 8, 40).rotateX(Math.PI / 2), rim, 0, 0.5, 0)); // lip
+  g.add(mesh(new THREE.TorusGeometry(0.07, 0.008, 8, 40).rotateX(Math.PI / 2), rim, 0, 0.34, 0)); // neck
+  g.add(mesh(new THREE.TorusGeometry(0.255, 0.012, 8, 48).rotateX(Math.PI / 2), rim, 0, -0.11, 0)); // base
 
   // liquid fills the lower part of the cone
   const radiusAt = (y) => 0.265 - ((y + 0.1) / 0.4) * (0.265 - 0.075);

@@ -326,9 +326,10 @@ export default function PoolScene({ onFirstFrame }) {
     const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
     const timeU = { value: 0 };
 
-    // a single bright sun, slightly behind the top of the frame so shadows fall
-    // down and to the side across the floor
-    const SUN_DIR = new THREE.Vector3(-0.3, 1, -0.38).normalize();
+    // a single bright sun, tilted a little toward the camera: the floor sits
+    // below the props and the view is angled, so this lands each shadow just
+    // under its prop on screen instead of down and to the side
+    const SUN_DIR = new THREE.Vector3(-0.12, 1, 0.3).normalize();
     const envRT = skyEnvironment(renderer, SUN_DIR);
     scene.environment = envRT.texture;
     scene.environmentIntensity = 0.6;
