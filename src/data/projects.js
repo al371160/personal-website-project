@@ -1,8 +1,3 @@
-export const HOME_SLUGS = [
-  "pact",
-  "penn-labs",
-];
-
 export const projects = [
     {
     slug: "penn-labs",
@@ -1815,18 +1810,23 @@ export const PLACEHOLDER_PROJECTS = [
 ];
 
 export const COLLECTIONS = {
-  home: {
-    title: "UI",
+  // Shipped, end-to-end work. One column so it reads as the headline.
+  "case-studies": {
+    columns: 1,
+    slugs: ["penn-labs"],
+  },
+  explorations: {
     intro:
       "The best ideas often come from \"looking at the fish,\" which is my process when asking questions for user feedback. This often results in novel yet logical ideas for interaction across interesting domains like geospatial representations, productivity and organization, cross-platform gaming controllers, and VR/AR interaction.",
     slugs: [
-      ...HOME_SLUGS,
-      "zplot",
+      "orble-tea",
+      "penn-electric-racing",
+      "pact",
       "nasa-apps",
+      "zplot",
+      "government-ui-project",
+      "mosaic",
     ],
-  },
-  design: {
-    slugs: ["orble-tea", "penn-electric-racing", "government-ui-project", "mosaic"],
   },
   graphics: {
     intro:
@@ -1851,10 +1851,6 @@ function findProject(slug) {
 
 export function collectionProjects(name) {
   return (COLLECTIONS[name]?.slugs || []).map(findProject).filter(Boolean);
-}
-
-export function homeProjects() {
-  return collectionProjects("home");
 }
 
 export function moreWorkProjects() {

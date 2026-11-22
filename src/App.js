@@ -74,13 +74,16 @@ function AppContent() {
             element={<Detail onReady={handleReady} onProgress={handleProgress} />}
           />
           <Route
-            path="/ui"
-            element={<Collection name="home" onReady={handleReady} onProgress={handleProgress} />}
+            path="/case-studies"
+            element={<Collection name="case-studies" onReady={handleReady} onProgress={handleProgress} />}
           />
           <Route
-            path="/design"
-            element={<Collection name="design" onReady={handleReady} onProgress={handleProgress} />}
+            path="/explorations"
+            element={<Collection name="explorations" onReady={handleReady} onProgress={handleProgress} />}
           />
+          {/* old section urls */}
+          <Route path="/ui" element={<Navigate to="/explorations" replace />} />
+          <Route path="/design" element={<Navigate to="/explorations" replace />} />
           <Route
             path="/graphics"
             element={<Collection name="graphics" onReady={handleReady} onProgress={handleProgress} />}

@@ -52,7 +52,7 @@ export default function Collection({ name, onReady, onProgress }) {
       )}
 
       <section className="archive-section">
-        <ProjectGallery projects={projects} />
+        <ProjectGallery projects={projects} columns={collection.columns} />
       </section>
     </main>
   );

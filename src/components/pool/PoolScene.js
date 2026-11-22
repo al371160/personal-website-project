@@ -35,7 +35,8 @@ const PROPS = [
   { id: "beach2", kind: "beach", label: "Beach ball" },
   // project props: click opens the project page, hover shows its hero image
   { id: "car", kind: "car", project: "penn-electric-racing" },
-  { id: "beaker", kind: "beaker", project: "penn-labs" },
+  // the case study: bigger than the rest and always starts in the middle
+  { id: "beaker", kind: "beaker", project: "penn-labs", scale: 2, center: true },
   { id: "phone", kind: "phone", project: "pact" },
   { id: "boba", kind: "boba", project: "orble-tea" },
   { id: "creeper", kind: "creeper", project: "minecraft" },
@@ -572,8 +573,9 @@ export default function PoolScene({ onFirstFrame }) {
       }
       return {
         ...p, ...built, index, group: g,
-        radius: built.radius * PROP_SCALE * (MODELS[p.kind]?.size ?? 1),
-        draft: built.draft * PROP_SCALE,
+        scale: PROP_SCALE * (p.scale ?? 1),
+        radius: built.radius * PROP_SCALE * (p.scale ?? 1) * (MODELS[p.kind]?.size ?? 1),
+        draft: built.draft * PROP_SCALE * (p.scale ?? 1),
         x: 0, z: 0, y: 0, vx: 0, vz: 0, vy: 0,
         yaw: Math.random() * Math.PI * 2, vyaw: (Math.random() - 0.5) * 0.3,
         roll: new THREE.Quaternion(), baseQuat: new THREE.Quaternion(), hover: 0, spinBoost: 0, frozen: false,
@@ -778,9 +780,19 @@ export default function PoolScene({ onFirstFrame }) {
     {
       const saved = loadLayout() || {};
       const placed = [];
+      // centred props ignore their saved spot and take the middle of the view
+      for (const o of objs) {
+        if (!o.center) continue;
+        o.x = 0;
+        o.z = (bounds.zFar + bounds.zNear) / 2;
+        o.restored = true;
+        placed.push({ x: o.x, z: o.z, r: o.radius });
+      }
       for (const o of objs) {
         const s = saved[o.id];
-        if (!s) continue;
+        if (!s || o.center) continue;
+        // a saved spot under a centred prop gets a fresh random one instead
+        if (objs.some((c) => c.center && Math.hypot(c.x - s[0], c.z - s[1]) < c.radius + o.radius + 0.12)) continue;
         const m = o.radius + 0.15;
         o.z = Math.max(bounds.zFar + m + 0.3, Math.min(bounds.zNear - m, s[1]));
         const half = halfAt(o.z) - m;
@@ -987,7 +999,7 @@ export default function PoolScene({ onFirstFrame }) {
       const k = 1 - Math.exp(-dt * 14);
       o.dispY += (targetY - o.dispY) * k;
       o.group.position.set(o.x, o.dispY + o.clear, o.z);
-      o.group.scale.setScalar(PROP_SCALE * (1 + h * 0.14));
+      o.group.scale.setScalar(o.scale * (1 + h * 0.14));
       let need = 0;
       if (h > 0.001 || o.clear > 0.001) {
         o.group.updateMatrixWorld(true);

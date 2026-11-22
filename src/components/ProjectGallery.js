@@ -24,8 +24,9 @@ function useColumnCount() {
   return count;
 }
 
-export default function ProjectGallery({ projects }) {
-  const columnCount = useColumnCount();
+export default function ProjectGallery({ projects, columns: fixedColumns }) {
+  const responsiveCount = useColumnCount();
+  const columnCount = fixedColumns ?? responsiveCount;
 
   // Round-robin so cards read left-to-right, then down, while each column stacks tightly.
   const columns = Array.from({ length: columnCount }, () => []);
