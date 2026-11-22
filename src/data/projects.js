@@ -1833,11 +1833,11 @@ export const COLLECTIONS = {
       "I've made many games on the Unity game engine, mostly focused on crafting detailed art styles. Recently, I've been pivoting to fast-production games with a goal to capture a playerbase.",
     links: [{ label: "itch.io", href: "https://al371160.itch.io/" }],
     slugs: [
+      "minecraft",
+      "hackprinceton-2026",
+      "saturn",
       "clockwork-climb",
       "rum-rush",
-      "saturn",
-      "hackprinceton-2026",
-      "minecraft",
     ],
   },
 };
