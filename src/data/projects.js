@@ -1674,7 +1674,7 @@ export const projects = [
     comingSoon: true,
     thumbnail: {
       type: "photo",
-      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1795204456/440fc530-36db-4cfa-8e25-9002d9c28d9b.png",
+      src: "https://res.cloudinary.com/fet3ks1c/image/upload/v1795332497/01be5a97-9032-4f31-8b9c-4efa4849cc38.png",
     },
     hero: {
       type: "image",
