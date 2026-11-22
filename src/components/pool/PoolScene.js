@@ -21,18 +21,13 @@ const RESUME_URL = "https://drive.google.com/file/d/1ymN-Ky85-mRS6CXPyQgMFEpfVzV
 
 // Everything floating in the pool. `href` makes it a link; `duck` opens the message card.
 const PROPS = [
-  { id: "duck", kind: "duck", label: "Talk to the duck", duck: true },
+  { id: "duck", kind: "duck", label: "Talk to the duck", duck: true, scale: 0.65 },
   { id: "resume", kind: "files", label: "Résumé (a little wet)", href: RESUME_URL },
   { id: "github", kind: "logo", logo: "github", label: "GitHub", href: "https://github.com/al371160" },
   { id: "linkedin", kind: "logo", logo: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/alexander-liu-282739206/" },
   { id: "email", kind: "logo", logo: "gmail", label: "Email", href: "mailto:aliu10@seas.upenn.edu" },
   { id: "itch", kind: "logo", logo: "itch", label: "itch.io", href: "https://al371160.itch.io/" },
   { id: "x", kind: "logo", logo: "x", label: "X", href: "https://x.com/a1ex1iu_cgart" },
-  { id: "buoy1", kind: "buoy", label: "Life buoy" },
-  { id: "buoy2", kind: "buoy", label: "Life buoy" },
-  { id: "buoy3", kind: "buoy", label: "Life buoy" },
-  { id: "beach1", kind: "beach", label: "Beach ball" },
-  { id: "beach2", kind: "beach", label: "Beach ball" },
   // project props: click opens the project page, hover shows its hero image
   { id: "car", kind: "car", project: "penn-electric-racing" },
   // the case study: bigger than the rest and always starts in the middle
@@ -103,7 +98,7 @@ const CAUSTIC_RES = 2048;
 const PROP_SCALE = 1.55; // size of everything floating
 const SIM_TO_CAUSTIC = 2.2; // how strongly ripples bend the caustics
 // Tilt-shift: sharp band across the middle, blur toward the front, back and sides.
-const TILT = { enabled: true, focus: 0.52, band: 0.14, ramp: 0.32, maxBlur: 14, side: 0.45 };
+const TILT = { enabled: true, focus: 0.52, band: 0.14, ramp: 0.32, maxBlur: 8, side: 0.45 };
 
 // Ambient surface motion: layered value noise drifting in different directions,
 // so it never repeats visibly (same idea as the koi pond's waveH).
